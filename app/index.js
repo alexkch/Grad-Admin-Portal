@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
-const Joi = require('joi');
-const tickets = require('./routes/tickets.js')
+const tickets = require('./routes/tickets')
 const express = require('express');
 const app = express();
 

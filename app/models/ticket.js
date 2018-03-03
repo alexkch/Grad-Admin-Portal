@@ -1,10 +1,11 @@
 const mongoose = require('mongoose');
+const Joi = require('joi');
 
 const ticketSchema = new mongoose.Schema({
 	professor: {
 		type: String,
 		required: true,
-		minlength: 5,
+		minlength: 1,
 		maxlength: 255,
 		trim: true
 	},
@@ -18,7 +19,7 @@ const ticketSchema = new mongoose.Schema({
 	created_by: {
 		type: String,
 		required: true,
-		minlength: 5,
+		minlength: 1,
 		maxlength: 255,
 		trim: true
 	},
@@ -26,14 +27,16 @@ const ticketSchema = new mongoose.Schema({
 	updated_on: { type: Date }
 });
 
-function validateCourse(ticket) {
 
+function validateTicket(ticket) {
 	const schema = {
-		name: Joi.string().min(3).required()
+		professor: Joi.string().min(1).max(255).required(),
+		status: Joi.string().min(1).max(255).required(),
+		created_by: Joi.string().min(1).max(255).required()
 	};
 
 	return Joi.validate(ticket, schema);
-
 };
 
-module.exports = mongoose.model('Ticket', ticketSchema);
+module.exports.Ticket = mongoose.model('Ticket', ticketSchema);
+module.exports.validate = validateTicket;

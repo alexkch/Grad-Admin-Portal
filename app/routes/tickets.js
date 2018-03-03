@@ -1,10 +1,10 @@
-
+const { Ticket, validate } = require('../models/ticket');
+const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
 
-
-
 router.get('/', async (req, res) => {
+
   const tickets = await Ticket.find().sort('professor');
 	res.send(tickets);
 
@@ -12,70 +12,50 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
 
-	const { error } = validateCourse(req.body);
-	if (error) {
-		res.status(400).send(error.details[0].message);
-		return;
-	};
+	const { error } = validate(req.body);
+	if (error) return res.status(400).send(error.details[0].message);
 
 	let ticket = new Ticket({
 		name: req.body.name
 	});
+
   ticket = await ticket.save();
-
 	res.send(ticket);
 });
 
-router.get('/api/tickets/:id', (req, res) => {
 
-	let ticket = tickets.find(c => c.id === parseInt(req.params.id));
-	if (!ticket) res.status(404).send("ticket with given ID was not found");
+router.get('/:id', async (req, res) => {
+
+	const ticket = await Ticket.findById(req.params.id);
+	if (!ticket) return res.status(404).send("ticket with given ID was not found");
 	res.send(ticket);
-
 });
 
 
+router.put('/:id', async (req, res) => {
 
-router.put('/api/tickets/:id', (req, res) => {
+  const {error} = validate(req.body);
+	if (error) return res.status(400).send(error.details[0].message);
 
+	const ticket = await Ticket.findByIdAndUpdate(req.params.id,
+    { professor: req.body.professor },
+    { new : true }
+  );
+	if (!ticket) return res.status(404).send("ticket with given ID was not found");
 
-	let ticket = tickets.find(c => c.id === parseInt(req.params.id));
-	if (!ticket) res.status(404).send("ticket with given ID was not found");
-
-	const {error} = validateCourse(req.body);
-	if (error) {
-		res.status(400).send(error.details[0].message);
-		return;
-	};
-
-
-	ticket.name = req.body.name;
-	res.send(ticket);
-
-
-});
-
-
-router.delete('/api/tickets/:id', (req, res) => {
-
-
-	let ticket = tickets.find(c => c.id === parseInt(req.params.id));
-	if (!ticket) res.status(404).send("ticket with given ID was not found");
-
-	const index = tickets.indexOf(ticket);
-	tickets.splice(index, 1);
 	res.send(ticket);
 
 });
 
 
+router.delete('/:id', async (req, res) => {
 
-function validateCourse(ticket) {
+	const ticket = await Ticket.findByIdAndRemove(req.params.id);
+	if (!ticket) return res.status(404).send("ticket with given ID was not found");
 
-	const schema = {
-		name: Joi.string().min(3).required()
-	};
+	res.send(ticket);
 
-	return Joi.validate(ticket, schema);
+});
 
-};
+
+modules.export = router;

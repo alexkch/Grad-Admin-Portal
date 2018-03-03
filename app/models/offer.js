@@ -4,7 +4,7 @@ const offerSchema = new mongoose.Schema({
   applicant: {
 		type: String,
 		required: true,
-		minlength: 5,
+		minlength: 1,
 		maxlength: 255,
     trim: true
 	},
@@ -18,7 +18,7 @@ const offerSchema = new mongoose.Schema({
   professor: {
 		type: String,
 		required: true,
-		minlength: 5,
+		minlength: 1,
 		maxlength: 255,
 		trim: true
 	},
