@@ -1,27 +1,23 @@
 const mongoose = require('mongoose');
+const Ticket = require('./models/ticket.js');
 
 mongoose.connect('mongodb://localhost/playground')
 .then(() => console.log('Connected to MongoDB'))
 .catch(err => console.error('Could not connect to MongoDB', err));
 
-const ticketSchema = new mongoose.Schema({
-	name: String,
-	professor: String,
-	created_on: { type: Date, default: Date.now },
-	redeemed: {type: Boolean, default: false }
-});
-
-const Ticket = mongoose.model('Ticket', ticketSchema);
-
-
 async function createTicket() {
-const ticket = new Ticket({
-	name: 'test person',
-	professor: 'test prof'
-});
+	const ticket = new Ticket({
+		name: 'test person2',
+		professor: 'test prof2'
+	});
 
-const result = await ticket.save();
-console.log(result);
+	try {
+		const result = await ticket.save();
+		console.log(result);
+	} catch (e) {
+		for (field in e.errors)
+			console.log(e.erros[field].message); //logs out all validation erros
+	}
 };
 
 createTicket();
