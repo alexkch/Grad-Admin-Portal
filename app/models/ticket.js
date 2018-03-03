@@ -26,4 +26,14 @@ const ticketSchema = new mongoose.Schema({
 	updated_on: { type: Date }
 });
 
+function validateCourse(ticket) {
+
+	const schema = {
+		name: Joi.string().min(3).required()
+	};
+
+	return Joi.validate(ticket, schema);
+
+};
+
 module.exports = mongoose.model('Ticket', ticketSchema);
