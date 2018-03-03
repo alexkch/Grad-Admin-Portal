@@ -16,7 +16,9 @@ router.post('/', async (req, res) => {
 	if (error) return res.status(400).send(error.details[0].message);
 
 	let ticket = new Ticket({
-		name: req.body.name
+		professor: req.body.professor,
+    status: req.body.status,
+    created_by: req.body.created_by
 	});
 
   ticket = await ticket.save();

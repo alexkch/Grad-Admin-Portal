@@ -12,7 +12,7 @@ const ticketSchema = new mongoose.Schema({
 	status: {
 		type: String,
 		required: true,
-		enum: ['Granted', 'Redeemed'],
+		enum: ['granted', 'redeemed'],
 		lowercase: true,
 		trim: true
 	},
