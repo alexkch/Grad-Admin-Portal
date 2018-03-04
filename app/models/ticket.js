@@ -31,8 +31,9 @@ const ticketSchema = new mongoose.Schema({
 function validateTicket(ticket) {
 	const schema = {
 		professor: Joi.string().min(1).max(255).required(),
-		status: Joi.string().min(1).max(255).required(),
-		created_by: Joi.string().min(1).max(255).required()
+		status: Joi.string().valid('granted', 'redeemed').required(),
+		created_by: Joi.string().min(1).max(255).required(),
+		created_on: Joi.date().timestamp()
 	};
 
 	return Joi.validate(ticket, schema);

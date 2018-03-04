@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Joi = require('joi');
 
 const offerSchema = new mongoose.Schema({
   applicant: {
@@ -37,4 +38,25 @@ const offerSchema = new mongoose.Schema({
   updated_on: { type: Date }
 });
 
-module.exports = mongoose.model('Offer', offerSchema);
+
+function validateOffer(offer) {
+	const schema = {
+		applicant: Joi.string().min(1).max(255).required(),
+		type: Joi.string()
+    .valid('domestic', 'international').required(),
+		professor: Joi.string().min(1).max(255).required(),
+    status: Joi.string()
+    .valid('pending', 'approved', 'rejected', 'accepted', 'declined').required(),
+    approved_on: Joi.date().timestamp(),
+    rejected_on: Joi.date().timestamp(),
+    accepted_on: Joi.date().timestamp(),
+    declined_on: Joi.date().timestamp(),
+    created_on: Joi.date().timestamp(),
+    updated_on: Joi.date().timestamp()
+	};
+
+	return Joi.validate(offer, schema);
+};
+
+module.exports.Offer = mongoose.model('Offer', offerSchema);
+module.exports.validate = validateOffer;
