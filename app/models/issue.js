@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Joi = require('joi');
-const { Note , _ } =  require('note');
+const { Note, noteSchema, _ } =  require('note');
 
 const issueSchema = new mongoose.Schema({
   created_by: {
@@ -31,6 +31,7 @@ const issueSchema = new mongoose.Schema({
     lowercase: true,
     trim: true,
   },
+  notes: [noteSchema],
   updated_on: { type: Date },
   closed_on: { type: Date },
   created_on: { type: Date, default: Date.now },
