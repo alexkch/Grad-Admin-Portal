@@ -18,7 +18,7 @@ router.post('/', async (req, res) => {
 
 	let offer = new Offer({
 
-    ticket: req.body.ticket,
+    ticket_id: req.body.ticket_id,
     applicant: req.body.applicant,
     type: req.body.type,
     professor: req.body.professor,
@@ -45,7 +45,7 @@ router.put('/:id', async (req, res) => {
 	if (error) return res.status(400).send(error.details[0].message);
 
   let json = {
-    ticket: req.body.ticket,
+    ticket_id: req.body.ticket_id,
     applicant: req.body.applicant,
     type: req.body.type,
     professor: req.body.professor,

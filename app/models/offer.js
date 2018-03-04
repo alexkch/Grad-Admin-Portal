@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Joi = require('joi');
 
 const offerSchema = new mongoose.Schema({
-  ticket: {
+  ticket_id: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Ticket'
   },
@@ -46,7 +46,7 @@ const offerSchema = new mongoose.Schema({
 
 function validateOffer(offer) {
 	const schema = {
-    ticket: Joi.objectId().required(),
+    ticket_id: Joi.objectId().required(),
 		applicant: Joi.string().min(1).max(255).required(),
 		type: Joi.string()
     .valid('domestic', 'international').required(),
