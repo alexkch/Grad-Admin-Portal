@@ -27,20 +27,6 @@ router.post('/', async (req, res) => {
 	res.send(issue);
 });
 
-router.post('/:id/addnote', async (req, res) => {
-
-  let issue = await Issue.findById(req.params.id);
-	if (!issue) return res.status(404).send("issue with given ID was not found");
-
-  const { error } = validateNote(req.body.note);
-	if (error) return res.status(400).send(error.details[0].message);
-
-  issue.notes.push(req.body.note);
-  issue = await issue.save();
-	res.send(issue);
-});
-
-
 
 router.get('/:id', async (req, res) => {
 
@@ -77,5 +63,49 @@ router.delete('/:id', async (req, res) => {
 	res.send(issue);
 
 });
+
+// to add note
+router.post('/:id/new', async (req, res) => {
+
+  if (!mongoose.Types.ObjectId.isValid(req.params.id)) return res.status(400).send("Not valid ID");
+
+  let issue = await Issue.findById(req.params.id);
+	if (!issue) return res.status(404).send("issue with given ID was not found");
+
+  /* JSON has to be of notation
+  { "message" : "msg1", "author" : "author1", ...}
+  */
+  const { error } = validateNote(req.body);
+	if (error) return res.status(400).send(error.details[0].message);
+
+  const result = await Issue.update({ "_id" : req.params.id },
+    { $push: { notes : req.body }
+  });
+  res.send(result);
+
+  //issue.notes.push(req.body);
+  //issue = await issue.save();
+	//res.send(issue);
+});
+
+// to add note
+router.post('/:id/del/:note_id', async (req, res) => {
+
+  if (!mongoose.Types.ObjectId.isValid(req.params.id)) return res.status(400).send("Not valid ID");
+
+  let issue = await Issue.findById(req.params.id);
+	if (!issue) return res.status(404).send("issue with given ID was not found");
+
+  const result = await Issue.update({ "_id" : req.params.id },
+    { $pull: { notes : { "_id" : req.params.note_id }}
+  });
+	if (!result.nModified) return res.status(404).send("note with given ID was not found");
+
+	res.send(result);
+
+
+});
+
+
 
 module.exports = router;

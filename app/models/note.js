@@ -10,7 +10,6 @@ const noteSchema = new mongoose.Schema({
 	},
   author: {
     type: String,
-    required: true,
     minlength: 1,
     maxlength: 255,
     trim: true
@@ -38,6 +37,5 @@ function validateNote(note) {
 	return Joi.validate(note, schema);
 };
 
-//module.exports.Note = mongoose.model('Note', noteSchema);
 module.exports.noteSchema = noteSchema;
 module.exports.validateNote = validateNote;
