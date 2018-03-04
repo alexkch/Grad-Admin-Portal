@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const Joi = require('joi');
+Joi.objectId = require('joi-objectid')(Joi);
 const tickets = require('./routes/tickets');
 const offers = require('./routes/offers');
 const issues = require('./routes/issues');

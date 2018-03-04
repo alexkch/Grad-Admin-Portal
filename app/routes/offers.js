@@ -18,10 +18,11 @@ router.post('/', async (req, res) => {
 
 	let offer = new Offer({
 
+    ticket: req.body.ticket,
     applicant: req.body.applicant,
     type: req.body.type,
     professor: req.body.professor,
-    status: req.body.status,
+    status: req.body.status
 
 	});
 
@@ -44,10 +45,11 @@ router.put('/:id', async (req, res) => {
 	if (error) return res.status(400).send(error.details[0].message);
 
   let json = {
+    ticket: req.body.ticket,
     applicant: req.body.applicant,
     type: req.body.type,
     professor: req.body.professor,
-    status: req.body.status,
+    status: req.body.status
   };
 
   switch (req.body.status) {
