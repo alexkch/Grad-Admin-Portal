@@ -38,6 +38,6 @@ function validateNote(note) {
 	return Joi.validate(note, schema);
 };
 
-module.exports.Note = mongoose.model('Note', noteSchema);
+//module.exports.Note = mongoose.model('Note', noteSchema);
 module.exports.noteSchema = noteSchema;
 module.exports.validateNote = validateNote;

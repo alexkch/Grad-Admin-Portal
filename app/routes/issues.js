@@ -1,8 +1,7 @@
 const { Issue, validate } = require('../models/issue');
-const { Note, _ , validateNote } =  require('../models/note');
+const { _ , validateNote } =  require('../models/note');
 const mongoose = require('mongoose');
 const express = require('express');
-const Joi = require('joi');
 const router = express.Router();
 
 router.get('/', async (req, res) => {
