@@ -1,6 +1,7 @@
 const { Offer, validate } = require('../models/offer');
 const mongoose = require('mongoose');
 const express = require('express');
+const Joi = require('joi');
 const router = express.Router();
 
 router.get('/', async (req, res) => {
@@ -42,31 +43,37 @@ router.put('/:id', async (req, res) => {
   const {error} = validate(req.body);
 	if (error) return res.status(400).send(error.details[0].message);
 
-	const offer = await Offer.findByIdAndUpdate(req.params.id,
-    {
-      applicant: req.body.applicant,
-      type: req.body.type,
-      professor: req.body.professor,
-      status: req.body.status,
-    },
-    { new : true }
-  );
+  let json = {
+    applicant: req.body.applicant,
+    type: req.body.type,
+    professor: req.body.professor,
+    status: req.body.status,
+  };
+
   switch (req.body.status) {
       case 'pending':
           break;
       case 'approved':
-          offer["approved_on"] = Date.now;
+          json.approved_on = Date.now();
           break;
       case 'rejected':
-          offer["rejected_on"] = Date.now;
+          json.rejected_on = Date.now();
+          json.accepted_on = null;
+          json.declined_on = null;
           break;
       case 'accepted':
-          offer["accepted_on"] = Date.now;
+          json.accepted_on = Date.now();
+          json.declined_on = null;
+          json.rejected_on = null;
           break;
       case 'declined':
-          offer["declined_on"] = Date.now;
+          json.declined_on = Date.now();
+          json.accepted_on = null;
+          json.rejected_on = null;
           break;
   };
+
+	const offer = await Offer.findByIdAndUpdate(req.params.id, json, { new : true });
 	if (!offer) return res.status(404).send("offer with given ID was not found");
 
 	res.send(offer);

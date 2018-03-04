@@ -28,7 +28,8 @@ const offerSchema = new mongoose.Schema({
 		required: true,
 		enum: ['pending', 'approved', 'rejected', 'accepted', 'declined'],
     lowercase: true,
-		trim: true
+		trim: true,
+    default: 'pending'
 	},
   approved_on: { type: Date },
   rejected_on: { type: Date },
@@ -48,9 +49,9 @@ function validateOffer(offer) {
     status: Joi.string()
     .valid('pending', 'approved', 'rejected', 'accepted', 'declined').required(),
     approved_on: Joi.date().timestamp(),
-    rejected_on: Joi.date().timestamp(),
-    accepted_on: Joi.date().timestamp(),
-    declined_on: Joi.date().timestamp(),
+    rejected_on: Joi.date().timestamp().allow(null),
+    accepted_on: Joi.date().timestamp().allow(null),
+    declined_on: Joi.date().timestamp().allow(null),
     created_on: Joi.date().timestamp(),
     updated_on: Joi.date().timestamp()
 	};

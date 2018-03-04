@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-const tickets = require('./routes/tickets')
+const tickets = require('./routes/tickets');
+const offers = require('./routes/offers');
 const express = require('express');
 const app = express();
 
@@ -9,6 +10,7 @@ mongoose.connect('mongodb://localhost/testdb')
 
 app.use(express.json());
 app.use('/api/tickets', tickets);
+app.use('/api/offers', offers);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`listening on port ${port}...`));
