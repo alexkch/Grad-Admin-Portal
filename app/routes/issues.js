@@ -68,7 +68,6 @@ router.put('/:id', async (req, res) => {
 	if (!issue) return res.status(404).send("issue with given ID was not found");
 
 	res.send(issue);
-
 });
 
 
