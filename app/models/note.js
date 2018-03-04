@@ -25,4 +25,4 @@ function validateNote(note) {
 
 module.exports.Note = mongoose.model('Note', noteSchema);
 module.exports.noteSchema = noteSchema;
-module.exports.validate = validateNote;
+module.exports.validateNote = validateNote;

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Joi = require('joi');
-const { Note, noteSchema, _ } =  require('note');
+const { Note, noteSchema, _ } =  require('./note');
 
 const issueSchema = new mongoose.Schema({
   created_by: {
