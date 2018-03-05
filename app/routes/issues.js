@@ -4,13 +4,16 @@ const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
 
+
+// get all issues
 router.get('/', async (req, res) => {
 
   const issues = await Issue.find().sort('created_by');
 	res.send(issues);
-
 });
 
+
+// create a new issue
 router.post('/', async (req, res) => {
 
 	const { error } = validate(req.body);
@@ -28,6 +31,7 @@ router.post('/', async (req, res) => {
 });
 
 
+// get an issue by id
 router.get('/:id', async (req, res) => {
 
 	const issue = await Issue.findById(req.params.id);
@@ -36,6 +40,7 @@ router.get('/:id', async (req, res) => {
 });
 
 
+// edit an issue
 router.put('/:id', async (req, res) => {
 
   const {error} = validate(req.body);
@@ -56,13 +61,14 @@ router.put('/:id', async (req, res) => {
 });
 
 
+// delete an issue
 router.delete('/:id', async (req, res) => {
 
 	const issue = await Issue.findByIdAndRemove(req.params.id);
 	if (!issue) return res.status(404).send("issue with given ID was not found");
 	res.send(issue);
-
 });
+
 
 // to add note
 router.post('/:id/new', async (req, res) => {
@@ -82,13 +88,10 @@ router.post('/:id/new', async (req, res) => {
     { $push: { notes : req.body }
   });
   res.send(result);
-
-  //issue.notes.push(req.body);
-  //issue = await issue.save();
-	//res.send(issue);
 });
 
-// to add note
+
+// to delete a note
 router.post('/:id/del/:note_id', async (req, res) => {
 
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) return res.status(400).send("Not valid ID");
@@ -102,11 +105,10 @@ router.post('/:id/del/:note_id', async (req, res) => {
 	if (!result.nModified) return res.status(404).send("note with given ID was not found");
 
 	res.send(result);
-
-
 });
 
 
+// to edit a note
 router.post('/:id/edit/:note_id', async (req, res) => {
 
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) return res.status(400).send("Not valid ID");
@@ -114,13 +116,6 @@ router.post('/:id/edit/:note_id', async (req, res) => {
   let issue = await Issue.findById(req.params.id);
 	if (!issue) return res.status(404).send("issue with given ID was not found");
 
-  /*
-  const result = await Issue.update({ "_id" : req.params.id },
-    { $set: { notes : { "_id" : req.params.note_id }}
-  });
-  */
-  console.log(req.params.id);
-  console.log(req.params.note_id);
   const result = await Issue.update({ "_id" : req.params.id },
     { $set: { "notes.$[e].message" : req.body.message, "notes.$[e].author" : req.body.author }},
     { arrayFilters: [{ "e._id": mongoose.Types.ObjectId(req.params.note_id) }]}
@@ -128,10 +123,7 @@ router.post('/:id/edit/:note_id', async (req, res) => {
 	if (!result.nModified) return res.status(404).send("note with given ID was not found");
 
 	res.send(result);
-
-
 });
-
 
 
 module.exports = router;

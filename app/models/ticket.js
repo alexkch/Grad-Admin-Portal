@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Joi = require('joi');
 
+
 const ticketSchema = new mongoose.Schema({
 	professor: {
 		type: String,
@@ -38,6 +39,7 @@ function validateTicket(ticket) {
 
 	return Joi.validate(ticket, schema);
 };
+
 
 module.exports.Ticket = mongoose.model('Ticket', ticketSchema);
 module.exports.validate = validateTicket;

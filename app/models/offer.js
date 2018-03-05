@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Joi = require('joi');
 
+
 const offerSchema = new mongoose.Schema({
   ticket_id: {
     type: mongoose.Schema.Types.ObjectId,
@@ -63,6 +64,7 @@ function validateOffer(offer) {
 
 	return Joi.validate(offer, schema);
 };
+
 
 module.exports.Offer = mongoose.model('Offer', offerSchema);
 module.exports.validate = validateOffer;

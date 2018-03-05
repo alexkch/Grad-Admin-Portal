@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Joi = require('joi');
 const { noteSchema, _ } =  require('./note');
 
+
 const issueSchema = new mongoose.Schema({
   created_by: {
 		type: String,
@@ -53,6 +54,7 @@ function validateIssue(issue) {
 
 	return Joi.validate(issue, schema);
 };
+
 
 module.exports.Issue = mongoose.model('Issue', issueSchema);
 module.exports.validate = validateIssue;

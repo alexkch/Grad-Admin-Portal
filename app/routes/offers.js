@@ -3,12 +3,13 @@ const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
 
+
 router.get('/', async (req, res) => {
 
   const offers = await Offer.find().sort('applicant');
 	res.send(offers);
-
 });
+
 
 router.post('/', async (req, res) => {
 
@@ -78,7 +79,6 @@ router.put('/:id', async (req, res) => {
 	if (!offer) return res.status(404).send("offer with given ID was not found");
 
 	res.send(offer);
-
 });
 
 
@@ -88,7 +88,6 @@ router.delete('/:id', async (req, res) => {
 	if (!offer) return res.status(404).send("offer with given ID was not found");
 
 	res.send(offer);
-
 });
 
 

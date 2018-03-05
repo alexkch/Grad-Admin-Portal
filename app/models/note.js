@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Joi = require('joi');
 
+
 const noteSchema = new mongoose.Schema({
   message: {
 		type: String,
@@ -36,6 +37,7 @@ function validateNote(note) {
 
 	return Joi.validate(note, schema);
 };
+
 
 module.exports.noteSchema = noteSchema;
 module.exports.validateNote = validateNote;
