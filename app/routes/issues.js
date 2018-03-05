@@ -1,5 +1,5 @@
 const { Issue, validate } = require('../models/issue');
-const { _ , validateNote } =  require('../models/note');
+const { validateNote } =  require('../models/note');
 const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();

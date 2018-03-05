@@ -39,7 +39,7 @@ const userSchema = new mongoose.Schema({
 function validateUser(user) {
 	const schema = {
     email: Joi.string().min(5).max(255).email().required(),
-    password: Joi.string().min(5).max(255).email().required(),
+    password: Joi.string().min(5).max(255).required(),
     name: Joi.string().min(1).max(50).required(),
 		usertype: Joi.string()
     .valid('faculty', 'budget_office', 'grad_office').required(),
