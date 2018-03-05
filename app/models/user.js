@@ -50,6 +50,16 @@ function validateUser(user) {
 	return Joi.validate(user, schema);
 };
 
+function validateCredentials(user) {
+	const schema = {
+    email: Joi.string().min(5).max(255).email().required(),
+    password: Joi.string().min(5).max(255).required(),
+	};
+
+	return Joi.validate(user, schema);
+};
+
 
 module.exports.User = mongoose.model('User', userSchema);
 module.exports.validate = validateUser;
+module.exports.validateCredentials = validateCredentials;
