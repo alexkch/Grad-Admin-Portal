@@ -1,7 +1,7 @@
 const { Issue, validate } = require('../models/issue');
 const { validateNote } =  require('../models/note');
 const authorize = require('../utils/authorize');
-const authorize = require('../utils/admin');
+const admin = require('../utils/admin');
 const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();

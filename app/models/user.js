@@ -36,7 +36,7 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     required: true,
     default: false
-  }
+  },
   created_on: { type: Date, default: Date.now },
   last_login: { type: Date }
 });
