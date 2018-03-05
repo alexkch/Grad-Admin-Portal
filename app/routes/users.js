@@ -1,4 +1,4 @@
-const { Offer, validate } = require('../models/offer');
+const { User, validate } = require('../models/user');
 const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
@@ -6,6 +6,8 @@ const router = express.Router();
 
 router.get('/', async (req, res) => {
 
-  const offers = await Offer.find().sort('applicant');
-	res.send(offers);
+  const users = await User.find().sort('applicant');
+	res.send(users);
 });
+
+module.exports = router;
