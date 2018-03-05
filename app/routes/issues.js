@@ -1,6 +1,7 @@
 const { Issue, validate } = require('../models/issue');
 const { validateNote } =  require('../models/note');
 const authorize = require('../utils/authorize');
+const authorize = require('../utils/admin');
 const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
@@ -66,7 +67,7 @@ router.put('/:id', authorize, async (req, res) => {
 
 
 // delete an issue
-router.delete('/:id', authorize, async (req, res) => {
+router.delete('/:id', [authorize, admin] , async (req, res) => {
 
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) return res.status(400).send("Not valid ID");
 	const issue = await Issue.findByIdAndRemove(req.params.id);
