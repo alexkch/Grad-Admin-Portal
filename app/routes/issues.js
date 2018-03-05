@@ -34,6 +34,7 @@ router.post('/', async (req, res) => {
 // get an issue by id
 router.get('/:id', async (req, res) => {
 
+  if (!mongoose.Types.ObjectId.isValid(req.params.id)) return res.status(400).send("Not valid ID");
 	const issue = await Issue.findById(req.params.id);
 	if (!issue) return res.status(404).send("issue with given ID was not found");
 	res.send(issue);
@@ -42,6 +43,8 @@ router.get('/:id', async (req, res) => {
 
 // edit an issue
 router.put('/:id', async (req, res) => {
+
+  if (!mongoose.Types.ObjectId.isValid(req.params.id)) return res.status(400).send("Not valid ID");
 
   const {error} = validate(req.body);
 	if (error) return res.status(400).send(error.details[0].message);
@@ -64,6 +67,7 @@ router.put('/:id', async (req, res) => {
 // delete an issue
 router.delete('/:id', async (req, res) => {
 
+  if (!mongoose.Types.ObjectId.isValid(req.params.id)) return res.status(400).send("Not valid ID");
 	const issue = await Issue.findByIdAndRemove(req.params.id);
 	if (!issue) return res.status(404).send("issue with given ID was not found");
 	res.send(issue);
