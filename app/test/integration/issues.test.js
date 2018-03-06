@@ -4,7 +4,10 @@ let server;
 
 describe('/api/issues', () => {
   beforeEach(() => { server = require('../../index'); });
-  afterEach(() => { server.close(); });
+  afterEach( async () => {
+    server.close();
+    await Issue.remove({});
+  });
 
   describe('GET /', () => {
     it('should return all issues', async () => {
@@ -50,6 +53,7 @@ describe('/api/issues', () => {
       const res = await request(server).get('/api/issues');
       expect(res.status).toBe(200);
       expect(res.body.length).toBe(5);
+      expect(res.body.some(x => x.name === "Alex"));
     });
   });
 });
