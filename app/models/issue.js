@@ -11,6 +11,10 @@ const issueSchema = new mongoose.Schema({
 		maxlength: 255,
     trim: true
 	},
+  created_by_id: {
+  	type: mongoose.Schema.Types.ObjectId,
+  	ref: 'User'
+  },
   description: {
     type: String,
     required: true,
