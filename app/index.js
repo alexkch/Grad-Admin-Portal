@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
+const config = require('config');
+const morgan = require('morgan');
 const Joi = require('joi');
 Joi.objectId = require('joi-objectid')(Joi);
-const config = require('config');
 const users = require('./routes/users');
 const auth = require('./routes/authenticate');
 const tickets = require('./routes/tickets');
@@ -10,7 +11,8 @@ const issues = require('./routes/issues');
 const express = require('express');
 const app = express();
 
-
+console.log('Application Name: ' + config.get('app_name'));
+console.log('Key: ' + config.get('jwtPrivateKey'));
 if (!config.get('jwtPrivateKey')) {
   console.error('Fatal Error: jwtPrivateKey not defined');
   process.exit(1);
@@ -21,6 +23,7 @@ mongoose.connect('mongodb://localhost/testdb')
 .catch(err => console.error('Could not connect to MongoDB', err));
 
 app.use(express.json());
+app.use(morgan('tiny'));
 app.use('/api/users', users);
 app.use('/api/auth', auth);
 app.use('/api/tickets', tickets);

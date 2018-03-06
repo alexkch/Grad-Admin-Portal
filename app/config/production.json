@@ -1,0 +1,5 @@
+{
+  "app_name" : "CSC302 App - Production",
+  "env" : "prod",
+  "jwtPrivateKey" : "csc302-key"
+}
