@@ -1,5 +1,5 @@
 {
   "app_name" : "CSC302 App - Production",
-  "env" : "prod",
+  "env" : "production",
   "jwtPrivateKey" : "csc302-key"
 }

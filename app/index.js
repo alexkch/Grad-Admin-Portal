@@ -1,5 +1,8 @@
 const mongoose = require('mongoose');
+//set NODE_ENV=development or production
 const config = require('config');
+//set DEBUg=enabled
+const Debugger = require('debug')('enabled');
 const morgan = require('morgan');
 const Joi = require('joi');
 Joi.objectId = require('joi-objectid')(Joi);
@@ -23,7 +26,12 @@ mongoose.connect('mongodb://localhost/testdb')
 .catch(err => console.error('Could not connect to MongoDB', err));
 
 app.use(express.json());
-app.use(morgan('tiny'));
+Debugger('Debug Enabled');
+
+if (config.get('env') === 'dev') {
+  console.log('Starting Morgan');
+  app.use(morgan('tiny'));
+};
 app.use('/api/users', users);
 app.use('/api/auth', auth);
 app.use('/api/tickets', tickets);
