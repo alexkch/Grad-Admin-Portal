@@ -21,4 +21,6 @@ require('./startup/obj-validation')();
 Debugger('JWT Key: ' + config.get('jwtPrivateKey'));
 
 const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`listening on port ${port}...`));
+const server = app.listen(port, () => console.log(`listening on port ${port}...`));
+
+module.exports = server;
