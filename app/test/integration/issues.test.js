@@ -46,14 +46,33 @@ describe('/api/issues', () => {
           priority: "low",
         }
       ]);
-
-
-
-
       const res = await request(server).get('/api/issues');
       expect(res.status).toBe(200);
       expect(res.body.length).toBe(5);
       expect(res.body.some(x => x.name === "Alex"));
+    });
+  });
+  describe('GET /:id', () => {
+    it('should return a genre if valid id is passed', async () => {
+      const issue = new Issue(
+        // Issue 1
+        { created_by : "Jimmy",
+          created_by_id: "5a9d6cc70218274308a12744",
+          description: "Issue 100",
+          status: "closed",
+          priority: "low",
+        });
+      await issue.save();
+      const res = await request(server).get('/api/issues/' + issue._id);
+      expect(res.status).toBe(200);
+      expect(res.body).toHaveProperty('created_by', issue.created_by);
+    });
+
+    it('should return 404 if invalid id is passed', async () => {
+
+      const res = await request(server).get('/api/issues/' + '123');
+      expect(res.status).toBe(404);
+
     });
   });
 });

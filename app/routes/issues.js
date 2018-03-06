@@ -2,6 +2,7 @@ const { Issue, validate } = require('../models/issue');
 const { validateNote } =  require('../models/note');
 const authorize = require('../utils/authorize');
 const admin = require('../utils/admin');
+const validateObjId = require('../utils/validateObjId');
 const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
@@ -34,9 +35,8 @@ router.post('/', authorize, async (req, res) => {
 
 
 // get an issue by id
-router.get('/:id', authorize, async (req, res) => {
+router.get('/:id', validateObjId/*authorize*/, async (req, res) => {
 
-  if (!mongoose.Types.ObjectId.isValid(req.params.id)) return res.status(400).send("Not valid ID");
 	const issue = await Issue.findById(req.params.id);
 	if (!issue) return res.status(404).send("issue with given ID was not found");
 	res.send(issue);
@@ -44,9 +44,7 @@ router.get('/:id', authorize, async (req, res) => {
 
 
 // edit an issue
-router.put('/:id', authorize, async (req, res) => {
-
-  if (!mongoose.Types.ObjectId.isValid(req.params.id)) return res.status(400).send("Not valid ID");
+router.put('/:id', [authorize, validateObjId] , async (req, res) => {
 
   const {error} = validate(req.body);
 	if (error) return res.status(400).send(error.details[0].message);
@@ -67,9 +65,8 @@ router.put('/:id', authorize, async (req, res) => {
 
 
 // delete an issue
-router.delete('/:id', [authorize, admin] , async (req, res) => {
+router.delete('/:id', [authorize, admin, validateObjId] , async (req, res) => {
 
-  if (!mongoose.Types.ObjectId.isValid(req.params.id)) return res.status(400).send("Not valid ID");
 	const issue = await Issue.findByIdAndRemove(req.params.id);
 	if (!issue) return res.status(404).send("issue with given ID was not found");
 	res.send(issue);
@@ -77,9 +74,7 @@ router.delete('/:id', [authorize, admin] , async (req, res) => {
 
 
 // to add note
-router.post('/:id/new', authorize, async (req, res) => {
-
-  if (!mongoose.Types.ObjectId.isValid(req.params.id)) return res.status(400).send("Not valid ID");
+router.post('/:id/new', [authorize, validateObjId] , async (req, res) => {
 
   let issue = await Issue.findById(req.params.id);
 	if (!issue) return res.status(404).send("issue with given ID was not found");
@@ -98,9 +93,7 @@ router.post('/:id/new', authorize, async (req, res) => {
 
 
 // to delete a note
-router.post('/:id/del/:note_id', authorize, async (req, res) => {
-
-  if (!mongoose.Types.ObjectId.isValid(req.params.id)) return res.status(400).send("Not valid ID");
+router.post('/:id/del/:note_id', [authorize, validateObjId] , async (req, res) => {
 
   let issue = await Issue.findById(req.params.id);
 	if (!issue) return res.status(404).send("issue with given ID was not found");
@@ -115,9 +108,7 @@ router.post('/:id/del/:note_id', authorize, async (req, res) => {
 
 
 // to edit a note
-router.post('/:id/edit/:note_id', authorize, async (req, res) => {
-
-  if (!mongoose.Types.ObjectId.isValid(req.params.id)) return res.status(400).send("Not valid ID");
+router.post('/:id/edit/:note_id', [authorize, validateObjId], async (req, res) => {
 
   let issue = await Issue.findById(req.params.id);
 	if (!issue) return res.status(404).send("issue with given ID was not found");
