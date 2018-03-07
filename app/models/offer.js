@@ -72,7 +72,7 @@ function validateOffer(offer) {
     professor_id: Joi.objectId().required(),
     status: Joi.string()
     .valid('pending', 'approved', 'rejected', 'accepted', 'declined').required(),
-    //round: Joi.number().integer().min(1), 
+    round: Joi.number().integer().min(1), 
     approved_on: Joi.date().timestamp(),
     rejected_on: Joi.date().timestamp().allow(null),
     accepted_on: Joi.date().timestamp().allow(null),

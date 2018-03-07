@@ -24,6 +24,7 @@ router.post('/', authorize, async (req, res) => {
 
 	let issue = new Issue({
     created_by: req.body.created_by,
+    created_by_id: req.body.created_by_id,
     description: req.body.description,
     status: req.body.status,
     priority: req.body.priority
