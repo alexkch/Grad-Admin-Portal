@@ -4,9 +4,9 @@ import './Ticket.css';
 
 const post = (props) => (
     <article className="Ticket">
-        <h1>Title</h1>
+        <h1>{props.description}</h1>
         <div className="Info">
-            <div className="Author">Author</div>
+            <div className="Author">{props.priority}</div>
         </div>
     </article>
 );

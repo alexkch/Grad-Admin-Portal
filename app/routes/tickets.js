@@ -17,6 +17,7 @@ router.post('/', authorize, async (req, res) => {
 	if (error) return res.status(400).send(error.details[0].message);
 
 	let ticket = new Ticket({
+    professor_id: req.body.professor_id,
 		professor: req.body.professor,
     status: req.body.status,
     created_by: req.body.created_by
@@ -42,6 +43,7 @@ router.put('/:id', authorize, async (req, res) => {
 
 	const ticket = await Ticket.findByIdAndUpdate(req.params.id,
     {
+      professor_id: req.body.professor_id,      
       professor: req.body.professor,
       status: req.body.status,
       created_by: req.body.created_by
