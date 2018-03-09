@@ -7,12 +7,10 @@ import './Dashboard.css';
 
 class Dashboard extends Component {
 
-    componentDidMount() {
-      axios.get('http://localhost:4000/api/issues')
-      .then(response => {
-      console.log(response)
-    });
-  }
+    async componentDidMount() {
+      const res = await axios.get('http://localhost:4000/api/issues')
+      console.log(res);
+    };
 
     render () {
         return (
