@@ -7,8 +7,8 @@ class User extends Component {
         let post = <p>Please select a Post!</p>;
         post = (
             <div className="User">
-                <h1>Title</h1>
-                <p>Content</p>
+                <h1>Ticket</h1>
+                <p>About...</p>
                 <div className="Edit">
                     <button className="Delete">Delete</button>
                 </div>

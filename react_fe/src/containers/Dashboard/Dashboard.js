@@ -8,22 +8,22 @@ import './Dashboard.css';
 class Dashboard extends Component {
 
     state = {
-      issues: []
+      tickets: []
     }
     async componentDidMount() {
-      const res = await axios.get('http://localhost:4000/api/issues')
+      const res = await axios.get('http://localhost:4000/api/tickets')
       console.log(res);
-      this.setState({issues: res.data});
+      this.setState({tickets: res.data});
     };
 
     render () {
-        const Issues = this.state.issues.map(issue => {
-          return <Ticket key={issue.id} description={issue.description} priority={issue.priority}/>
+        const Tickets = this.state.tickets.map(ticket => {
+          return <Ticket key={ticket._id} ticket_id={ticket._id} created_by={ticket.created_by} prof={ticket.professor} status={ticket.status}/>
         });
         return (
             <div>
                 <section className="Tickets">
-                  {Issues}
+                  {Tickets}
                 </section>
                 <section>
                     <User />
