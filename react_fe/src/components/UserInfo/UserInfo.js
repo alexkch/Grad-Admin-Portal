@@ -22,7 +22,7 @@ class UserInfo extends Component {
                     <option value="Max">Max</option>
                     <option value="Manu">Manu</option>
                 </select>
-                <button>Add Post</button>
+                <button>Add Issue</button>
             </div>
         );
     }
