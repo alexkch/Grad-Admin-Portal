@@ -5,23 +5,17 @@ class TicketCreate extends Component {
 		super(props);
 		this.state = {ticketOwner: 0, status: 0, amount: 0}
 		this.handleSubmit = this.handleSubmit.bind(this);
-		this.handleChangeOwner = this.handleChangeOwner.bind(this);
-		this.handleChangeAmount = this.handleChangeAmount.bind(this);
-
-		this.handleChangeStatus = this.handleChangeStatus.bind(this);
+		this.handleChangeValue = this.handleChangeValue.bind(this);
 	}
 
 	handleSubmit(){
 		// Create tickets
 	}
-	handleChangeAmount(event){
-		this.setState({ amount: event.target.value });
-	}
-	handleChangeOwner(event){
-		this.setState({ ticketOwner: event.target.value });
-	}
-	handleChangeStatus(event){
-		this.setState({ status: event.target.value });
+
+	handleChangeValue(event){
+		const name = event.target.name;
+		const value = event.target.value;
+		this.setState({ [name]: value });
 	}
 	render(){
 		let creator = (
@@ -29,26 +23,26 @@ class TicketCreate extends Component {
 				<form onSubmit={ this.handleSubmit }>
 					<label>
 						Ticket Owner:
-	        			<input type="number" value={this.state.ticketOwner} onChange={this.handleChangeOwner} />
+	        			<input name='ticketOwner' type="number" value={this.state.ticketOwner} onChange={this.handleChangeValue} />
 					</label>
 					<label>
 						Amount:
-	        			<input type="number" value={this.state.amount} onChange={this.handleChangeAmount} />
+	        			<input name='amount' type="number" value={this.state.amount} onChange={this.handleChangeValue} />
 					</label>
 					<label>
-						<input type="radio" value="0"
+						<input name='status' type="radio" value="0"
 							checked={this.state.status === "0"}
-							onChange={this.handleChangeStatus} />
+							onChange={this.handleChangeValue} />
 
 						Unallocated
 	        		</label>
 					<label>
-						<input type="radio" value="1"
+						<input name='status' type="radio" value="1"
 							checked={this.state.status === "1"}
-							onChange={this.handleChangeStatus} />
+							onChange={this.handleChangeValue} />
 						Allocated
 	        		</label>
-				  	<input type="submit" value="Submit">
+				  	<input type="submit" value="Submit" />
 				</form>
 			</div>
 
