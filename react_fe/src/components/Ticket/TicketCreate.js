@@ -23,11 +23,11 @@ class TicketCreate extends Component {
 				<form onSubmit={ this.handleSubmit }>
 					<label>
 						Ticket Owner:
-	        			<input name='ticketOwner' type="number" value={this.state.ticketOwner} onChange={this.handleChangeValue} />
+	        			<input name='ticketOwner' type="number" min='0' value={this.state.ticketOwner} onChange={this.handleChangeValue} />
 					</label>
 					<label>
 						Amount:
-	        			<input name='amount' type="number" value={this.state.amount} onChange={this.handleChangeValue} />
+	        			<input name='amount' type="number" min="1" value={this.state.amount} onChange={this.handleChangeValue} />
 					</label>
 					<label>
 						<input name='status' type="radio" value="0"
