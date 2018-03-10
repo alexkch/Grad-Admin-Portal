@@ -3,7 +3,7 @@ import axios from 'axios';
 import Ticket from '../../components/Ticket/Ticket';
 import User from '../../components/User/User';
 import UserInfo from '../../components/UserInfo/UserInfo';
-import './Dashboard.css';
+import styles from './Dashboard.css';
 
 class Dashboard extends Component {
 
@@ -22,7 +22,7 @@ class Dashboard extends Component {
         });
         return (
             <div>
-                <section className="Tickets">
+                <section className={styles.Tickets}>
                   {Tickets}
                 </section>
                 <section>

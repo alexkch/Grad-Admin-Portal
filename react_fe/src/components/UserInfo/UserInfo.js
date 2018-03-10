@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import './UserInfo.css';
+import styles from './UserInfo.css';
 
 class UserInfo extends Component {
     state = {
@@ -11,7 +11,7 @@ class UserInfo extends Component {
 
     render () {
         return (
-            <div className="UserInfo">
+            <div className= {styles.UserInfo}>
                 <h1>Add a Issue</h1>
                 <label>Issue</label>
                 <input type="text" value={this.state.title} onChange={(event) => this.setState({title: event.target.value})} />

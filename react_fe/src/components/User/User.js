@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 
-import './User.css';
+import styles from './User.css';
 
 class User extends Component {
     render () {
         let post = <p>Please select a Post!</p>;
         post = (
-            <div className="User">
+            <div className={styles.User}>
                 <h1>Ticket</h1>
                 <p>About...</p>
                 <div className="Edit">

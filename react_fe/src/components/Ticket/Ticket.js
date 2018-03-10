@@ -1,9 +1,9 @@
 import React from 'react';
 
-import './Ticket.css';
+import styles from './Ticket.css';
 
 const post = (props) => (
-    <article className="Ticket">
+    <article className={styles.Ticket}>
         <h2>Ticket for {props.prof}</h2>
         <h5>ID: {props.ticket_id}</h5>
         <div className="Info">
