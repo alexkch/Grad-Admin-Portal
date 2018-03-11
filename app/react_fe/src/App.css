@@ -9,3 +9,9 @@
 .italic {
   font-style: italic;
 }
+
+/*
+Global class names
+:global .App {...}
+Now you can use className="Post"  anywhere in your app and receive that styling.
+*/
