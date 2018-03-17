@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import classNames from 'classnames';
 import styles from './App.css';
 import Dashboard from './containers/dashboard/Dashboard';
+import Layout from './components/layout/Layout';
 
 class App extends Component {
   render() {
