@@ -1,40 +1,31 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Ticket from '../../components/Ticket/Ticket';
-import User from '../../components/User/User';
-import UserInfo from '../../components/UserInfo/UserInfo';
+//import Ticket from '../../components/ticket/Ticket';
+import Issue from '../../components/issue/Issue';
+import User from '../../components/user/User';
+import UserInfo from '../../components/userInfo/UserInfo';
 import styles from './Dashboard.css';
 
 class Dashboard extends Component {
 
-    constructor(props) {
-      super(props);
-      console.log('[App.js] Inside constructor');
-    }
     state = {
-      tickets: []
-    }
-    async componentWillMount() {
-      console.log('[App.js] Inside component will mount');
+      issues: []
     }
 
     async componentDidMount() {
-      console.log('[App.js] Inside component did mount');
-      const res = await axios.get('http://localhost:4000/api/tickets')
-      console.log(res);
-      this.setState({tickets: res.data});
-
+      const res = await axios.get('http://localhost:4000/api/issues')
+      this.setState({issues: res.data});
     };
 
     render () {
-        console.log('[App.js] Inside render');
-        const Tickets = this.state.tickets.map(ticket => {
-          return <Ticket key={ticket._id} ticket_id={ticket._id} created_by={ticket.created_by} prof={ticket.professor} status={ticket.status}/>
+        const Issues = this.state.issues.map(issue => {
+          return <Issue key={issue._id} issue_id={issue._id} created_by={issue.created_by} created_by_id={issue.created_by_id} status={issue.status}
+          description={issue.description} priority={issue.priority}/>
         });
         return (
             <div>
-                <section className={styles.Tickets}>
-                  {Tickets}
+                <section className={styles.Issues}>
+                  {Issues}
                 </section>
                 <section>
                     <User />
