@@ -7,9 +7,11 @@ import Layout from './components/layout/Layout';
 class App extends Component {
   render() {
     return (
-      <div className={styles.App}>
+      <div className={styles.center}>
         <h1 className={classNames(styles.italic, styles.red)}>My APP</h1>
-        <Layout />
+        <Layout>
+         <Dashboard />
+        </Layout>
       </div>
     );
   }
