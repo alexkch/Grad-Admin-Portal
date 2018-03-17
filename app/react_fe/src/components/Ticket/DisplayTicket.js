@@ -13,8 +13,8 @@ class DisplayTicket extends Component {
 	handleClick(event){
 		this.setState({stat: "edit"});
 	}
-	handleEdited(event){
-		this.setState({stat: "view", ticket: event.value})
+	handleEdited(newTicket){
+		this.setState({stat: "view", ticket: newTicket});
 	}
 
 	render(){
