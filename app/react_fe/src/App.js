@@ -9,7 +9,7 @@ class App extends Component {
     return (
       <div className={styles.App}>
         <h1 className={classNames(styles.italic, styles.red)}>My APP</h1>
-        <Dashboard />
+        <Layout />
       </div>
     );
   }
