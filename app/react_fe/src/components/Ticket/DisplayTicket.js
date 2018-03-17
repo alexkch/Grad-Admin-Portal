@@ -7,25 +7,31 @@ class DisplayTicket extends Component {
 		
 		this.state = {ticket: props.ticket, stat: "view"}
 		this.handleClick = this.handleClick.bind(this);
+		this.handleEdited = this.handleEdited.bind(this);
 	}
 
 	handleClick(event){
 		this.setState({stat: "edit"});
 	}
+	handleEdited(event){
+		this.setState({stat: "view", ticket: event.value})
+	}
 
 	render(){
 		let page = null;
 		if (this.state.stat === "view"){
-			page = (<div>
-						<Ticket key={ticket._id} ticket_id={ticket._id} created_by={ticket.created_by} prof={ticket.professor} status={ticket.status}/>
-						<button onClick={this.handleClick} >
-			  				Edit
-						</button>
+			page = (
+				<div>
+					<Ticket key={ticket._id} ticket_id={ticket._id} created_by={ticket.created_by} prof={ticket.professor} status={ticket.status}/>
+					<button onClick={this.handleClick} callback={this.handleEdited} >
+		  				Edit
+					</button>
 
-					</div>);
+				</div>
+			);
 
 		}
-		else{
+		else if(this.state.stat === "edit"){
 			page = <EditTicket ticket=this.state.ticket />;
 		}
 		return page;
@@ -45,4 +51,4 @@ class ListTickets extends Component {
 
 	}
 }
-export default DisplayTicket;
+export default ListTickets;
