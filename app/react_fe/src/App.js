@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import styles from './App.css';
-import Dashboard from './containers/Dashboard/Dashboard';
+import Dashboard from './containers/dashboard/Dashboard';
 
 class App extends Component {
   render() {
