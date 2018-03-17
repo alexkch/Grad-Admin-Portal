@@ -10,7 +10,7 @@ class App extends Component {
       <div className={styles.center}>
         <h1 className={classNames(styles.italic, styles.red)}>My APP</h1>
         <Layout>
-         <Dashboard />
+          <Dashboard />
         </Layout>
       </div>
     );

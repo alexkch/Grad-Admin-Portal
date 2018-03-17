@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 //import Ticket from '../../components/ticket/Ticket';
 import Issue from '../../components/issue/Issue';
-import User from '../../components/user/User';
-import UserInfo from '../../components/userInfo/UserInfo';
+import Modal from '../../components/ui/modal/Modal';
+
 import styles from './Dashboard.css';
 
 class Dashboard extends Component {
@@ -24,14 +24,10 @@ class Dashboard extends Component {
         });
         return (
             <div>
+
                 <section className={styles.Issues}>
+                <Modal />
                   {Issues}
-                </section>
-                <section>
-                    <User />
-                </section>
-                <section>
-                    <UserInfo />
                 </section>
             </div>
         );
