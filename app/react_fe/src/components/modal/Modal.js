@@ -1,11 +1,11 @@
 import React from 'react';
 import styles from './Modal.css';
-import Aux from '../../../wrapper/Auxiliary';
+import Aux from '../../wrapper/Auxiliary';
 import Backdrop from '../backdrop/Backdrop';
 
 const modal = (props) => (
   <Aux>
-    <Backdrop show={props.show} clicked={props.closeModal}/>
+    <Backdrop show={props.show} clicked={props.close}/>
     <div className={styles.Modal}
       style={{
         transform: props.show ? 'translateY(0)' : 'translateY(-100vh)',
