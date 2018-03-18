@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 //import Ticket from '../../components/ticket/Ticket';
 import Issue from '../../components/issue/Issue';
-import ViewIssue from '../../components/issue/ViewIssue';
-import Modal from '../../components/ui/modal/Modal';
+import DisplayIssue from '../../components/issue/DisplayIssue';
 
 import styles from './Dashboard.css';
 
@@ -11,8 +10,8 @@ class Dashboard extends Component {
 
     state = {
       issues: [],
-      selectedIssue: [],
-      viewIssue: false
+      issue: null,
+      selectedIssue: false
     }
 
 
@@ -21,18 +20,22 @@ class Dashboard extends Component {
       this.setState({issues: res.data});
     };
 
-    viewIssueHandler = () => {
-      console.log(this.state.viewIssue);
-      this.setState({ viewIssue: true });
+    viewIssueHandler = (issueIndex) => {
+      //const issues = [...this.state.issues]; //this.state.issues.slice();
+      const issue = {
+        ...this.state.issues[issueIndex]
+      };
+      this.setState({issue: issue, selectedIssue: true });
     }
+
     closeIssueHandler = () => {
-      console.log(this.state.viewIssue);
-      this.setState({ viewIssue: false });
+      this.setState({ selectedIssue: false });
     }
+
 
 
     render () {
-        const Issues = this.state.issues.map(issue => {
+        const Issues = this.state.issues.map((issue, index) => {
           return <Issue key={issue._id}
                   issue_id={issue._id}
                   created_by={issue.created_by}
@@ -40,14 +43,29 @@ class Dashboard extends Component {
                   status={issue.status}
                   description={issue.description}
                   priority={issue.priority}
-                  click={this.viewIssueHandler}
-                  close={this.closeIssueHandler}
-                  show={this.state.viewIssue}
+                  select={() => this.viewIssueHandler(index)}
                   />
         });
 
+        let SelectedIssue;
+        if (this.state.selectedIssue) {
+          SelectedIssue = <DisplayIssue
+                  key={this.state.issue._id}
+                  issue_id={this.state.issue._id}
+                  created_by={this.state.issue.created_by}
+                  created_by_id={this.state.issue.created_by_id}
+                  status={this.state.issue.status}
+                  description={this.state.issue.description}
+                  priority={this.state.issue.priority}
+                  show={this.state.selectedIssue}
+                  close={this.closeIssueHandler}
+                  />
+            console.log(SelectedIssue);
+        };
+
         return (
             <div>
+              {SelectedIssue}
               <section className={styles.Issues}>
                 {Issues}
               </section>
