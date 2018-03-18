@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import Dashboard from './containers/dashboard/Dashboard';
+import Dashboard from './containers/Dashboard/Dashboard';
 import classNames from 'classnames';
 import styles from './App.css';
 
