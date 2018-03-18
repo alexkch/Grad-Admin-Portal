@@ -16,7 +16,7 @@ class Dashboard extends Component {
 
 
     async componentDidMount() {
-      const res = await axios.get('http://localhost:4000/api/issues')
+      const res = await axios.get('/issues');
       this.setState({issues: res.data});
     };
 
