@@ -11,6 +11,9 @@ import reducer from './store/reducer';
 
 axios.defaults.baseURL = 'http://localhost:4000/api';
 //axios.defaults.headers.common['Authorization'] = 'AUTH_TOKENS';
+axios.interceptors.request.use(request => {
+  return request;
+});
 
 const store = createStore(reducer);
 
