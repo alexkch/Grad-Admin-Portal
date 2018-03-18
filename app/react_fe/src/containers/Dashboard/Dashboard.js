@@ -12,7 +12,8 @@ class Dashboard extends Component {
       issues: [],
       issue: null,
       selectedIssue: false,
-      error: false
+      error: false,
+      errorMsg: null
     }
 
 
@@ -21,10 +22,10 @@ class Dashboard extends Component {
 ;
       try {
         const res = await axios.get('/issues');
-        this.setState({issues: res.data});
+        this.setState({issues: res.data, error: false});
       } catch (error) {
         console.log(error);
-        this.setState({error: true});
+        this.setState({error: true, errorMsg: error.message});
       }
     };
 
@@ -44,7 +45,7 @@ class Dashboard extends Component {
 
     render () {
         let Issues;
-        Issues = (this.state.error) ? (<p style={{textAlign: 'center'}}> Error with POSTS </p>) :
+        Issues = (this.state.error) ? (<p style={{textAlign: 'center'}}> {this.state.errorMsg} </p>) :
                  (this.state.issues.map((issue, index) => {
                    return <Issue key={issue._id}
                    issue_id={issue._id}

@@ -4,10 +4,10 @@ import styles from './NavItems.css';
 const navItems = () => (
     <ul className={styles.NavItems}>
       <li className={styles.NavItem}>
-        <a href="/">Link 1</a>
+        <a href="/">home</a>
       </li>
       <li className={styles.NavItem}>
-        <a href="/">Link 2</a>
+        <a href="/new-issue">new issue</a>
       </li>
     </ul>
 );
