@@ -47,7 +47,20 @@ class ListTickets extends Component {
 
 	render(){
 		let tickets = this.state.tickets.map((ticket) => <li><DisplayTicket ticket={ticket} /></li>);
-		return (<ul> {tickets} </ul>);
+		let free_t = 0; // Get num Free tickets
+		let used_t = 0; // Get num Redeemed Tickets
+		let int_t = 0; // Get num international tickets
+		let dom_t = 0; // Get num domestic tickets
+		let ticket_tracker = (<section>
+				Free Tickets: {free_t} Redeemed Tickets: {used_t}
+			</section>
+			<section>
+				Domestic Tickets: {dom_t} International Tickets: {int_t}
+			</section>);
+		return (
+			{ticket_tracker}
+			<ul> {tickets} </ul>);
+		}
 
 	}
 }
