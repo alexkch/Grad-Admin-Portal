@@ -48,8 +48,7 @@ class Dashboard extends Component {
         });
 
         let SelectedIssue;
-        if (this.state.selectedIssue) {
-          SelectedIssue = <DisplayIssue
+        SelectedIssue = (this.state.selectedIssue) ? (<DisplayIssue
                   key={this.state.issue._id}
                   issue_id={this.state.issue._id}
                   created_by={this.state.issue.created_by}
@@ -59,9 +58,7 @@ class Dashboard extends Component {
                   priority={this.state.issue.priority}
                   show={this.state.selectedIssue}
                   close={this.closeIssueHandler}
-                  />
-            console.log(SelectedIssue);
-        };
+                  />) : null
 
         return (
             <div>
