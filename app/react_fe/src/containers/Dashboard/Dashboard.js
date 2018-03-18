@@ -47,8 +47,8 @@ class Dashboard extends Component {
                   />
         });
 
-        let SelectedIssue;
-        SelectedIssue = (this.state.selectedIssue) ? (<DisplayIssue
+        let displayIssue;
+        displayIssue = (this.state.selectedIssue) ? (<DisplayIssue
                   key={this.state.issue._id}
                   issue_id={this.state.issue._id}
                   created_by={this.state.issue.created_by}
@@ -62,7 +62,7 @@ class Dashboard extends Component {
 
         return (
             <div>
-              {SelectedIssue}
+              {displayIssue}
               <section className={styles.Issues}>
                 {Issues}
               </section>
