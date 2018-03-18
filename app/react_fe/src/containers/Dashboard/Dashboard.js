@@ -3,7 +3,7 @@ import axios from 'axios';
 //import Ticket from '../../components/ticket/Ticket';
 import Issue from '../../components/issue/Issue';
 import DisplayIssue from '../../components/issue/DisplayIssue';
-import Navbar from '../ui/navigation/Navbar';
+import Navbar from '../../components/ui/navigation/Navbar';
 import Aux from '../../wrapper/Auxiliary';
 import styles from './Dashboard.css';
 
