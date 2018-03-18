@@ -1,9 +1,8 @@
 import React from 'react';
 
-import Aux from '../../hoc/Auxiliary';
 
-const issueSummary = (props) => (
-    <article className={styles.Issue}>
+const viewIssue = (props) => (
+    <article className>
         <h2>Issue for {props.created_by}</h2>
         <h5>Issue ID: {props.issue_id}</h5>
         <h5>Creator ID: {props.created_by_id}</h5>
@@ -13,4 +12,4 @@ const issueSummary = (props) => (
     </article>
 );
 
-export default post;
+export default viewIssue;
