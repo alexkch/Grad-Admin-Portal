@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from '../ui/modal/Modal';
-import Aux from '../../hoc/Auxiliary';
+import Aux from '../../wrapper/Auxiliary';
 
 const displayIssue = (props) => (
     <Aux>

@@ -3,7 +3,7 @@ import React from 'react';
 import NavItems from '../navigation/NavItems';
 import styles from './Sidebar.css';
 import Backdrop from '../backdrop/Backdrop';
-import Aux from '../../hoc/Auxiliary';
+import Aux from '../../wrapper/Auxiliary';
 
 const sidebar = ( props ) => {
     let attachedClasses = [styles.SideBar, styles.Close];
