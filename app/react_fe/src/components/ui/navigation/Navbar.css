@@ -4,8 +4,8 @@
   position: fixed;
   top: 0;
   left: 0;
-  opacity: 0.85;
-  background-color: #ADD8E6;
+  opacity: 0.75;
+  background-color: #000080;
   display: flex;
   justify-content: space-between;
   align-items: center;
