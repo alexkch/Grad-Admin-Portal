@@ -1,21 +1,20 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
-import styles from './User.css';
+import style from '../../css/bootstrap.min.css';
 
 class User extends Component {
     render () {
-        let post = <p>Please select a Post!</p>;
-        post = (
-            <div className={styles.User}>
-                <h1>Ticket</h1>
-                <p>About...</p>
-                <div className="Edit">
-                    <button className="Delete">Delete</button>
+
+        return (
+            <div className={style.card + " " + style["text-white"] + " " + style["bg-primary"] + " " + style["mb-3"]}>
+                <div className={style["card-header"]}>About...</div>
+                <div className={style["card-body"]}>
+                    <button type="button" className={style.btn + " " + style["btn-danger"]}>Delete</button>
                 </div>
             </div>
 
+
         );
-        return post;
     }
 }
 
