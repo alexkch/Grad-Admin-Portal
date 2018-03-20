@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import EditTicket;
+import Ticket from './Ticket';
+import EditTicketStatus from './EditTicket';
+
 
 class DisplayTicket extends Component {
 	constructor(props){
@@ -22,7 +24,7 @@ class DisplayTicket extends Component {
 		if (this.state.stat === "view"){
 			page = (
 				<div>
-					<Ticket key={ticket._id} ticket_id={ticket._id} created_by={ticket.created_by} prof={ticket.professor} status={ticket.status}/>
+					<Ticket key={this.state.ticket._id} ticket_id={this.state.ticket._id} created_by={this.state.ticket.created_by} prof={this.state.ticket.professor} status={this.state.ticket.status}/>
 					<button onClick={this.handleClick} callback={this.handleEdited} >
 		  				Edit
 					</button>
@@ -32,7 +34,7 @@ class DisplayTicket extends Component {
 
 		}
 		else if(this.state.stat === "edit"){
-			page = <EditTicket ticket=this.state.ticket />;
+			page = <EditTicketStatus ticket={this.state.ticket} />;
 		}
 		return page;
 	}
@@ -52,16 +54,16 @@ class ListTickets extends Component {
 		let int_t = 0; // Get num international tickets
 		let dom_t = 0; // Get num domestic tickets
 		let ticket_tracker = (<section>
-				Free Tickets: {free_t} Redeemed Tickets: {used_t}
-			</section>
-			<section>
-				Domestic Tickets: {dom_t} International Tickets: {int_t}
+				<p> Free Tickets: {free_t} Redeemed Tickets: {used_t} </p>
+				<p> Domestic Tickets: {dom_t} International Tickets: {int_t}</p>
 			</section>);
-		return (
-			{ticket_tracker}
-			<ul> {tickets} </ul>);
-		}
-
+		return (<section>
+				{ticket_tracker}
+				<ul style={{'list-style-type': 'none'}}>
+				{tickets}
+				</ul>
+			</section>
+			);
 	}
 }
 export default ListTickets;
