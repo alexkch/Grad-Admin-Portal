@@ -6,11 +6,11 @@ import Dashboard from './containers/Dashboard/Dashboard';
 class App extends Component {
   render() {
     return (
-        <div>
-            <Navigator/>
-            <Dashboard style={{padding: '10%'}}/>
-        </div>
-    )
+      <div className={styles.App}>
+        <h1 className={classNames(styles.italic, styles.red)}>My APP</h1>
+        <Dashboard />
+      </div>
+    );
   }
 }
 

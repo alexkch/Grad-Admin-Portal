@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
 	res.send(tickets);
 });
 
-router.post('/', authorize, async (req, res) => {
+router.post('/', /*authorize,*/ async (req, res) => {
 
 	const { error } = validate(req.body);
 	if (error) return res.status(400).send(error.details[0].message);
@@ -36,14 +36,14 @@ router.get('/:id', async (req, res) => {
 });
 
 
-router.put('/:id', authorize, async (req, res) => {
+router.put('/:id', /*authorize,*/ async (req, res) => {
 
   const {error} = validate(req.body);
 	if (error) return res.status(400).send(error.details[0].message);
 
 	const ticket = await Ticket.findByIdAndUpdate(req.params.id,
     {
-      professor_id: req.body.professor_id,      
+      professor_id: req.body.professor_id,
       professor: req.body.professor,
       status: req.body.status,
       created_by: req.body.created_by
@@ -56,7 +56,7 @@ router.put('/:id', authorize, async (req, res) => {
 });
 
 
-router.delete('/:id', authorize, async (req, res) => {
+router.delete('/:id', /*authorize,*/ async (req, res) => {
 
 	const ticket = await Ticket.findByIdAndRemove(req.params.id);
 	if (!ticket) return res.status(404).send("ticket with given ID was not found");

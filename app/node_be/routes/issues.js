@@ -17,7 +17,7 @@ router.get('/', async (req, res) => {
 
 
 // create a new issue
-router.post('/', authorize, async (req, res) => {
+router.post('/', /*authorize,*/ async (req, res) => {
 
 	const { error } = validate(req.body);
 	if (error) return res.status(400).send(error.details[0].message);
@@ -45,7 +45,7 @@ router.get('/:id', validateObjId/*authorize*/, async (req, res) => {
 
 
 // edit an issue
-router.put('/:id', [authorize, validateObjId] , async (req, res) => {
+router.put('/:id', /*[authorize, validateObjId]*/ validateObjId , async (req, res) => {
 
   const {error} = validate(req.body);
 	if (error) return res.status(400).send(error.details[0].message);
@@ -66,7 +66,7 @@ router.put('/:id', [authorize, validateObjId] , async (req, res) => {
 
 
 // delete an issue
-router.delete('/:id', [authorize, admin, validateObjId] , async (req, res) => {
+router.delete('/:id', /*[authorize, admin, validateObjId]*/ validateObjId, async (req, res) => {
 
 	const issue = await Issue.findByIdAndRemove(req.params.id);
 	if (!issue) return res.status(404).send("issue with given ID was not found");
@@ -75,7 +75,7 @@ router.delete('/:id', [authorize, admin, validateObjId] , async (req, res) => {
 
 
 // to add note
-router.post('/:id/new', [authorize, validateObjId] , async (req, res) => {
+router.post('/:id/new', /*[authorize, validateObjId]*/ validateObjId, async (req, res) => {
 
   let issue = await Issue.findById(req.params.id);
 	if (!issue) return res.status(404).send("issue with given ID was not found");
@@ -94,7 +94,7 @@ router.post('/:id/new', [authorize, validateObjId] , async (req, res) => {
 
 
 // to delete a note
-router.post('/:id/del/:note_id', [authorize, validateObjId] , async (req, res) => {
+router.post('/:id/del/:note_id', /*[authorize, validateObjId]*/ validateObjId, async (req, res) => {
 
   let issue = await Issue.findById(req.params.id);
 	if (!issue) return res.status(404).send("issue with given ID was not found");
@@ -109,7 +109,7 @@ router.post('/:id/del/:note_id', [authorize, validateObjId] , async (req, res) =
 
 
 // to edit a note
-router.post('/:id/edit/:note_id', [authorize, validateObjId], async (req, res) => {
+router.post('/:id/edit/:note_id', /*[authorize, validateObjId]*/ validateObjId, async (req, res) => {
 
   let issue = await Issue.findById(req.params.id);
 	if (!issue) return res.status(404).send("issue with given ID was not found");

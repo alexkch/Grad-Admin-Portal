@@ -10,6 +10,7 @@ class EditTicketStatus extends Component {
 	}
 	handleSubmit(){
 		// Put ticket
+		this.props.callback(this.state.ticket);
 	}
 
 	handleChangeValue(event){
