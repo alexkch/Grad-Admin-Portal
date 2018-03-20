@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import Ticket from '../ticket/Ticket';
-import UserInfo from '../user/UserInfo';
-import Navigator from '../../components/navigation/Nav';
-import sty from '../../css/bootstrap.min.css'
+import Ticket from '../../containers/ticket/Ticket';
+import UserInfo from '../../containers/user/UserInfo';
 import styles from './Dashboard.css';
+import sty from '../../css/bootstrap.min.css'
 
 class Dashboard extends Component {
 
@@ -44,8 +43,6 @@ class Dashboard extends Component {
                            prof={ticket.professor} status={ticket.status}/>
         });
         return (
-          <div>
-            <Navigator />
             <div style={{margin: '3%'}}>
                 <div style={{width: "70%", position: 'absolute', left: "3%"}}>
                     <section className={styles.Tickets + " " + sty["list-group"]}>
@@ -58,7 +55,6 @@ class Dashboard extends Component {
                     </section>
                 </div>
             </div>
-          </div>
         );
     }
 }
