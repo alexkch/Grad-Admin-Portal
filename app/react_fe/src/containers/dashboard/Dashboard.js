@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import Ticket from '../../containers/ticket/Ticket';
 import UserInfo from '../../containers/user/UserInfo';
-import styles from './Dashboard.css';
 import sty from '../../css/bootstrap.min.css'
+import styles from './Dashboard.css';
 
 class Dashboard extends Component {
 
@@ -30,7 +30,7 @@ class Dashboard extends Component {
 
     async componentDidMount() {
         console.log('[App.js] Inside component did mount');
-        const res = await axios.get('http://localhost:4000/api/tickets')
+        const res = await axios.get('http://localhost:4000/api/tickets');
         console.log(res);
         this.setState({tickets: res.data});
 
@@ -43,6 +43,7 @@ class Dashboard extends Component {
                            prof={ticket.professor} status={ticket.status}/>
         });
         return (
+          <div>
             <div style={{margin: '3%'}}>
                 <div style={{width: "70%", position: 'absolute', left: "3%"}}>
                     <section className={styles.Tickets + " " + sty["list-group"]}>
@@ -55,6 +56,7 @@ class Dashboard extends Component {
                     </section>
                 </div>
             </div>
+          </div>
         );
     }
 }

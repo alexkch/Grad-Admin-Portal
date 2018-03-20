@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 
-import sty from '../css/bootstrap.min.css';
-import User from '../containers/user/User';
+
+import sty from '../../css/bootstrap.min.css';
+import User from '../../containers/user/User';
+
 
 class Navigator extends Component {
 

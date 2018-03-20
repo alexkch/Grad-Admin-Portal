@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-
-import Navigator from './containers/Navigator';
 import Dashboard from './containers/Dashboard/Dashboard';
+import Navigator from './components/navigation/Nav'
 
 class App extends Component {
   render() {
@@ -10,6 +9,7 @@ class App extends Component {
         <Navigator/>
         <Dashboard />
       </div>
+
     );
   }
 }
