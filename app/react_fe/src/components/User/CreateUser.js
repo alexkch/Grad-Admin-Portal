@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
 class CreateUser extends Component{
 	constructor(props){
@@ -22,20 +22,21 @@ class CreateUser extends Component{
 		this.setState({ [name]: value });
 	}
 	render(){
-		let createUser = (
+        return (
 			<div className='CreateUser'>
 				<form onSubmit={ this.handleSubmit }>
 					<label>
 						Email:
-	        			<input name='email' type="email" maxlength='255' value={this.state.email} onChange={this.handleChangeValue} />
+                        <input name='email' type="email" value={this.state.email} onChange={this.handleChangeValue}/>
 					</label>
 					<label>
 						Password:
-	        			<input name="password" type="password" maxlength='1024' value={this.state.password} onChange={this.handleChangeValue} />
+                        <input name="password" type="password" value={this.state.password}
+                               onChange={this.handleChangeValue}/>
 					</label>
 					<label>
 						Name:
-	        			<input name="name" type="text" maxlength='50' value={this.state.name} onChange={this.handleChangeValue} />
+                        <input name="name" type="text" value={this.state.name} onChange={this.handleChangeValue}/>
 					</label>
 					<label>
 						<input name='usertype' type="radio" value="faculty"
@@ -65,7 +66,6 @@ class CreateUser extends Component{
 
 			</div>
 		);
-		return createUser;
 	}
 
 }

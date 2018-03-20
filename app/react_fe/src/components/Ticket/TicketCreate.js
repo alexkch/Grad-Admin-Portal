@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
 class TicketCreate extends Component {
 	constructor(props){
 		super(props);
-		this.state = {ticketOwner: 0, status: 0, amount: 0}
+        this.state = {ticketOwner: 0, status: 0, amount: 0};
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleChangeValue = this.handleChangeValue.bind(this);
 	}
@@ -18,7 +18,7 @@ class TicketCreate extends Component {
 		this.setState({ [name]: value });
 	}
 	render(){
-		let creator = (
+        return (
 			<div className="TicketCreate">
 				<form onSubmit={ this.handleSubmit }>
 					<label>
@@ -47,7 +47,6 @@ class TicketCreate extends Component {
 			</div>
 
 			);
-		return creator;
 	
 	}
 }

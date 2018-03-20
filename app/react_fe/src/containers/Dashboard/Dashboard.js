@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import axios from 'axios';
 import Ticket from '../../components/Ticket/Ticket';
-import User from '../../components/User/User';
 import UserInfo from '../../components/UserInfo/UserInfo';
 import styles from './Dashboard.css';
+import sty from '../../css/bootstrap.min.css'
 
 class Dashboard extends Component {
 
@@ -12,11 +12,19 @@ class Dashboard extends Component {
       console.log('[App.js] Inside constructor');
     }
     state = {
-      tickets: []
-    }
+        //tickets: []
+        // Hardcoded for testing
+        tickets: [{
+            _id: "2143135",
+            professor_id: "3124714",
+            professor: "John W",
+            status: "good",
+            created_by: "prof creater"
+        }]
+    };
     async componentWillMount() {
       console.log('[App.js] Inside component will mount');
-    }
+    };
 
     async componentDidMount() {
       console.log('[App.js] Inside component did mount');
@@ -32,16 +40,17 @@ class Dashboard extends Component {
           return <Ticket key={ticket._id} ticket_id={ticket._id} created_by={ticket.created_by} prof={ticket.professor} status={ticket.status}/>
         });
         return (
-            <div>
-                <section className={styles.Tickets}>
-                  {Tickets}
-                </section>
-                <section>
-                    <User />
-                </section>
-                <section>
-                    <UserInfo />
-                </section>
+            <div style={{margin: '3%'}}>
+                <div style={{width: "70%", position: 'absolute', left: "3%"}}>
+                    <section className={styles.Tickets + " " + sty["list-group"]}>
+                        {Tickets}
+                    </section>
+                </div>
+                <div style={{width: "30%", position: 'absolute', right: "3%"}}>
+                    <section>
+                        <UserInfo/>
+                    </section>
+                </div>
             </div>
         );
     }

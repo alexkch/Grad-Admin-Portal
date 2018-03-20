@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
 class EditTicketStatus extends Component {
 	constructor(props){
@@ -18,8 +18,8 @@ class EditTicketStatus extends Component {
 		this.setState({ [name]: value });
 	}
 	render(){
-		let editor = (
-			<div className="EditTicket">
+        return (
+            <div className="EditTicket">
 				<p>
 					Change Status
 				</p>
@@ -45,7 +45,6 @@ class EditTicketStatus extends Component {
 			</div>
 
 			);
-		return editor;
 	
 	}
 
