@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Popover from 'react-popover';
 import sty from '../../css/bootstrap.min.css';
 import CreateUser from "./CreateUser";
-import LoginUser from "../../components/User/LoginUser";
+import LoginUser from "./LoginUser";
 
 class User extends Component {
     constructor(props) {
