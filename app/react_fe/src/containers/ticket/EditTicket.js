@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
 class EditTicketStatus extends Component {
 	constructor(props){
 		super(props);
-		// Props should contain the ticket to edit
-		this.state = {ticket: props.ticket, status: props.ticket.status}
+        // Props must contain the ticket to edit
+        this.state = {ticket: props.ticket, status: props.ticket.status};
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleChangeValue = this.handleChangeValue.bind(this);
 	}
@@ -19,13 +19,13 @@ class EditTicketStatus extends Component {
 		this.setState({ [name]: value });
 	}
 	render(){
-		let editor = (
-			<div className="EditTicket">
+        return (
+            <div className="EditTicket">
 				<p>
 					Change Status
 				</p>
 				<p>
-					Faculty: {this.ticket.professor}
+                    Faculty: {this.state.ticket_id}
 				</p>
 				<form onSubmit={ this.handleSubmit }>
 					<label>
@@ -46,7 +46,6 @@ class EditTicketStatus extends Component {
 			</div>
 
 			);
-		return editor;
 	
 	}
 

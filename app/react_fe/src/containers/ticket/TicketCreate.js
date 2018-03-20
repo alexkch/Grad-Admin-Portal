@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
+import sty from '../../css/bootstrap.min.css'
 
 class TicketCreate extends Component {
 	constructor(props){
 		super(props);
-		this.state = {ticketOwner: 0, status: 0, amount: 0}
+        this.state = {ticketOwner: 0, status: 0, amount: 1};
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleChangeValue = this.handleChangeValue.bind(this);
 	}
@@ -18,36 +19,34 @@ class TicketCreate extends Component {
 		this.setState({ [name]: value });
 	}
 	render(){
-		let creator = (
-			<div className="TicketCreate">
-				<form onSubmit={ this.handleSubmit }>
-					<label>
-						Ticket Owner:
-	        			<input name='ticketOwner' type="number" min='0' value={this.state.ticketOwner} onChange={this.handleChangeValue} />
-					</label>
-					<label>
-						Amount:
-	        			<input name='amount' type="number" min="1" value={this.state.amount} onChange={this.handleChangeValue} />
-					</label>
-					<label>
-						<input name='status' type="radio" value="0"
-							checked={this.state.status === "0"}
-							onChange={this.handleChangeValue} />
+        return (
+            <div className='CreateUser'>
+                <form onSubmit={this.handleSubmit}>
+                    <div className={sty["form-group"]}>
+                        <label>Owner</label>
+                        <input className={sty["form-control"]} name='ticketOwner' type="number" min='0'
+                               placeholder={"Input owner ID"}
+                               onChange={this.handleChangeValue}/>
 
-						Unallocated
-	        		</label>
-					<label>
-						<input name='status' type="radio" value="1"
-							checked={this.state.status === "1"}
-							onChange={this.handleChangeValue} />
-						Allocated
-	        		</label>
-				  	<input type="submit" value="Submit" />
-				</form>
-			</div>
+                        <label>Status</label>
+                        <select className={sty["form-control"]}>
+                            <option value="0">Unallocated</option>
+                            <option value="1">allocated</option>
+                        </select>
+
+                        <label>Amount</label>
+                        <input className={sty["form-control"]} name='amount' type="number" min='1'
+                               placeholder={"Input amount"}
+                               onChange={this.handleChangeValue}/>
+
+                    </div>
+
+                    <button type="submit" className={sty["btn"] + " " + sty["btn-primary"]}>Create Ticket</button>
+                </form>
+
+            </div>
 
 			);
-		return creator;
 	
 	}
 }

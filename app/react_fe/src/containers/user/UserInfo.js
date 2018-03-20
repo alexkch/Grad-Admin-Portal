@@ -1,30 +1,34 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
-import styles from './UserInfo.css';
+import sty from '../../css/bootstrap.min.css';
 
 class UserInfo extends Component {
-    state = {
-        title: '',
-        content: '',
-        author: 'Max'
+    constructor(props) {
+        super(props);
+        this.state = {login: false, username: "Userinfo"};
     }
 
     render () {
-        return (
-            <div className= {styles.UserInfo}>
-                <h1>Add a Issue</h1>
-                <label>Issue</label>
-                <input type="text" value={this.state.title} onChange={(event) => this.setState({title: event.target.value})} />
-                <label>Description</label>
-                <textarea rows="4" value={this.state.content} onChange={(event) => this.setState({content: event.target.value})} />
-                <label>Author</label>
-                <select value={this.state.author} onChange={(event) => this.setState({author: event.target.value})}>
-                    <option value="Max">Max</option>
-                    <option value="Manu">Manu</option>
-                </select>
-                <button>Add Issue</button>
-            </div>
-        );
+        if (this.state.login) {
+            return (
+                <div className={sty.card + " " + sty["text-white"] + " " + sty["bg-dark"] + " " + sty["mb-3"]}>
+                    <div className={sty["card-header"]}>{this.state.username}</div>
+                    <div className={sty["card-body"]}>
+
+                    </div>
+                </div>)
+
+        } else {
+            return (
+                <div className={sty.card + " " + sty["text-black"] + " " + sty["bg-secondary"] + " " + sty["mb-3"]}>
+                    <div className={sty["card-header"]}>Login required !</div>
+                    <div className={sty["card-body"]}>
+                        Please login to operate.
+                    </div>
+                </div>
+
+            );
+        }
     }
 }
 
