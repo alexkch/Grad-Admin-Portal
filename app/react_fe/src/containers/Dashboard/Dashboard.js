@@ -8,10 +8,9 @@ import sty from '../../css/bootstrap.min.css'
 class Dashboard extends Component {
 
     constructor(props) {
-        super(props);
-        console.log('[App.js] Inside constructor');
+      super(props);
+      console.log('[App.js] Inside constructor');
     }
-
     state = {
         //tickets: []
         // Hardcoded for testing
@@ -23,24 +22,22 @@ class Dashboard extends Component {
             created_by: "prof creater"
         }]
     };
-
     async componentWillMount() {
-        console.log('[App.js] Inside component will mount');
+      console.log('[App.js] Inside component will mount');
     };
 
     async componentDidMount() {
-        console.log('[App.js] Inside component did mount');
-        const res = await axios.get('http://localhost:4000/api/tickets')
-        console.log(res);
-        this.setState({tickets: res.data});
+      console.log('[App.js] Inside component did mount');
+      const res = await axios.get('http://localhost:4000/api/tickets')
+      console.log(res);
+      this.setState({tickets: res.data});
 
     };
 
-    render() {
+    render () {
         console.log('[App.js] Inside render');
         const Tickets = this.state.tickets.map(ticket => {
-            return <Ticket key={ticket._id} ticket_id={ticket._id} created_by={ticket.created_by}
-                           prof={ticket.professor} status={ticket.status}/>
+          return <Ticket key={ticket._id} ticket_id={ticket._id} created_by={ticket.created_by} prof={ticket.professor} status={ticket.status}/>
         });
         return (
             <div style={{margin: '3%'}}>
