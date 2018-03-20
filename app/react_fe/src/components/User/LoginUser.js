@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import sty from '../../css/bootstrap.min.css'
+
 class LoginUser extends Component{
 	constructor(props){
 		super(props);
@@ -28,15 +29,17 @@ class LoginUser extends Component{
                     <div className={sty["form-group"]}>
                         <label >Email</label>
                         <input className={sty["form-control"]} name='email' type="email" value={this.state.email}
-							   onChange={this.handleChangeValue} />
+                               onChange={this.handleChangeValue} placeholder={"Email address"}/>
 
                         <label >Password</label>
-                        <input type="password" className={sty["form-control"]}  name="password"
-							   value={this.state.password} onChange={this.handleChangeValue}/>
+                        <input type="password" className={sty["form-control"]} name="password"
+                               value={this.state.password} onChange={this.handleChangeValue} placeholder={"Password"}/>
 					</div>
+                    <button type="submit" className={sty["btn"] + " " + sty["btn-secondary"]}>Log in</button>
         		</form>
 
-			</div>
+
+            </div>
 		);
 	}
 

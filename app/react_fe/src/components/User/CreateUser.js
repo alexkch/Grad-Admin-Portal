@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import sty from '../../css/bootstrap.min.css'
 
 class CreateUser extends Component{
 	constructor(props){
@@ -25,43 +26,40 @@ class CreateUser extends Component{
         return (
 			<div className='CreateUser'>
 				<form onSubmit={ this.handleSubmit }>
-					<label>
-						Email:
-                        <input name='email' type="email" value={this.state.email} onChange={this.handleChangeValue}/>
-					</label>
-					<label>
-						Password:
-                        <input name="password" type="password" value={this.state.password}
-                               onChange={this.handleChangeValue}/>
-					</label>
-					<label>
-						Name:
-                        <input name="name" type="text" value={this.state.name} onChange={this.handleChangeValue}/>
-					</label>
-					<label>
-						<input name='usertype' type="radio" value="faculty"
-							checked={this.state.usertype === "faculty"}
-							onChange={this.handleChangeValue} />
+                    <div className={sty["form-group"]}>
+                        <label>Email</label>
+                        <input className={sty["form-control"]} name='email' type="email" value={this.state.email}
+                               onChange={this.handleChangeValue} placeholder={"Email address"}/>
 
-						Faculty
-	        		</label>
-					<label>
-						<input name='usertype' type="radio" value="budget_office"
-							checked={this.state.usertype === "budget_office"}
-							onChange={this.handleChangeValue} />
-						Budget Office
-	        		</label>
-	        		<label>
-						<input name='usertype' type="radio" value="grad_office"
-							checked={this.state.usertype === "grad_office"}
-							onChange={this.handleChangeValue} />
-						Grad Office
-	        		</label>
-	        		<label>
-						<input name='isAdmin' type="checkbox" checked={this.state.isAdmin}
-							onChange={this.handleChangeValue} />
-						Admin
-	        		</label>				
+                        <label>Password</label>
+                        <input type="password" className={sty["form-control"]} name="password"
+                               value={this.state.password} onChange={this.handleChangeValue} placeholder={"Password"}/>
+
+                        <label>Name</label>
+                        <input type="text" className={sty["form-control"]} name="name"
+                               value={this.state.name} onChange={this.handleChangeValue} placeholder={"Name"}/>
+
+                        <label>Type</label>
+                        <select className={sty["form-control"]}>
+                            <option>Faculty</option>
+                            <option>Budget Office</option>
+                            <option>Grad Office</option>
+                        </select>
+
+
+                    </div>
+
+                    <div className={sty["form-check"]}>
+                        <label>
+                            <input className={sty["form-check-input"]} name='isAdmin' type="checkbox"
+                                   checked={this.state.isAdmin}
+                                   onChange={this.handleChangeValue}/>
+                            Admin
+                        </label>
+
+                    </div>
+
+                    <button type="submit" className={sty["btn"] + " " + sty["btn-primary"]}>Create User</button>
         		</form>
 
 			</div>

@@ -44,6 +44,8 @@
     "react-bootstrap": "^0.32.1",
     "react-dev-utils": "^5.0.0",
     "react-dom": "^16.2.0",
+    "react-popover": "^0.5.4",
+    "react-popup": "^0.9.2",
     "react-redux": "^5.0.7",
     "redux": "^3.7.2",
     "style-loader": "0.19.0",
