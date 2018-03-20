@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 
 import sty from '../../css/bootstrap.min.css';
+import LoginUser from "../User/LoginUser";
+import CreateUser from "../User/CreateUser";
 
 class UserInfo extends Component {
     constructor(props) {
@@ -21,9 +23,9 @@ class UserInfo extends Component {
         } else {
             return (
                 <div className={sty.card + " " + sty["text-white"] + " " + sty["bg-info"] + " " + sty["mb-3"]}>
-                    <div className={sty["card-header"]}>User information</div>
+                    <div className={sty["card-header"]}>Login required !</div>
                     <div className={sty["card-body"]}>
-                        Login first
+                        <CreateUser/>
                     </div>
                 </div>
 
