@@ -3,8 +3,6 @@ import ReactDOM from 'react-dom';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import './css/bootstrap.min.css';
-import { createStore } from 'redux';
-import { Provider } from 'react-redux';
 import axios from 'axios';
 import './index.css';
 import App from './App';

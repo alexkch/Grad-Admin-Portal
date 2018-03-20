@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import Ticket from '../../components/Ticket/Ticket';
-import UserInfo from '../../components/UserInfo/UserInfo';
+import Ticket from '../../containers/ticket/Ticket';
+import UserInfo from '../../containers/user/UserInfo';
 import styles from './Dashboard.css';
 import sty from '../../css/bootstrap.min.css'
 
