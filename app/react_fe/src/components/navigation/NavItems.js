@@ -7,7 +7,16 @@ const navItems = () => (
         <a href="/">home</a>
       </li>
       <li className={styles.NavItem}>
-        <a href="/new-issue">new issue</a>
+        <a href="/users">user info</a>
+      </li>
+      <li className={styles.NavItem}>
+        <a href="/tickets">tickets</a>
+      </li>
+      <li className={styles.NavItem}>
+        <a href="/issues">issues</a>
+      </li>
+      <li className={styles.NavItem}>
+        <a href="/offers">offers</a>
       </li>
     </ul>
 );

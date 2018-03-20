@@ -1,10 +1,15 @@
 import React, {Component} from 'react';
 import Dashboard from './containers/dashboard/Dashboard';
+import Navigator from './components/navigation/Nav'
 
 class App extends Component {
   render() {
     return (
-      <Dashboard />
+      <div >
+        <Navigator/>
+        <Dashboard />
+      </div>
+
     );
   }
 }
