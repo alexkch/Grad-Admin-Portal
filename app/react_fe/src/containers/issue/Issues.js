@@ -49,7 +49,7 @@ class Issues extends Component {
                    issue_id={issue._id}
                    status={issue.status}
                    priority={issue.priority}
-                   type={'default'}
+                   type={'short'}
                    select={() => this.viewIssueHandler(index)}
                    />}))
 
@@ -73,9 +73,7 @@ class Issues extends Component {
               <Modal show={this.state.selected} close={this.closeIssueHandler} >
                 {modalIssue}
               </Modal>
-              <section className={styles.Issues}>
-                {issues}
-              </section>
+              {issues}
             </Aux>
         );
     }

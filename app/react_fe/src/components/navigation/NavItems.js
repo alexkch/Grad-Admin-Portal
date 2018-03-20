@@ -1,22 +1,23 @@
 import React from 'react';
+import { Route, Link } from 'react-router-dom';
 import styles from './NavItems.css';
 
 const navItems = () => (
     <ul className={styles.NavItems}>
       <li className={styles.NavItem}>
-        <a href="/">home</a>
+        <Link to="/">home</Link>
       </li>
       <li className={styles.NavItem}>
-        <a href="/users">user info</a>
+        <Link to="/users">user info</Link>
       </li>
       <li className={styles.NavItem}>
-        <a href="/tickets">tickets</a>
+        <Link to="/tickets">tickets</Link>
       </li>
       <li className={styles.NavItem}>
-        <a href="/issues">issues</a>
+        <Link to="/issues">issues</Link>
       </li>
       <li className={styles.NavItem}>
-        <a href="/offers">offers</a>
+        <Link to="/offers">offers</Link>
       </li>
     </ul>
 );

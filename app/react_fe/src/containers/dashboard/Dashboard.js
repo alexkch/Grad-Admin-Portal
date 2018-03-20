@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import { Route } from 'react-router-dom';
 import Ticket from '../../containers/ticket/Ticket';
+import Issues from '../../containers/issue/Issues';
 import UserInfo from '../../containers/user/UserInfo';
+import Aux from '../../wrapper/Auxiliary';
 import styles from './Dashboard.css';
 import sty from '../../css/bootstrap.min.css'
 
@@ -43,9 +46,11 @@ class Dashboard extends Component {
                            prof={ticket.professor} status={ticket.status}/>
         });
         return (
+          <Aux>
             <div style={{margin: '3%'}}>
                 <div style={{width: "70%", position: 'absolute', left: "3%"}}>
-                    <section className={styles.Tickets + " " + sty["list-group"]}>
+                    <section className={sty["list-group"]}>
+                        <Route path='/issues' exact Component={Issues} />
                         {Tickets}
                     </section>
                 </div>
@@ -55,6 +60,7 @@ class Dashboard extends Component {
                     </section>
                 </div>
             </div>
+          </Aux>
         );
     }
 }
