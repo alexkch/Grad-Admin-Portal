@@ -25,7 +25,7 @@ class EditTicketStatus extends Component {
 					Change Status
 				</p>
 				<p>
-                    Faculty: {this.state.ticket_id}
+                    Faculty: {this.state.ticket.professor}
 				</p>
 				<form onSubmit={ this.handleSubmit }>
 					<label>
