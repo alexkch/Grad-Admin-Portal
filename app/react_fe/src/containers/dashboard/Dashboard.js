@@ -7,6 +7,7 @@ import UserInfo from '../../containers/user/UserInfo';
 import Aux from '../../wrapper/Auxiliary';
 import styles from './Dashboard.css';
 import sty from '../../css/bootstrap.min.css'
+import ListTickets from '../../containers/ticket/DisplayTicket';
 
 class Dashboard extends Component {
 
@@ -41,10 +42,11 @@ class Dashboard extends Component {
 
     render() {
         console.log('[App.js] Inside render');
-        const Tickets = this.state.tickets.map(ticket => {
-            return <Ticket key={ticket._id} ticket_id={ticket._id} created_by={ticket.created_by}
-                           prof={ticket.professor} status={ticket.status}/>
-        });
+        //const Tickets = this.state.tickets.map(ticket => {
+        //    return <Ticket key={ticket._id} ticket_id={ticket._id} created_by={ticket.created_by}
+        //                   prof={ticket.professor} status={ticket.status}/>
+        //});
+	const Tickets = <ListTickets tickets={this.state.tickets} />;
         return (
           <Aux>
             <div style={{margin: '3%'}}>
