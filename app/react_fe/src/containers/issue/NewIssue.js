@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import Input from '../../components/form/Form';
 import Box from '../../components/box/Box';
+import Button from '../../components/button/Button';
 
-class ContactData extends Component {
+class NewIssue extends Component {
 
     state = {
         form: {
@@ -155,7 +156,7 @@ class ContactData extends Component {
                         touched={formElement.config.touched}
                         changed={(event) => this.inputChangedHandler(event, formElement.id)} />
                 ))}
-                <button btnType="Success" disabled={!this.state.formIsValid}>Submit</button>
+                <Button disabled={!this.state.formIsValid}>Submit</Button>
             </form>
         );
         return (
@@ -164,4 +165,4 @@ class ContactData extends Component {
     }
 }
 
-export default ContactData;
+export default NewIssue;

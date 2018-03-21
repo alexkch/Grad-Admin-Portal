@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-
 import sty from '../../css/bootstrap.min.css';
 
 const card = (props) => (

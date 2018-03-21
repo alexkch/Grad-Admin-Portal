@@ -1,4 +1,4 @@
-.Input {
+.FormBox {
     width: 100%;
     padding: 10px;
     box-sizing: border-box;
@@ -10,7 +10,7 @@
     margin-bottom: 8px;
 }
 
-.InputElement {
+.Form {
     outline: none;
     border: 1px solid #ccc;
     background-color: white;
@@ -21,7 +21,7 @@
     box-sizing: border-box;
 }
 
-.InputElement:focus {
+.Form:focus {
     outline: none;
     background-color: #ccc;
 }

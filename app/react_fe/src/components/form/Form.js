@@ -2,9 +2,9 @@ import React from 'react';
 
 import styles from './Form.css';
 
-const input = ( props ) => {
+const form = ( props ) => {
     let inputElement = null;
-    const inputClasses = [styles.InputElement];
+    const inputClasses = [styles.Form];
 
     if (props.invalid && props.shouldValidate && props.touched) {
         inputClasses.push(styles.Invalid);
@@ -48,7 +48,7 @@ const input = ( props ) => {
     }
 
     return (
-        <div className={styles.Input}>
+        <div className={styles.FormBox}>
             <label className={styles.Label}>{props.label}</label>
             {inputElement}
         </div>
@@ -56,4 +56,4 @@ const input = ( props ) => {
 
 };
 
-export default input;
+export default form;

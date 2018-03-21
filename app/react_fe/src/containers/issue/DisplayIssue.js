@@ -11,7 +11,6 @@ class displayIssue extends Component {
         switch ( this.props.type ) {
             case ( 'short' ):
                 output = (
-
                   <Card
                     issue_id={this.props.issue_id}
                     created_by={this.props.created_by}
