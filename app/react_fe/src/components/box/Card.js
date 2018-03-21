@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import sty from '../../css/bootstrap.min.css';
+import Button from '../button/Button';
 
 const card = (props) => (
 
@@ -17,10 +18,7 @@ const card = (props) => (
 
       <div className={sty["card-body"]}>
           <div style={{height: "30px"}}>
-              <button onClick={props.select} style={{position: 'absolute', left: '3%', bottom: "10%", maxwidth: "50%"}}
-                      className={sty.btn + " " + sty["btn-outline-info"]}>Status:{props.status}</button>
-              <h6 style={{position: 'absolute', right: '3%', bottom: "10%", maxwidth: "50%"}}
-                  className={sty["text-muted"]}>{props.created_by_id}</h6>
+              <Button clicked={props.select}>Status:{props.status}</Button>
           </div>
       </div>
   </div>

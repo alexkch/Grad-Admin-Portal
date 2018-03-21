@@ -156,7 +156,7 @@ class NewIssue extends Component {
                         touched={formElement.config.touched}
                         changed={(event) => this.inputChangedHandler(event, formElement.id)} />
                 ))}
-                <Button disabled={!this.state.formIsValid}>Submit</Button>
+                <Button disabled={!this.state.formIsValid} type={'disabled-stretch'}>Submit</Button>
             </form>
         );
         return (
