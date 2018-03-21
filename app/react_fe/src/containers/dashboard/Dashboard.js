@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Ticket from '../../containers/ticket/Ticket';
 import Issues from '../issue/Issues';
+import IssueForm from '../issue/NewIssue';
 import UserInfo from '../../containers/user/UserInfo';
 import Aux from '../../wrapper/Auxiliary';
 import sty from '../../css/bootstrap.min.css'
 import ListTickets from '../../containers/ticket/DisplayTicket';
+
 
 class Dashboard extends Component {
 
@@ -38,15 +40,18 @@ class Dashboard extends Component {
             <div className={sty["row"]}>
               <div className={sty["col-md-8"]}>
                   <section className={sty["list-group"]}>
-                      <Route path="/userinfo" exact component={UserInfo} />
+                    <Switch>
                       <Route path="/issues" exact component={Issues} />
-                      <Route path="/offers" exact component={Offers} />
-                      <Route path="/tickets" exact component={Tickets} />
+                      <Route path="/tickets" exact/>
+                    </Switch>
                   </section>
               </div>
               <div className={sty["col-md-4"]}>
                   <section>
-                      <UserInfo/>
+                    <Switch>
+                      <Route path="/issues" exact component={IssueForm} />
+                      <Route path="/" exact component={UserInfo} />
+                    </Switch>
                   </section>
               </div>
             </div>

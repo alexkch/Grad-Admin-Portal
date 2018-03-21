@@ -62,7 +62,7 @@ class Issues extends Component {
                   status={this.state.issue.status}
                   description={this.state.issue.description}
                   priority={this.state.issue.priority}
-                  type={'modal-full'}
+                  type={'modal-short'}
                   show={this.state.selected}
                   close={this.closeIssueHandler}
                   />) : null
