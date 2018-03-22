@@ -16,6 +16,9 @@ class Issues extends Component {
       errorMsg: 'Something went wrong'
     }
 
+    componentDidMount() {
+      this.props.actionGetIssues();
+    }
 /*
     async componentDidMount() {
       //const res = await axios.get('/issues');
@@ -31,7 +34,7 @@ class Issues extends Component {
     viewIssueHandler = (issueIndex) => {
       //const issues = [...this.state.issues]; //this.state.issues.slice();
       const issue = {
-        ...this.state.issues[issueIndex]
+        ...this.props.issues[issueIndex]
       };
       this.setState({issue: issue, selected: true });
     }
@@ -90,7 +93,7 @@ const mapStateToProps = state => {
 // pass using props , this.props.onSetIssues
 const mapDispatchToProps = dispatch => {
   return {
-    onSetIssues: () => dispatch({type: actionTypes.SET_ISSUES})
+    actionGetIssues: () => dispatch(Actions.getIssues())
   };
 };
 

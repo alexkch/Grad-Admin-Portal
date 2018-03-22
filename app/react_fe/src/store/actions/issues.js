@@ -10,7 +10,7 @@ export const setIssues = (issues) => {
 
 export const setIssuesFailed = () => {
   return {
-    redux_type: actionTypes.SET_ISSUES_FAILED,
+    redux_type: actionTypes.SET_ISSUES_FAILED
   };
 };
 
@@ -23,7 +23,7 @@ export const getIssues = () => {
 
     } catch (error) {
       dispatch(setIssuesFailed());
-      this.setState({error: true, errorMsg: error.message});
+      //this.setState({error: true, errorMsg: error.message});
 
     };
   };
