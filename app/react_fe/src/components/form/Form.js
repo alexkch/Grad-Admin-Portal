@@ -5,23 +5,28 @@ import sty from '../../css/bootstrap.min.css'
 
 const form = ( props ) => {
     let inputElement = null;
-    const inputClasses = [styles.Form];
-
-    if (props.invalid && props.shouldValidate && props.touched) {
-        inputClasses.push(styles.Invalid);
+    let elementClassName = sty["form-control"];
+    let validClassName = sty["form-control"] + " " + sty["is-valid"];
+    let invalidClassName = sty["form-control"] + " " + sty["is-invalid"];
+    if ( props.shouldValidate && props.touched) {
+        if (props.invalid){
+            elementClassName = invalidClassName;
+        }else{
+            elementClassName = validClassName
+        }
     }
 
     switch ( props.elementType ) {
         case ( 'input' ):
             inputElement = <input
-                className={sty["form-control"]}
+                className={elementClassName}
                 {...props.elementConfig}
                 value={props.value}
                 onChange={props.changed} />;
             break;
         case ( 'textarea' ):
             inputElement = <textarea
-                className={sty["form-control"]}
+                className={elementClassName}
                 {...props.elementConfig}
                 value={props.value}
                 onChange={props.changed} />;
@@ -29,7 +34,7 @@ const form = ( props ) => {
         case ( 'select' ):
             inputElement = (
                 <select
-                    className={sty["form-control"]}
+                    className={elementClassName}
                     value={props.value}
                     onChange={props.changed}>
                     {props.elementConfig.options.map(option => (
@@ -42,11 +47,14 @@ const form = ( props ) => {
             break;
         default:
             inputElement = <input
-                className={sty["form-control"]}
+                className={elementClassName}
                 {...props.elementConfig}
                 value={props.value}
                 onChange={props.changed} />;
     }
+
+
+
 
     return (
         <div className={sty["form-group"]}>
