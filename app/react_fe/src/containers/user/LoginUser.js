@@ -3,7 +3,7 @@ import sty from '../../css/bootstrap.min.css'
 import Form from '../../components/form/Form';
 import Aux from '../../wrapper/Auxiliary';
 import Button from '../../components/button/Button';
-
+import * as Actions from '../../store/actions/';
 
 class LoginUser extends Component{
 
