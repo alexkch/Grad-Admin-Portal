@@ -60,6 +60,8 @@
 
       (see application_architecture_diagram.pdf)
 
+      ​	
+
       **2.4** **Technology architecture**
 
       ​	Presentation layer
@@ -68,9 +70,86 @@
 
       **2.5 Database architecture**
 
+      ​	**Standards**
+
+      ​	**Database description**
+
+      ​		 **Database design**
+
+      ​		(diagram to be included)
+
+      ​		**Models**
+
+      **2.6 API**
+
+      ​	**API description**
+
+      ​	**Error handling**
+
+      ​	
+
+      **2.7 Description of non functional attributes**
+
+      Security: 
+
+      Reliability:
+
+      Portability:
+
+      Maintainability:
+
+      Reusability:
+
+      **3. User interface design**
+
+      Description of the user interface
+
+      (Add screenshots of the)
+
       ​
 
-   ​
+      **4. Testing issues**
 
+      ​	Test cases and Expected results
 
+      ​		Ticket page testing
 
+      ​		Sign up/ login testing
+
+      ​		Feature testing
+
+      ​		Issues testing
+
+      ​		API testing
+
+      **5. How is this different from what you originally proposed?Why?**
+
+      ​
+
+      **6. Technical highlights: interesting bugs, challenges, lessons learned, observations, etc.**
+
+      ​
+
+      **7. Project management and progress reporting**
+
+      1.   Teamwork and project progress (with burndown chart)
+
+           ​
+
+      	2. Things that worked well (strengths)
+
+      	3. Improvements (weakness)Next phase goals (phase 3 final demo)
+
+          ​
+
+      **8. Phase 3 goals (final demo) **
+
+      Plan for final work towards demo
+
+      - **Enhance security:** From the above standards of the website, we haven't yet satisfy the security standard. We will solidify the security of the website. In particular, we will develop ways to prevent code injection from client-side. 
+      - **Deploy the project:** We will deploy the project in order to make the system accessible anytime, anywhere and thus enhance the portability. 
+      - ​
+
+      ​
+
+      ​
