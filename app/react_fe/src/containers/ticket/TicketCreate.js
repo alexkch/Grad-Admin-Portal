@@ -9,8 +9,10 @@ class TicketCreate extends Component {
 		this.handleChangeValue = this.handleChangeValue.bind(this);
 	}
 
-	handleSubmit(){
+	handleSubmit(event){
 		// Create tickets
+        event.preventDefault();
+        
 	}
 
 	handleChangeValue(event){
