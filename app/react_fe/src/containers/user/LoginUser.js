@@ -91,26 +91,7 @@ class LoginUser extends Component{
 			this.setState({form: updatedform, formIsValid: formIsValid});
 	}
 
-	constructor(props){
-		super(props);
-		this.state = {email: '', password: ''};
 
-		this.handleSubmit = this.handleSubmit.bind(this);
-		this.handleChangeValue = this.handleChangeValue.bind(this);
-
-	}
-	handleSubmit(){
-		// Create tickets
-	}
-
-	handleChangeValue(event){
-		const name = event.target.name;
-    	let value = event.target.value;
-		if(event.target.type === 'checkbox'){
-			value = event.target.checked;
-		}
-		this.setState({ [name]: value });
-	}
 	render() {
 		const formElementsArray = [];
 		for (let key in this.state.form) {
