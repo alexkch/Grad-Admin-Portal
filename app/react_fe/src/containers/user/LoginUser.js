@@ -4,6 +4,7 @@ import Form from '../../components/form/Form';
 import Aux from '../../wrapper/Auxiliary';
 import Button from '../../components/button/Button';
 import * as Actions from '../../store/actions/';
+import { connect } from 'react-redux';
 
 class LoginUser extends Component {
 
@@ -130,4 +131,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect()(LoginUser);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginUser);
