@@ -10,7 +10,7 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-import IssuesReducer from './store/reducers/issues';
+import IssuesReducer from './store/reducers/Issues';
 
 axios.defaults.baseURL = 'http://localhost:4000/api';
 /*
