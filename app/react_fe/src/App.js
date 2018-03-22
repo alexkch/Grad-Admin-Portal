@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Dashboard from './containers/Dashboard/Dashboard';
+import Dashboard from './containers/dashboard/Dashboard';
 import Navigator from './components/navigation/Nav';
 import Aux from './wrapper/Auxiliary';
 
