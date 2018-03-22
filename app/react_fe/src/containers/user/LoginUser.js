@@ -86,6 +86,11 @@ class LoginUser extends Component {
 			this.setState( { form : updatedAuthForm } );
 	}
 
+	authHandler = (event) => {
+		event.preventDefault();
+		this.props.Auth(this.state.form.email.value, this.state.form.password.value);
+	}
+
 	render() {
 		const formElementsArray = [];
 		for (let key in this.state.form) {
@@ -95,7 +100,7 @@ class LoginUser extends Component {
 				});
 		};
 		let form = (
-				<form onSubmit={this.postHandler}>
+				<form onSubmit={this.authHandler}>
 						{formElementsArray.map(formElement => (
 								<Form
 										key={formElement.id}
@@ -127,8 +132,8 @@ const mapStateToProps = state => {
 // pass using props , this.props.onSetIssues
 const mapDispatchToProps = dispatch => {
   return {
-    //actionGetIssues: () => dispatch(Actions.getIssues())
+		Auth: (email, password) => dispatch(Actions.auth(email, password))
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginUser);
+export default connect(null, mapDispatchToProps)(LoginUser);
