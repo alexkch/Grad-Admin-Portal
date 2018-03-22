@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import sty from '../../css/bootstrap.min.css'
 import Form from '../../components/form/Form';
-import Box from '../../components/box/Box';
+import Aux from '../../wrapper/Auxiliary';
 import Button from '../../components/button/Button';
 
 
@@ -72,25 +72,18 @@ class LoginUser extends Component{
 			return isValid;
 	}
 
-	inputChangedHandler = (event, inputIdentifier) => {
-			const updatedform = {
-					...this.state.form
+	inputChangedHandler = ( event, authForm ) => {
+			const updatedAuthForm = {
+					...this.state.form,
+					[authForm]: {
+							...this.state.form[authForm],
+							value: event.target.value,
+							valid: this.checkValidity( event.target.value, this.state.form[authForm].validation ),
+							touched: true
+					}
 			};
-			const updatedFormElement = {
-					...updatedform[inputIdentifier]
-			};
-			updatedFormElement.value = event.target.value;
-			updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation);
-			updatedFormElement.touched = true;
-			updatedform[inputIdentifier] = updatedFormElement;
-
-			let formIsValid = true;
-			for (let inputIdentifier in updatedform) {
-					formIsValid = updatedform[inputIdentifier].valid && formIsValid;
-			}
-			this.setState({form: updatedform, formIsValid: formIsValid});
+			this.setState( { form : updatedAuthForm } );
 	}
-
 
 	render() {
 		const formElementsArray = [];
@@ -117,7 +110,7 @@ class LoginUser extends Component{
 				</form>
 		);
 		return (
-				<div>{form}</div>
+				<Aux>{form}</Aux>
 		);
 	}
 
