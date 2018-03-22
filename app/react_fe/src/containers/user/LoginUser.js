@@ -3,9 +3,10 @@ import sty from '../../css/bootstrap.min.css'
 import Form from '../../components/form/Form';
 import Aux from '../../wrapper/Auxiliary';
 import Button from '../../components/button/Button';
+import * as Actions from '../../store/actions/';
+import { connect } from 'react-redux';
 
-
-class LoginUser extends Component{
+class LoginUser extends Component {
 
 	state = {
 			form: {
@@ -85,6 +86,11 @@ class LoginUser extends Component{
 			this.setState( { form : updatedAuthForm } );
 	}
 
+	authHandler = (event) => {
+		event.preventDefault();
+		this.props.Auth(this.state.form.email.value, this.state.form.password.value);
+	}
+
 	render() {
 		const formElementsArray = [];
 		for (let key in this.state.form) {
@@ -94,7 +100,7 @@ class LoginUser extends Component{
 				});
 		};
 		let form = (
-				<form onSubmit={this.postHandler}>
+				<form onSubmit={this.authHandler}>
 						{formElementsArray.map(formElement => (
 								<Form
 										key={formElement.id}
@@ -113,6 +119,21 @@ class LoginUser extends Component{
 				<Aux>{form}</Aux>
 		);
 	}
-
 }
-export default LoginUser;
+
+
+const mapStateToProps = state => {
+  return {
+      error: state.issue.error,
+      errorMsg: state.issue.errorMsg
+  };
+};
+
+// pass using props , this.props.onSetIssues
+const mapDispatchToProps = dispatch => {
+  return {
+		Auth: (email, password) => dispatch(Actions.auth(email, password))
+  };
+};
+
+export default connect(null, mapDispatchToProps)(LoginUser);
