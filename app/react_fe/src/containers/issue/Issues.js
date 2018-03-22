@@ -12,10 +12,11 @@ class Issues extends Component {
     state = {
       issue: null,
       selected: false,
-      error: false,
-      errorMsg: 'Something went wrong'
     }
 
+    componentDidMount() {
+      this.props.actionGetIssues();
+    }
 /*
     async componentDidMount() {
       //const res = await axios.get('/issues');
@@ -31,7 +32,7 @@ class Issues extends Component {
     viewIssueHandler = (issueIndex) => {
       //const issues = [...this.state.issues]; //this.state.issues.slice();
       const issue = {
-        ...this.state.issues[issueIndex]
+        ...this.props.issues[issueIndex]
       };
       this.setState({issue: issue, selected: true });
     }
@@ -43,7 +44,7 @@ class Issues extends Component {
 
     render () {
         let issues;
-        issues = (this.props.error) ? (<p style={{textAlign: 'center'}}> {this.state.errorMsg} </p>) :
+        issues = (this.props.error) ? (<p style={{textAlign: 'center'}}> {this.props.errorMsg} </p>) :
                  (this.props.issues.map((issue, index) => {
                    return <DisplayIssue key={issue._id}
                    created_by={issue.created_by}
@@ -83,14 +84,15 @@ class Issues extends Component {
 const mapStateToProps = state => {
   return {
       issues: state.issue.issues,
-      error: state.issue.error
+      error: state.issue.error,
+      errorMsg: state.issue.errorMsg
   };
 };
 
 // pass using props , this.props.onSetIssues
 const mapDispatchToProps = dispatch => {
   return {
-    onSetIssues: () => dispatch({type: actionTypes.SET_ISSUES})
+    actionGetIssues: () => dispatch(Actions.getIssues())
   };
 };
 

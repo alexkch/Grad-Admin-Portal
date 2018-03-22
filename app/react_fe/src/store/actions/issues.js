@@ -3,14 +3,15 @@ import axios from 'axios';
 
 export const setIssues = (issues) => {
   return {
-    redux_type: actionTypes.SET_ISSUES,
+    type: actionTypes.SET_ISSUES,
     issues: issues
   };
 };
 
-export const setIssuesFailed = () => {
+export const setIssuesFailed = (errorMsg) => {
   return {
-    redux_type: actionTypes.SET_ISSUES_FAILED,
+    type: actionTypes.SET_ISSUES_FAILED,
+    errorMsg: errorMsg
   };
 };
 
@@ -19,12 +20,9 @@ export const getIssues = () => {
     try {
       const res = await axios.get('/issues');
       dispatch(setIssues(res.data));
-      //this.setState({issues: res.data, error: false});
 
     } catch (error) {
-      dispatch(setIssuesFailed());
-      this.setState({error: true, errorMsg: error.message});
-
+      dispatch(setIssuesFailed(error.message));
     };
   };
 };
