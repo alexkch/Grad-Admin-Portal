@@ -9,8 +9,19 @@ class TicketCreate extends Component {
 		this.handleChangeValue = this.handleChangeValue.bind(this);
 	}
 
-	handleSubmit(){
+	handleSubmit(event){
 		// Create tickets
+        	event.preventDefault();
+		for (var i = 0; i < this.state.amount; i++) {
+			axios({method: 'post',
+				url: '/tickets',
+				data: {professor_id: this.state.ticketOwner,
+				//professor: req.body.professor,
+	    			status: this.state.status,
+	    			//created_by: req.body.created_by
+			}});
+		}
+        
 	}
 
 	handleChangeValue(event){

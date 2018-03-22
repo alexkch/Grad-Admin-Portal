@@ -2,10 +2,11 @@ import React, {Component} from 'react';
 import sty from '../../css/bootstrap.min.css'
 
 class CreateUser extends Component{
+
 	constructor(props){
 		super(props);
 		this.state = {email: '', password: '', name: '', usertype: 'faculty', isAdmin: false}
-		
+
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleChangeValue = this.handleChangeValue.bind(this);
 

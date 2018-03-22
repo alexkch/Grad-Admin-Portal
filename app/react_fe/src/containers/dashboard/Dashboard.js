@@ -7,7 +7,7 @@ import IssueForm from '../issue/NewIssue';
 import UserInfo from '../../containers/user/UserInfo';
 import Aux from '../../wrapper/Auxiliary';
 import sty from '../../css/bootstrap.min.css'
-import ListTickets from '../../containers/ticket/DisplayTicket';
+import Tickets from '../../containers/ticket/Tickets';
 
 
 class Dashboard extends Component {
@@ -42,7 +42,7 @@ class Dashboard extends Component {
                   <section className={sty["list-group"]}>
                     <Switch>
                       <Route path="/issues" exact component={Issues} />
-                      <Route path="/tickets" exact/>
+                      <Route path="/tickets" exact component={Tickets} />
                     </Switch>
                   </section>
               </div>

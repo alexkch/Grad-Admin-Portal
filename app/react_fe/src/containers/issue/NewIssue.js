@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Input from '../../components/form/Form';
+import Form from '../../components/form/Form';
 import Box from '../../components/box/Box';
 import Button from '../../components/button/Button';
 
@@ -144,9 +144,9 @@ class NewIssue extends Component {
             });
         }
         let form = (
-            <form onSubmit={this.orderHandler}>
+            <form onSubmit={this.postHandler}>
                 {formElementsArray.map(formElement => (
-                    <Input
+                    <Form
                         key={formElement.id}
                         elementType={formElement.config.elementType}
                         elementConfig={formElement.config.elementConfig}
