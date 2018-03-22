@@ -1,3 +1,3 @@
 export {
   getIssues
-} from './Issues';
+} from './issues';

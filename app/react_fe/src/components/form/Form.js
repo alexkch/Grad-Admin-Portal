@@ -1,6 +1,7 @@
 import React from 'react';
 
 import styles from './Form.css';
+import sty from '../../css/bootstrap.min.css'
 
 const form = ( props ) => {
     let inputElement = null;
@@ -13,14 +14,14 @@ const form = ( props ) => {
     switch ( props.elementType ) {
         case ( 'input' ):
             inputElement = <input
-                className={inputClasses.join(' ')}
+                className={sty["form-control"]}
                 {...props.elementConfig}
                 value={props.value}
                 onChange={props.changed} />;
             break;
         case ( 'textarea' ):
             inputElement = <textarea
-                className={inputClasses.join(' ')}
+                className={sty["form-control"]}
                 {...props.elementConfig}
                 value={props.value}
                 onChange={props.changed} />;
@@ -28,7 +29,7 @@ const form = ( props ) => {
         case ( 'select' ):
             inputElement = (
                 <select
-                    className={inputClasses.join(' ')}
+                    className={sty["form-control"]}
                     value={props.value}
                     onChange={props.changed}>
                     {props.elementConfig.options.map(option => (
@@ -41,14 +42,14 @@ const form = ( props ) => {
             break;
         default:
             inputElement = <input
-                className={inputClasses.join(' ')}
+                className={sty["form-control"]}
                 {...props.elementConfig}
                 value={props.value}
                 onChange={props.changed} />;
     }
 
     return (
-        <div className={styles.FormBox}>
+        <div className={sty["form-group"]}>
             <label className={styles.Label}>{props.label}</label>
             {inputElement}
         </div>
