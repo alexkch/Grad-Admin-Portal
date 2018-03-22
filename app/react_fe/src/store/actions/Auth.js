@@ -1,6 +1,26 @@
 import * as actionTypes from '../utils/actionTypes';
 import axios from 'axios';
 
+export const authInit = () => {
+  return {
+    type: actionTypes.AUTH_START
+  };
+};
+
+export const authSuccess = () => {
+  return {
+    type: actionTypes.AUTH_SUCCESS,
+    authData: authData
+  };
+};
+
+export const authFail = () => {
+  return {
+    type: actionTypes.AUTH_FAIL,
+    error: error
+  };
+};
+
 export const setIssues = (issues) => {
   return {
     type: actionTypes.SET_ISSUES,
