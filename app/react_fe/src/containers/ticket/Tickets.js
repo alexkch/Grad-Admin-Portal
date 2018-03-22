@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import DisplayIssue from './DisplayTicket';
+import DisplayTicket from './DisplayTicket';
 import Modal from '../../components/modal/Modal';
 import Aux from '../../wrapper/Auxiliary';
 import styles from './Ticket.css';

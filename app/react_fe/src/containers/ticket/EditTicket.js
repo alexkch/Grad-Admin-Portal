@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import axios from 'axios';
+
 
 class EditTicketStatus extends Component {
 	constructor(props){
@@ -11,6 +13,15 @@ class EditTicketStatus extends Component {
 	handleSubmit(){
 		// Put ticket
 		this.props.callback(this.state.ticket);
+
+		axios({method: 'put',
+			url: '/tickets',
+			params: {id: this.state.ticket.professor_id},
+			data: {professor_id: this.state.ticket.professor_id,
+		      professor: this.state.ticket.professor,
+		      status: this.state.status,
+		      created_by: this.state.ticket.professor}
+		});
 	}
 
 	handleChangeValue(event){
@@ -46,7 +57,7 @@ class EditTicketStatus extends Component {
 			</div>
 
 			);
-	
+
 	}
 
 }

@@ -65,4 +65,5 @@ class ListTickets extends Component {
 			);
 	}
 }
-export default ListTickets;
+
+export default DisplayTicket;
