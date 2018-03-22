@@ -8,20 +8,21 @@ export const setIssues = (issues) => {
   };
 };
 
-export const setIssuesFailed = () => {
+export const setIssuesFailed = (errorMsg) => {
   return {
-    type: actionTypes.SET_ISSUES_FAILED
+    type: actionTypes.SET_ISSUES_FAILED,
+    errorMsg: errorMsg
   };
 };
 
 export const getIssues = () => {
-    return dispatch => {
-        axios.get( '/issues' )
-            .then( res => {
-               dispatch(setIssues(res.data));
-            } )
-            .catch( error => {
-                dispatch(setIssuesFailed());
-            } );
+  return async dispatch => {
+    try {
+      const res = await axios.get('/issues');
+      dispatch(setIssues(res.data));
+
+    } catch (error) {
+      dispatch(setIssuesFailed(error.message));
     };
+  };
 };

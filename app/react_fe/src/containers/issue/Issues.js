@@ -12,8 +12,6 @@ class Issues extends Component {
     state = {
       issue: null,
       selected: false,
-      error: false,
-      errorMsg: 'Something went wrong'
     }
 
     componentDidMount() {
@@ -46,7 +44,7 @@ class Issues extends Component {
 
     render () {
         let issues;
-        issues = (this.props.error) ? (<p style={{textAlign: 'center'}}> {this.state.errorMsg} </p>) :
+        issues = (this.props.error) ? (<p style={{textAlign: 'center'}}> {this.props.errorMsg} </p>) :
                  (this.props.issues.map((issue, index) => {
                    return <DisplayIssue key={issue._id}
                    created_by={issue.created_by}
@@ -86,7 +84,8 @@ class Issues extends Component {
 const mapStateToProps = state => {
   return {
       issues: state.issue.issues,
-      error: state.issue.error
+      error: state.issue.error,
+      errorMsg: state.issue.errorMsg
   };
 };
 
