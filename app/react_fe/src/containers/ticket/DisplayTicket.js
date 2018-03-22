@@ -7,34 +7,33 @@ class DisplayTicket extends Component {
 	constructor(props){
 		super(props);
 		
-		this.state = {ticket: props.ticket, stat: "view"}
-		this.handleClick = this.handleClick.bind(this);
-		this.handleEdited = this.handleEdited.bind(this);
+		this.state = {ticket: props.ticket, stat: "short"}
+		// this.handleClick = this.handleClick.bind(this);
+		// this.handleEdited = this.handleEdited.bind(this);
 	}
 
-	handleClick(event){
-		this.setState({stat: "edit"});
-	}
-	handleEdited(newTicket){
-		this.setState({stat: "view", ticket: newTicket});
-	}
+	// handleClick(event){
+	// 	this.setState({stat: "edit"});
+	// }
+	// handleEdited(newTicket){
+	// 	this.setState({stat: "view", ticket: newTicket});
+	// }
 
 	render(){
 		let page = null;
-		if (this.state.stat === "view"){
-			page = (
-				<div>
-					<Ticket key={this.state.ticket._id} ticket_id={this.state.ticket._id} created_by={this.state.ticket.created_by} prof={this.state.ticket.professor} status={this.state.ticket.status}/>
-					<button onClick={this.handleClick} callback={this.handleEdited} >
-		  				Edit
-					</button>
+		switch(this.props.type){
+			case ("short"):
+				page = (
+					<div>
+						<Ticket key={this.state.ticket._id} ticket_id={this.state.ticket._id} created_by={this.state.ticket.created_by} prof={this.state.ticket.professor} status={this.state.ticket.status}/>
 
-				</div>
-			);
-
-		}
-		else if(this.state.stat === "edit"){
-			page = <EditTicketStatus ticket={this.state.ticket} />;
+					</div>
+				);
+				break;
+			
+			case("edit"):
+				page = <EditTicketStatus ticket={this.state.ticket} />;
+				break;
 		}
 		return page;
 	}

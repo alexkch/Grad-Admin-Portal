@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Aux from '../../wrapper/Auxiliary';
 import sty from '../../css/bootstrap.min.css'
 import styles from './Issues.css';
+import Card from '../../components/box/Card';
 
 class displayIssue extends Component {
     render () {
@@ -10,28 +11,14 @@ class displayIssue extends Component {
         switch ( this.props.type ) {
             case ( 'short' ):
                 output = (
-
-                  <div className={sty.card + ' ' + sty["border-primary"] + " " + sty["mb-3"]}>
-                      <div className={sty["card-header"]}>
-                          <div style={{height: "18px"}}>
-                              <span style={{position: 'absolute', left: '3%', maxwidth: "50%"}}
-                                    className={sty.badge + " " + sty["badge-primary"]}>ID:{this.props.issue_id} </span>
-                              <span style={{position: 'absolute', left: '25%', maxwidth: "50%"}}
-                                    className={sty.badge + " " + sty["badge-default"]}>Creator: {this.props.created_by}</span>
-                              <span style={{position: 'absolute', right: '1.5%', maxwidth: "50%"}}
-                                    className={sty.badge + " " + sty["badge-info"]}>Priority: {this.props.priority}</span>
-                          </div>
-                      </div>
-
-                      <div className={sty["card-body"]}>
-                          <div style={{height: "30px"}}>
-                              <button onClick={this.props.select} style={{position: 'absolute', left: '3%', bottom: "10%", maxwidth: "50%"}}
-                                      className={sty.btn + " " + sty["btn-outline-info"]}>Status:{this.props.status}</button>
-                              <h6 style={{position: 'absolute', right: '3%', bottom: "10%", maxwidth: "50%"}}
-                                  className={sty["text-muted"]}>{this.props.created_by_id}</h6>
-                          </div>
-                      </div>
-                  </div>
+                  <Card
+                    issue_id={this.props.issue_id}
+                    created_by={this.props.created_by}
+                    priority={this.props.priority}
+                    select={this.props.select}
+                    status={this.props.status}
+                    created_by_id={this.props.created_by_id}
+                  />
                 );
                 break;
             case ( 'modal-short' ):
