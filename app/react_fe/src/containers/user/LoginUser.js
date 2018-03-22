@@ -5,7 +5,7 @@ import Aux from '../../wrapper/Auxiliary';
 import Button from '../../components/button/Button';
 import * as Actions from '../../store/actions/';
 
-class LoginUser extends Component{
+class LoginUser extends Component {
 
 	state = {
 			form: {
@@ -113,6 +113,21 @@ class LoginUser extends Component{
 				<Aux>{form}</Aux>
 		);
 	}
-
 }
-export default LoginUser;
+
+
+const mapStateToProps = state => {
+  return {
+      error: state.issue.error,
+      errorMsg: state.issue.errorMsg
+  };
+};
+
+// pass using props , this.props.onSetIssues
+const mapDispatchToProps = dispatch => {
+  return {
+    //actionGetIssues: () => dispatch(Actions.getIssues())
+  };
+};
+
+export default connect()(LoginUser);
