@@ -1,4 +1,4 @@
-import * as actionTypes from '../actions/actionTypes';
+import * as actionTypes from '../actionTypes';
 
 const initialState = {
     issues: null,
@@ -10,12 +10,7 @@ const reducer = ( state = initialState, action ) => {
         case actionTypes.SET_ISSUES:
             return {
                 ...state,
-                ingredients: {
-                    salad: action.ingredients.salad,
-                    bacon: action.ingredients.bacon,
-                    cheese: action.ingredients.cheese,
-                    meat: action.ingredients.meat
-                },
+                issues: action.issues,
                 error: false
             };
         case actionTypes.SET_ISSUES_FAILED:

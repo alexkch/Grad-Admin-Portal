@@ -11,12 +11,11 @@ export const setIssues = (issues) => {
 export const setIssuesFailed = () => {
   return {
     redux_type: actionTypes.SET_ISSUES_FAILED,
-    issues: issues
   };
 };
 
 export const getIssues = () => {
-  return dispatch => {
+  return async dispatch => {
     try {
       const res = await axios.get('/issues');
       dispatch(setIssues(res.data));

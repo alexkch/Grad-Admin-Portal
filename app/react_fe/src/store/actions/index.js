@@ -1,0 +1,3 @@
+export {
+  getIssues
+} from './Issues';

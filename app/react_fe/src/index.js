@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createStore, applyMiddleware, compose} from 'redux';
+import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
 import {Provider} from 'react-redux';
 import {BrowserRouter} from 'react-router-dom';
 import thunk from 'redux-thunk';
@@ -9,8 +9,8 @@ import axios from 'axios';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import reducer from './store/reducer';
 
+import IssuesReducer from './store/reducers/Issues';
 
 axios.defaults.baseURL = 'http://localhost:4000/api';
 /*
@@ -21,7 +21,11 @@ axios.interceptors.request.use(request => {
 */
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(reducer, composeEnhancers(
+
+const rootReducer = combineReducers({
+  issue: IssuesReducer
+});
+const store = createStore(rootReducer, composeEnhancers(
   applyMiddleware(thunk)
 ));
 

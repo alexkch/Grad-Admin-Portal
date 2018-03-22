@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import DisplayIssue from './DisplayIssue';
-import * as actionTypes from '../actionTypes';
+import * as actionTypes from '../../store/actionTypes';
+import * as Actions from '../../store/actions/';
 import Modal from '../../components/modal/Modal';
 import Aux from '../../wrapper/Auxiliary';
 import styles from './Issues.css';
@@ -15,6 +16,7 @@ class Issues extends Component {
       errorMsg: 'Something went wrong'
     }
 
+/*
     async componentDidMount() {
       //const res = await axios.get('/issues');
       try {
@@ -25,7 +27,7 @@ class Issues extends Component {
         this.setState({error: true, errorMsg: error.message});
       }
     };
-
+  */
     viewIssueHandler = (issueIndex) => {
       //const issues = [...this.state.issues]; //this.state.issues.slice();
       const issue = {
@@ -80,8 +82,8 @@ class Issues extends Component {
 
 const mapStateToProps = state => {
   return {
-      issues: state.issues,
-      error: state.error
+      issues: state.issue.issues,
+      error: state.issue.error
   };
 };
 
