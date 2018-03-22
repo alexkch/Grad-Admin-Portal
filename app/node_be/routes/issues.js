@@ -100,7 +100,7 @@ router.post('/:id/del/:note_id', /*[authorize, validateObjId]*/ validateObjId, a
 	if (!issue) return res.status(404).send("issue with given ID was not found");
 
   const result = await Issue.update({ "_id" : req.params.id },
-    { $pull: { notes : { "_id" : req.params.note_id }}
+    { $pull: {notes : { "_id" : req.params.note_id }}
   });
 	if (!result.nModified) return res.status(404).send("note with given ID was not found");
 

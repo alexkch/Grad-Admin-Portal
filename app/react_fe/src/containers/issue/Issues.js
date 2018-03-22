@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import { connect } from 'react-redux';
 import DisplayIssue from './DisplayIssue';
+import * as actionTypes from '../../store/actionTypes';
+import * as Actions from '../../store/actions/';
 import Modal from '../../components/modal/Modal';
 import Aux from '../../wrapper/Auxiliary';
 import styles from './Issues.css';
@@ -8,14 +10,13 @@ import styles from './Issues.css';
 class Issues extends Component {
 
     state = {
-      issues: [],
       issue: null,
       selected: false,
       error: false,
       errorMsg: 'Something went wrong'
     }
 
-
+/*
     async componentDidMount() {
       //const res = await axios.get('/issues');
       try {
@@ -26,7 +27,7 @@ class Issues extends Component {
         this.setState({error: true, errorMsg: error.message});
       }
     };
-
+  */
     viewIssueHandler = (issueIndex) => {
       //const issues = [...this.state.issues]; //this.state.issues.slice();
       const issue = {
@@ -42,8 +43,8 @@ class Issues extends Component {
 
     render () {
         let issues;
-        issues = (this.state.error) ? (<p style={{textAlign: 'center'}}> {this.state.errorMsg} </p>) :
-                 (this.state.issues.map((issue, index) => {
+        issues = (this.props.error) ? (<p style={{textAlign: 'center'}}> {this.state.errorMsg} </p>) :
+                 (this.props.issues.map((issue, index) => {
                    return <DisplayIssue key={issue._id}
                    created_by={issue.created_by}
                    issue_id={issue._id}
@@ -79,4 +80,18 @@ class Issues extends Component {
     }
 }
 
-export default Issues;
+const mapStateToProps = state => {
+  return {
+      issues: state.issue.issues,
+      error: state.issue.error
+  };
+};
+
+// pass using props , this.props.onSetIssues
+const mapDispatchToProps = dispatch => {
+  return {
+    onSetIssues: () => dispatch({type: actionTypes.SET_ISSUES})
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Issues);
