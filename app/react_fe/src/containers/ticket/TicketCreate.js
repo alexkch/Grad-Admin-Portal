@@ -12,13 +12,15 @@ class TicketCreate extends Component {
 	handleSubmit(event){
 		// Create tickets
         	event.preventDefault();
-		axios({method: 'post',
-			url: '/tickets',
-			data: {professor_id: this.state.ticketOwner,
-			//professor: req.body.professor,
-    			status: this.state.status,
-    			//created_by: req.body.created_by
-		}});
+		for (var i = 0; i < this.state.amount; i++) {
+			axios({method: 'post',
+				url: '/tickets',
+				data: {professor_id: this.state.ticketOwner,
+				//professor: req.body.professor,
+	    			status: this.state.status,
+	    			//created_by: req.body.created_by
+			}});
+		}
         
 	}
 
