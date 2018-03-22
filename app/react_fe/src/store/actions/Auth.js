@@ -1,7 +1,7 @@
 import * as actionTypes from '../utils/actionTypes';
 import axios from 'axios';
 
-export const authInit = () => {
+export const validate = () => {
   return {
     type: actionTypes.AUTH_START
   };
@@ -21,19 +21,12 @@ export const authFail = () => {
   };
 };
 
-export const setIssues = (issues) => {
-  return {
-    type: actionTypes.SET_ISSUES,
-    issues: issues
+export const auth = (email, password) => {
+  return dispatch => {
+    dispatch(validate());
   };
 };
 
-export const setIssuesFailed = (errorMsg) => {
-  return {
-    type: actionTypes.SET_ISSUES_FAILED,
-    errorMsg: errorMsg
-  };
-};
 
 export const getIssues = () => {
   return async dispatch => {
