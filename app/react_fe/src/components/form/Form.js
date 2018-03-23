@@ -1,26 +1,32 @@
 import React from 'react';
 
 import styles from './Form.css';
+import sty from '../../css/bootstrap.min.css'
 
 const form = ( props ) => {
     let inputElement = null;
-    const inputClasses = [styles.Form];
-
-    if (props.invalid && props.shouldValidate && props.touched) {
-        inputClasses.push(styles.Invalid);
+    let elementClassName = sty["form-control"];
+    let validClassName = sty["form-control"] + " " + sty["is-valid"];
+    let invalidClassName = sty["form-control"] + " " + sty["is-invalid"];
+    if ( props.shouldValidate && props.touched) {
+        if (props.invalid){
+            elementClassName = invalidClassName;
+        }else{
+            elementClassName = validClassName
+        }
     }
 
     switch ( props.elementType ) {
         case ( 'input' ):
             inputElement = <input
-                className={inputClasses.join(' ')}
+                className={elementClassName}
                 {...props.elementConfig}
                 value={props.value}
                 onChange={props.changed} />;
             break;
         case ( 'textarea' ):
             inputElement = <textarea
-                className={inputClasses.join(' ')}
+                className={elementClassName}
                 {...props.elementConfig}
                 value={props.value}
                 onChange={props.changed} />;
@@ -28,7 +34,7 @@ const form = ( props ) => {
         case ( 'select' ):
             inputElement = (
                 <select
-                    className={inputClasses.join(' ')}
+                    className={elementClassName}
                     value={props.value}
                     onChange={props.changed}>
                     {props.elementConfig.options.map(option => (
@@ -41,14 +47,17 @@ const form = ( props ) => {
             break;
         default:
             inputElement = <input
-                className={inputClasses.join(' ')}
+                className={elementClassName}
                 {...props.elementConfig}
                 value={props.value}
                 onChange={props.changed} />;
     }
 
+
+
+
     return (
-        <div className={styles.FormBox}>
+        <div className={sty["form-group"]}>
             <label className={styles.Label}>{props.label}</label>
             {inputElement}
         </div>

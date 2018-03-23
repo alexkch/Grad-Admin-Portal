@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import sty from '../../css/bootstrap.min.css'
 import Form from '../../components/form/Form';
-import Aux from '../../wrapper/Auxiliary';
 import Button from '../../components/button/Button';
+import * as Actions from '../../store/actions/';
+import { connect } from 'react-redux';
 
-
-class LoginUser extends Component{
+class LoginUser extends Component {
 
 	state = {
 			form: {
@@ -38,7 +38,6 @@ class LoginUser extends Component{
 							touched: false
 					}
 			},
-			isSignup: true
 	}
 
 	checkValidity(value, rules) {
@@ -85,6 +84,11 @@ class LoginUser extends Component{
 			this.setState( { form : updatedAuthForm } );
 	}
 
+	authHandler = (event) => {
+		event.preventDefault();
+		this.props.Auth(this.state.form.email.value, this.state.form.password.value);
+	}
+
 	render() {
 		const formElementsArray = [];
 		for (let key in this.state.form) {
@@ -93,26 +97,39 @@ class LoginUser extends Component{
 						config: this.state.form[key]
 				});
 		};
-		let form = (
-				<form onSubmit={this.postHandler}>
-						{formElementsArray.map(formElement => (
-								<Form
-										key={formElement.id}
-										elementType={formElement.config.elementType}
-										elementConfig={formElement.config.elementConfig}
-										value={formElement.config.value}
-										invalid={!formElement.config.valid}
-										shouldValidate={formElement.config.validation}
-										touched={formElement.config.touched}
-										changed={(event) => this.inputChangedHandler(event, formElement.id)} />
-						))}
-						<Button disabled={!this.state.formIsValid} type={'disabled-stretch'}>Submit</Button>
+		let form = formElementsArray.map(formElement =>
+								(<Form
+									key={formElement.id}
+									elementType={formElement.config.elementType}
+									elementConfig={formElement.config.elementConfig}
+									value={formElement.config.value}
+									invalid={!formElement.config.valid}
+									shouldValidate={formElement.config.validation}
+									touched={formElement.config.touched}
+									changed={(event) => this.inputChangedHandler(event, formElement.id)}/>
+						));
+		return (
+				<form onSubmit={this.authHandler}>
+					{form}
+					<Button type={'disabled-stretch'}>Submit</Button>
 				</form>
 		);
-		return (
-				<Aux>{form}</Aux>
-		);
 	}
-
 }
-export default LoginUser;
+
+
+const mapStateToProps = state => {
+  return {
+      error: state.issue.error,
+      errorMsg: state.issue.errorMsg
+  };
+};
+
+// pass using props , this.props.onSetIssues
+const mapDispatchToProps = dispatch => {
+  return {
+		Auth: (email, password) => dispatch(Actions.auth(email, password))
+  };
+};
+
+export default connect(null, mapDispatchToProps)(LoginUser);

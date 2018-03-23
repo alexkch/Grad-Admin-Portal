@@ -1,28 +1,39 @@
 import * as actionTypes from '../utils/actionTypes';
 import axios from 'axios';
 
-export const setIssues = (issues) => {
+export const validate = () => {
   return {
-    type: actionTypes.SET_ISSUES,
-    issues: issues
+    type: actionTypes.AUTH_USER
   };
 };
 
-export const setIssuesFailed = (errorMsg) => {
+export const authSuccess = (resData) => {
   return {
-    type: actionTypes.SET_ISSUES_FAILED,
-    errorMsg: errorMsg
+    type: actionTypes.AUTH_SUCCESS,
+    resData: resData
   };
 };
 
-export const getIssues = () => {
+export const authFail = (errorMsg) => {
+  return {
+    type: actionTypes.AUTH_FAIL,
+    error: 'true',
+    errorMsg : errorMsg
+  };
+};
+
+export const auth = (email, password) => {
   return async dispatch => {
     try {
-      const res = await axios.get('/issues');
-      dispatch(setIssues(res.data));
-
-    } catch (error) {
-      dispatch(setIssuesFailed(error.message));
+      dispatch(validate());
+      const authData = {
+        email: email,
+        password: password
+      }
+      const res = axios.post('/auth', authData);
+      dispatch(authSuccess(res.data));
+      } catch (error) {
+      dispatch(authFail(error.message));
     };
   };
 };
