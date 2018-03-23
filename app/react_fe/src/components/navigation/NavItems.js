@@ -9,7 +9,7 @@ const navItems = (props) => (
                               <NavLink to='userinfo'>User Info</NavLink>
                               </li> : null }
             {(props.token) ? <li className={sty["nav-item"]}>
-                              <NavLink to='/issues'>Issues</a> : null
+                              <NavLink to='/issues'>Issues</NavLink> : null
                               </li> : null }
             {(props.token) ? <li className={sty["nav-item"]}>
                               <NavLink to='tickets'>Tickets</NavLink>
