@@ -30,8 +30,9 @@ export const auth = (email, password) => {
         email: email,
         password: password
       }
-      const res = axios.post('/auth', authData);
+      const res = await axios.post('/auth', authData);
       dispatch(authSuccess(res.data));
+      console.log(res);
       } catch (error) {
       dispatch(authFail(error.message));
     };
