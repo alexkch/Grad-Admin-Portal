@@ -146,11 +146,11 @@ Link to source code: https://github.com/csc302-winter-2018/proj-BrokenDream/blob
 
 **6. Technical highlights: interesting bugs, challenges, lessons learned, observations, etc.**
 
-Interesting bugs
+Interesting bugs: 
 
-Challenges 
+Challenges: We useed React in our project. But we need add Redux into our project to maximize the user experience. So we have to learn Redux.
 
-Lessons learned
+Lessons learned: React Details and Redux
 
 **7. Project management and progress reporting**
 
