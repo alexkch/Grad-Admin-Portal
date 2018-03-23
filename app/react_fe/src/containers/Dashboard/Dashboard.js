@@ -19,10 +19,11 @@ import Button from '../../components/button/Button';
 
 class Dashboard extends Component {
 
+/*
     componentDidMount () {
       this.props.getSession();
     }
-    
+  */
     state = { tab: 1, open: false };
 
     handleClose(e) { this.setState({open:false})};
@@ -85,4 +86,4 @@ const mapDispatchToProps = dispatch => {
 };
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
+export default connect(mapStateToProps, null)(Dashboard);

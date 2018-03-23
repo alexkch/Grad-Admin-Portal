@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Dashboard from './containers/dashboard/Dashboard';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as Actions from './store/actions/';
 
@@ -15,6 +15,11 @@ import TicketCreate from './containers/ticket/TicketCreate';
 
 class App extends Component {
 
+  componentDidMount () {
+    this.props.getSession();
+  }
+
+
   render() {
     return (
       <Dashboard>
@@ -26,5 +31,11 @@ class App extends Component {
   }
 }
 
+// pass using props , this.props.onSetIssues
+const mapDispatchToProps = dispatch => {
+  return {
+    getSession: () => dispatch(Actions.getSession())
+  };
+};
 
-export default App;
+export default withRouter(connect(null, mapDispatchToProps)(App));
