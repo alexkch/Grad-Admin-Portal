@@ -52,6 +52,21 @@ class NewUser extends Component {
                 touched: false
             },
             usertype: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'usertype',
+                    placeholder: 'UserType'
+                },
+                value: '',
+                validation: {
+                    required: true,
+                    isEmail: true
+                },
+                valid: false,
+                touched: false
+            }
+            /*
+            usertype: {
                 elementType: 'select',
                 elementConfig: {
                     options: [
@@ -64,6 +79,7 @@ class NewUser extends Component {
                 validation: {},
                 valid: true
             }
+            */
         },
         formIsValid: false,
     }
@@ -164,7 +180,7 @@ class NewUser extends Component {
                         touched={formElement.config.touched}
                         changed={(event) => this.inputChangedHandler(event, formElement.id)} />
                 ))}
-                <Button disabled={!this.state.formIsValid} type={'disabled-stretch'}>Submit</Button>
+                <Button disabled={!this.state.formIsValid} type={'disabled-stretch'}>Register</Button>
             </form>
         );
         return (

@@ -26,14 +26,23 @@ export const newUser = (form) => {
   return async dispatch => {
     try {
       dispatch(initUser());
+
       const userData = {
-        ...form,
-        isAdmin: false
+        name: form.name,
+        password: form.password,
+        email: form.email,
+        usertype: form.usertype,
+        isAdmin: "false"
       }
-      const res = await axios.post('/user', userData);
+      console.log(userData.name.value);
+      console.log(userData.password.value);
+      console.log(userData.email.value);
+      console.log(userData.usertype.value);
+      const res = await axios.post('/users', userData);
       dispatch(initSuccess(res.data));
       console.log(res);
       } catch (error) {
+      console.log(error.message);
       dispatch(initFail(error.message));
     };
   };
