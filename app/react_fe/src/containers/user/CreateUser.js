@@ -1,81 +1,182 @@
-import React, {Component} from 'react';
-import sty from '../../css/bootstrap.min.css'
-import axios from "axios/index";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import * as Actions from '../../store/actions';
+import Form from '../../components/form/Form';
+import Box from '../../components/box/Box';
+import Button from '../../components/button/Button';
 
-class CreateUser extends Component{
+class NewUser extends Component {
 
-	constructor(props){
-		super(props);
-		this.state = {email: '', password: '', name: '', usertype: 'faculty', isAdmin: false};
-
-		this.handleSubmit = this.handleSubmit.bind(this);
-		this.handleChangeValue = this.handleChangeValue.bind(this);
-
-	}
-    handleSubmit(){
-        // Put ticket
-        //this.props.callback(this.state.ticket);
-
-        axios({method: 'post',
-            url: '/user',
-            data: {email: this.state.email,
-                password: this.state.password,
-                usertype: this.state.usertype,
-                isAdmin: this.state.isAdmin}
-        });
+    state = {
+        form: {
+            name: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'name',
+                    placeholder: 'Your Name'
+                },
+                value: '',
+                validation: {
+                    required: true,
+										minLength: 5
+                },
+                valid: false,
+                touched: false
+            },
+						password: {
+								elementType: 'input',
+								elementConfig: {
+										type: 'password',
+										placeholder: 'Password'
+								},
+								value: '',
+								validation: {
+										required: true,
+										minLength: 5
+								},
+								valid: false,
+								touched: false
+						},
+            email: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'email',
+                    placeholder: 'Your E-Mail'
+                },
+                value: '',
+                validation: {
+                    required: true,
+                    isEmail: true
+                },
+                valid: false,
+                touched: false
+            },
+            usertype: {
+                elementType: 'select',
+                elementConfig: {
+                    options: [
+                        {value: 'faculty', displayValue: 'Faculty'},
+                        {value: 'budget_office', displayValue: 'Budget Office'},
+                        {value: 'grad_office', displayValue: 'Grad office'}
+                    ]
+                },
+                value: '',
+                validation: {},
+                valid: true
+            }
+        },
+        formIsValid: false,
     }
 
-	handleChangeValue(event){
-		const name = event.target.name;
-    	let value = event.target.value;
-		if(event.target.type === 'checkbox'){
-			value = event.target.checked;
-		}
-		this.setState({ [name]: value });
-	}
-	render(){
+    createUserHandler = (event) => {
+      event.preventDefault();
+      this.props.newUser(this.state.form);
+    }
+
+    postHandler = ( event ) => {
+        event.preventDefault();
+        const formData = {};
+        for (let input in this.state.form) {
+            formData[input] = this.state.form[input].value;
+        }
+        //const order = {
+            //user_id: this.props.user_id,
+          //  form : formData
+      //  }
+
+        //axios.post( '/Users/new', order )
+            //.then( response => {
+                //this.props.history.push( '/' );
+            //} )
+            //.catch( error => {
+            // need to redirect to 404 to handle
+          //  } );
+    }
+
+    checkValidity(value, rules) {
+        let isValid = true;
+        if (!rules) {
+            return true;
+        }
+
+        if (rules.required) {
+            isValid = value.trim() !== '' && isValid;
+        }
+
+        if (rules.minLength) {
+            isValid = value.length >= rules.minLength && isValid
+        }
+
+        if (rules.maxLength) {
+            isValid = value.length <= rules.maxLength && isValid
+        }
+
+        if (rules.isEmail) {
+            const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+            isValid = pattern.test(value) && isValid
+        }
+
+        if (rules.isNumeric) {
+            const pattern = /^\d+$/;
+            isValid = pattern.test(value) && isValid
+        }
+
+        return isValid;
+    }
+
+    inputChangedHandler = (event, inputIdentifier) => {
+        const updatedform = {
+            ...this.state.form
+        };
+        const updatedFormElement = {
+            ...updatedform[inputIdentifier]
+        };
+        updatedFormElement.value = event.target.value;
+        updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation);
+        updatedFormElement.touched = true;
+        updatedform[inputIdentifier] = updatedFormElement;
+
+        let formIsValid = true;
+        for (let inputIdentifier in updatedform) {
+            formIsValid = updatedform[inputIdentifier].valid && formIsValid;
+        }
+        this.setState({form: updatedform, formIsValid: formIsValid});
+    }
+
+    render () {
+        const formElementsArray = [];
+        for (let key in this.state.form) {
+            formElementsArray.push({
+                id: key,
+                config: this.state.form[key]
+            });
+        }
+        let form = (
+            <form onSubmit={this.createUserHandler}>
+                {formElementsArray.map(formElement => (
+                    <Form
+                        key={formElement.id}
+                        elementType={formElement.config.elementType}
+                        elementConfig={formElement.config.elementConfig}
+                        value={formElement.config.value}
+                        invalid={!formElement.config.valid}
+                        shouldValidate={formElement.config.validation}
+                        touched={formElement.config.touched}
+                        changed={(event) => this.inputChangedHandler(event, formElement.id)} />
+                ))}
+                <Button disabled={!this.state.formIsValid} type={'disabled-stretch'}>Submit</Button>
+            </form>
+        );
         return (
-			<div className='CreateUser'>
-				<form onSubmit={ this.handleSubmit }>
-                    <div className={sty["form-group"]}>
-                        <label>Email</label>
-                        <input className={sty["form-control"]} name='email' type="email" value={this.state.email}
-                               onChange={this.handleChangeValue} placeholder={"Email address"}/>
-
-                        <label>Password</label>
-                        <input type="password" className={sty["form-control"]} name="password"
-                               value={this.state.password} onChange={this.handleChangeValue} placeholder={"Password"}/>
-
-                        <label>Name</label>
-                        <input type="text" className={sty["form-control"]} name="name"
-                               value={this.state.name} onChange={this.handleChangeValue} placeholder={"Name"}/>
-
-                        <label>Type</label>
-                        <select className={sty["form-control"]} value={this.state.usertype}>
-                            <option value = 'faculty'>Faculty</option>
-                            <option value = 'budget_office'>Budget Office</option>
-                            <option value = 'grad_office'>Grad Office</option>
-                        </select>
-
-
-                    </div>
-
-                    <div className={sty["form-check"]}>
-                        <label>
-                            <input className={sty["form-check-input"]} name='isAdmin' type="checkbox"
-                                   checked={this.state.isAdmin}
-                                   onChange={this.handleChangeValue}/>
-                            Admin
-                        </label>
-
-                    </div>
-
-                    <button type="submit" className={sty["btn"] + " " + sty["btn-primary"]}>Create User</button>
-        		</form>
-
-			</div>
-		);
-	}
-
+            <Box color="secondary" header={"Create new Users"}>{form}</Box>
+        );
+    }
 }
-export default CreateUser;
+
+const mapDispatchToProps = dispatch => {
+  return {
+	   newUser : (form) => dispatch(Actions.newUser(form))
+  };
+};
+
+export default connect(null, mapDispatchToProps)(NewUser);
