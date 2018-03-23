@@ -4,6 +4,8 @@ import DisplayTicket from './DisplayTicket';
 import Modal from '../../components/modal/Modal';
 import Aux from '../../wrapper/Auxiliary';
 import styles from './Ticket.css';
+import * as Actions from "../../store/actions";
+import {connect} from "react-redux";
 
 class Tickets extends Component {
 
@@ -69,4 +71,23 @@ class Tickets extends Component {
     }
 }
 
-export default Tickets;
+const mapStateToProps = state => {
+    return {
+        token: state.user.token,
+        userId: state.user.userId,
+        name: state.user.name,
+        tickets: state.ticket.tickets,
+        error: state.ticket.error,
+        errorMsg: state.ticket.errorMsg
+    };
+};
+
+
+const mapDispatchToProps = dispatch => {
+    return {
+        actionGetTickets: () => dispatch(Actions.getTickets())
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Tickets);
+
