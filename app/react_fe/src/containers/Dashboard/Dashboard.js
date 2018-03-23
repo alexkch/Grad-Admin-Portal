@@ -7,7 +7,7 @@ import { Route, Switch } from 'react-router-dom';
 import Issues from '../issue/Issues';
 import NewIssue from '../issue/NewIssue';
   //users
-import UserInfo from '../../containers/user/UserInfo';
+import User from '../../containers/user/User';
 import LoginUser from "../user/LoginUser";
 import CreateUser from "../user/CreateUser";
   //tickets
@@ -78,7 +78,7 @@ class Dashboard extends Component {
                     <section>
                       <Switch>
                         <Route path="/issues" exact component={NewIssue} />
-                        <Route path="/" exact component={UserInfo} />
+                        <Route path="/" exact component={User} />
                         <Route path="/tickets" exact component={TicketCreate} />
                       </Switch>
                     </section>
