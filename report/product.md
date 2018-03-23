@@ -182,15 +182,15 @@ Lessons learned : React Details and Redux
 
          | Dates | Meetings description | minutes |
          | ----- | -------------------- | ------- |
-         |       |                      | 60      |
-         |       |                      | 60      |
-         |       |                      | 60      |
-         |       |                      | 60      |
-         |       |                      | 60      |
-         |       |                      | 60      |
-         |       |                      | 60      |
-         |       |                      | 60      |
-         |       |                      | 60      |
+         |       |  talk about project  | 60      |
+         |       |  seperate tasks   | 60      |
+         |       |  tech decide   | 60      |
+         |       |  problems solve  | 60      |
+         |       |  check / merge  | 60      |
+         |       |  talk about project   | 60      |
+         |       |  seperate tasks   | 60      |
+         |       |  check/merge  | 60      |
+         |       |  final meet  | 60      |
 
 2. **Things that worked well (strengths)**
 
