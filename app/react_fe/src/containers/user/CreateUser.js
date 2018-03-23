@@ -166,4 +166,10 @@ class NewUser extends Component {
     }
 }
 
-export default NewUser;
+const mapDispatchToProps = dispatch => {
+  return {
+		: (form) => dispatch(Actions.auth(email, password))
+  };
+};
+
+export default connect(null, mapDispatchToProps)(NewUser);
