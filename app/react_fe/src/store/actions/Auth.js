@@ -9,11 +9,18 @@ export const postReq = () => {
 
 export const getSession = () => {
   return dispatch => {
-    const session = localStorage.getItem('session');
-    if (!session) {
+    const token = localStorage.getItem('token');
+    if (!token) {
       dispatch(logout());
     } else {
-      dispatch(authSuccess(session));
+      let resData = {
+        userId: localStorage.getItem('userId'),
+        name: localStorage.getItem('name'),
+        token: localStorage.getItem('token'),
+        usertype: localStorage.getItem('usertype'),
+        isAdmin: localStorage.getItem('isAdmin')
+      }
+      dispatch(authSuccess(resData));
     }
   };
 };
@@ -38,7 +45,11 @@ export const authFail = (errorMsg) => {
 };
 
 export const logout = () => {
-  localStorage.removeItem('session');
+  localStorage.removeItem('userId');
+  localStorage.removeItem('name');
+  localStorage.removeItem('token');
+  localStorage.removeItem('usertype');
+  localStorage.removeItem('isAdmin');
   return {
     type: actionTypes.AUTH_LOGOUT
   };
