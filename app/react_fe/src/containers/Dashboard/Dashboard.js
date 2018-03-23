@@ -4,18 +4,10 @@ import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as Actions from '../../store/actions/';
 
-// Containers
-  //issues
-import Issues from '../issue/Issues';
-import NewIssue from '../issue/NewIssue';
   //users
 import LoginUser from "../user/LoginUser";
 import LogoutUser from "../user/LogoutUser";
-import CreateUser from "../user/CreateUser";
 import User from '../user/User';
-  //tickets
-import Tickets from '../ticket/Tickets';
-import TicketCreate from '../ticket/TicketCreate';
 
 // Styles + Utils + components
 import sty from '../../css/bootstrap.min.css'
@@ -81,10 +73,6 @@ const mapStateToProps = state => {
   };
 };
 
-// pass using props , this.props.onSetIssues
-const mapDispatchToProps = dispatch => {
-  return {
-  };
-};
 
-export default connect(mapStateToProps)(Dashboard);
+
+export default connect(mapStateToProps, null)(Dashboard);

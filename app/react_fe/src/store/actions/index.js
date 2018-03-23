@@ -3,7 +3,8 @@ export {
 } from './Issues';
 export {
   auth,
-  logout
+  logout,
+  getSession
 } from './Auth';
 export {
   newUser
