@@ -7,9 +7,14 @@ export const postReq = () => {
   };
 };
 
-export const validSession = () => {
+export const getSession = () => {
   return dispatch => {
-
+    const session = localStorage.getItem('session');
+    if (!session) {
+      dispatch(logout());
+    } else {
+      dispatch(authSuccess(session));
+    }
   };
 };
 
