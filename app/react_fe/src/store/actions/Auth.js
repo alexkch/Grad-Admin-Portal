@@ -41,8 +41,9 @@ export const auth = (email, password) => {
         password: password
       }
       const res = await axios.post('/auth', authData);
+      localStorage.setItem('session', res.data);
       dispatch(authSuccess(res.data));
-      console.log(res.data);
+
       } catch (error) {
       dispatch(authFail(error.message));
     };
