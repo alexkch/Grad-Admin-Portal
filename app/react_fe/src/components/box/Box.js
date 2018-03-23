@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 
 import sty from '../../css/bootstrap.min.css';
 

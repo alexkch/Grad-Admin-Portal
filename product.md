@@ -60,7 +60,9 @@
 
       (see application_architecture_diagram.pdf)
 
-      ​	
+      ​	functional decomposition of applications
+
+      ​	services components
 
       **2.4** **Technology architecture**
 
@@ -90,15 +92,15 @@
 
       **2.7 Description of non functional attributes**
 
-      Security: 
+      **Security:** 
 
-      Reliability:
+      **Reliability:** 
 
-      Portability:
+      **Portability:**
 
-      Maintainability:
+      **Maintainability:** We ensured maintainability by separating modules for each for each of the functionality, separate each page in different javascript file, and a generic database models that can be easily updated. We made sure that each part of the application can be updated or changed and  carried out without affecting the application as a whole.
 
-      Reusability:
+      **Reusability:** We ensured reusability of the code by putting 
 
       **3. User interface design**
 
@@ -132,13 +134,15 @@
 
       **7. Project management and progress reporting**
 
-      1.   Teamwork and project progress (with burndown chart)
+      1.   **Teamwork and project progress (with burndown chart)**
 
-           ​
+           - Referring to specific meeting minutes or other process artifacts.
 
-      	2. Things that worked well (strengths)
+      	2. **Things that worked well (strengths)**
 
-      	3. Improvements (weakness)Next phase goals (phase 3 final demo)
+          The separation of independent in front end and back end worked very well. By dividing front end and back end, we were able to work on independent tasks without having to worry about the merge conflicts.  Whenever an integration of front and back end is needed, we made sure to communicate with each other in order to decide and make plans for parts that might cause conflicts. This division gave us a significant efficiency in the code development phases. Also, in the code development process, we made sure to separate modules as small as possible so that we could reuse each other's code, and it made the code easier to understand and to debug. 
+
+      	3. **Improvements (weakness) Next phase goals (phase 3 final demo)**
 
           ​
 

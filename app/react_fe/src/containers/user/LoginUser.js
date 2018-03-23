@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
-import sty from '../../css/bootstrap.min.css'
 import Form from '../../components/form/Form';
-import Aux from '../../wrapper/Auxiliary';
 import Button from '../../components/button/Button';
 import * as Actions from '../../store/actions/';
 import { connect } from 'react-redux';
@@ -39,7 +37,6 @@ class LoginUser extends Component {
 							touched: false
 					}
 			},
-			isSignup: true
 	}
 
 	checkValidity(value, rules) {
@@ -99,24 +96,22 @@ class LoginUser extends Component {
 						config: this.state.form[key]
 				});
 		};
-		let form = (
-				<form onSubmit={this.authHandler}>
-						{formElementsArray.map(formElement => (
-								<Form
-										key={formElement.id}
-										elementType={formElement.config.elementType}
-										elementConfig={formElement.config.elementConfig}
-										value={formElement.config.value}
-										invalid={!formElement.config.valid}
-										shouldValidate={formElement.config.validation}
-										touched={formElement.config.touched}
-										changed={(event) => this.inputChangedHandler(event, formElement.id)} />
-						))}
-						<Button disabled={!this.state.formIsValid} type={'disabled-stretch'}>Submit</Button>
-				</form>
-		);
+		let form = formElementsArray.map(formElement =>
+								(<Form
+									key={formElement.id}
+									elementType={formElement.config.elementType}
+									elementConfig={formElement.config.elementConfig}
+									value={formElement.config.value}
+									invalid={!formElement.config.valid}
+									shouldValidate={formElement.config.validation}
+									touched={formElement.config.touched}
+									changed={(event) => this.inputChangedHandler(event, formElement.id)}/>
+						));
 		return (
-				<Aux>{form}</Aux>
+				<form onSubmit={this.authHandler}>
+					{form}
+					<Button type={'disabled-stretch'}>Submit</Button>
+				</form>
 		);
 	}
 }
