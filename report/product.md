@@ -12,9 +12,13 @@
 
 ​	User is able to register for four different types of account.
 
-​	Sign up: Client-side: Register form, basic client-side validation of password lengths and email address. Server-side: User credentials are sent to database (mongo database). 
+​	Sign up: Client-side: Register form, basic client-side validation of password lengths and email address format. Server-side: User credentials are sent to database (mongo database). 
 
 ​	Login: User enters the credentials and system validates the user using by sending data to the backend and looking up in the database.
+
+**User session**
+
+​	Using redux and local storage to implement a user session. 
 
 **Ticketing system**	
 
@@ -52,9 +56,23 @@
 
 ​		Add / delete tickets
 
+​	**Testing**
+
+​		Testing was done for issues page, in order to test the API (GET and POST)
+
+​	**Database**
+
+​		Used MongoDB to implement the database for storing users, issue, notes, offer and tickets (schemas). 
+
+​		link to the database schemas: 
+
+​		https://github.com/csc302-winter-2018/proj-BrokenDream/tree/master/app/node_be/models	
+
+We haven't fully implemented the front-end using those backend features. 
+
 **2. How is this different from what you originally proposed?Why?**
 
-At first, we thought that we couldn't do all of the proposed features since we weren't able to keep up with the planned deadlines we had for making things done. However, at the end, we have implemented all the proposed features that we initially planned to have. 
+We have implement all of the proposed features for the backend, however, we haven't make them appear in the front-end since we are running out of time. 
 
 **3. Architectural & component-level design (High level description of the software design)**  
 
@@ -75,10 +93,6 @@ These server-side technologies were used to send and store data client-side inpu
 We have chosen MongoDb as database tool, since it provides a faster data storages for web applications that communicate extensively with the data backend. We used this tool to store data such as user credentials (register), tickets information, offers information and issue information. 
 
 We have selected those tool because they provide portability and can be integrated and operate well on all platforms. 
-
-**3.2 Application architecture**
-
-(application_architecture_diagram TODO)
 
 **3.3. Screen shot breakdown**
 
