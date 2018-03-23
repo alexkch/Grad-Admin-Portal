@@ -21,6 +21,11 @@ class App extends Component {
 
 
   render() {
+
+    let routes;
+    routes = (token) ? 
+
+
     return (
       <Dashboard>
         <Switch>
@@ -30,6 +35,12 @@ class App extends Component {
       </Dashboard> );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    token: state.user.token
+  }
+};
 
 // pass using props , this.props.onSetIssues
 const mapDispatchToProps = dispatch => {
