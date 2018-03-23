@@ -66,6 +66,11 @@ class NewUser extends Component {
         formIsValid: false,
     }
 
+    createUserHandler = (event) => {
+      event.preventDefault();
+      this.props.newUser(this.state.form);
+    }
+
     postHandler = ( event ) => {
         event.preventDefault();
         const formData = {};
@@ -145,7 +150,7 @@ class NewUser extends Component {
             });
         }
         let form = (
-            <form onSubmit={this.postHandler}>
+            <form onSubmit={this.createUserHandler}>
                 {formElementsArray.map(formElement => (
                     <Form
                         key={formElement.id}
@@ -168,7 +173,7 @@ class NewUser extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-		: (form) => dispatch(Actions.auth(email, password))
+	   newUser : (form) => dispatch(Actions.auth(form))
   };
 };
 
