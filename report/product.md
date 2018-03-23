@@ -148,7 +148,7 @@ Link to source code: https://github.com/csc302-winter-2018/proj-BrokenDream/blob
 
 **6. Technical highlights: interesting bugs, challenges, lessons learned, observations, etc.**
 
-* Interesting bugs: 
+* Interesting bugs: Front-end components weren't showing up.
 * Challenges: We didn't expect to use the language such as React since it is new to most of us. However, we found out that React might be the best tool to give a good user experience and design. As a result, we were learning a new language during the development, which is quite challenging. 
 * Lessons learned: We learned new technologies such as React and redux. 
 
