@@ -12,7 +12,7 @@ class User extends Component {
     render () {
 
       let userPanel;
-      userPanel = (this.state.login) ? (<Box color="secondary" header={this.state.username}>Login Stuff</Box>) :
+      userPanel = (true) ? (<Box color="secondary" header={this.state.username}>Login Stuff</Box>) :
       (<Box color="secondary" header="Login required!">Please login to operate</Box>)
 
       return ( userPanel );

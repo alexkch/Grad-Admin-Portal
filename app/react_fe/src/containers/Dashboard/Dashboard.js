@@ -9,12 +9,12 @@ import * as Actions from '../../store/actions/';
 import Issues from '../issue/Issues';
 import NewIssue from '../issue/NewIssue';
   //users
-import User from '../../containers/user/User';
 import LoginUser from "../user/LoginUser";
 import CreateUser from "../user/CreateUser";
+import User from '../user/User';
   //tickets
-import Tickets from '../../containers/ticket/Tickets';
-import TicketCreate from '../../containers/ticket/TicketCreate';
+import Tickets from '../ticket/Tickets';
+import TicketCreate from '../ticket/TicketCreate';
 
 // Styles + Utils + components
 import sty from '../../css/bootstrap.min.css'
@@ -24,8 +24,6 @@ import Popover from 'react-popover';
 import Box from '../../components/box/Box';
 import Button from '../../components/button/Button';
 
-
-
 class Dashboard extends Component {
 
     state = { tab: 0, open: false };
@@ -33,7 +31,6 @@ class Dashboard extends Component {
     handleClose(e) { this.setState({tab:0, open:false})}
     handleClickRegister(e) { this.setState({tab:1, open:true})}
     handleClickLogin(e) { this.setState({tab:2, open:true})}
-    logoutHandler = (event) => this.props.Logout()
     render() {
 
     const popoverTitle = (this.state.tab === 1) ? 'Register' : 'Log in';
@@ -43,6 +40,7 @@ class Dashboard extends Component {
 
 
     const popoverProps = {
+        key : 1,
         isOpen: this.state.open,
         preferPlace: 'below',
         place: 'below',
@@ -51,7 +49,7 @@ class Dashboard extends Component {
     };
     let navButton;
     navButton = (this.props.token) ? (<div style={{position: 'absolute', right: '3%'}}>
-                                      <Button clicked={this.logoutHandler} type="default">Log Out</Button>
+                                      <Button type="default"><a href={"/logout"}>Log Out</a></Button>
                                       </div>) :
                                       (<Popover {...popoverProps}>
                                         <div className={sty["nav-item"]} style={{position: 'absolute', right: '3%'}}>
@@ -67,18 +65,14 @@ class Dashboard extends Component {
               <div className={sty["col-md-8"]}>
                   <section className={sty["list-group"]}>
                     <Switch>
-                      <Route path="/issues" exact component={Issues} />
-                      <Route path="/tickets" exact component={Tickets} />
+                      <Route path="/tickets" component={Tickets} />
+                      <Route path="/issues" component={Issues} />
                     </Switch>
                   </section>
               </div>
               <div className={sty["col-md-4"]}>
                   <section>
-                    <Switch>
-                      <Route path="/issues" exact component={NewIssue} />
-                      <Route path="/" exact component={User} />
-                      <Route path="/tickets" exact component={TicketCreate} />
-                    </Switch>
+                    <User />
                   </section>
               </div>
             </div>
@@ -88,19 +82,14 @@ class Dashboard extends Component {
 }
 const mapStateToProps = state => {
   return {
-      token : state.user.token,
-      userId : state.user.userId,
-      name: state.user.name,
-      usertype: state.user.usertype,
-      isAdmin: state.user.isAdmin
+      token : state.user.token
   };
 };
 
 // pass using props , this.props.onSetIssues
 const mapDispatchToProps = dispatch => {
   return {
-    Logout: () => dispatch(Actions.logout())
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
+export default connect(mapStateToProps, null)(Dashboard);

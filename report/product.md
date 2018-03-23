@@ -98,7 +98,7 @@ We have selected those tool because they provide portability and can be integrat
 
 **3.4 Application architecture**
 
-(see application_architecture_diagram.pdf)
+(application_architecture_diagram TODO)
 
 ​	**Functional decomposition of applications**
 
@@ -117,6 +117,8 @@ We have selected those tool because they provide portability and can be integrat
 **3.6 API**
 
 ​	**API description**
+
+​	[swagger link](https://app.swaggerhub.com/apis/csc302BD/GradApp/1.0.0)
 
 ​	**Error handling**
 
@@ -176,11 +178,11 @@ Lessons learned
 
          | Dates     | Meetings description                     | minutes             |
          | --------- | ---------------------------------------- | ------------------- |
-         | Feb 23    | Plan meeting: Discussed about the APIs of the backend. Set up group repo. | 60, tutorial        |
+         | Feb 23    | Plan meeting: Talked about the project. Discussed about the APIs of the backend. Set up group repo. | 60, tutorial        |
          | March 2nd | Gathered the work and continued discussing work on APIs for ticket page. Discussed on the components of each of pages in front-end and made draft designs. | 60, tutorial        |
          | March 9   | Plan meeting: Discussed about the database implementation and the schemas attributes in the database. | 60, tutorial        |
          | March 16  | Discussed about the use of the middlewares and the use of auth. | 60, tutorial        |
-         | March 21  | Combined the project for front and back end. Debugged codes. | 60, offline meeting |
+         | March 21  | Combined the project for front and back end. Debugged codes. Separate tasks. | 60, offline meeting |
          | March 22  | Gather final work. Prepare for the demo. | 60, offline meeting |
 
 2. **Things that worked well (strengths)**
@@ -190,8 +192,6 @@ Lessons learned
 3. **Improvements (weakness) Next phase goals (phase 3 final demo)**
 
    Communication between members was a weaker part, for example, there were lack of exchanging ideas of how to design, make decisions on planning what features to be implemented and how they should be implemented. Also, when members miss the meetings, it was hard to keep up with the progress. As a result, in phase 3, we should communicate with each other by having more offline and online meetings in which we will discuss about the each other's progress and update on tasks to be completed for the next meeting. Another weakness would be lack of planning and keep up with deadlines. For next phase, we will make sure to make plans for making things by deciding upon deadlines for specific tasks to be done. To do so, we will make a group calendar during the meeting and write down the dates and tasks. 
-
-   ​
 
 **8. Phase 3 goals (final demo)**
 
