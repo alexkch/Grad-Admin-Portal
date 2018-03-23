@@ -1,9 +1,15 @@
 import * as actionTypes from '../utils/actionTypes';
 import axios from 'axios';
 
-export const validate = () => {
+export const postReq = () => {
   return {
     type: actionTypes.AUTH_USER
+  };
+};
+
+export const validSession = () => {
+  return dispatch => {
+
   };
 };
 
@@ -27,6 +33,7 @@ export const authFail = (errorMsg) => {
 };
 
 export const logout = () => {
+  localStorage.removeItem('session');
   return {
     type: actionTypes.AUTH_LOGOUT
   };
@@ -35,7 +42,7 @@ export const logout = () => {
 export const auth = (email, password) => {
   return async dispatch => {
     try {
-      dispatch(validate());
+      dispatch(postReq());
       const authData = {
         email: email,
         password: password
