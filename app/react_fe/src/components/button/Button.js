@@ -12,7 +12,7 @@ const button = (props) => {
           output = (
             <button
               type="submit"
-              className={strcat(sty["btn"],sty["btn-secondary"])}
+              className={strcat(sty["btn"],sty["btn-primary"])}
               onClick={props.clicked}>
               {props.children}
             </button>
@@ -39,6 +39,26 @@ const button = (props) => {
               className={strcat(sty["btn"],sty["btn-outline-info"],sty["btn-block"])}
               onClick={props.clicked}
               disabled={props.disabled}>
+              {props.children}
+            </button>
+          );
+          break;
+      case ( 'stretch' ):
+          output = (
+            <button
+              type="submit"
+              className={strcat(sty["btn"],sty["btn-outline-info"],sty["btn-block"])}
+              onClick={props.clicked}>
+              {props.children}
+            </button>
+          );
+          break;
+      case ( 'stretch-dark' ):
+          output = (
+            <button
+              type="submit"
+              className={strcat(sty["btn"],sty["btn-secondary"],sty["btn-block"])}
+              onClick={props.clicked}>
               {props.children}
             </button>
           );

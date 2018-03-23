@@ -22,11 +22,12 @@ class Dashboard extends Component {
         }]
     };
 
+    handleClose(e) { this.setState({tab:0, open:false})}
+    handleClickRegister(e) { this.setState({tab:1, open:true})}
+    handleClickLogin(e) { this.setState({tab:2, open:true})}
+
     render() {
-        //const Tickets = this.state.tickets.map(ticket => {
-        //    return <Ticket key={ticket._id} ticket_id={ticket._id} created_by={ticket.created_by}
-        //                   prof={ticket.professor} status={ticket.status}/>
-        //});
+
         return (
           <div style={{padding: "10px"}}>
             <div className={sty["row"]}>

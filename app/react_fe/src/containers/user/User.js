@@ -3,12 +3,18 @@ import Popover from 'react-popover';
 import sty from '../../css/bootstrap.min.css';
 import CreateUser from "./CreateUser";
 import LoginUser from "./LoginUser";
+import Box from '../../components/box/Box';
+import Button from '../../components/button/Button';
 
 class User extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {tab:0, open:false, login: false, username: "Userinfo"};
-    }
+
+    state = { tab: 0,
+              open: false,
+              login: false,
+              username: "Userinfo"
+            };
+
+
     handleClickRegister(e) {
         this.setState({tab:1, open:true});
     }
@@ -25,21 +31,8 @@ class User extends Component {
     render () {
         const popoverTitle = (this.state.tab === 1) ? 'Register' : 'Log in';
         const popoverContent = (this.state.tab === 1) ?
-            (<div className={sty.card + " " + sty["text-white"] + " " + sty["bg-info"] + " " + sty["mb-3"]}
-                  style={{width: "500px"}}>
-                <div className={sty["card-header"]}>{popoverTitle}</div>
-                <div className={sty["card-body"]}>
-                    {<CreateUser/>}
-                </div>
-            </div>) :
-
-            (<div className={sty.card + " " + sty["text-white"] + " " + sty["bg-primary"] + " " + sty["mb-3"]}
-                  style={{width: "500px"}}>
-                <div className={sty["card-header"]}>{popoverTitle}</div>
-                <div className={sty["card-body"]}>
-                    {<LoginUser/>}
-                </div>
-            </div>);
+            (<div style={{width: "500px"}} ><Box title={popoverTitle} body={<CreateUser/>} color={'info'}/></div>) :
+            (<div style={{width: "500px"}} ><Box title={popoverTitle} body={<LoginUser/>} color={'primary'}/></div>);
 
 
         const popoverProps = {
@@ -47,44 +40,37 @@ class User extends Component {
             preferPlace: 'below',
             place: 'below',
             onOuterAction: () => this.handleClose(),
-            body: [
-                popoverContent
-
-            ]
+            body: [popoverContent]
         };
-
-
-
-        if (this.state.login) {
-            return (
-                <div style={{position: 'absolute', right: '3%'}}>
-                    <button type="button" className={sty.btn + " " + sty["btn-link"]} style={{color: '#FFFFFF'}}>
-                        {this.state.username}
-                    </button>
-
-                    <button type="button" className={sty.btn + " " + sty["btn-outline-danger"]}>Log out</button>
-                </div>
-            );
-        } else {
-            return (
-                <Popover {...popoverProps}>
-                    <div className={sty["nav-item"]} style={{position: 'absolute', right: '3%'}}>
-
-                        <button type="button" className={sty.btn + " " + sty["btn-outline-info"]}
-                                onClick={this.handleClickRegister.bind(this)}>Sign up
-                        </button>
-
-                        <button type="button" className={sty.btn + " " + sty["btn-primary"]}
-                                onClick={this.handleClickLogin.bind(this)}>Login
-                        </button>
-
-                    </div>
-                </Popover>
-            )
-        }
-
+        let navButton;
+        navButton = (this.state.login) ? (<div style={{position: 'absolute', right: '3%'}}>
+                                          <Button type="default">Log Out</Button>
+                                          </div>) :
+                                          (<Popover {...popoverProps}>
+                                            <div className={sty["nav-item"]} style={{position: 'absolute', right: '3%'}}>
+                                            <Button type="default" clicked={this.handleClickRegister.bind(this)}>Sign up</Button>
+                                            <Button type="dark" clicked={this.handleClickLogin.bind(this)}>Login</Button>
+                                            </div>
+                                            </Popover>)
+        return ( navButton );
     }
 }
+
+const mapStateToProps = state => {
+  return {
+      issues: state.issue.issues,
+      error: state.issue.error,
+      errorMsg: state.issue.errorMsg
+  };
+};
+
+// pass using props , this.props.onSetIssues
+const mapDispatchToProps = dispatch => {
+  return {
+    //actionGetIssues: () => dispatch(Actions.getIssues())
+  };
+};
+
 
 
 export default User;
