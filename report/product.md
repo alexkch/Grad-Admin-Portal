@@ -98,13 +98,13 @@ We have selected those tool because they provide portability and can be integrat
 
 **3.4 Database architecture**
 
-​	**Database description**
+* **Database description**
 
-​		We used MongoDB for maintaining the database for storing user data, ticket information, issues information, offers information, form and other pages dynamic objects. 
+​	We used MongoDB for maintaining the database for storing user data, ticket information, issues information, offers information, form and other pages dynamic objects. 
 
-​		**Models  - Schemas**
+* **Models  - Schemas**
 
-​		Example of schemas: 	
+​	Example of schemas: 	
 
 **3.5 API**
 
@@ -116,21 +116,26 @@ We have selected those tool because they provide portability and can be integrat
 
 **3.7 Description of non functional attributes**
 
-**Reliability:** We ensured that the system is reliable in user data fetching (data that is requested by the user is always correct) and update any user event in interaction with the data by consistently updating the database. The website is stable and handles error by displaying error message to the user. 
-
-**Maintainability:** We ensured maintainability by separating modules for each for each of the functionality, separate each page in different javascript file, and a generic database models that can be easily updated. We made sure that each part of the application can be updated or changed and  carried out without affecting the application as a whole.
-
-**Reusability:** We ensured reusability of code by well designing frameworks and customized components, so that when we make changes, we don't need to copy paste the codes everywhere again. For example, since we had same components such as forms, menus and boxes, we developed a template for each of them and reused the codes.
-
-**Security:** We ensured that a user is verified with credentials using login and authenticates the user, before any personal data is accessed by the user. However, we should protect the client-side attack such as code injection in next phase. 
+* **Reliability:** We ensured that the system is reliable in user data fetching (data that is requested by the user is always correct) and update any user event in interaction with the data by consistently updating the database. The website is stable and handles error by displaying error message to the user. 
+* **Maintainability:** We ensured maintainability by separating modules for each for each of the functionality, separate each page in different javascript file, and a generic database models that can be easily updated. We made sure that each part of the application can be updated or changed and  carried out without affecting the application as a whole.
+* **Reusability:** We ensured reusability of code by well designing frameworks and customized components, so that when we make changes, we don't need to copy paste the codes everywhere again. For example, since we had same components such as forms, menus and boxes, we developed a template for each of them and reused the codes.
+* **Security:** We ensured that a user is verified with credentials using login and authenticates the user, before any personal data is accessed by the user. However, we should protect the client-side attack such as code injection in next phase. 
 
 **4. User interface design**
 
 Description of the user interface
 
-(Add screenshots of the UI)
+User Sign up: 
 
+User Log in:
 
+User Info:
+
+Issues:
+
+Tickets:
+
+Offers:
 
 **5. Testing issues**	
 
@@ -146,11 +151,9 @@ Link to source code: https://github.com/csc302-winter-2018/proj-BrokenDream/blob
 
 **6. Technical highlights: interesting bugs, challenges, lessons learned, observations, etc.**
 
-Interesting bugs: 
-
-Challenges: We useed React in our project. But we need add Redux into our project to maximize the user experience. So we have to learn Redux.
-
-Lessons learned: React Details and Redux
+* Interesting bugs: 
+* Challenges: We didn't expect to use the language such as React since it is new to most of us. However, we found out that React might be the best tool to give a good user experience and design. As a result, we were learning a new language during the development, which is quite challenging. 
+* Lessons learned: We learned new technologies such as React and redux. 
 
 **7. Project management and progress reporting**
 
@@ -188,6 +191,8 @@ Lessons learned: React Details and Redux
 **8. Phase 3 goals (final demo)**
 
 Plan for final work towards demo
+
+* **Make the website fully functional:** Some of the proposed features that aren't implemented will be added in the next phase. 
 
 - **Enhance security:** From the above standards of the website, we haven't yet satisfy the security standard. We will solidify the security of the website. In particular, we will develop ways to prevent code injection from client-side. 
 - **Deploy the project:** We will deploy the project in order to make the system accessible anytime, anywhere and thus enhance the portability. In particular, we will use Heroku as tool.
