@@ -1,34 +1,25 @@
 import React from 'react';
 import sty from '../../css/bootstrap.min.css'
+import { NavLink } from 'react-router-dom';
 
-const navItems = () => (
-    <div className={sty.collapse+ " "+ sty["navbar-collapse"]}>
+const navItems = (props) => (
+    <div className={sty.collapse+ " " + sty["navbar-collapse"]}>
         <ul className={sty["navbar-nav"]+ " " + sty["mr-auto"]}>
             <li className={sty["nav-item"]}>
-                <a className={sty["nav-link"]} href={"/"} >
-                    home
-                </a>
-            </li>
+              <NavLink to='userinfo'>User Info</NavLink>
+              </li>
             <li className={sty["nav-item"]}>
-                <a className={sty["nav-link"]} href={"/user"}>
-                    user info
-                </a>
-            </li>
+              <a href='/issues'>Issues</a>
+              </li>
             <li className={sty["nav-item"]}>
-                <a className={sty["nav-link"]} href={"/tickets"}>
-                    tickets
-                </a>
-            </li>
+              <NavLink
+                  to='tickets'>Tickets</NavLink>
+              </li>
             <li className={sty["nav-item"]}>
-                <a className={sty["nav-link"]} href={"/issues"}>
-                    issues
-                </a>
-            </li>
-            <li className={sty["nav-item"]}>
-                <a className={sty["nav-link"]} href={"offers"}>
-                    offers
-                </a>
-            </li>
+              <NavLink
+                  to='offers'>Offers</NavLink>
+              </li>
+
         </ul>
     </div>
 );

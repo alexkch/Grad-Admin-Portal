@@ -70,6 +70,9 @@ class Issues extends Component {
 
 const mapStateToProps = state => {
   return {
+      token: state.user.token,
+      userId: state.user.userId,
+      name: state.user.name,
       issues: state.issue.issues,
       error: state.issue.error,
       errorMsg: state.issue.errorMsg
