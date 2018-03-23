@@ -10,8 +10,11 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
+// Reducers
 import IssuesReducer from './store/reducers/Issues';
+import UserReducer from './store/reducers/User';
 
+// Axios
 axios.defaults.baseURL = 'http://localhost:4000/api';
 /*
 axios.defaults.headers.common['Authorization'] = 'AUTH_TOKENS';
@@ -23,7 +26,8 @@ axios.interceptors.request.use(request => {
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
-  issue: IssuesReducer
+  issue: IssuesReducer,
+  user: UserReducer
 });
 const store = createStore(rootReducer, composeEnhancers(
   applyMiddleware(thunk)

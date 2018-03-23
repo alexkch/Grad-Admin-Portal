@@ -4,3 +4,6 @@ export {
 export {
   auth
 } from './Auth';
+export {
+  newUser
+} from './User';

@@ -10,7 +10,7 @@ export const validate = () => {
 export const authSuccess = (resData) => {
   return {
     type: actionTypes.AUTH_SUCCESS,
-    resData: resData
+    token: resData
   };
 };
 
