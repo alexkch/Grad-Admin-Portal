@@ -1,20 +1,20 @@
 import * as actionTypes from '../utils/actionTypes';
 import axios from 'axios';
 
-export const createUser = () => {
+export const initUser = () => {
   return {
     type: actionTypes.INIT_USER
   };
 };
 
-export const createSuccess = (resData) => {
+export const initSuccess = (resData) => {
   return {
     type: actionTypes.INIT_USER_SUCCESS,
     resData: resData
   };
 };
 
-export const createFail = (errorMsg) => {
+export const initFail = (errorMsg) => {
   return {
     type: actionTypes.INIT_USER_FAIL,
     error: 'true',
@@ -25,16 +25,16 @@ export const createFail = (errorMsg) => {
 export const newUser = (form) => {
   return async dispatch => {
     try {
-      dispatch(validate());
+      dispatch(initUser());
       const userData = {
         ...form,
         isAdmin: false
       }
       const res = await axios.post('/user', userData);
-      dispatch(authSuccess(res.data));
+      dispatch(initSuccess(res.data));
       console.log(res);
       } catch (error) {
-      dispatch(authFail(error.message));
+      dispatch(initFail(error.message));
     };
   };
 };
