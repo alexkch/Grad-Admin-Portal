@@ -102,6 +102,11 @@ We have selected those tool because they provide portability and can be integrat
 
 ​	We used MongoDB for maintaining the database for storing user data, ticket information, issues information, offers information, form and other pages dynamic objects. 
 
+*  **Data Access Layer**
+
+  The database will be accessible to all users, administrators, and automated services.
+  A login will determine what parts of the database can be accessed and changed.
+
 * **Models  - Schemas**
 
 ​	Example of schemas: 	
@@ -112,30 +117,12 @@ We have selected those tool because they provide portability and can be integrat
 
 ​	[swagger link](https://app.swaggerhub.com/apis/csc302BD/GradApp/1.0.0)
 
-​	**3.6.2 Error handling**
-
 **3.7 Description of non functional attributes**
 
 * **Reliability:** We ensured that the system is reliable in user data fetching (data that is requested by the user is always correct) and update any user event in interaction with the data by consistently updating the database. The website is stable and handles error by displaying error message to the user. 
 * **Maintainability:** We ensured maintainability by separating modules for each for each of the functionality, separate each page in different javascript file, and a generic database models that can be easily updated. We made sure that each part of the application can be updated or changed and  carried out without affecting the application as a whole.
 * **Reusability:** We ensured reusability of code by well designing frameworks and customized components, so that when we make changes, we don't need to copy paste the codes everywhere again. For example, since we had same components such as forms, menus and boxes, we developed a template for each of them and reused the codes.
 * **Security:** We ensured that a user is verified with credentials using login and authenticates the user, before any personal data is accessed by the user. However, we should protect the client-side attack such as code injection in next phase. 
-
-**4. User interface design**
-
-Description of the user interface
-
-User Sign up: 
-
-User Log in:
-
-User Info:
-
-Issues:
-
-Tickets:
-
-Offers:
 
 **5. Testing issues**	
 
