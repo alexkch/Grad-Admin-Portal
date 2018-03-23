@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import sty from '../../css/bootstrap.min.css';
 import Box from '../../components/box/Box';
 
@@ -10,7 +11,7 @@ class User extends Component {
       let userPanel;
       userPanel = (this.props.token) ? (<Box color="secondary" header={this.props.userId}><h5>Name: {this.props.name}</h5>
       UserType: {this.props.usertype}</Box>) :
-      (<Box color="secondary" header="Login required!">Please login to operate</Box>)
+      (<Box color="secondary" header="Login required!">Please Login or <NavLink to='/newuser' activeClassName="active">Register</NavLink> to operate</Box>)
 
       return ( userPanel );
     }
