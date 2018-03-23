@@ -2,7 +2,7 @@
 
  **1.1 Summary of core features**
 
-​	The purpose of this website was to build a graduation admission ticketing system 	to allow the department to organize the selection and admission of students and easy accessible ticketing panels to allow managing the admission process. For this, we have divided the big system into a subsystem with some of the core features that makes up part of the big ticketing system. In this phase, we have developed the cores features such as user authentication, basic ticketing system for student, budget director, professors, associate chair graduate, grad office staff, a dashboard for viewing ticket status. We also have additional features such as editing notes for tickets and dashboard notifications. 
+​	The purpose of this website was to build a graduation admission ticketing system to allow the department to organize the selection and admission of students and easy accessible ticketing panels to allow managing the admission process. For this, we have divided the big system into a subsystem with some of the core features that makes up part of the big ticketing system. In this phase, we have developed the cores features such as user authentication, basic ticketing system for student, budget director, professors, associate chair graduate, grad office staff, a dashboard for viewing ticket status. We also have additional features such as editing notes for tickets and dashboard notifications. 
 
 **1.2 Features that were implemented**
 
@@ -12,7 +12,7 @@
 
 ​	User is able to register for four different types of account.
 
-​	Sign up: Client-side: Register form, basic client-side validation of password lengths 	and email address. Server-side: User credentials are sent to database (mongo database). 
+​	Sign up: Client-side: Register form, basic client-side validation of password lengths and email address. Server-side: User credentials are sent to database (mongo database). 
 
 ​	Login: User enters the credentials and system validates the user using by sending data to the backend and looking up in the database.
 
@@ -48,13 +48,13 @@
 
 ​		Track total tickets & ticket states
 
-​		Track ratio of international Vs. domestic tickets
+​		Track ratio of international vs. domestic tickets
 
 ​		Add / delete tickets
 
 **2. How is this different from what you originally proposed?Why?**
 
-
+At first, we thought that we couldn't do all of the proposed features since we weren't able to keep up with the planned deadlines we had for making things done. However, at the end, we have implemented all the proposed features that we initially planned to have. 
 
 **3. Architectural & component-level design (High level description of the software design)**  
 
@@ -107,10 +107,6 @@ We have selected those tool because they provide portability and can be integrat
   The database will be accessible to all users, administrators, and automated services.
   A login will determine what parts of the database can be accessed and changed.
 
-* **Models  - Schemas**
-
-​	Example of schemas: 	
-
 **3.5 API**
 
 ​	**3.6.1 API description**
@@ -120,7 +116,7 @@ We have selected those tool because they provide portability and can be integrat
 **3.7 Description of non functional attributes**
 
 * **Reliability:** We ensured that the system is reliable in user data fetching (data that is requested by the user is always correct) and update any user event in interaction with the data by consistently updating the database. The website is stable and handles error by displaying error message to the user. 
-* **Maintainability:** We ensured maintainability by separating modules for each for each of the functionality, separate each page in different javascript file, and a generic database models that can be easily updated. We made sure that each part of the application can be updated or changed and  carried out without affecting the application as a whole.
+* **Maintainability:** We ensured maintainability by separating modules for each for each of the functionality, separate each page in different javascript file, and a generic database models that can be easily updated. We made sure that each part of the application can be updated or changed and carried out without affecting the application as a whole.
 * **Reusability:** We ensured reusability of code by well designing frameworks and customized components, so that when we make changes, we don't need to copy paste the codes everywhere again. For example, since we had same components such as forms, menus and boxes, we developed a template for each of them and reused the codes.
 * **Security:** We ensured that a user is verified with credentials using login and authenticates the user, before any personal data is accessed by the user. However, we should protect the client-side attack such as code injection in next phase. 
 
@@ -179,7 +175,7 @@ Link to source code: https://github.com/csc302-winter-2018/proj-BrokenDream/blob
 
 Plan for final work towards demo
 
-* **Make the website fully functional:** Some of the proposed features that aren't implemented will be added in the next phase. 
+* **Make the website fully functional:** We haven't finished all of the proposed features. We will implement all of the features and make the website fully functional for the next phase. 
 
 - **Enhance security:** From the above standards of the website, we haven't yet satisfy the security standard. We will solidify the security of the website. In particular, we will develop ways to prevent code injection from client-side. 
 - **Deploy the project:** We will deploy the project in order to make the system accessible anytime, anywhere and thus enhance the portability. In particular, we will use Heroku as tool.
