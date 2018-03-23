@@ -1,7 +1,3 @@
----
-typora-copy-images-to: ../../../../Desktop/Screen Shot 2018-03-23 at 3.29.43 AM.png
----
-
 **1. What did you actually build during this phase? **
 
  **1.1 Summary of core features**
@@ -176,7 +172,7 @@ Lessons learned
 
        - **Burndown chart of github commits**
 
-       ![burndown_chart_github](/Users/tiffany/Google Drive/CSC302/project/proj-BrokenDream/burndown_chart_github.png)
+       ![burndown_chart_github](burndown_chart_github.png)
 
        ​
 
@@ -202,14 +198,16 @@ Lessons learned
 
    Communication between members was a weaker part, for example, there were lack of exchanging ideas of how to design, make decisions on planning what features to be implemented and how they should be implemented. Also, when members miss the meetings, it was hard to keep up with the progress. As a result, in phase 3, we should communicate with each other by having more offline and online meetings in which we will discuss about the each other's progress and update on tasks to be completed for the next meeting. Another weakness would be lack of planning and keep up with deadlines. For next phase, we will make sure to make plans for making things by deciding upon deadlines for specific tasks to be done. To do so, we will make a group calendar during the meeting and write down the dates and tasks. 
 
-**8. Phase 3 goals (final demo) **
+   ​
+
+**8. Phase 3 goals (final demo)**
 
 Plan for final work towards demo
 
 - **Enhance security:** From the above standards of the website, we haven't yet satisfy the security standard. We will solidify the security of the website. In particular, we will develop ways to prevent code injection from client-side. 
 - **Deploy the project:** We will deploy the project in order to make the system accessible anytime, anywhere and thus enhance the portability. In particular, we will use Heroku as tool.
 - **Test the implementation:** We will use continous integrating testing to test our implementation. In particular, we will test the APIs too see if data is correctly sent. 
-- **Add additional features**: We will add more features
+- **Add additional features**: We will add more features.
 
 
 
