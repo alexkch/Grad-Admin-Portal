@@ -5,6 +5,7 @@ import IssueForm from '../issue/NewIssue';
 import UserInfo from '../../containers/user/UserInfo';
 import sty from '../../css/bootstrap.min.css'
 import Tickets from '../../containers/ticket/Tickets';
+import TicketCreate from '../../containers/ticket/TicketCreate';
 
 
 class Dashboard extends Component {
@@ -42,6 +43,7 @@ class Dashboard extends Component {
                     <Switch>
                       <Route path="/issues" exact component={IssueForm} />
                       <Route path="/" exact component={UserInfo} />
+                      <Route path="/tickets" exact component={TicketCreate} />
                     </Switch>
                   </section>
               </div>
