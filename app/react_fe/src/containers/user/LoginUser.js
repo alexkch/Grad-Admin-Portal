@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import sty from '../../css/bootstrap.min.css'
 import Form from '../../components/form/Form';
 import Button from '../../components/button/Button';
 import * as Actions from '../../store/actions/';

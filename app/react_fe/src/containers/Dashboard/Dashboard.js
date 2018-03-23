@@ -12,11 +12,6 @@ import Tickets from '../../containers/ticket/Tickets';
 
 class Dashboard extends Component {
 
-    constructor(props) {
-        super(props);
-        console.log('[App.js] Inside constructor');
-    }
-
     state = {
         //tickets: []
         // Hardcoded for testing
@@ -30,7 +25,6 @@ class Dashboard extends Component {
     };
 
     render() {
-        console.log('[App.js] Inside render');
         //const Tickets = this.state.tickets.map(ticket => {
         //    return <Ticket key={ticket._id} ticket_id={ticket._id} created_by={ticket.created_by}
         //                   prof={ticket.professor} status={ticket.status}/>

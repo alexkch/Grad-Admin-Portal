@@ -1,6 +1,4 @@
 import React from 'react';
-import { Route, Link } from 'react-router-dom';
-import styles from './NavItems.css';
 import sty from '../../css/bootstrap.min.css'
 
 const navItems = () => (
