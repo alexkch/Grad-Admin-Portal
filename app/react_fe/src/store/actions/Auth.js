@@ -7,22 +7,33 @@ export const validate = () => {
   };
 };
 
-export const authSuccess = () => {
+export const authSuccess = (resData) => {
   return {
     type: actionTypes.AUTH_SUCCESS,
-    authData: 'authData'
+    resData: resData
   };
 };
 
-export const authFail = () => {
+export const authFail = (errorMsg) => {
   return {
     type: actionTypes.AUTH_FAIL,
-    error: 'true'
+    error: 'true',
+    errorMsg : errorMsg
   };
 };
 
 export const auth = (email, password) => {
-  return dispatch => {
-    dispatch(validate());
+  return async dispatch => {
+    try {
+      dispatch(validate());
+      const authData = {
+        email: email,
+        password: password
+      }
+      const res = axios.post('/auth', authData);
+      dispatch(authSuccess(res.data));
+      } catch (error) {
+      dispatch(authFail(error.message));
+    };
   };
 };
