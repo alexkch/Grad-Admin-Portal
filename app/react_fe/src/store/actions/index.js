@@ -2,7 +2,8 @@ export {
   getIssues
 } from './Issues';
 export {
-  auth
+  auth,
+  logout
 } from './Auth';
 export {
   newUser
