@@ -108,13 +108,11 @@ We have selected those tool because they provide portability and can be integrat
 
 ​	**Database description**
 
-​		**Database design**
+​		We used MongoDB for maintaining the database for storing user data, ticket information, issues information, offers information, form and other pages dynamic objects. 
 
-​		(diagram to be included)
+​		**Models  - Schemas**
 
-​		**Models**
-
-​		Schemas
+​		Example of schemas: 
 
 **3.6 API**
 
@@ -144,15 +142,11 @@ Description of the user interface
 
 Test cases and Expected results
 
-​	Ticket page testing: 
+Test cases were created for evaluate the correcteness of API for Issues page. The test cases were set up by creating random data and call GET and POST methods using those data. Examples of test cases were: testing GET method by returning all issues, return an issue if valid id is passed, error otherwise, and also save issue in database if user is signed in. 
 
-​	Sign up/ login testing:
+The following artifact is an example of how we tested the API and error handling:
 
-​	Feature testing:
-
-​	Issues testing:
-
-​	API testing:
+![Test_case_api](Test_case_api.png)
 
 
 
@@ -180,17 +174,14 @@ Lessons learned
 
        - **Progress table and meetings minutes**
 
-         | Dates | Meetings description | minutes |
-         | ----- | -------------------- | ------- |
-         |       |                      | 60      |
-         |       |                      | 60      |
-         |       |                      | 60      |
-         |       |                      | 60      |
-         |       |                      | 60      |
-         |       |                      | 60      |
-         |       |                      | 60      |
-         |       |                      | 60      |
-         |       |                      | 60      |
+         | Dates     | Meetings description                     | minutes             |
+         | --------- | ---------------------------------------- | ------------------- |
+         | Feb 23    | Plan meeting: Discussed about the APIs of the backend. Set up group repo. | 60, tutorial        |
+         | March 2nd | Gathered the work and continued discussing work on APIs for ticket page. Discussed on the components of each of pages in front-end and made draft designs. | 60, tutorial        |
+         | March 9   | Plan meeting: Discussed about the database implementation and the schemas attributes in the database. | 60, tutorial        |
+         | March 16  | Discussed about the use of the middlewares and the use of auth. | 60, tutorial        |
+         | March 21  | Combined the project for front and back end. Debugged codes. | 60, offline meeting |
+         | March 22  | Gather final work. Prepare for the demo. | 60, offline meeting |
 
 2. **Things that worked well (strengths)**
 
