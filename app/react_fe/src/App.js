@@ -23,15 +23,14 @@ class App extends Component {
   render() {
 
     let routes;
-    routes = (token) ? 
-
+    routes = (this.props.token) ? ( <Switch>
+                          <Route path="/tickets" exact component={Tickets} />
+                          <Route path="/issues" exact component={Issues} />
+                          </Switch>) : null
 
     return (
       <Dashboard>
-        <Switch>
-          <Route path="/tickets" exact component={Tickets} />
-          <Route path="/issues" exact component={Issues} />
-        </Switch>
+        {routes}
       </Dashboard> );
   }
 }
@@ -49,4 +48,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default withRouter(connect(null, mapDispatchToProps)(App));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
