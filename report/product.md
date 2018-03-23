@@ -1,3 +1,7 @@
+---
+typora-copy-images-to: ../../../../Desktop/Screen Shot 2018-03-23 at 3.29.43 AM.png
+---
+
 **1. What did you actually build during this phase? **
 
  **1.1 Summary of core features**
@@ -54,6 +58,8 @@
 
 **2. How is this different from what you originally proposed?Why?**
 
+
+
 **3. Architectural & component-level design (High level description of the software design)**  
 
 **3.1 Technologies and tools**
@@ -98,7 +104,7 @@ We have selected those tool because they provide portability and can be integrat
 
 (see application_architecture_diagram.pdf)
 
-​	**functional decomposition of applications**
+​	**Functional decomposition of applications**
 
 ​	**Services components**
 
@@ -119,8 +125,6 @@ We have selected those tool because they provide portability and can be integrat
 ​	**API description**
 
 ​	**Error handling**
-
-​	
 
 **3.7 Description of non functional attributes**
 
@@ -170,9 +174,25 @@ Lessons learned
 
      - The artifact below is the project progress chart and the meetings minutes. 
 
-       ​
+       - **Burndown chart of github commits**
+
+       ![burndown_chart_github](/Users/tiffany/Google Drive/CSC302/project/proj-BrokenDream/burndown_chart_github.png)
 
        ​
+
+       - **Progress table and meetings minutes**
+
+         | Dates | Meetings description | minutes |
+         | ----- | -------------------- | ------- |
+         |       |                      | 60      |
+         |       |                      | 60      |
+         |       |                      | 60      |
+         |       |                      | 60      |
+         |       |                      | 60      |
+         |       |                      | 60      |
+         |       |                      | 60      |
+         |       |                      | 60      |
+         |       |                      | 60      |
 
 2. **Things that worked well (strengths)**
 
