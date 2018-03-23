@@ -27,11 +27,19 @@ const reducer = ( state = initialState, action ) => {
               isAdmin: action.isAdmin,
               error : false});
 
-        case actionTypes.AUTH_SUCCESS:
+        case actionTypes.AUTH_FAIL:
             return update(state, {
               error : true,
               errorMsg : action.errorMsg});
 
+        case actionTypes.AUTH_LOGOUT:
+            return update(state, {
+              token : null,
+              userId : null,
+              name: null,
+              usertype: null,
+              isAdmin: false,
+              error : null});
         default:
             return state;
     }
