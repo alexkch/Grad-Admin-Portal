@@ -53,7 +53,11 @@ export const auth = (email, password) => {
         password: password
       }
       const res = await axios.post('/auth', authData);
-      localStorage.setItem('session', res.data);
+      localStorage.setItem('userId', res.data.userId);
+      localStorage.setItem('name', res.data.name);
+      localStorage.setItem('token', res.data.token);
+      localStorage.setItem('usertype', res.data.usertype);
+      localStorage.setItem('isAdmin', res.data.isAdmin);
       dispatch(authSuccess(res.data));
 
       } catch (error) {

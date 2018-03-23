@@ -14,6 +14,7 @@ import Tickets from './containers/ticket/Tickets';
 import TicketCreate from './containers/ticket/TicketCreate';
 
 class App extends Component {
+
   render() {
     return (
       <Dashboard>
@@ -24,17 +25,6 @@ class App extends Component {
       </Dashboard> );
   }
 }
-const mapStateToProps = state => {
-  return {
-      token : state.user.token
-  };
-};
 
-// pass using props , this.props.onSetIssues
-const mapDispatchToProps = dispatch => {
-  return {
-    getSession: () => dispatch(Actions.getSession())
-  };
-};
 
-export default connect(null, mapStateToProps)(App);
+export default App;
