@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Dashboard from './containers/dashboard/Dashboard';
-import { Route, Switch, withRouter } from 'react-router-dom';
+import { Route, Redirect, Switch, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as Actions from './store/actions/';
 
@@ -26,7 +26,7 @@ class App extends Component {
     routes = (this.props.token) ? ( <Switch>
                           <Route path="/tickets" exact component={Tickets} />
                           <Route path="/issues" exact component={Issues} />
-                          </Switch>) : null
+                          </Switch>) : <Redirect to="/" />
 
     return (
       <Dashboard>
