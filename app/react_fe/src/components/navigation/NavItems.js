@@ -5,17 +5,18 @@ import { NavLink } from 'react-router-dom';
 const navItems = (props) => (
     <div className={sty.collapse+ " " + sty["navbar-collapse"]}>
         <ul className={sty["navbar-nav"]+ " " + sty["mr-auto"]}>
+            <h2 className={sty["navbar-brand"]} >Ticket System</h2>
             {(props.token) ? <li className={sty["nav-item"]}>
-                              <NavLink to='userinfo'>User Info</NavLink>
+                              <NavLink to='/userinfo' activeClassName="active">User Info</NavLink>
                               </li> : null }
             {(props.token) ? <li className={sty["nav-item"]}>
-                              <NavLink to='/issues'>Issues</NavLink> : null
+                              <NavLink to='/issues' activeClassName="active">Issues</NavLink>
                               </li> : null }
             {(props.token) ? <li className={sty["nav-item"]}>
-                              <NavLink to='tickets'>Tickets</NavLink>
+                              <NavLink to='/tickets' activeClassName="active">Tickets</NavLink>
                               </li> : null }
             {(props.token) ? <li className={sty["nav-item"]}>
-                              <NavLink to='offers'>Offers</NavLink>
+                              <NavLink to='/offers' activeClassName="active">Offers</NavLink>
                               </li> : null }
         </ul>
     </div>

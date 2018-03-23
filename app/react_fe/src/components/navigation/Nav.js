@@ -6,7 +6,6 @@ import NavItems from './NavItems';
 const Nav = (props) => (
     <nav
         className={sty.navbar + " " + sty["navbar-expand-lg"] + " " + sty["navbar-dark"] + " " + sty["bg-dark"]}>
-        <a className={sty["navbar-brand"]} >Ticket System</a>
         {props.children}
         <NavItems token={props.token}/>
     </nav>

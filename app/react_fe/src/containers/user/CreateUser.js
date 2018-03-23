@@ -14,7 +14,7 @@ class CreateUser extends Component{
 	}
     handleSubmit(){
         // Put ticket
-        this.props.callback(this.state.ticket);
+        //this.props.callback(this.state.ticket);
 
         axios({method: 'post',
             url: '/user',
