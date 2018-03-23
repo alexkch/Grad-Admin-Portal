@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import DisplayIssue from './DisplayIssue';
+import DisplayOffer from './DisplayOffer';
 import Modal from '../../components/modal/Modal';
 import Aux from '../../wrapper/Auxiliary';
-import styles from './Issues.css';
+import styles from './Offers.css';
 
-class Issues extends Component {
+class Offers extends Component {
 
     state = {
-      issues: [],
-      issue: null,
+      offers: [],
+      offer: null,
       selected: false,
       error: false,
       errorMsg: 'Something went wrong'
@@ -17,66 +17,70 @@ class Issues extends Component {
 
 
     async componentDidMount() {
-      //const res = await axios.get('/issues');
+      //const res = await axios.get('/offers');
       try {
-        const res = await axios.get('/issues');
-        this.setState({issues: res.data, error: false});
+        const res = await axios.get('/offers');
+        this.setState({offers: res.data, error: false});
       } catch (error) {
         console.log(error);
         this.setState({error: true, errorMsg: error.message});
       }
     };
 
-    viewIssueHandler = (issueIndex) => {
-      //const issues = [...this.state.issues]; //this.state.issues.slice();
-      const issue = {
-        ...this.state.issues[issueIndex]
+    viewOfferHandler = (offerIndex) => {
+      //const offers = [...this.state.offers]; //this.state.offers.slice();
+      const offer = {
+        ...this.state.offers[offerIndex]
       };
-      this.setState({issue: issue, selected: true });
+      this.setState({offer: offer, selected: true });
     }
 
-    closeIssueHandler = () => {
+    closeOfferHandler = () => {
       this.setState({ selected: false });
     }
 
 
     render () {
-        let issues;
-        issues = (this.state.error) ? (<p style={{textAlign: 'center'}}> {this.state.errorMsg} </p>) :
-                 (this.state.issues.map((issue, index) => {
-                   return <DisplayIssue key={issue._id}
-                   created_by={issue.created_by}
-                   issue_id={issue._id}
-                   status={issue.status}
-                   priority={issue.priority}
-                   type={'short'}
-                   select={() => this.viewIssueHandler(index)}
-                   />}))
+        let offers;
+        offers = (this.state.error) ? (<p style={{textAlign: 'center'}}> {this.state.errorMsg} </p>) :
+                 (this.state.offers.map((offer, index) => {
+                  return <DisplayOffer ticket_id={offer.ticket_id}
+                  applicant={offer.applicant}
+                  applicant_id={offer.applicant_id}
+                  professor_id={offer.professor_id}
+                  professor_={this.state.offer.professor}
+                  status={this.state.offer.status}
+                  round={offer.round}
+                  t_type={offer.type}
+                  type={'short'}
+                  select={() => this.viewOfferHandler(index)}
+                  />}))
 
-        let modalIssue;
-        modalIssue = (this.state.selected) ? (<DisplayIssue
-                  key={this.state.issue._id}
-                  issue_id={this.state.issue._id}
-                  created_by={this.state.issue.created_by}
-                  created_by_id={this.state.issue.created_by_id}
-                  status={this.state.issue.status}
-                  description={this.state.issue.description}
-                  priority={this.state.issue.priority}
+        let modalOffer;
+        modalOffer = (this.state.selected) ? (<DisplayOffer
+                  ticket_id={this.state.offer.ticket_id}
+                  professor_id={this.state.offer.professor_id}
+                  professor={this.state.offer.professor}
+                  applicant={this.state.offer.applicant}
+                  applicant_id={this.state.offer.applicant_id}
+                  status={this.state.offer.status}
+                  round={this.state.offer.round}
+                  t_type={offer.type}
                   type={'modal-full'}
                   show={this.state.selected}
-                  close={this.closeIssueHandler}
+                  close={this.closeOfferHandler}
                   />) : null
 
 
       return (
             <Aux>
-              <Modal show={this.state.selected} close={this.closeIssueHandler} >
-                {modalIssue}
+              <Modal show={this.state.selected} close={this.closeOfferHandler} >
+                {modalOffer}
               </Modal>
-              {issues}
+              {offers}
             </Aux>
         );
     }
 }
 
-export default Issues;
+export default Offers;

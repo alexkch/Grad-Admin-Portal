@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import styles from './NewIssue.css';
+import styles from './NewOffer.css';
 
 class UserInfo extends Component {
     state = {
@@ -12,8 +12,8 @@ class UserInfo extends Component {
     render () {
         return (
             <div className= {styles.UserInfo}>
-                <h1>Add a Issue</h1>
-                <label>Issue</label>
+                <h1>Add a Offer</h1>
+                <label>Offer</label>
                 <input type="text" value={this.state.title} onChange={(event) => this.setState({title: event.target.value})} />
                 <label>Description</label>
                 <textarea rows="4" value={this.state.content} onChange={(event) => this.setState({content: event.target.value})} />
@@ -22,7 +22,7 @@ class UserInfo extends Component {
                     <option value="Max">Max</option>
                     <option value="Manu">Manu</option>
                 </select>
-                <button>Add Issue</button>
+                <button>Add Offer</button>
             </div>
         );
     }

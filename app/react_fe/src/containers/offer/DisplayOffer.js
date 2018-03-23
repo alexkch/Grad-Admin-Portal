@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Aux from '../../wrapper/Auxiliary';
 import sty from '../../css/bootstrap.min.css'
-import styles from './Issues.css';
+import styles from './Offers.css';
 
-class displayIssue extends Component {
+class displayOffer extends Component {
     render () {
         let output = null;
 
@@ -15,9 +15,9 @@ class displayIssue extends Component {
                       <div className={sty["card-header"]}>
                           <div style={{height: "18px"}}>
                               <span style={{position: 'absolute', left: '3%', maxwidth: "50%"}}
-                                    className={sty.badge + " " + sty["badge-primary"]}>ID:{this.props.issue_id} </span>
+                                    className={sty.badge + " " + sty["badge-primary"]}>ID:{this.props.ticket_id} </span>
                               <span style={{position: 'absolute', right: '3%', maxwidth: "50%"}}
-                                    className={sty.badge + " " + sty["badge-info"]}>Creater: {this.props.created_by}</span>
+                                    className={sty.badge + " " + sty["badge-info"]}>Creater: {this.props.applicant}</span>
                           </div>
                       </div>
 
@@ -26,7 +26,7 @@ class displayIssue extends Component {
                               <button style={{position: 'absolute', left: '3%', bottom: "10%", maxwidth: "50%"}}
                                       className={sty.btn + " " + sty["btn-outline-info"]}>Status:{this.props.status}</button>
                               <h6 style={{position: 'absolute', right: '3%', bottom: "10%", maxwidth: "50%"}}
-                                  className={sty["text-muted"]}>{this.props.created_by_id}</h6>
+                                  className={sty["text-muted"]}>{this.props.professor_id}</h6>
                           </div>
                       </div>
                   </div>
@@ -34,42 +34,43 @@ class displayIssue extends Component {
                 break;
             case ( 'full' ):
                 output = (
-                  <article className={styles.Issue} onClick={this.props.select}>
-                      <h2>Issue for {this.props.created_by}</h2>
-                      <h5>Issue ID: {this.props.issue_id}</h5>
-                      <h5>Creator ID: {this.props.created_by_id}</h5>
-                      <h5>description: {this.props.description}</h5>
-                      <h5>priority {this.props.priority}</h5>
-                      <h5>status {this.props.status}</h5>
+                  <article className={styles.Offer} onClick={this.props.select}>
+                      <h2>Offer for {this.props.applicant}</h2>
+                      <h5>Offer ID: {this.props.ticket_id}</h5>
+                      <h5>Owner ID: {this.props.professor_id}</h5>
+                      <h5>Type: {this.props.t_type}</h5>
+
+                      <h5>round {this.props.round}</h5>
+                      <h5>status {status}</h5>
                   </article>
                 );
                 break;
             case ( 'modal-short' ):
                 output = (
                   <Aux onClick={this.props.select}>
-                      <h2>Issue for {this.props.created_by}</h2>
-                      <h5>Issue ID: {this.props.issue_id}</h5>
+                      <h2>Offer for {this.props.applicant}</h2>
+                      <h5>Offer ID: {this.props.ticket_id}</h5>
                   </Aux>
                 );
                 break;
             case ( 'modal-full' ):
                 output = (
                   <Aux onClick={this.props.select}>
-                      <h2>Issue for {this.props.created_by}</h2>
-                      <h5>Issue ID: {this.props.issue_id}</h5>
-                      <h5>Creator ID: {this.props.created_by_id}</h5>
-                      <h5>description: {this.props.description}</h5>
-                      <h5>priority {this.props.priority}</h5>
+                      <h2>Offer for {this.props.applicant}</h2>
+                      <h5>Offer ID: {this.props.ticket_id}</h5>
+                      <h5>Owner ID: {this.props.professor_id}</h5>
+                      <h5>Type: {this.props.t_type}</h5>
+                      <h5>round {this.props.round}</h5>
                       <h5>status {this.props.status}</h5>
                   </Aux>
                 );
                 break;
             default:
                 output = (
-                  <article className={styles.Issue} onClick={this.props.select}>
-                      <h2>Issue for {this.props.created_by}</h2>
-                      <h5>Issue ID: {this.props.issue_id}</h5>
-                      <h5>priority {this.props.priority}</h5>
+                  <article className={styles.Offer} onClick={this.props.select}>
+                      <h2>Offer for {this.props.applicant}</h2>
+                      <h5>Offer ID: {this.props.ticket_id}</h5>
+                      <h5>round {this.props.round}</h5>
                       <h5>status {this.props.status}</h5>
                   </article>
                 );
@@ -79,4 +80,4 @@ class displayIssue extends Component {
     }
 }
 
-export default displayIssue;
+export default displayOffer;
