@@ -168,6 +168,8 @@ Lessons learned
 
 1.   **Teamwork and project progress (with burndown chart)**
 
+     Teamwork progress description: 
+
      - The artifact below is the project progress chart and the meetings minutes. 
 
        - **Burndown chart of github commits**
