@@ -1,162 +1,197 @@
-**What did you actually build during this phase? (High level description of the software design)**
+**1. What did you actually build during this phase? (High level description of the software design)**
 
-1. **Project overview**
+ **1.1 Summary of core features**
 
-   1.1 **Summary of core features**
+​	The purpose of this website was to build a graduation admission ticketing system 	to allow the department to organize the selection and admission of students and easy accessible ticketing panels to allow managing the admission process. For this, we have divided the big system into a subsystem with some of the core features that makes up part of the big ticketing system. In this phase, we have developed the cores features such as user authentication, basic ticketing system for student, budget director, professors, associate chair graduate, grad office staff, a dashboard for viewing ticket status. We also have additional features such as editing notes for tickets and dashboard notifications. 
 
-   ​	The purpose of this website was to build a graduation admission ticketing system 	to allow the department to organize the selection and admission of students and easy accessible ticketing panels to allow managing the admission process. For this, we have divided the big system into a subsystem with some of the core features that makes up part of the big ticketing system. In this phase, we have developed the cores features such as user authentication, basic ticketing system for student, budget director, professors, associate chair graduate, grad office staff, a dashboard for viewing ticket status. We also have additional features such as editing notes for tickets and dashboard notifications. 
+**1.2 Technologies and tools**
 
-   1.2 **Technologies and tools**
+​	The technologies used in this phase were: 
 
-   ​	The technologies used in this phase were: 
+​	**Front-end:** HTML, CSS, Javascript, React, BootStrap, Semantic UI.
 
-   ​	**Front-end:** HTML, CSS, Javascript, React, BootStrap, Semantic UI.
+​	These technologies were used to display the page layouts and design of tickets system, such as forms, menus, tickets display, offers, etc. 
 
-   ​	These technologies were used to display the page layouts and design of tickets system, such as forms, menus, tickets display, offers, etc. 
+​	**Backend:** Node, Express, Javascript
 
-   ​	**Backend:** Node, Express, Javascript
+These server-side technologies were used to send and store data client-side input to data or updates in page components such as sending sign up and login form, editing tickets to the server, in order to keep permanent and consistent data. 
 
-   These server-side technologies were used to send and store data client-side input to data or updates in page components such as sending sign up and login form, editing tickets to the server, in order to keep permanent and consistent data. 
+​	**Database:** MongoDB
 
-   ​	**Database:** MongoDB
+We have chosen MongoDb as database tool, since it provides a faster data storages for web applications that communicate extensively with the data backend. We used this tool to store data such as user credentials (register), tickets information, offers information and issue information. 
 
-   We have chosen MongoDb as database tool, since it provides a faster data storages for web applications that communicate extensively with the data backend. We used this tool to store data such as user credentials (register), tickets information, offers information and issue information. 
+We have selected those tool because they provide portability and can be integrated and operate well on all platforms. 
 
-   We have selected those tool because they provide portability and can be integrated and operate well on all platforms. 
+**1.3 Features that were implemented**
 
-   **1.3 Features that were implemented**
+**Authentication:**
 
-   (Table)
+​	User is able to create an unique account and login with the credentials. 
 
-   2. **Architectural & component-level design**
+​	User is able to register for four different types of account.
 
-      **2.1 System Structure** 
+​	Sign up: Client-side: Register form, basic client-side validation of password lengths 	and email address. Server-side: User credentials are sent to database (mongo database). 
 
-      **2.2. Screen shot breakdown**
+​	Login: User enters the credentials and system validates the user using by sending data to the backend and looking up in the database.
 
-      ​	**User** 
+**Ticketing system**	
 
-      ​	dashboard.js - what user would see when first entering the website. 
+​	**Student**: View ticket status in the ticket page
 
-      ​	LoginUser.js - what user would see when submitting a login form
+​	**Budget Director**: 
 
-      ​	DisplayTicket.js - what user would see when viewing ticket page and status of their ticket.
+​		Create tickets to be issued for any user
 
-      ​	UserInfo.js - Display user information
+​		Status page to see total amount of tickets created for that year; see amount of tickets allocated to any user.
 
-      ​	DisplayIssue.js - what user would see when generating a ticket.
+​		Status page to see how many tickets are granted to international vs domestic students
 
-      ​	DisplayOffer.js - User is able to see the status of the offer.
+​		Ability to mark ticket as granted
 
-      **2.3 Application architecture**
+​	**Professors (Faculty)**:
 
-      (see application_architecture_diagram.pdf)
+​		Professors can view potential applicants and keeps track of ratio of domestic and international applicants on status page
 
-      ​	functional decomposition of applications
+​		Professors can check the status of each ticket as offer granted, offer request, offer pending, offer refused and offer accepted.
 
-      ​	services components
+​		Faculty can associate ticket to an applicant which will change the state of ticket to offer-request
 
-      **2.4** **Technology architecture**
+​	**Grad office staff**
 
-      ​	Presentation layer
+​		See the status of all tickets, and be able to edit the ticket state
 
-      ​	Data access layer
+​		Accept or refuse tickets that have been granted
 
-      **2.5 Database architecture**
+​	**Dashboard / overview**
 
-      ​	**Standards**
+​		Track total tickets & ticket states
 
-      ​	**Database description**
+​		Track ratio of international Vs. domestic tickets
 
-      ​		 **Database design**
+​		Add / delete tickets
 
-      ​		(diagram to be included)
+**2. Architectural & component-level design**
 
-      ​		**Models**
+**2.1 System Structure** 
 
-      **2.6 API**
+**2.2. Screen shot breakdown**
 
-      ​	**API description**
+​	**User** 
 
-      ​	**Error handling**
+​	dashboard.js - what user would see when first entering the website. 
 
-      ​	
+​	LoginUser.js - what user would see when submitting a login form
 
-      **2.7 Description of non functional attributes**
+​	DisplayTicket.js - what user would see when viewing ticket page and status of their ticket.
 
-      **Reliability:** We ensured that the system is reliable in user data fetching (data that is requested by the user is always correct) and update any user event in interaction with the data by consistently updating the database. The website is stable and handles error by displaying error message to the user. 
+​	UserInfo.js - Display user information
 
-      **Maintainability:** We ensured maintainability by separating modules for each for each of the functionality, separate each page in different javascript file, and a generic database models that can be easily updated. We made sure that each part of the application can be updated or changed and  carried out without affecting the application as a whole.
+​	DisplayIssue.js - what user would see when generating a ticket.
 
-      **Reusability:** We ensured reusability of code by well designing frameworks and customized components, so that when we make changes, we don't need to copy paste the codes everywhere again. For example, since we had same components such as forms, menus and boxes, we developed a template for each of them and reused the codes.
+​	DisplayOffer.js - User is able to see the status of the offer.
 
-      **Security:** We ensured that a user is verified with credentials using login and authenticates the user, before any personal data is accessed by the user. However, we should protect the client-side attack such as code injection in next phase. 
+**2.3 Application architecture**
 
-      **Portability:** 
+(see application_architecture_diagram.pdf)
 
-      **3. User interface design**
+​	**functional decomposition of applications**
 
-      Description of the user interface
+​	**Services components**
 
-      (Add screenshots of the UI)
+**2.5 Database architecture**
 
-      ​
+​	**Database description**
 
-      **4. Testing issues**
+​		**Database design**
 
-      ​	
+​		(diagram to be included)
 
-      ​	Test cases and Expected results
+​		**Models**
 
-      ​		Ticket page testing: 
+​		Schemas
 
-      ​		Sign up/ login testing
+**2.6 API**
 
-      ​		Feature testing
+​	**API description**
 
-      ​		Issues testing
+​	**Error handling**
 
-      ​		API testing
+​	
 
-      **5. How is this different from what you originally proposed?Why?**
+**2.7 Description of non functional attributes**
 
-      ​
+**Reliability:** We ensured that the system is reliable in user data fetching (data that is requested by the user is always correct) and update any user event in interaction with the data by consistently updating the database. The website is stable and handles error by displaying error message to the user. 
 
-      **6. Technical highlights: interesting bugs, challenges, lessons learned, observations, etc.**
+**Maintainability:** We ensured maintainability by separating modules for each for each of the functionality, separate each page in different javascript file, and a generic database models that can be easily updated. We made sure that each part of the application can be updated or changed and  carried out without affecting the application as a whole.
 
-      Interesting bugs
+**Reusability:** We ensured reusability of code by well designing frameworks and customized components, so that when we make changes, we don't need to copy paste the codes everywhere again. For example, since we had same components such as forms, menus and boxes, we developed a template for each of them and reused the codes.
 
-      Challenges 
+**Security:** We ensured that a user is verified with credentials using login and authenticates the user, before any personal data is accessed by the user. However, we should protect the client-side attack such as code injection in next phase. 
 
-      Lessons learned
+**3. User interface design**
 
-      ​
+Description of the user interface
 
-      **7. Project management and progress reporting**
+(Add screenshots of the UI)
 
-      1.   **Teamwork and project progress (with burndown chart)**
 
-           - The figure below is the project progress chart and the meetings minutes.
 
-             ​
+**4. Testing issues**	
 
-      	2. **Things that worked well (strengths)**
+​	Test cases and Expected results
 
-          The separation of independent in front end and back end worked very well. By dividing front end and back end, we were able to work on independent tasks without having to worry about the merge conflicts.  Whenever an integration of front and back end is needed, we made sure to communicate with each other in order to decide and make plans for parts that might cause conflicts. This division gave us a significant efficiency in the code development phases. Also, in the code development process, we made sure to separate modules as small as possible so that we could reuse each other's code, and it made the code easier to understand and to debug. In order to better manage the project, we made a list of features to be implemented and kept tracked of the features that were implemented. This allowed each member to keep up to date what is done and this allowed us to better manage our time and making coding decisions based on accomplished tasks. For example, if someone is working on database and saw that the front end form is accomplished, then he can look at the form to design the user schema model for the storing the data from the form.
+​		Ticket page testing: 
 
-      	3. **Improvements (weakness) Next phase goals (phase 3 final demo)**
+​		Sign up/ login testing:
 
-          Communication between members was a weaker part, for example, there were lack of exchanging ideas of how to design, make decisions on planning what features to be implemented and how they should be implemented. Also, when members miss the meetings, it was hard to keep up with the progress. As a result, in phase 3, we should communicate with each other by having more offline and online meetings in which we will discuss about the each other's progress and update on tasks to be completed for the next meeting. Another weakness would be lack of planning and keep up with deadlines. For next phase, we will make sure to make plans for making things by deciding upon deadlines for specific tasks to be done. To do so, we will make a group calendar during the meeting and write down the dates and tasks. 
+​		Feature testing:
 
-      **8. Phase 3 goals (final demo) **
+​		Issues testing:
 
-      Plan for final work towards demo
+​		API testing:
 
-      - **Enhance security:** From the above standards of the website, we haven't yet satisfy the security standard. We will solidify the security of the website. In particular, we will develop ways to prevent code injection from client-side. 
-      - **Deploy the project:** We will deploy the project in order to make the system accessible anytime, anywhere and thus enhance the portability. In particular, we will use Heroku as tool.
-      - **Test the implementation:** We will use continous integrating testing to test our implementation. In particular, we will test the APIs too see if data is correctly sent. 
-      - **Add additional features**: We will add more features, such as 
 
-      ​
 
-      ​
+**5. How is this different from what you originally proposed?Why?**
+
+
+
+**6. Technical highlights: interesting bugs, challenges, lessons learned, observations, etc.**
+
+Interesting bugs
+
+Challenges 
+
+Lessons learned
+
+
+
+**7. Project management and progress reporting**
+
+1.   **Teamwork and project progress (with burndown chart)**
+
+     - Artifact below is the project progress chart and the meetings minutes.
+
+       ​
+
+       ​
+
+2. **Things that worked well (strengths)**
+
+   The separation of independent in front end and back end worked very well. By dividing front end and back end, we were able to work on independent tasks without having to worry about the merge conflicts.  Whenever an integration of front and back end is needed, we made sure to communicate with each other in order to decide and make plans for parts that might cause conflicts. This division gave us a significant efficiency in the code development phases. Also, in the code development process, we made sure to separate modules as small as possible so that we could reuse each other's code, and it made the code easier to understand and to debug. In order to better manage the project, we made a list of features to be implemented and kept tracked of the features that were implemented. This allowed each member to keep up to date what is done and this allowed us to better manage our time and making coding decisions based on accomplished tasks. For example, if someone is working on database and saw that the front end form is accomplished, then he can look at the form to design the user schema model for the storing the data from the form.
+
+3. **Improvements (weakness) Next phase goals (phase 3 final demo)**
+
+   Communication between members was a weaker part, for example, there were lack of exchanging ideas of how to design, make decisions on planning what features to be implemented and how they should be implemented. Also, when members miss the meetings, it was hard to keep up with the progress. As a result, in phase 3, we should communicate with each other by having more offline and online meetings in which we will discuss about the each other's progress and update on tasks to be completed for the next meeting. Another weakness would be lack of planning and keep up with deadlines. For next phase, we will make sure to make plans for making things by deciding upon deadlines for specific tasks to be done. To do so, we will make a group calendar during the meeting and write down the dates and tasks. 
+
+**8. Phase 3 goals (final demo) **
+
+Plan for final work towards demo
+
+- **Enhance security:** From the above standards of the website, we haven't yet satisfy the security standard. We will solidify the security of the website. In particular, we will develop ways to prevent code injection from client-side. 
+- **Deploy the project:** We will deploy the project in order to make the system accessible anytime, anywhere and thus enhance the portability. In particular, we will use Heroku as tool.
+- **Test the implementation:** We will use continous integrating testing to test our implementation. In particular, we will test the APIs too see if data is correctly sent. 
+- **Add additional features**: We will add more features
+
+
+

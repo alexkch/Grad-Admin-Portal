@@ -1,7 +1,7 @@
 Implement **authentication** for user accounts in webapp
 
 * User is able to create unique account in our webapp
-* User is able to choose username / password of their choice for their accountU
+* User is able to choose username / password of their choice for their account
 * User accounts will fall into 4 different categories of accounts.
 
 Implement the dashboard **UI** for 4 types of users: Faculty (Professors), Associate chair graduate, grad staff office, Budget Director
