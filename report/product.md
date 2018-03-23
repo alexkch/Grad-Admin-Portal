@@ -1,4 +1,4 @@
-**1. What did you actually build during this phase? **
+**1. What did you actually build during this phase?**
 
  **1.1 Summary of core features**
 
@@ -76,9 +76,9 @@ We have chosen MongoDb as database tool, since it provides a faster data storage
 
 We have selected those tool because they provide portability and can be integrated and operate well on all platforms. 
 
-**3.2 System Structure** 
+**3.2 Application architecture**
 
-(diagram TODO)
+(application_architecture_diagram TODO)
 
 **3.3. Screen shot breakdown**
 
@@ -96,15 +96,7 @@ We have selected those tool because they provide portability and can be integrat
 
 ​	DisplayOffer.js - User is able to see the status of the offer.
 
-**3.4 Application architecture**
-
-(application_architecture_diagram TODO)
-
-​	**Functional decomposition of applications**
-
-​	**Services components**
-
-**3.5 Database architecture**
+**3.4 Database architecture**
 
 ​	**Database description**
 
@@ -112,15 +104,15 @@ We have selected those tool because they provide portability and can be integrat
 
 ​		**Models  - Schemas**
 
-​		Example of schemas: 
+​		Example of schemas: 	
 
-**3.6 API**
+**3.5 API**
 
-​	**API description**
+​	**3.6.1 API description**
 
 ​	[swagger link](https://app.swaggerhub.com/apis/csc302BD/GradApp/1.0.0)
 
-​	**Error handling**
+​	**3.6.2 Error handling**
 
 **3.7 Description of non functional attributes**
 
@@ -150,7 +142,7 @@ The following artifact is an example of how we tested the API and error handling
 
 ![Test_case_api](Test_case_api.png)
 
-
+Link to source code: https://github.com/csc302-winter-2018/proj-BrokenDream/blob/master/app/node_be/test/integration/issues.test.js
 
 **6. Technical highlights: interesting bugs, challenges, lessons learned, observations, etc.**
 
