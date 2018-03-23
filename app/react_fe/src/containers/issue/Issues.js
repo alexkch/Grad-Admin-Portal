@@ -4,7 +4,6 @@ import DisplayIssue from './DisplayIssue';
 import * as Actions from '../../store/actions/';
 import Modal from '../../components/modal/Modal';
 import Aux from '../../wrapper/Auxiliary';
-import styles from './Issues.css';
 
 class Issues extends Component {
 

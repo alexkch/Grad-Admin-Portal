@@ -71,10 +71,10 @@ class NewIssue extends Component {
         for (let input in this.state.form) {
             formData[input] = this.state.form[input].value;
         }
-        const order = {
+        //const order = {
             //user_id: this.props.user_id,
-            form : formData
-        }
+          //  form : formData
+      //  }
 
         //axios.post( '/issues/new', order )
             //.then( response => {

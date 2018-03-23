@@ -1,11 +1,8 @@
 import React, {Component} from 'react';
-import axios from 'axios';
 import { Route, Switch } from 'react-router-dom';
-import Ticket from '../../containers/ticket/Ticket';
 import Issues from '../issue/Issues';
 import IssueForm from '../issue/NewIssue';
 import UserInfo from '../../containers/user/UserInfo';
-import Aux from '../../wrapper/Auxiliary';
 import sty from '../../css/bootstrap.min.css'
 import Tickets from '../../containers/ticket/Tickets';
 
