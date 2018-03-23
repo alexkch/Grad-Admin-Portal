@@ -13,7 +13,7 @@ class Offers extends Component {
       selected: false,
       error: false,
       errorMsg: 'Something went wrong'
-    }
+    };
 
 
     async componentDidMount() {
@@ -33,11 +33,11 @@ class Offers extends Component {
         ...this.state.offers[offerIndex]
       };
       this.setState({offer: offer, selected: true });
-    }
+    };
 
     closeOfferHandler = () => {
       this.setState({ selected: false });
-    }
+    };
 
 
     render () {
