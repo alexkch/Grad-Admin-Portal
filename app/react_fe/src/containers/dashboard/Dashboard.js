@@ -60,7 +60,7 @@ class Dashboard extends Component {
 
       return (
         <Aux>
-          <Nav> {navButton} </Nav>
+          <Nav token={this.props.token}> {navButton} </Nav>
             <div style={{padding: "10px"}} className={sty["row"]}>
               <div className={sty["col-md-8"]}>
                   <section className={sty["list-group"]}>

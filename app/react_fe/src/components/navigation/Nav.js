@@ -8,7 +8,7 @@ const Nav = (props) => (
         className={sty.navbar + " " + sty["navbar-expand-lg"] + " " + sty["navbar-dark"] + " " + sty["bg-dark"]}>
         <a className={sty["navbar-brand"]} >Ticket System</a>
         {props.children}
-        <NavItems />
+        <NavItems token={props.token}/>
     </nav>
 );
 
