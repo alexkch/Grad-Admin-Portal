@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
 import Dashboard from './containers/dashboard/Dashboard';
 import { Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
+import * as Actions from './store/actions/';
+
+  // Issues
 import Issues from './containers/issue/Issues';
 import NewIssue from './containers/issue/NewIssue';
   //users
@@ -20,5 +24,17 @@ class App extends Component {
       </Dashboard> );
   }
 }
+const mapStateToProps = state => {
+  return {
+      token : state.user.token
+  };
+};
 
-export default App;
+// pass using props , this.props.onSetIssues
+const mapDispatchToProps = dispatch => {
+  return {
+    getSession: () => dispatch(Actions.getSession())
+  };
+};
+
+export default connect(null, mapStateToProps)(App);
