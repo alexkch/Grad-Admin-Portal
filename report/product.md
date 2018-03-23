@@ -10,9 +10,9 @@
 
 ​	User is able to create an unique account and login with the credentials. 
 
-​	User is able to register for four different types of account.
+​	User is able to register for 3 different types of account.
 
-​	Sign up: Client-side: Register form, basic client-side validation of password lengths 	and email address. Server-side: User credentials are sent to database (mongo database). 
+​	Sign up: Client-side: Register form, basic client-side validation of password lengths and email address. Server-side: User credentials are sent to database (mongo database). 
 
 ​	Login: User enters the credentials and system validates the user using by sending data to the backend and looking up in the database.
 
@@ -62,9 +62,9 @@
 
 ​	The technologies used in this phase were: 
 
-​	**Front-end:** HTML, CSS, Javascript, React, BootStrap, Semantic UI.
+​	**Front-end:** HTML, CSS, Javascript, React, Redux, BootStrap, Semantic UI.
 
-​	These technologies were used to display the page layouts and design of tickets system, such as forms, menus, tickets display, offers, etc. 
+​	These technologies were used to display the page layouts and design of tickets system, such as forms, menus, tickets display, offers, etc. Picked bootstrap and react for efficiency.
 
 ​	**Backend:** Node, Express, Javascript
 
@@ -120,6 +120,8 @@ We have selected those tool because they provide portability and can be integrat
 
 ​	**API description**
 
+[swagger link](https://app.swaggerhub.com/apis/csc302BD/GradApp/1.0.0)
+
 ​	**Error handling**
 
 **3.7 Description of non functional attributes**
@@ -158,11 +160,11 @@ Test cases and Expected results
 
 **6. Technical highlights: interesting bugs, challenges, lessons learned, observations, etc.**
 
-Interesting bugs
+Interesting bugs : 
 
-Challenges 
+Challenges ： We useed React in our project. But we need add Redux into our project to maximize the user experience. So we have to learn Redux.
 
-Lessons learned
+Lessons learned : React Details and Redux
 
 **7. Project management and progress reporting**
 
@@ -203,6 +205,8 @@ Lessons learned
 **8. Phase 3 goals (final demo)**
 
 Plan for final work towards demo
+
+- **Fully functional
 
 - **Enhance security:** From the above standards of the website, we haven't yet satisfy the security standard. We will solidify the security of the website. In particular, we will develop ways to prevent code injection from client-side. 
 - **Deploy the project:** We will deploy the project in order to make the system accessible anytime, anywhere and thus enhance the portability. In particular, we will use Heroku as tool.
