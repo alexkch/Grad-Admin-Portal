@@ -10,6 +10,7 @@ class Issues extends Component {
     state = {
       issue: null,
       selected: false,
+      isLoggedIn: this.props.token
     }
 
     componentDidMount() {

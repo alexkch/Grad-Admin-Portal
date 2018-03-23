@@ -51,7 +51,7 @@ class Dashboard extends Component {
                                       <Button type="default" clicked={this.handleClickLogout.bind(this)}>Log Out</Button></div>) :
                                       (<Popover {...popoverProps}>
                                         <div className={sty["nav-item"]} style={{position: 'absolute', right: '3%'}}>
-                                        <Button type="dark" clicked={this.handleClickLogin.bind(this)}>Login</Button>
+                                        <Button type="default" clicked={this.handleClickLogin.bind(this)}>Login</Button>
                                         </div>
                                         </Popover>)
 
@@ -62,10 +62,7 @@ class Dashboard extends Component {
           <div style={{padding: "10px"}} className={sty["row"]}>
             <div className={sty["col-md-8"]}>
                 <section className={sty["list-group"]}>
-                  <Switch>
-                    <Route path="/tickets" exact component={Tickets} />
-                    <Route path="/issues" exact component={Issues} />
-                  </Switch>
+                  {this.props.children}
                 </section>
             </div>
             <div className={sty["col-md-4"]}>
