@@ -1,28 +1,10 @@
-**1. What did you actually build during this phase? (High level description of the software design)**
+**1. What did you actually build during this phase? **
 
  **1.1 Summary of core features**
 
 ​	The purpose of this website was to build a graduation admission ticketing system 	to allow the department to organize the selection and admission of students and easy accessible ticketing panels to allow managing the admission process. For this, we have divided the big system into a subsystem with some of the core features that makes up part of the big ticketing system. In this phase, we have developed the cores features such as user authentication, basic ticketing system for student, budget director, professors, associate chair graduate, grad office staff, a dashboard for viewing ticket status. We also have additional features such as editing notes for tickets and dashboard notifications. 
 
-**1.2 Technologies and tools**
-
-​	The technologies used in this phase were: 
-
-​	**Front-end:** HTML, CSS, Javascript, React, BootStrap, Semantic UI.
-
-​	These technologies were used to display the page layouts and design of tickets system, such as forms, menus, tickets display, offers, etc. 
-
-​	**Backend:** Node, Express, Javascript
-
-These server-side technologies were used to send and store data client-side input to data or updates in page components such as sending sign up and login form, editing tickets to the server, in order to keep permanent and consistent data. 
-
-​	**Database:** MongoDB
-
-We have chosen MongoDb as database tool, since it provides a faster data storages for web applications that communicate extensively with the data backend. We used this tool to store data such as user credentials (register), tickets information, offers information and issue information. 
-
-We have selected those tool because they provide portability and can be integrated and operate well on all platforms. 
-
-**1.3 Features that were implemented**
+**1.2 Features that were implemented**
 
 **Authentication:**
 
@@ -70,11 +52,33 @@ We have selected those tool because they provide portability and can be integrat
 
 ​		Add / delete tickets
 
-**2. Architectural & component-level design**
+**2. How is this different from what you originally proposed?Why?**
 
-**2.1 System Structure** 
+**3. Architectural & component-level design (High level description of the software design)**  
 
-**2.2. Screen shot breakdown**
+**3.1 Technologies and tools**
+
+​	The technologies used in this phase were: 
+
+​	**Front-end:** HTML, CSS, Javascript, React, BootStrap, Semantic UI.
+
+​	These technologies were used to display the page layouts and design of tickets system, such as forms, menus, tickets display, offers, etc. 
+
+​	**Backend:** Node, Express, Javascript
+
+These server-side technologies were used to send and store data client-side input to data or updates in page components such as sending sign up and login form, editing tickets to the server, in order to keep permanent and consistent data. 
+
+​	**Database:** MongoDB
+
+We have chosen MongoDb as database tool, since it provides a faster data storages for web applications that communicate extensively with the data backend. We used this tool to store data such as user credentials (register), tickets information, offers information and issue information. 
+
+We have selected those tool because they provide portability and can be integrated and operate well on all platforms. 
+
+**3.2 System Structure** 
+
+(diagram TODO)
+
+**3.3. Screen shot breakdown**
 
 ​	**User** 
 
@@ -90,7 +94,7 @@ We have selected those tool because they provide portability and can be integrat
 
 ​	DisplayOffer.js - User is able to see the status of the offer.
 
-**2.3 Application architecture**
+**3.4 Application architecture**
 
 (see application_architecture_diagram.pdf)
 
@@ -98,7 +102,7 @@ We have selected those tool because they provide portability and can be integrat
 
 ​	**Services components**
 
-**2.5 Database architecture**
+**3.5 Database architecture**
 
 ​	**Database description**
 
@@ -110,7 +114,7 @@ We have selected those tool because they provide portability and can be integrat
 
 ​		Schemas
 
-**2.6 API**
+**3.6 API**
 
 ​	**API description**
 
@@ -118,7 +122,7 @@ We have selected those tool because they provide portability and can be integrat
 
 ​	
 
-**2.7 Description of non functional attributes**
+**3.7 Description of non functional attributes**
 
 **Reliability:** We ensured that the system is reliable in user data fetching (data that is requested by the user is always correct) and update any user event in interaction with the data by consistently updating the database. The website is stable and handles error by displaying error message to the user. 
 
@@ -128,7 +132,7 @@ We have selected those tool because they provide portability and can be integrat
 
 **Security:** We ensured that a user is verified with credentials using login and authenticates the user, before any personal data is accessed by the user. However, we should protect the client-side attack such as code injection in next phase. 
 
-**3. User interface design**
+**4. User interface design**
 
 Description of the user interface
 
@@ -136,23 +140,19 @@ Description of the user interface
 
 
 
-**4. Testing issues**	
+**5. Testing issues**	
 
-​	Test cases and Expected results
+Test cases and Expected results
 
-​		Ticket page testing: 
+​	Ticket page testing: 
 
-​		Sign up/ login testing:
+​	Sign up/ login testing:
 
-​		Feature testing:
+​	Feature testing:
 
-​		Issues testing:
+​	Issues testing:
 
-​		API testing:
-
-
-
-**5. How is this different from what you originally proposed?Why?**
+​	API testing:
 
 
 
@@ -164,13 +164,11 @@ Challenges
 
 Lessons learned
 
-
-
 **7. Project management and progress reporting**
 
 1.   **Teamwork and project progress (with burndown chart)**
 
-     - Artifact below is the project progress chart and the meetings minutes.
+     - The artifact below is the project progress chart and the meetings minutes. 
 
        ​
 
