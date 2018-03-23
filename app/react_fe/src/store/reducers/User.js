@@ -4,6 +4,9 @@ import { update } from '../utils/update';
 const initialState = {
     userId: null,
     token: null,
+    name: null,
+    usertype: null,
+    isAdmin: false,
     error: null,
     errorMsg: ''
 };
@@ -13,12 +16,15 @@ const reducer = ( state = initialState, action ) => {
     switch ( action.type ) {
 
         case actionTypes.AUTH_USER:
-            return update(state, {error: null});
+            return state;
 
         case actionTypes.AUTH_SUCCESS:
             return update(state, {
               token : action.token,
               userId : action.userId,
+              name: action.name,
+              usertype: action.usertype,
+              isAdmin: action.isAdmin,
               error : false});
 
         case actionTypes.AUTH_SUCCESS:

@@ -10,7 +10,11 @@ export const validate = () => {
 export const authSuccess = (resData) => {
   return {
     type: actionTypes.AUTH_SUCCESS,
-    token: resData
+    userId: resData.userId,
+    name: resData.name,
+    token: resData.token,
+    usertype: resData.usertype,
+    isAdmin: resData.isAdmin
   };
 };
 
