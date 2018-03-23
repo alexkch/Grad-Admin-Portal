@@ -52,24 +52,10 @@ class NewUser extends Component {
                 touched: false
             },
             usertype: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'usertype',
-                    placeholder: 'UserType'
-                },
-                value: '',
-                validation: {
-                    required: true,
-                    isEmail: true
-                },
-                valid: false,
-                touched: false
-            }
-            /*
-            usertype: {
                 elementType: 'select',
                 elementConfig: {
                     options: [
+                        {value: '', displayValue: 'Choose your Occupation', default: true},
                         {value: 'faculty', displayValue: 'Faculty'},
                         {value: 'budget_office', displayValue: 'Budget Office'},
                         {value: 'grad_office', displayValue: 'Grad office'}
@@ -79,7 +65,7 @@ class NewUser extends Component {
                 validation: {},
                 valid: true
             }
-            */
+
         },
         formIsValid: false,
     }
@@ -95,18 +81,6 @@ class NewUser extends Component {
         for (let input in this.state.form) {
             formData[input] = this.state.form[input].value;
         }
-        //const order = {
-            //user_id: this.props.user_id,
-          //  form : formData
-      //  }
-
-        //axios.post( '/Users/new', order )
-            //.then( response => {
-                //this.props.history.push( '/' );
-            //} )
-            //.catch( error => {
-            // need to redirect to 404 to handle
-          //  } );
     }
 
     checkValidity(value, rules) {

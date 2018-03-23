@@ -28,16 +28,12 @@ export const newUser = (form) => {
       dispatch(initUser());
 
       const userData = {
-        name: form.name,
-        password: form.password,
-        email: form.email,
-        usertype: form.usertype,
+        name: form.name.value,
+        password: form.password.value,
+        email: form.email.value,
+        usertype: form.usertype.value,
         isAdmin: "false"
       }
-      console.log(userData.name.value);
-      console.log(userData.password.value);
-      console.log(userData.email.value);
-      console.log(userData.usertype.value);
       const res = await axios.post('/users', userData);
       dispatch(initSuccess(res.data));
       console.log(res);
