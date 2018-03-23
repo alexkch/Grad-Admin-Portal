@@ -32,9 +32,9 @@ const box = (props) => {
 
 
     return (<div className={sty.card + " " + boxColor +" " + sty["mb-3"]}>
-        <div className={sty["card-header"]}>{props.title}</div>
+        <div className={sty["card-header"]}>{props.header}</div>
         <div className={sty["card-body"]}>
-            {props.body}
+            {props.children}
         </div>
     </div>)
 };

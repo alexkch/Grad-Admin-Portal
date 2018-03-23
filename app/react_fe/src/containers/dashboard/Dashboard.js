@@ -5,7 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 // Containers
   //issues
 import Issues from '../issue/Issues';
-import IssueForm from '../issue/NewIssue';
+import NewIssue from '../issue/NewIssue';
   //users
 import UserInfo from '../../containers/user/UserInfo';
 import LoginUser from "../user/LoginUser";
@@ -27,10 +27,9 @@ import Button from '../../components/button/Button';
 class Dashboard extends Component {
 
     state = { tab: 0,
-            open: false,
-            login: false,
-            username: "Userinfo"
-          };
+              open: false,
+              login: false
+            };
 
     handleClose(e) { this.setState({tab:0, open:false})}
     handleClickRegister(e) { this.setState({tab:1, open:true})}
@@ -41,8 +40,8 @@ class Dashboard extends Component {
 
       const popoverTitle = (this.state.tab === 1) ? 'Register' : 'Log in';
       const popoverContent = (this.state.tab === 1) ?
-          (<div style={{width: "500px"}} ><Box title={popoverTitle} body={<CreateUser/>} color={'info'}/></div>) :
-          (<div style={{width: "500px"}} ><Box title={popoverTitle} body={<LoginUser/>} color={'primary'}/></div>);
+          (<div style={{width: "500px"}} ><Box header={popoverTitle} color={'info'}><CreateUser/></Box></div>) :
+          (<div style={{width: "500px"}} ><Box header={popoverTitle} color={'primary'}><LoginUser/></Box></div>);
 
 
       const popoverProps = {
@@ -78,7 +77,7 @@ class Dashboard extends Component {
                 <div className={sty["col-md-4"]}>
                     <section>
                       <Switch>
-                        <Route path="/issues" exact component={IssueForm} />
+                        <Route path="/issues" exact component={NewIssue} />
                         <Route path="/" exact component={UserInfo} />
                         <Route path="/tickets" exact component={TicketCreate} />
                       </Switch>

@@ -160,7 +160,7 @@ class NewIssue extends Component {
             </form>
         );
         return (
-            <Box title={"Create new Issues"} body={form} />
+            <Box color="secondary" header={"Create new Issues"}>{form}</Box>
         );
     }
 }
