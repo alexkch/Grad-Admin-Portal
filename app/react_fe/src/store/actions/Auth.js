@@ -32,7 +32,7 @@ export const auth = (email, password) => {
       }
       const res = await axios.post('/auth', authData);
       dispatch(authSuccess(res.data));
-      console.log(res);
+      console.log(res.data);
       } catch (error) {
       dispatch(authFail(error.message));
     };

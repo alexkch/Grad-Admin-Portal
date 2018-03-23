@@ -21,9 +21,10 @@ class User extends Component {
 
 const mapStateToProps = state => {
   return {
-      issues: state.issue.issues,
-      error: state.issue.error,
-      errorMsg: state.issue.errorMsg
+      userId: state.user.userId,
+      token: state.user.token,
+      error: state.user.error,
+      errorMsg: state.user.errorMsg
   };
 };
 
