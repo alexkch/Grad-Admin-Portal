@@ -132,7 +132,7 @@ const mapStateToProps = state => {
 // pass using props , this.props.onSetIssues
 const mapDispatchToProps = dispatch => {
   return {
-		Auth: (email, password) => dispatch(Actions.newUser(email, password))
+		Auth: (email, password) => dispatch(Actions.auth(email, password))
   };
 };
 

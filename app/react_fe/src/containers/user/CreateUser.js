@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import * as Actions from '../../store/actions';
 import Form from '../../components/form/Form';
 import Box from '../../components/box/Box';
 import Button from '../../components/button/Button';
@@ -173,7 +175,7 @@ class NewUser extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-	   newUser : (form) => dispatch(Actions.auth(form))
+	   newUser : (form) => dispatch(Actions.newUser(form))
   };
 };
 
