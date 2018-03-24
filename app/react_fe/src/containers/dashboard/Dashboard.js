@@ -1,6 +1,6 @@
 // Config
 import React, {Component} from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Redirect, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as Actions from '../../store/actions/';
 
@@ -8,7 +8,7 @@ import * as Actions from '../../store/actions/';
 import LoginUser from "../user/LoginUser";
 import LogoutUser from "../user/LogoutUser";
 import User from '../user/User';
-
+import NewIssue from '../issue/NewIssue';
 // Styles + Utils + components
 import sty from '../../css/bootstrap.min.css'
 import Nav from '../../components/navigation/Nav';
@@ -52,14 +52,17 @@ class Dashboard extends Component {
           {logoutContent}
           <Nav token={this.props.token}> {navButton} </Nav>
           <div style={{padding: "10px"}} className={sty["row"]}>
-            <div className={sty["col-md-8"]}>
+            <div className={sty["col-md-7"]}>
                 <section className={sty["list-group"]}>
                   {this.props.children}
                 </section>
             </div>
-            <div className={sty["col-md-4"]}>
+            <div className={sty["col-md-5"]}>
                 <section>
                   <User />
+                  <Switch>
+                    <Route path="/issues/new" exact component={NewIssue} />
+                  </Switch>
                 </section>
             </div>
           </div>

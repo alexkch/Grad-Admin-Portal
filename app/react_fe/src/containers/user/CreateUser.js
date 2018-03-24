@@ -55,6 +55,7 @@ class NewUser extends Component {
                 elementType: 'select',
                 elementConfig: {
                     options: [
+                        {value: '', displayValue: 'Choose your Occupation', default: true},
                         {value: 'faculty', displayValue: 'Faculty'},
                         {value: 'budget_office', displayValue: 'Budget Office'},
                         {value: 'grad_office', displayValue: 'Grad office'}
@@ -64,6 +65,7 @@ class NewUser extends Component {
                 validation: {},
                 valid: true
             }
+
         },
         formIsValid: false,
     }
@@ -79,18 +81,6 @@ class NewUser extends Component {
         for (let input in this.state.form) {
             formData[input] = this.state.form[input].value;
         }
-        //const order = {
-            //user_id: this.props.user_id,
-          //  form : formData
-      //  }
-
-        //axios.post( '/Users/new', order )
-            //.then( response => {
-                //this.props.history.push( '/' );
-            //} )
-            //.catch( error => {
-            // need to redirect to 404 to handle
-          //  } );
     }
 
     checkValidity(value, rules) {
@@ -164,7 +154,7 @@ class NewUser extends Component {
                         touched={formElement.config.touched}
                         changed={(event) => this.inputChangedHandler(event, formElement.id)} />
                 ))}
-                <Button disabled={!this.state.formIsValid} type={'disabled-stretch'}>Submit</Button>
+                <Button disabled={!this.state.formIsValid} type={'disabled-stretch'}>Register</Button>
             </form>
         );
         return (

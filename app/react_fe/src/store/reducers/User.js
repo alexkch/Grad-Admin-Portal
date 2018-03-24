@@ -7,7 +7,7 @@ const initialState = {
     name: null,
     usertype: null,
     isAdmin: false,
-    error: null,
+    error: false,
     errorMsg: ''
 };
 
@@ -25,7 +25,8 @@ const reducer = ( state = initialState, action ) => {
               name: action.name,
               usertype: action.usertype,
               isAdmin: action.isAdmin,
-              error : false});
+              error : false,
+              errorMsg : ''});
 
         case actionTypes.AUTH_FAIL:
             return update(state, {
@@ -39,7 +40,22 @@ const reducer = ( state = initialState, action ) => {
               name: null,
               usertype: null,
               isAdmin: false,
-              error : null});
+              error : null,
+              errorMsg : ''});
+
+        case actionTypes.INIT_USER:
+            return state;
+
+        case actionTypes.INIT_USER_SUCCESS:
+            return update(state, {
+              error : false,
+              errorMsg : ''});
+
+        case actionTypes.INIT_USER_FAIL:
+            return update(state, {
+              error : true,
+              errorMsg : action.errorMsg});
+
         default:
             return state;
     }

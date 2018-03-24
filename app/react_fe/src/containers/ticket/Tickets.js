@@ -85,9 +85,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        actionGetTickets: () => dispatch(Actions.getTickets())
+        //actionGetTickets: () => dispatch(Actions.getTickets())
     };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Tickets);
-

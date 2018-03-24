@@ -71,18 +71,6 @@ class NewIssue extends Component {
         for (let input in this.state.form) {
             formData[input] = this.state.form[input].value;
         }
-        //const order = {
-            //user_id: this.props.user_id,
-          //  form : formData
-      //  }
-
-        //axios.post( '/issues/new', order )
-            //.then( response => {
-                //this.props.history.push( '/' );
-            //} )
-            //.catch( error => {
-            // need to redirect to 404 to handle
-          //  } );
     }
 
     checkValidity(value, rules) {
