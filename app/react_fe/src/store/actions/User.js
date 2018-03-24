@@ -1,4 +1,5 @@
 import * as actionTypes from '../utils/actionTypes';
+import { auth as Auth } from './Auth';
 import axios from 'axios';
 
 export const initUser = () => {
@@ -7,10 +8,10 @@ export const initUser = () => {
   };
 };
 
-export const initSuccess = (resData) => {
+export const initSuccess = () => {
   return {
     type: actionTypes.INIT_USER_SUCCESS,
-    resData: resData
+    error: 'false'
   };
 };
 
@@ -36,42 +37,10 @@ export const newUser = (form) => {
       }
       const res = await axios.post('/users', userData);
       dispatch(initSuccess(res.data));
-      console.log(res);
+      dispatch(Auth.auth(res.data.username, res.data.password));
+
       } catch (error) {
-      console.log(error.message);
       dispatch(initFail(error.message));
     };
   };
 };
-
-/*
-email: {
-  type: String,
-  required: true,
-  minlength: 5,
-  maxlength: 255,
-  trim: true,
-  unique: true
-},
-password: {
-  type: String,
-  required: true,
-  minlength: 5,
-  maxlength: 1024
-},
-name: {
-  type: String,
-  required: true,
-  minlength: 1,
-  maxlength: 50,
-  trim: true
-},
-usertype: {
-  type: String,
-  required: true,
-  enum: ['faculty', 'budget_office', 'grad_office'],
-  lowercase: true,
-  trim: true
-},
-isAdmin: {
-*/
