@@ -3,7 +3,7 @@ import * as actionTypes from '../utils/actionTypes';
 const initialState = {
     issues: [],
     error: false,
-    errorMsg: 'Something went wrong'
+    errorMsg: ''
 };
 
 const reducer = ( state = initialState, action ) => {
@@ -14,11 +14,17 @@ const reducer = ( state = initialState, action ) => {
                 error: false,
                 issues: action.issues
             };
-        case actionTypes.SET_ISSUES_FAILED:
+        case actionTypes.SET_ISSUES_FAIL:
             return {
                 ...state,
                 error: true,
                 errorMsg: action.errorMsg
+            };
+        case actionTypes.POST_ISSUE:
+            return {
+                ...state,
+                error: false,
+                issues: action.issues
             };
         default:
             return state;

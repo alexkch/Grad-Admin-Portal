@@ -8,9 +8,9 @@ export const setIssues = (issues) => {
   };
 };
 
-export const setIssuesFailed = (errorMsg) => {
+export const setIssuesFail = (errorMsg) => {
   return {
-    type: actionTypes.SET_ISSUES_FAILED,
+    type: actionTypes.SET_ISSUES_FAIL,
     errorMsg: errorMsg
   };
 };
@@ -22,7 +22,7 @@ export const getIssues = () => {
       dispatch(setIssues(res.data));
 
     } catch (error) {
-      dispatch(setIssuesFailed(error.message));
+      dispatch(setIssuesFail(error.message));
     };
   };
 };

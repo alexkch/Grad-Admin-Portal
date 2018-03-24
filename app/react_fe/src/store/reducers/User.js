@@ -40,7 +40,7 @@ const reducer = ( state = initialState, action ) => {
               name: null,
               usertype: null,
               isAdmin: false,
-              error : null
+              error : null,
               errorMsg : ''});
 
         case actionTypes.INIT_USER:
@@ -48,7 +48,7 @@ const reducer = ( state = initialState, action ) => {
 
         case actionTypes.INIT_USER_SUCCESS:
             return update(state, {
-              error : false
+              error : false,
               errorMsg : ''});
 
         case actionTypes.INIT_USER_FAIL:
