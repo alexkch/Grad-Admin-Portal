@@ -1,6 +1,7 @@
 export const SET_ISSUES = 'SET_ISSUES';
 export const SET_ISSUES_FAIL = 'SET_ISSUES_FAIL';
 export const POST_ISSUE = 'POST_ISSUE';
+export const POST_ISSUE_SUCCESS = 'POST_ISSUE_SUCCESS';
 export const POST_ISSUE_FAIL = 'POST_ISSUE_FAIL';
 
 export const AUTH_USER = 'AUTH_USER';

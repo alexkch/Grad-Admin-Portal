@@ -26,3 +26,21 @@ export const getIssues = () => {
     };
   };
 };
+
+
+export const createIssue = (token, session, form) => {
+  return async dispatch => {
+    try {
+      //dispatch(postIssue());
+      const postData = {
+        created_by_id: session.userId,
+        created_by: session.name,
+        fields : form
+      }
+      const res = await axios.post('/issues', postData);
+      //dispatch(postSuccess(res.data));
+      } catch (error) {
+      //dispatch(postFail(error.message));
+    };
+  };
+};
