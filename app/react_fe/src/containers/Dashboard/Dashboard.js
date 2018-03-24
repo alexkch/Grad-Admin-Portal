@@ -1,6 +1,6 @@
 // Config
 import React, {Component} from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Redirect, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as Actions from '../../store/actions/';
 
@@ -8,7 +8,7 @@ import * as Actions from '../../store/actions/';
 import LoginUser from "../user/LoginUser";
 import LogoutUser from "../user/LogoutUser";
 import User from '../user/User';
-
+import NewIssue from '../issue/NewIssue';
 // Styles + Utils + components
 import sty from '../../css/bootstrap.min.css'
 import Nav from '../../components/navigation/Nav';
@@ -60,6 +60,9 @@ class Dashboard extends Component {
             <div className={sty["col-md-4"]}>
                 <section>
                   <User />
+                  <Switch>
+                    <Route path="/issues/new" exact component={NewIssue} />
+                  </Switch>
                 </section>
             </div>
           </div>

@@ -9,7 +9,7 @@ const navItems = (props) => (
         <ul className={sty["navbar-nav"]+ " " + sty["mr-auto"]}>
             <h2 className={sty["navbar-brand"]} >Ticket System</h2>
             {(props.token) ? <li className={strcat(sty["nav-item"], styles.NavItem)}>
-                              <NavLink to='/userinfo' activeClassName="active">User Info</NavLink>
+                              <NavLink to='/issues/new' activeClassName="active">New Issue</NavLink>
                               </li> : null }
             {(props.token) ? <li className={strcat(sty["nav-item"], styles.NavItem)}>
                               <NavLink to='/issues' activeClassName="active">Issues</NavLink>
