@@ -52,12 +52,12 @@ class Dashboard extends Component {
           {logoutContent}
           <Nav token={this.props.token}> {navButton} </Nav>
           <div style={{padding: "10px"}} className={sty["row"]}>
-            <div className={sty["col-md-8"]}>
+            <div className={sty["col-md-7"]}>
                 <section className={sty["list-group"]}>
                   {this.props.children}
                 </section>
             </div>
-            <div className={sty["col-md-4"]}>
+            <div className={sty["col-md-5"]}>
                 <section>
                   <User />
                   <Switch>

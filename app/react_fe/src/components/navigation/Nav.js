@@ -1,12 +1,12 @@
 import React from 'react';
 import sty from '../../css/bootstrap.min.css';
-import User from '../../containers/user/User'
+import strcat from 'classnames';
 import NavItems from './NavItems';
 
 
 const Nav = (props) => (
-    <nav
-        className={sty.navbar + " " + sty["navbar-expand-lg"] + " " + sty["navbar-dark"] + " " + sty["bg-dark"]}>
+    <nav style={{padding : "0px"}}
+        className={strcat(sty.navbar, sty["navbar-expand-lg"], sty["navbar-dark"], sty["bg-dark"])}>
         {props.children}
         <NavItems token={props.token}/>
     </nav>
