@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import DisplayIssue from './DisplayIssue';
 import * as Actions from '../../store/actions/';
 import Modal from '../../components/modal/Modal';
-import Aux from '../../wrapper/Auxiliary';
+import Aux from '../../utils/auxiliary';
 import Pagebar from '../../components/navigation/Pagebar';
 
 class Issues extends Component {

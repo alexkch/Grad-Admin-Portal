@@ -1,5 +1,5 @@
 import React from 'react';
-import Aux from '../../wrapper/Auxiliary';
+import Aux from '../../utils/auxiliary';
 import { Button } from 'reactstrap';
 
 const button = (props) => {

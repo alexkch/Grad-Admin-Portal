@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Aux from '../../wrapper/Auxiliary';
+import Aux from '../../utils/auxiliary';
 import Card from '../../components/box/Card';
 
 class displayIssue extends Component {

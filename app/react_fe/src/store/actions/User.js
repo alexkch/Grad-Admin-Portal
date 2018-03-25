@@ -1,4 +1,4 @@
-import * as actionTypes from '../utils/actionTypes';
+import * as actionTypes from '../../utils/actionTypes';
 import { auth as Auth } from './Auth';
 import axios from 'axios';
 

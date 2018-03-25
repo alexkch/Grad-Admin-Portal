@@ -12,7 +12,7 @@ import NewIssue from '../issue/NewIssue';
 // Styles + Utils + components
 import { Container, Row, Col } from 'reactstrap';
 import Nav from '../../components/navigation/Nav';
-import Aux from '../../wrapper/Auxiliary';
+import Aux from '../../utils/auxiliary';
 import Popover from 'react-popover';
 import Box from '../../components/box/Box';
 import Button from '../../components/button/Button';
