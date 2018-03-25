@@ -53,17 +53,16 @@ class Dashboard extends Component {
           <Nav token={this.props.token}> {navButton} </Nav>
           <div style={{padding: "10px"}} className={sty["row"]}>
             <div className={sty["col-md-7"]}>
-                <section className={sty["list-group"]}>
                   {this.props.children}
-                </section>
             </div>
             <div className={sty["col-md-5"]}>
-                <section>
-                  <User />
-                  <Switch>
-                    <Route path="/issues/new" exact component={NewIssue} />
-                  </Switch>
-                </section>
+              <section>
+                <User />
+              </section>
+                <Switch>
+                  <Route path="/issues/new" exact component={NewIssue} />
+                </Switch>
+
             </div>
           </div>
         </Aux>

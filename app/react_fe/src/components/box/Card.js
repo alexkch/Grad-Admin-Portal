@@ -1,27 +1,24 @@
 import React from 'react';
-import sty from '../../css/bootstrap.min.css';
 import Button from '../button/Button';
+import { Card, CardHeader, CardText, CardBody, Badge } from 'reactstrap';
+
 
 const card = (props) => (
 
-  <div className={sty.card + ' ' + sty["border-primary"] + " " + sty["mb-3"]}>
-      <div className={sty["card-header"]}>
-          <div style={{height: "18px"}}>
-              <span style={{position: 'absolute', left: '3%', maxwidth: "50%"}}
-                    className={sty.badge + " " + sty["badge-primary"]}>ID:{props.issue_id} </span>
-              <span style={{position: 'absolute', left: '25%', maxwidth: "50%"}}
-                    className={sty.badge + " " + sty["badge-default"]}>Creator: {props.created_by}</span>
-              <span style={{position: 'absolute', right: '1.5%', maxwidth: "50%"}}
-                    className={sty.badge + " " + sty["badge-info"]}>Priority: {props.priority}</span>
-          </div>
-      </div>
+  <section style={{"padding-bottom" : "10px"}}>
+    <Card style={{"border-color" : "black"}}>
+        <CardHeader>
+            <div style={{height: "12px"}}>
+                <Badge color='dark' style={{float: 'left'}}>ID:{props.issue_id} </Badge>
+                <Badge color='info' style={{float: 'right'}}>Priority: {props.priority}</Badge>
+            </div>
+        </CardHeader>
 
-      <div className={sty["card-body"]}>
-          <div style={{height: "30px"}}>
-              <Button clicked={props.select}>Status:{props.status}</Button>
-          </div>
-      </div>
-  </div>
+        <CardBody>
+                <Button clicked={props.select}>Status:{props.status}</Button>
+        </CardBody>
+    </Card>
+  </section>
 );
 
 export default card;

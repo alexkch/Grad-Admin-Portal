@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { NavLink as RouterLink } from 'react-router-dom';
-import sty from '../../css/bootstrap.min.css';
 import Box from '../../components/box/Box';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
 
