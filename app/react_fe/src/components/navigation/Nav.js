@@ -5,8 +5,10 @@ import { NavLink } from 'react-router-dom';
 const Nav = (props) => (
 
       <nav className={styles.Navbar}>
+
         <ul className={styles.NavItems}>
-            {(props.token) ? <li className={styles.NavItem}>
+        <h5 style = {{"font" : "italic bold 24px arial, sans-serif", "color" : "white"}}> FAST TICKET SYSTEM </h5>
+            {(props.token) ? <li className={styles.NavItem} style = {{"padding-left" : "105px"}}>
                               <NavLink to='/issues/new' activeClassName="active">New Issue</NavLink>
                               </li> : null }
             {(props.token) ? <li className={styles.NavItem}>
