@@ -17,7 +17,7 @@ describe('/api/users', () => {
         { email : "tiffany@hotmail.com",
           name: "tiffany",
           password: "2222",
-          usertype: "Grad",
+          usertype: "faculty",
           isAdmin: true,
           created_on: Date.now,
           last_login: Date.now
@@ -26,7 +26,7 @@ describe('/api/users', () => {
         { email : "daniel@hotmail.com",
           name: "Daniel",
           password: "2222dfasfa",
-          usertype: "Grad",
+          usertype: "budget_office",
           isAdmin: true,
           created_on: Date.now,
           last_login: Date.now
@@ -35,7 +35,7 @@ describe('/api/users', () => {
         { email : "randomUser@hotmail.coms",
           name: "randomUsers",
           password: "123123qwer",
-          usertype: "Grad",
+          usertype: "budget_office",
           isAdmin: true,
           created_on: Date.now,
           last_login: Date.now
@@ -44,7 +44,7 @@ describe('/api/users', () => {
         { email : "justin@gmail.com",
           name: "Justin",
           password: "2222222",
-          usertype: "Grad",
+          usertype: "grad_office",
           isAdmin: true,
           created_on: Date.now,
           last_login: Date.now
@@ -54,11 +54,11 @@ describe('/api/users', () => {
         { email : "daniel@hotmail.com",
           name: "Daniel",
           password: "123456",
-          usertype: "Student",
+          usertype: "grad_office",
           isAdmin: true,
           created_on: Date.now,
           last_login: Date.now
-        },
+        }
       ]);
 
       const res = await request(server).get('/api/user');
@@ -138,7 +138,7 @@ describe('/api/users', () => {
           last_login: Date.now
         });
       const res = await request(server).post('/api/users/').set('x-auth-token', token).send(new_user);
-      const query = await Issue.findById({"_email" : "daniel@hotmail.com"});
+      const query = await User.findById({"_email" : "daniel@hotmail.com"});
       console.log(new_user);
       console.log('value ' + query);
       expect(query).not.toBeNull();
