@@ -1,12 +1,12 @@
 import React from 'react';
 import Button from '../button/Button';
-import { Card, CardHeader, CardText, CardBody, Badge } from 'reactstrap';
+import { Card, CardHeader, CardBody, Badge } from 'reactstrap';
 
 
 const card = (props) => (
 
-  <section style={{"padding-bottom" : "10px"}}>
-    <Card style={{"border-color" : "black"}}>
+  <section style={{"paddingBottom" : "10px"}}>
+    <Card style={{"borderColor" : "black"}}>
         <CardHeader>
             <div style={{height: "12px"}}>
                 <Badge color='dark' style={{float: 'left'}}>ID:{props.issue_id} </Badge>

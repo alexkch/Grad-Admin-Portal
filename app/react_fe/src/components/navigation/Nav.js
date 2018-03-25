@@ -8,7 +8,7 @@ const Nav = (props) => (
 
         <ul className={styles.NavItems}>
         <h5 style = {{"font" : "italic bold 24px arial, sans-serif", "color" : "white"}}> FAST TICKET SYSTEM </h5>
-            {(props.token) ? <li className={styles.NavItem} style = {{"padding-left" : "105px"}}>
+            {(props.token) ? <li className={styles.NavItem} style = {{"paddingLeft" : "105px"}}>
                               <NavLink to='/issues/new' activeClassName="active">New Issue</NavLink>
                               </li> : null }
             {(props.token) ? <li className={styles.NavItem}>

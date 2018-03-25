@@ -6,12 +6,10 @@ import * as Actions from './store/actions/';
 
   // Issues
 import Issues from './containers/issue/Issues';
-import NewIssue from './containers/issue/NewIssue';
   //users
 import NewUser from './containers/user/CreateUser';
   //tickets
 import Tickets from './containers/ticket/Tickets';
-import TicketCreate from './containers/ticket/TicketCreate';
 
 class App extends Component {
 

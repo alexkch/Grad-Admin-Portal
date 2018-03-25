@@ -1,10 +1,9 @@
 import React from 'react';
-import strcat from 'classnames';
-import { Pagination, PaginationItem, PaginationLink, Button, ButtonGroup , Container, Row, Col } from 'reactstrap';
+import { Pagination, PaginationItem, PaginationLink, Container, Row, Col } from 'reactstrap';
 
 const Pagebar = (props) => (
 
-    <Container style={{ "padding-top" : "5px"}}>
+    <Container style={{ "paddingTop" : "5px"}}>
         <Row>
           <Col sm="10" />
           <Col sm="2">

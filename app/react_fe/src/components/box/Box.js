@@ -5,7 +5,7 @@ import { Card, CardHeader, CardBody } from 'reactstrap';
 
 const box = (props) => {
 
-    return (<section style={{"padding-top": "10px" }}>
+    return (<section style={{"paddingTop": "10px" }}>
               <Card>
                 <CardHeader>{props.header}</CardHeader>
                 <CardBody>{props.children}</CardBody>

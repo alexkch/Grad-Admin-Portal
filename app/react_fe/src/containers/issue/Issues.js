@@ -44,7 +44,7 @@ class Issues extends Component {
         let issues;
         issues = (this.props.error) ? (<p style={{textAlign: 'center'}}> {this.props.errorMsg} </p>) :
                  (this.props.issues.map((issue, index) => {
-                   let status_clr = ((issue.status) == 'open') ? 'primary' : 'secondary';
+                   let status_clr = ((issue.status) === 'open') ? 'primary' : 'secondary';
                    let priority_clr = this.priorityColorHandler(issue.priority);
                    return <DisplayIssue key={issue._id}
                    created_by={issue.created_by}

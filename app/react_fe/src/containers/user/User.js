@@ -7,8 +7,7 @@ import { Collapse,
          NavbarToggler as UserbarToggler,
          NavbarBrand as UserbarBrand,
          Nav as Menu,
-         NavItem as MenuItem,
-         NavLink as MenuLink } from 'reactstrap';
+         NavItem as MenuItem } from 'reactstrap';
 
 import Aux from '../../wrapper/Auxiliary';
 class User extends Component {
@@ -34,10 +33,10 @@ class User extends Component {
             <Menu navbar>
               <MenuItem><h5>{this.props.userId}</h5></MenuItem>
               <MenuItem>
-                <MenuLink><NavLink to='/issues/new'>New Issue</NavLink></MenuLink>
+                <NavLink to='/issues/new'>New Issue</NavLink>
               </MenuItem>
               <MenuItem>
-                <MenuLink><NavLink to='/link199'>Link 2</NavLink></MenuLink>
+                <NavLink to='/link199'>Link 2</NavLink>
               </MenuItem>
             </Menu>
           </Collapse>
