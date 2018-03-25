@@ -4,7 +4,6 @@ import DisplayIssue from './DisplayIssue';
 import * as Actions from '../../store/actions/';
 import Modal from '../../components/modal/Modal';
 import Aux from '../../wrapper/Auxiliary';
-import sty from '../../css/bootstrap.min.css';
 import Pagebar from '../../components/navigation/Pagebar';
 
 class Issues extends Component {

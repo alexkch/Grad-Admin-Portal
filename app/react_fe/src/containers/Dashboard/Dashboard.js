@@ -10,7 +10,7 @@ import LogoutUser from "../user/LogoutUser";
 import User from '../user/User';
 import NewIssue from '../issue/NewIssue';
 // Styles + Utils + components
-import sty from '../../css/bootstrap.min.css'
+import { Container, Row, Col } from 'reactstrap';
 import Nav from '../../components/navigation/Nav';
 import Aux from '../../wrapper/Auxiliary';
 import Popover from 'react-popover';
@@ -39,33 +39,31 @@ class Dashboard extends Component {
         body: popoverContent
     };
     let navButton;
-    navButton = (this.props.token) ? (<div style={{position: 'absolute', right: '3%'}}>
-                                      <Button type="default" clicked={this.handleClickLogout.bind(this)}>Log Out</Button></div>) :
-                                      (<Popover {...popoverProps}>
-                                        <div className={sty["nav-item"]} style={{position: 'absolute', right: '3%'}}>
-                                        <Button type="default" clicked={this.handleClickLogin.bind(this)}>Login</Button>
-                                        </div>
-                                        </Popover>)
+    navButton = (this.props.token) ? (<Button type="default" clicked={this.handleClickLogout.bind(this)}>Log Out</Button>)
+                                    :(<Popover {...popoverProps}>
+                                      <Button type="default" clicked={this.handleClickLogin.bind(this)}>Login</Button>
+                                      </Popover>)
 
       return (
         <Aux>
-          {logoutContent}
-          <Nav token={this.props.token}> {navButton} </Nav>
-          <div style={{padding: "10px"}} className={sty["row"]}>
-            <div className={sty["col-md-7"]}>
+        <Nav token={this.props.token}> {navButton} </Nav>
+        {logoutContent}
+        <Container fluid>
+          <Row>
+            <Col sm="7" md="7">
                   {this.props.children}
-            </div>
-            <div className={sty["col-md-5"]}>
+            </Col>
+            <Col sm="5" md="5">
               <section>
                 <User />
               </section>
                 <Switch>
                   <Route path="/issues/new" exact component={NewIssue} />
                 </Switch>
-
-            </div>
-          </div>
-        </Aux>
+            </Col>
+          </Row>
+        </Container>
+      </Aux>
       );
   }
 }

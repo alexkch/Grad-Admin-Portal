@@ -1,18 +1,22 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { NavLink as RouterLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import Box from '../../components/box/Box';
-import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
+import { Collapse,
+         Navbar as Userbar,
+         NavbarToggler as UserbarToggler,
+         NavbarBrand as UserbarBrand,
+         Nav as Menu,
+         NavItem as MenuItem,
+         NavLink as MenuLink } from 'reactstrap';
 
+import Aux from '../../wrapper/Auxiliary';
 class User extends Component {
-  constructor(props) {
-    super(props);
 
-    this.toggleNavbar = this.toggleNavbar.bind(this);
-    this.state = {
-      collapsed: true
-    };
+  state = {
+    collapsed: true
   }
+
   toggleNavbar() {
     this.setState({
       collapsed: !this.state.collapsed
@@ -22,25 +26,25 @@ class User extends Component {
     render () {
 
       let userPanel;
-      userPanel = (this.props.token) ? (<Box color="secondary" header={this.props.userId}>
-      <Navbar color="faded" light>
-          <NavbarBrand href="/" className="mr-auto">Name: {this.props.name}
-          UserType: {this.props.usertype}</NavbarBrand>
-          <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
+      userPanel = (this.props.token) ? (<Box color="secondary" header={this.props.name}>
+      <Userbar color="faded" light>
+          <UserbarBrand href="/" className="mr-auto"> <h4> UserType: {this.props.usertype} </h4> </UserbarBrand>
+          <UserbarToggler onClick={this.toggleNavbar.bind(this)} className="mr-2" />
           <Collapse isOpen={!this.state.collapsed} navbar>
-            <Nav navbar>
-              <NavItem>
-                <NavLink href="/components/">Components</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="https://github.com/reactstrap/reactstrap">Github</NavLink>
-              </NavItem>
-            </Nav>
+            <Menu navbar>
+              <MenuItem><h5>{this.props.userId}</h5></MenuItem>
+              <MenuItem>
+                <MenuLink><NavLink to='/issues/new'>New Issue</NavLink></MenuLink>
+              </MenuItem>
+              <MenuItem>
+                <MenuLink><NavLink to='/link199'>Link 2</NavLink></MenuLink>
+              </MenuItem>
+            </Menu>
           </Collapse>
-        </Navbar></Box>) :
-      (<Box color="secondary" header="Login required!">Please Login or <RouterLink to='/newuser' activeClassName="active">Register</RouterLink> to operate</Box>)
+        </Userbar></Box>) :
+      (<Box color="secondary" header="Login required!">Please Login or <NavLink to='/newuser' activeClassName="active">Register</NavLink> to operate</Box>)
 
-      return ( userPanel );
+      return ( <Aux>{userPanel}</Aux> );
     }
 }
 

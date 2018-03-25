@@ -1,13 +1,12 @@
 import React from 'react';
-
 import styles from './Form.css';
-import sty from '../../css/bootstrap.min.css'
+import bootstrap from '../../css/bootstrap.min.css'
 
 const form = ( props ) => {
     let inputElement = null;
-    let elementClassName = sty["form-control"];
-    let validClassName = sty["form-control"] + " " + sty["is-valid"];
-    let invalidClassName = sty["form-control"] + " " + sty["is-invalid"];
+    let elementClassName = bootstrap["form-control"];
+    let validClassName = bootstrap["form-control"] + " " + bootstrap["is-valid"];
+    let invalidClassName = bootstrap["form-control"] + " " + bootstrap["is-invalid"];
     if ( props.shouldValidate && props.touched) {
         if (props.invalid){
             elementClassName = invalidClassName;
@@ -57,7 +56,7 @@ const form = ( props ) => {
 
 
     return (
-        <div className={sty["form-group"]}>
+        <div className={bootstrap["form-group"]}>
             <label className={styles.Label}>{props.label}</label>
             {inputElement}
         </div>

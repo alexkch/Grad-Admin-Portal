@@ -3,7 +3,8 @@ import strcat from 'classnames';
 import { Pagination, PaginationItem, PaginationLink, Button, ButtonGroup , Container, Row, Col } from 'reactstrap';
 
 const Pagebar = (props) => (
-  <Container>
+
+    <Container style={{ "padding-top" : "5px"}}>
         <Row>
           <Col sm="10" />
           <Col sm="2">
