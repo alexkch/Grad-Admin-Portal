@@ -10,12 +10,12 @@ const card = (props) => (
         <CardHeader>
             <div style={{height: "12px"}}>
                 <Badge color='dark' style={{float: 'left'}}>ID:{props.issue_id} </Badge>
-                <Badge color='info' style={{float: 'right'}}>Priority: {props.priority}</Badge>
+                <Badge color={props.header_clr} style={{float: 'right'}}>Priority: {props.priority}</Badge>
             </div>
         </CardHeader>
 
         <CardBody>
-                <Button clicked={props.select}>Status:{props.status}</Button>
+                <Button type={props.btn_clr} clicked={props.select}>Status:{props.status}</Button>
         </CardBody>
     </Card>
   </section>

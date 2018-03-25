@@ -30,16 +30,29 @@ class Issues extends Component {
       this.setState({ selected: false });
     }
 
+    priorityColorHandler = (priority) => {
+      switch (priority) {
+        case ('urgent'): return 'danger'
+        case ('high'): return 'warning'
+        case ('medium'): return 'dark'
+        default: return 'dark'
+      }
+    }
+
 
     render () {
         let issues;
         issues = (this.props.error) ? (<p style={{textAlign: 'center'}}> {this.props.errorMsg} </p>) :
                  (this.props.issues.map((issue, index) => {
+                   let status_clr = ((issue.status) == 'open') ? 'primary' : 'secondary';
+                   let priority_clr = this.priorityColorHandler(issue.priority);
                    return <DisplayIssue key={issue._id}
                    created_by={issue.created_by}
                    issue_id={issue._id}
                    status={issue.status}
                    priority={issue.priority}
+                   status_clr = {status_clr}
+                   priority_clr= {priority_clr}
                    type={'short'}
                    select={() => this.viewIssueHandler(index)}
                    />}))
@@ -53,7 +66,7 @@ class Issues extends Component {
                   status={this.state.issue.status}
                   description={this.state.issue.description}
                   priority={this.state.issue.priority}
-                  type={'modal-short'}
+                  type={'modal-full'}
                   show={this.state.selected}
                   close={this.closeIssueHandler}
                   />) : null
