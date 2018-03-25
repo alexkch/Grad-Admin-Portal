@@ -53,6 +53,7 @@ describe('/api/issues', () => {
       expect(res.body.some(x => x.name === "Alex"));
     });
   });
+  
   describe('GET /:id', () => {
     it('should return a issue if valid id is passed', async () => {
       const issue = new Issue(
@@ -76,6 +77,7 @@ describe('/api/issues', () => {
 
     });
   });
+
   describe('POST /', () => {
     it('should return 401 since user is not signed in', async () => {
       const issue = new Issue(

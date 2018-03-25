@@ -37,7 +37,6 @@ router.post('/', /*authorize,*/ async (req, res) => {
 
 // get an issue by id
 router.get('/:id', validateObjId/*authorize*/, async (req, res) => {
-
 	const issue = await Issue.findById(req.params.id);
 	if (!issue) return res.status(404).send("issue with given ID was not found");
 	res.send(issue);
