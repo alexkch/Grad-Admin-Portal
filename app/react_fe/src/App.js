@@ -24,8 +24,8 @@ class App extends Component {
 
     let routes;
     routes = (this.props.token) ? ( <Switch>
-                          <Route path="/tickets" exact component={Tickets} />
-                          <Route path="/issues" exact component={Issues} />
+                          <Route path="/tickets" component={Tickets} />
+                          <Route path="/issues" component={Issues} />
                           </Switch>) : <Switch><Route path="/newuser" exact component={NewUser} /><Redirect to="/" /></Switch>
 
     return (
