@@ -48,7 +48,7 @@ class Issues extends Component {
                    let priority_clr = this.priorityColorHandler(issue.priority);
                    return <DisplayIssue key={issue._id}
                    created_by={issue.created_by}
-                   created_on={issue.created_on}
+                   created_on={new Date(issue.created_on).toDateString()}
                    issue_id={issue._id}
                    status={issue.status}
                    priority={issue.priority}
