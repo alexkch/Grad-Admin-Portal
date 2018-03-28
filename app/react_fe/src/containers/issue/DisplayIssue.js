@@ -32,6 +32,7 @@ class displayIssue extends Component {
                   <Card
                     issue_id={this.props.issue_id}
                     created_by={this.props.created_by}
+                    created_on={this.props.created_on}
                     priority={this.props.priority}
                     select={this.props.select}
                     status={this.props.status}

@@ -11,7 +11,7 @@ const router = express.Router();
 // get all issues
 router.get('/', async (req, res) => {
 
-  const issues = await Issue.find().sort('created_by');
+  const issues = await Issue.find().sort({created_on : -1});
 	res.send(issues);
 });
 
@@ -20,9 +20,7 @@ router.get('/', async (req, res) => {
 router.post('/', /*authorize,*/ async (req, res) => {
 
 	const { error } = validate(req.body);
-  console.log('validate');
 	if (error) return res.status(400).send(error.details[0].message);
-  console.log('validate success');
 
 	let issue = new Issue({
     created_by: req.body.created_by,
