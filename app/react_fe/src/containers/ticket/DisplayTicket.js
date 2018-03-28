@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Ticket from './Ticket';
 import EditTicketStatus from './EditTicket';
+import Aux from '../../utils/auxiliary';
 
 
 class DisplayTicket extends Component {
@@ -33,6 +34,14 @@ class DisplayTicket extends Component {
 			
 			case("edit"):
 				page = <EditTicketStatus ticket={this.state.ticket} />;
+				break;
+			case ( 'modal-short' ):
+				output = (
+				  <Aux onClick={this.props.select}>
+				      <h2>Ticket for {this.state.ticket.professor}</h2>
+				      <h5>Issue ID: {this.state.ticket._id}</h5>
+				  </Aux>
+				);
 				break;
 		}
 		return page;

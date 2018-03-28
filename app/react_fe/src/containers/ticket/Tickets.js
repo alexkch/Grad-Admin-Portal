@@ -49,16 +49,16 @@ class Tickets extends Component {
 
     render () {
         let tickets;
-        tickets = (this.state.error) ? (<p style={{textAlign: 'center'}}> {this.state.errorMsg} </p>) :
-                 (this.state.tickets.map((ticket, index) => {
-                   return <DisplayTicket ticket={this.state.ticket}
+        tickets = (this.props.error) ? (<p style={{textAlign: 'center'}}> {this.props.errorMsg} </p>) :
+                 (this.props.tickets.map((ticket, index) => {
+                   return <DisplayTicket ticket={ticket}
                    type={'short'}
                    select={() => this.viewTicketHandler(index)}
                    />}))
 
         let modalTicket;
         modalTicket = (this.state.selected) ? (<DisplayTicket
-                  ticket={this.state.ticket}
+                  ticket={ticket}
                   type={'modal-short'}
                   show={this.state.selected}
                   close={this.closeTicketHandler}
