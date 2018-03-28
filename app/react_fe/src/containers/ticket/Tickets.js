@@ -14,7 +14,8 @@ class Tickets extends Component {
       ticket: null,
       selected: false,
       error: false,
-      errorMsg: 'Something went wrong'
+      errorMsg: 'Something went wrong',
+      isLoggedIn: this.props.token
     }
 
 
@@ -28,6 +29,10 @@ class Tickets extends Component {
         this.setState({error: true, errorMsg: error.message});
       }
     };
+
+    //componentDidMount() {
+	//	this.props.actionGetIssues();
+    //}
 
     viewTicketHandler = (ticketIndex) => {
       //const issues = [...this.state.issues]; //this.state.issues.slice();
