@@ -39,6 +39,7 @@ class displayIssue extends Component {
                     created_by_id={this.props.created_by_id}
                     btn_clr={this.props.status_clr}
                     header_clr={this.props.priority_clr}
+                    type='issues'
                   />
                 );
         }
