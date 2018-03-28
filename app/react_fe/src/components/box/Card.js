@@ -10,7 +10,7 @@ const card = (props) => (
         <CardHeader>
           <Badge color='dark' style={{float: 'left'}}>ID:{props.issue_id}</Badge>
           <Badge color={props.header_clr} style={{float: 'right'}}>Priority: {props.priority}</Badge>
-          <text style={{color:"black"}}> Created on:  {props.created_on}</text>
+          <span style={{color:"black", paddingLeft:"10px"}}>Created on: {props.created_on}</span>
         </CardHeader>
 
         <CardBody>

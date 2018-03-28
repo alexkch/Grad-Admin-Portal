@@ -62,7 +62,10 @@ export const createIssue = (token, session, form) => {
         status: 'open'
       }
       console.log(postData);
-      const res = await axios.post('/issues', postData);
+      const header = {
+        headers: { 'x-auth-token': token }
+      }
+      const res = await axios.post('/issues', postData, header);
       dispatch(postSuccess());
       dispatch(getIssues());
       } catch (error) {
