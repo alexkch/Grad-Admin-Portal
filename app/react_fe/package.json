@@ -43,6 +43,7 @@
     "react": "^16.2.0",
     "react-dev-utils": "^5.0.0",
     "react-dom": "^16.2.0",
+    "react-fontawesome": "^1.6.1",
     "react-popover": "^0.5.4",
     "react-popup": "^0.9.2",
     "react-redux": "^5.0.7",

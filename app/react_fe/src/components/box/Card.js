@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '../button/Button';
+import FontAwesome from 'react-fontawesome';
 import { Card, CardHeader, CardBody, Badge } from 'reactstrap';
 
 
@@ -15,6 +16,8 @@ const card = (props) => (
 
         <CardBody>
                 <Button type={props.btn_clr} clicked={props.select}>Status:{props.status}</Button>
+                <FontAwesome name='trash-o' size='2x' style={{float: 'right', paddingLeft: '10px'}} />
+                <FontAwesome name='comments-o' size='2x' style={{float: 'right'}} />
         </CardBody>
     </Card>
   </section>
