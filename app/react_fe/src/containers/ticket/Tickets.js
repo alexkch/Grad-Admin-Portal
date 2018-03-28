@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import DisplayTicket from './DisplayTicket';
 import Modal from '../../components/modal/Modal';
-import Aux from '../../wrapper/Auxiliary';
+import Aux from '../../utils/auxiliary';
 import styles from './Ticket.css';
 import * as Actions from "../../store/actions";
 import {connect} from "react-redux";
@@ -58,7 +58,7 @@ class Tickets extends Component {
 
         let modalTicket;
         modalTicket = (this.state.selected) ? (<DisplayTicket
-                  ticket={ticket}
+                  /* ticket={ticket} */
                   type={'modal-short'}
                   show={this.state.selected}
                   close={this.closeTicketHandler}
