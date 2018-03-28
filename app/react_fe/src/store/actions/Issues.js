@@ -4,6 +4,7 @@ import axios from 'axios';
 export const setIssues = (issues) => {
   return {
     type: actionTypes.SET_ISSUES,
+    error: false,
     issues: issues
   };
 };
@@ -11,6 +12,7 @@ export const setIssues = (issues) => {
 export const setIssuesFail = (errorMsg) => {
   return {
     type: actionTypes.SET_ISSUES_FAIL,
+    error: true,
     errorMsg: errorMsg
   };
 };
@@ -36,14 +38,14 @@ export const postIssue = (issues) => {
 export const postSuccess = (errorMsg) => {
   return {
     type: actionTypes.POST_ISSUE_SUCCESS,
-    error: 'false'
+    error: false
   };
 };
 
 export const postFail = (errorMsg) => {
   return {
     type: actionTypes.POST_ISSUE_FAIL,
-    error: 'true',
+    error: true,
     errorMsg: errorMsg
   };
 };
@@ -55,10 +57,11 @@ export const createIssue = (token, session, form) => {
       const postData = {
         created_by_id: session.userId,
         created_by: session.name,
-        description: session.description,
-        status: session.status,
-        priority: session.priority
+        description: form.description.value,
+        priority: form.priority.value,
+        status: 'open'
       }
+      console.log(postData);
       const res = await axios.post('/issues', postData);
       dispatch(postSuccess());
       dispatch(getIssues());

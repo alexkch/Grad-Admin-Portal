@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import * as Actions from '../../store/actions/';
 import Form from '../../components/form/Form';
 import checkValidity from '../../utils/validateForm';
 import Box from '../../components/box/Box';
@@ -25,6 +27,7 @@ class NewIssue extends Component {
                 elementType: 'select',
                 elementConfig: {
                     options: [
+                        {value: '', displayValue: 'Select a priority'},
                         {value: 'urgent', displayValue: 'Urgent'},
                         {value: 'high', displayValue: 'High'},
                         {value: 'medium', displayValue: 'Medium'},
@@ -39,12 +42,10 @@ class NewIssue extends Component {
         formIsValid: false,
     }
 
-    postHandler = ( event ) => {
-        event.preventDefault();
-        const formData = {};
-        for (let input in this.state.form) {
-            formData[input] = this.state.form[input].value;
-        }
+    createIssueHandler = (event) => {
+      event.preventDefault();
+      let session_meta = { userId : this.props.userId, name : this.props.name};
+      this.props.createIssue(this.props.token, session_meta, this.state.form);
     }
 
     inputChangedHandler = (event, inputIdentifier) => {
@@ -75,7 +76,7 @@ class NewIssue extends Component {
             });
         }
         let form = (
-            <form onSubmit={this.postHandler}>
+            <form onSubmit={this.createIssueHandler}>
                 {formElementsArray.map(formElement => (
                     <Form
                         key={formElement.id}
@@ -95,5 +96,20 @@ class NewIssue extends Component {
         );
     }
 }
+const mapStateToProps = state => {
+  return {
+      token: state.user.token,
+      userId: state.user.userId,
+      name: state.user.name,
+      error: state.issue.error,
+      errorMsg: state.issue.errorMsg
+  };
+};
 
-export default NewIssue;
+const mapDispatchToProps = dispatch => {
+  return {
+	   createIssue : (token, session, form) => dispatch(Actions.createIssue(token, session, form))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewIssue);

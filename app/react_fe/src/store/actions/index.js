@@ -1,5 +1,6 @@
 export {
-  getIssues
+  getIssues,
+  createIssue
 } from './Issues';
 export {
   auth,

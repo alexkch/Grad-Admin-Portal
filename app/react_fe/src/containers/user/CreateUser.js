@@ -76,14 +76,6 @@ class NewUser extends Component {
       this.props.newUser(this.state.form);
     }
 
-    postHandler = ( event ) => {
-        event.preventDefault();
-        const formData = {};
-        for (let input in this.state.form) {
-            formData[input] = this.state.form[input].value;
-        }
-    }
-
     inputChangedHandler = (event, inputIdentifier) => {
         const updatedform = {
             ...this.state.form
