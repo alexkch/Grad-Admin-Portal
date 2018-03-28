@@ -17,10 +17,13 @@ export const setIssuesFail = (errorMsg) => {
   };
 };
 
-export const getIssues = () => {
+export const getIssues = (token) => {
   return async dispatch => {
     try {
-      const res = await axios.get('/issues');
+      const header = {
+        headers: { 'x-auth-token': token }
+      }
+      const res = await axios.get('/issues', header);
       dispatch(setIssues(res.data));
 
     } catch (error) {

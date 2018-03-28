@@ -15,7 +15,7 @@ class Issues extends Component {
     }
 
     componentDidMount() {
-      this.props.actionGetIssues();
+      this.props.actionGetIssues(this.props.token);
     }
 
     viewIssueHandler = (issueIndex) => {
@@ -99,7 +99,7 @@ const mapStateToProps = state => {
 // pass using props , this.props.onSetIssues
 const mapDispatchToProps = dispatch => {
   return {
-    actionGetIssues: () => dispatch(Actions.getIssues())
+    actionGetIssues: (token) => dispatch(Actions.getIssues(token))
   };
 };
 
