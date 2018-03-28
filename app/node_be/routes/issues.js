@@ -11,9 +11,7 @@ const router = express.Router();
 // get all issues
 router.get('/', authorize, async (req, res) => {
 
-  console.log(req.body);
-  console.log(req.user);
-  const issues = await Issue.find().sort({created_on : -1});
+  const issues = await Issue.find({created_by_id : req.user._id}).sort({created_on : -1});
 	res.send(issues);
 });
 
