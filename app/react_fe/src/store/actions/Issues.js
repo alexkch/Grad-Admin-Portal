@@ -27,20 +27,43 @@ export const getIssues = () => {
   };
 };
 
+export const postIssue = (issues) => {
+  return {
+    type: actionTypes.POST_ISSUE
+  };
+};
+
+export const postSuccess = (errorMsg) => {
+  return {
+    type: actionTypes.POST_ISSUE_SUCCESS,
+    error: 'false'
+  };
+};
+
+export const postFail = (errorMsg) => {
+  return {
+    type: actionTypes.POST_ISSUE_FAIL,
+    error: 'true',
+    errorMsg: errorMsg
+  };
+};
 
 export const createIssue = (token, session, form) => {
   return async dispatch => {
     try {
-      //dispatch(postIssue());
+      dispatch(postIssue());
       const postData = {
         created_by_id: session.userId,
         created_by: session.name,
-        fields : form
+        description: session.description,
+        status: session.status,
+        priority: session.priority
       }
       const res = await axios.post('/issues', postData);
-      //dispatch(postSuccess(res.data));
+      dispatch(postSuccess());
+      dispatch(getIssues());
       } catch (error) {
-      //dispatch(postFail(error.message));
+      dispatch(postFail(error.message));
     };
   };
 };

@@ -21,33 +21,6 @@ class NewIssue extends Component {
                 valid: false,
                 touched: false
             },
-            name: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'name',
-                    placeholder: 'Your Name'
-                },
-                value: '',
-                validation: {
-                    required: true
-                },
-                valid: false,
-                touched: false
-            },
-            email: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'email',
-                    placeholder: 'Your E-Mail'
-                },
-                value: '',
-                validation: {
-                    required: true,
-                    isEmail: true
-                },
-                valid: false,
-                touched: false
-            },
             priority: {
                 elementType: 'select',
                 elementConfig: {

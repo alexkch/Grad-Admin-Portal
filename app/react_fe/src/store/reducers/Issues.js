@@ -27,7 +27,9 @@ const reducer = ( state = initialState, action ) => {
             return update(state, {error : false} );
 
         case actionTypes.POST_ISSUE_FAIL:
-            return update(state, {error : true} );
+            return update(state, {
+              error : true,
+              errorMsg: action.errorMsg});
 
         default:
             return state;

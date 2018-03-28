@@ -7,7 +7,7 @@ const box = (props) => {
 
     return (<section style={{"paddingTop": "10px" }}>
               <Card>
-                <CardHeader>{props.header}</CardHeader>
+                <CardHeader style={{"color":"black", "fontWeight" : "bold"}}>{props.header}</CardHeader>
                 <CardBody>{props.children}</CardBody>
               </Card>
             </section>)};
