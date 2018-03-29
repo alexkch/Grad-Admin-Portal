@@ -1,5 +1,6 @@
 import * as actionTypes from '../../utils/actionTypes';
 import axios from 'axios';
+import strcat from 'classnames';
 
 export const setIssues = (issues) => {
   return {
@@ -23,7 +24,7 @@ export const getIssues = (token) => {
       const header = {
         headers: { 'x-auth-token': token }
       }
-      const res = await axios.get('/issues?page=1&order=c', header);
+      const res = await axios.get('/issues', header);
       dispatch(setIssues(res.data));
 
     } catch (error) {

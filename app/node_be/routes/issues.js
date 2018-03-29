@@ -11,15 +11,17 @@ const router = express.Router();
 // get all issues
 router.get('/', authorize, async (req, res) => {
   const pageNum = (req.query.page) ? (req.query.page) : 1;
-  const pageSize = 5;
+  const pageSize = 4;
   const order = (req.query.order === 'asc') ? 1 : -1;
   const sortBy = (req.query.sort) ? (req.query.sort) : "created_on";
-
+  console.log(pageNum);
+  console.log(order);
+  console.log(sortBy);
   const issues = await Issue
                         .find({created_by_id : req.user._id})
-                        .skip((pageNum - 1))
+                        .skip((pageNum - 1) * pageSize)
                         .limit(pageSize)
-                        .sort({ sortBy : order });
+                        .sort({ [sortBy] : order });
 	res.send(issues);
 });
 
