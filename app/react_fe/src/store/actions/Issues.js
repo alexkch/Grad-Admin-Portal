@@ -23,7 +23,7 @@ export const getIssues = (token) => {
       const header = {
         headers: { 'x-auth-token': token }
       }
-      const res = await axios.get('/issues', header);
+      const res = await axios.get('/issues?page=1&order=c', header);
       dispatch(setIssues(res.data));
 
     } catch (error) {
