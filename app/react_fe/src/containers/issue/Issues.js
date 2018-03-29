@@ -9,7 +9,7 @@ import Pagebar from '../../components/navigation/Pagebar';
 class Issues extends Component {
 
     state = {
-      issue: null,
+      selected_issue: null,
       selected: false,
       isLoggedIn: this.props.token
     }
@@ -23,7 +23,7 @@ class Issues extends Component {
       const issue = {
         ...this.props.issues[issueIndex]
       };
-      this.setState({issue: issue, selected: true });
+      this.setState({selected_issue: issue, selected: true });
     }
 
     closeIssueHandler = () => {
@@ -60,13 +60,13 @@ class Issues extends Component {
 
         let modalIssue;
         modalIssue = (this.state.selected) ? (<DisplayIssue
-                  key={this.state.issue._id}
-                  issue_id={this.state.issue._id}
-                  created_by={this.state.issue.created_by}
-                  created_by_id={this.state.issue.created_by_id}
-                  status={this.state.issue.status}
-                  description={this.state.issue.description}
-                  priority={this.state.issue.priority}
+                  key={this.state.selected_issue._id}
+                  issue_id={this.state.selected_issue._id}
+                  created_by={this.state.selected_issue.created_by}
+                  created_by_id={this.state.selected_issue.created_by_id}
+                  status={this.state.selected_issue.status}
+                  description={this.state.selected_issue.description}
+                  priority={this.state.selected_issue.priority}
                   type={'modal-full'}
                   show={this.state.selected}
                   close={this.closeIssueHandler}
