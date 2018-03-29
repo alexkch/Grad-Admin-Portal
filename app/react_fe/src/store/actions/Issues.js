@@ -70,7 +70,7 @@ export const createIssue = (token, session, form) => {
       }
       const res = await axios.post('/issues', postData, header);
       dispatch(postSuccess());
-      dispatch(getIssues());
+      dispatch(getIssues(token));
       } catch (error) {
       dispatch(postFail(error.message));
     };

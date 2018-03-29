@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.get('/', async (req, res) => {
 
-  const tickets = await Ticket.find().sort('professor');
+  const tickets = await Ticket.find().sort({created_on : -1});
 	res.send(tickets);
 });
 
