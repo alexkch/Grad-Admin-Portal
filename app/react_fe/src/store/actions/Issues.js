@@ -32,6 +32,38 @@ export const getIssues = (token) => {
   };
 };
 
+export const setIssue = (issue) => {
+  return {
+    type: actionTypes.SET_ISSUES,
+    error: false,
+    selected_issue: issue
+  };
+};
+
+export const setIssueFail = (errorMsg) => {
+  return {
+    type: actionTypes.SET_ISSUES_FAIL,
+    error: true,
+    errorMsg: errorMsg
+  };
+};
+
+export const getIssue = (token, id) => {
+  return async dispatch => {
+    try {
+      const header = {
+        headers: { 'x-auth-token': token }
+      }
+      const res = await axios.get('/issues/' + id, header);
+      dispatch(setIssue(res.data));
+
+    } catch (error) {
+      dispatch(setIssueFail(error.message));
+    };
+  };
+};
+
+
 export const postIssue = (issues) => {
   return {
     type: actionTypes.POST_ISSUE

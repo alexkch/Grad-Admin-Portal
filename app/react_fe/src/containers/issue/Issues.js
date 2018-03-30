@@ -82,8 +82,8 @@ class Issues extends Component {
             <Aux>
               <Switch>
                 <Route path="/issues/:id/del" exact component={DeleteIssue} />
-                <Route path="/issues/:id/edit" exact render={ () =>
-                  <Modal show={this.state.selected} close={this.closeIssueHandler}>
+                <Route path="/issues/:id/edit" exact render={ (props) =>
+                  <Modal {...props} show={this.state.selected} close={this.closeIssueHandler}>
                     {editIssue}
                   </Modal>
                 }/>

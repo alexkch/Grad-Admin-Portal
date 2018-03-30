@@ -23,7 +23,18 @@ class Notes extends Component {
       return (
         <Container>
             <Row>
-                <Col md="6">
+              <Col md="3">
+              <Card
+              created_by="guy"
+              created_on="99"
+              issue_id="8888"
+              status="open"
+              priority="high"
+              btn_clr ="primary"
+              header_clr="warning"
+              type='issue'
+              /></Col>
+              <Col md="9">
                             <ul className={styles.chat}>
                                 <li className={styles.left}>
                                     <div className={styles.chatBody}>
@@ -52,9 +63,7 @@ class Notes extends Component {
 
 
                             </ul>
-
-
-            </Col>
+                            </Col>
         </Row>
         </Container>
         );
