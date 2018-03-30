@@ -3,6 +3,7 @@ import update from '../../utils/update';
 
 const initialState = {
     offers: [],
+    offer: null,
     error: false,
     errorMsg: ''
 };
@@ -15,6 +16,16 @@ const reducer = ( state = initialState, action ) => {
               offers : action.offers});
 
         case actionTypes.SET_OFFERS_FAIL:
+            return update(state, {
+              error : action.error,
+              errorMsg : action.errorMsg});
+
+        case actionTypes.SET_OFFER:
+            return update(state, {
+              error : action.error,
+              offer : action.offer});
+
+        case actionTypes.SET_OFFER_FAIL:
             return update(state, {
               error : action.error,
               errorMsg : action.errorMsg});

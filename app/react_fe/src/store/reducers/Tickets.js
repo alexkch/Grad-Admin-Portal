@@ -3,6 +3,7 @@ import update from '../../utils/update';
 
 const initialState = {
     tickets: [],
+    ticket: null,
     error: false,
     errorMsg: ''
 };
@@ -15,6 +16,16 @@ const reducer = ( state = initialState, action ) => {
               tickets : action.tickets});
 
         case actionTypes.SET_TICKETS_FAIL:
+            return update(state, {
+              error : action.error,
+              errorMsg : action.errorMsg});
+
+        case actionTypes.SET_TICKET:
+            return update(state, {
+              error : action.error,
+              ticket : action.ticket});
+
+        case actionTypes.SET_TICKET_FAIL:
             return update(state, {
               error : action.error,
               errorMsg : action.errorMsg});
