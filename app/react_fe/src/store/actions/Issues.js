@@ -146,7 +146,6 @@ export const editIssue = (token, id, session, form) => {
         priority: form.priority.value,
         status: form.status.value
       }
-      console.log(putData);
       const header = {
         headers: { 'x-auth-token': token }
       }
@@ -154,7 +153,6 @@ export const editIssue = (token, id, session, form) => {
       dispatch(updateSuccess());
       dispatch(getIssues(token));
       } catch (error) {
-        console.log('after res');
       dispatch(updateFail(error.message));
     };
   };
