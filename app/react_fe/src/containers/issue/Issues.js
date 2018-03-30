@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route, Redirect, Switch } from 'react-router-dom';
-import DisplayIssue from './DisplayIssue';
+import EditIssue from './EditIssue';
 import DeleteIssue from './DeleteIssue';
 import * as Actions from '../../store/actions/';
 import Modal from '../../components/modal/Modal';
 import Aux from '../../utils/auxiliary';
 import Pagebar from '../../components/navigation/Pagebar';
+import Card from '../../components/box/Card';
 
 class Issues extends Component {
 
@@ -49,20 +50,20 @@ class Issues extends Component {
                  (this.props.issues.map((issue, index) => {
                    let status_clr = ((issue.status) === 'open') ? 'primary' : 'secondary';
                    let priority_clr = this.priorityColorHandler(issue.priority);
-                   return <DisplayIssue key={issue._id}
+                   return <Card key={issue._id}
                    created_by={issue.created_by}
                    created_on={new Date(issue.created_on).toDateString()}
                    issue_id={issue._id}
                    status={issue.status}
                    priority={issue.priority}
-                   status_clr = {status_clr}
-                   priority_clr= {priority_clr}
-                   type={'short'}
+                   btn_clr = {status_clr}
+                   header_clr= {priority_clr}
+                   type='issues'
                    select={() => this.viewIssueHandler(index)}
                    />}))
 
         let modalIssue;
-        modalIssue = (this.state.selected) ? (<DisplayIssue
+        modalIssue = (this.state.selected) ? (<EditIssue
                   key={this.state.selected_issue._id}
                   issue_id={this.state.selected_issue._id}
                   created_by={this.state.selected_issue.created_by}

@@ -7,14 +7,6 @@ class displayIssue extends Component {
         let output = null;
 
         switch ( this.props.type ) {
-            case ( 'modal-short' ):
-                output = (
-                  <Aux onClick={this.props.select}>
-                      <h2>Issue for {this.props.created_by}</h2>
-                      <h5>Issue ID: {this.props.issue_id}</h5>
-                  </Aux>
-                );
-                break;
             case ( 'modal-full' ):
                 output = (
                   <Aux onClick={this.props.select}>
