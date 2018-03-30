@@ -94,7 +94,7 @@ const mapStateToProps = state => {
 // pass using props , this.props.onSetIssues
 const mapDispatchToProps = dispatch => {
     return {
-        actionGetOffers: () => dispatch(Actions.getOffers())
+        actionGetOffers: (token) => dispatch(Actions.getOffers(token))
     };
 };
 
