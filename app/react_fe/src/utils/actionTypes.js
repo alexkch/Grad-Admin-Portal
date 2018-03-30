@@ -21,6 +21,9 @@ export const UPDATE_ISSUE_FAIL = 'UPDATE_ISSUE_FAIL';
 export const SET_OFFERS = 'SET_OFFERS';
 export const SET_OFFERS_FAIL = 'SET_OFFERS_FAIL';
 
+export const SET_OFFER = 'SET_OFFER';
+export const SET_OFFER_FAIL = 'SET_OFFER_FAIL';
+
 export const POST_OFFER = 'POST_OFFER';
 export const POST_OFFER_SUCCESS = 'POST_OFFER_SUCCESS';
 export const POST_OFFER_FAIL = 'POST_OFFER_FAIL';
@@ -37,6 +40,9 @@ export const UPDATE_OFFER_FAIL = 'UPDATE_OFFER_FAIL';
 //Issues
 export const SET_TICKETS = 'SET_TICKETS';
 export const SET_TICKETS_FAIL = 'SET_TICKETS_FAIL';
+
+export const SET_TICKET = 'SET_TICKET';
+export const SET_TICKET_FAIL = 'SET_TICKET_FAIL';
 
 export const POST_TICKET = 'POST_TICKET';
 export const POST_TICKET_SUCCESS = 'POST_TICKET_SUCCESS';
