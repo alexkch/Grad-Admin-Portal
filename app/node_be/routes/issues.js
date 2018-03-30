@@ -51,10 +51,13 @@ router.get('/:id', validateObjId/*authorize*/, async (req, res) => {
 
 
 // edit an issue
-router.put('/:id', /*[authorize, validateObjId]*/ validateObjId , async (req, res) => {
+router.put('/:id', [authorize, validateObjId], async (req, res) => {
 
   const {error} = validate(req.body);
 	if (error) return res.status(400).send(error.details[0].message);
+
+  const isOwner = await Issue.findOne({ _id : req.params.id, created_by_id : req.user._id });
+  if (!isOwner) return res.status(404).send("issue with given ID was not found");
 
   const issue = await Issue.findByIdAndUpdate(req.params.id,
     {
@@ -65,7 +68,7 @@ router.put('/:id', /*[authorize, validateObjId]*/ validateObjId , async (req, re
     },
     { new : true }
   );
-	if (!issue) return res.status(404).send("issue with given ID was not found");
+	if (!issue) return res.status(404).send("database error");
 
 	res.send(issue);
 });
@@ -74,8 +77,8 @@ router.put('/:id', /*[authorize, validateObjId]*/ validateObjId , async (req, re
 // delete an issue
 router.delete('/:id', [authorize, validateObjId], async (req, res) => {
 
-  const valid = await Issue.findOne({ _id : req.params.id, created_by_id : req.user._id });
-  if (!valid) return res.status(404).send("issue with given ID was not found");
+  const isOwner = await Issue.findOne({ _id : req.params.id, created_by_id : req.user._id });
+  if (!isOwner) return res.status(404).send("issue with given ID was not found");
 
 	const issue = await Issue.findByIdAndRemove(req.params.id);
 	if (!issue) return res.status(404).send("database error");
