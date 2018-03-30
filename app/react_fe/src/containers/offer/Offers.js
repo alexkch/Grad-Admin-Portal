@@ -6,69 +6,65 @@ import Modal from '../../components/modal/Modal';
 import Aux from '../../utils/auxiliary';
 import Pagebar from '../../components/navigation/Pagebar';
 
-class Issues extends Component {
+class Offers extends Component {
 
     state = {
-        issue: null,
+        offer: null,
         selected: false,
         isLoggedIn: this.props.token
     }
 
     componentDidMount() {
-        this.props.actionGetIssues();
+        this.props.getOffers();
     }
 
-    viewIssueHandler = (issueIndex) => {
+    viewOfferHandler = (offerIndex) => {
         //const issues = [...this.state.issues]; //this.state.issues.slice();
-        const issue = {
-            ...this.props.issues[issueIndex]
+        const offer = {
+            ...this.props.offers[offerIndex]
         };
-        this.setState({issue: issue, selected: true });
+        this.setState({offer: offer, selected: true });
     }
 
-    closeIssueHandler = () => {
+    closeOfferHandler = () => {
         this.setState({ selected: false });
     }
 
-    priorityColorHandler = (priority) => {
-        switch (priority) {
-            case ('urgent'): return 'danger'
-            case ('high'): return 'warning'
-            case ('medium'): return 'dark'
-            default: return 'dark'
-        }
-    }
+    //priorityColorHandler = (priority) => {
+    //    switch (priority) {
+    //        case ('urgent'): return 'danger'
+    //        case ('high'): return 'warning'
+    //        case ('medium'): return 'dark'
+    //        default: return 'dark'
+    //    }
+    //}
 
 
     render () {
-        let issues;
-        issues = (this.props.error) ? (<p style={{textAlign: 'center'}}> {this.props.errorMsg} </p>) :
-            (this.props.issues.map((issue, index) => {
-                let status_clr = ((issue.status) === 'open') ? 'primary' : 'secondary';
-                let priority_clr = this.priorityColorHandler(issue.priority);
-                return <DisplayIssue key={issue._id}
-                                     created_by={issue.created_by}
-                                     issue_id={issue._id}
-                                     status={issue.status}
-                                     priority={issue.priority}
-                                     status_clr = {status_clr}
-                                     priority_clr= {priority_clr}
+        let offers;
+        offers = (this.props.error) ? (<p style={{textAlign: 'center'}}> {this.props.errorMsg} </p>) :
+            (this.props.offers.map((offer, index) => {
+                return <DisplayOffer key={offer.ticket_id}
+                                     created_by={offer.created_by}
+				     				 applicant_id={offer.applicant_id}
+                                     ticket_id={offer.ticket_id}
+                                     status={offer.status}
                                      type={'short'}
-                                     select={() => this.viewIssueHandler(index)}
+                                     select={() => this.viewOfferHandler(index)}
                 />}))
 
-        let modalIssue;
-        modalIssue = (this.state.selected) ? (<DisplayIssue
-            key={this.state.issue._id}
-            issue_id={this.state.issue._id}
-            created_by={this.state.issue.created_by}
-            created_by_id={this.state.issue.created_by_id}
-            status={this.state.issue.status}
-            description={this.state.issue.description}
-            priority={this.state.issue.priority}
+        let modalOffer;
+        modalOffer = (this.state.selected) ? (<DisplayOffer
+            key={this.state.offer.ticket_id}
+            professor_id={this.state.offer.professor_id}
+            round={this.state.offer.round}
+            ap_type={this.state.offer.type}
+            applicant_id={this.state.offer.applicant_id}
+			ticket_id={this.state.offer.ticket_id}
             type={'modal-full'}
             show={this.state.selected}
             close={this.closeIssueHandler}
+            select={() => this.viewOfferHandler(index)}
         />) : null
 
 
@@ -76,9 +72,9 @@ class Issues extends Component {
             <Aux>
                 <Pagebar />
                 <Modal show={this.state.selected} close={this.closeIssueHandler} >
-                    {modalIssue}
+                    {modalOffer}
                 </Modal>
-                {issues}
+                {offers}
             </Aux>
         );
     }
@@ -89,17 +85,17 @@ const mapStateToProps = state => {
         token: state.user.token,
         userId: state.user.userId,
         name: state.user.name,
-        issues: state.issue.issues,
-        error: state.issue.error,
-        errorMsg: state.issue.errorMsg
+        offers: state.offer.offers,
+        error: state.offer.error,
+        errorMsg: state.offer.errorMsg
     };
 };
 
 // pass using props , this.props.onSetIssues
 const mapDispatchToProps = dispatch => {
     return {
-        actionGetIssues: () => dispatch(Actions.getIssues())
+        actionGetOffers: () => dispatch(Actions.getOffers())
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Issues);
+export default connect(mapStateToProps, mapDispatchToProps)(Offers);

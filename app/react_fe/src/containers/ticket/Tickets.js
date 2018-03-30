@@ -21,13 +21,14 @@ class Tickets extends Component {
 
     async componentDidMount() {
       //const res = await axios.get('/issues');
-      try {
-        const res = await axios.get('/tickets');
-        this.setState({tickets: res.data, error: false});
-      } catch (error) {
-        console.log(error);
-        this.setState({error: true, errorMsg: error.message});
-      }
+      //try {
+      //  const res = await axios.get('/tickets');
+      //  this.setState({tickets: res.data, error: false});
+      //} catch (error) {
+      //  console.log(error);
+      //  this.setState({error: true, errorMsg: error.message});
+      //}
+		this.props.getTickets(this.props.token);
     };
 
     //componentDidMount() {
@@ -91,6 +92,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         //actionGetTickets: () => dispatch(Actions.getTickets())
+		//getTickets: (token) => dispatch(Actions.getTickets(token))
     };
 };
 

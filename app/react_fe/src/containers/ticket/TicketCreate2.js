@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Form from '../../components/form/Form';
+import * as Actions from '../../store/actions/';
 import checkValidity from '../../utils/validateForm';
 import Box from '../../components/box/Box';
 import Button from '../../components/button/Button';
@@ -53,10 +55,10 @@ class TicketCreate2 extends Component {
 
     postHandler = ( event ) => {
         event.preventDefault();
-        const formData = {};
-        for (let input in this.state.form) {
-            formData[input] = this.state.form[input].value;
-        }
+        let session_meta = { userId : this.props.userId, name : this.props.name};
+		//for (var i = 0; i < this.state.amount; i++) {
+		this.props.createTicket(this.props.token, session_meta, this.state.form);
+		//}
     }
 
     inputChangedHandler = (event, inputIdentifier) => {
@@ -107,5 +109,19 @@ class TicketCreate2 extends Component {
         );
     }
 }
+const mapStateToProps = state => {
+  return {
+      token: state.user.token,
+      userId: state.user.userId,
+      name: state.user.name,
+      error: state.issue.error,
+      errorMsg: state.issue.errorMsg
+  };
+};
 
-export default TicketCreate2;
+const mapDispatchToProps = dispatch => {
+  return {
+	   createTicket : (token, session, form) => dispatch(Actions.createTicket(token, session, form))
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(TicketCreate2);

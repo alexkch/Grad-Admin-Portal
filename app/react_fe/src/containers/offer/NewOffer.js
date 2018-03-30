@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import * as Actions from '../../store/actions/';
 import Form from '../../components/form/Form';
 import checkValidity from '../../utils/validateForm';
 import Box from '../../components/box/Box';
@@ -77,10 +79,8 @@ class NewOffer extends Component {
 
     postHandler = ( event ) => {
         event.preventDefault();
-        const formData = {};
-        for (let input in this.state.form) {
-            formData[input] = this.state.form[input].value;
-        }
+	let session_meta = { userId : this.props.userId, name : this.props.name};
+	this.props.createOffer(this.props.token, session_meta, this.state.form);
     }
 
     inputChangedHandler = (event, inputIdentifier) => {
@@ -131,5 +131,20 @@ class NewOffer extends Component {
         );
     }
 }
+const mapStateToProps = state => {
+  return {
+      token: state.user.token,
+      userId: state.user.userId,
+      name: state.user.name,
+      error: state.issue.error,
+      errorMsg: state.issue.errorMsg
+  };
+};
 
-export default NewOffer;
+const mapDispatchToProps = dispatch => {
+  return {
+	   createOffer : (token, session, form) => dispatch(Actions.createOffer(token, session, form))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewOffer);

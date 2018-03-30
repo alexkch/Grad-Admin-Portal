@@ -22,7 +22,7 @@ class displayOffer extends Component {
                         <h5>Ticket ID: {this.props.ticket_id}</h5>
                         <h5>Round number: {this.props.round}</h5>
                         <h5>professor {this.props.professor_id}</h5>
-                        <h5>type: {this.props.type}</h5>
+                        <h5>type: {this.props.ap_type}</h5>
                     </Aux>
                 );
                 break;
