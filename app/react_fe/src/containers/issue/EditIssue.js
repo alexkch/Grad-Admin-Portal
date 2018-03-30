@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as Actions from '../../store/actions/';
+import { Container, Row, Col } from 'reactstrap';
 import Form from '../../components/form/Form';
 import checkValidity from '../../utils/validateForm';
 import Box from '../../components/box/Box';
 import Button from '../../components/button/Button';
-import Aux from '../../utils/auxiliary';
-import Card from '../../components/box/Card';
 import Modal from '../../components/modal/Modal';
 
 class editIssue extends Component {
@@ -30,11 +29,24 @@ class editIssue extends Component {
               elementType: 'select',
               elementConfig: {
                   options: [
-                      {value: '', displayValue: 'Select a priority'},
+                      {value: '', displayValue: 'Change priority'},
                       {value: 'urgent', displayValue: 'Urgent'},
                       {value: 'high', displayValue: 'High'},
                       {value: 'medium', displayValue: 'Medium'},
                       {value: 'low', displayValue: 'Low'}
+                  ]
+              },
+              value: '',
+              validation: {},
+              valid: true
+          },
+          status: {
+              elementType: 'select',
+              elementConfig: {
+                  options: [
+                      {value: '', displayValue: 'Change the status'},
+                      {value: 'open', displayValue: 'open'},
+                      {value: 'closed', displayValue: 'closed'}
                   ]
               },
               value: '',
@@ -91,28 +103,41 @@ class editIssue extends Component {
                       touched={formElement.config.touched}
                       changed={(event) => this.inputChangedHandler(event, formElement.id)} />
               ))}
-              <Button disabled={!this.state.formIsValid} type={'disabled-stretch'}>Submit</Button>
+              <Button disabled={!this.state.formIsValid} type={'disabled-stretch'}>Update</Button>
           </form>
       );
 
 
-      return (
-              <Aux>
-                <section>
-                  <p>issue_id={this.props.issue_id}
-                  created_by={this.props.created_by}
-                  created_by_id={this.props.created_by_id}
-                  status={this.props.status}
-                  description={this.props.description}
-                  priority={this.props.priority}
-                  </p>
-                </section>
-                <section>
-                  <Box color="secondary" header={"Create new Issues"}>{form}</Box>
-                </section>
-              </Aux>
-        );
+      return (<Container fluid>
+                <Row>
+                  <Col md="6">
+                    <h5>Issue: ({this.props.issue_id})</h5>
+                    <h4>owner: {this.props.created_by}</h4>
+                    <h4>priority: {this.props.priority}</h4>
+                    <h4>description: {this.props.description}</h4>
+                    <h4>status: {this.props.status}</h4>
+                  </Col>
+                  <Col md="6">
+                    {form}
+                  </Col>
+                </Row>
+              </Container>);
     }
 }
+const mapStateToProps = state => {
+  return {
+      token: state.user.token,
+      userId: state.user.userId,
+      name: state.user.name,
+      error: state.issue.error,
+      errorMsg: state.issue.errorMsg
+  };
+};
 
-export default editIssue;
+const mapDispatchToProps = dispatch => {
+  return {
+	   editIssue : (token, session, form) => dispatch(Actions.editIssue(token, session, form))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(editIssue);
