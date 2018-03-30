@@ -24,7 +24,7 @@ const card = (props) => {
                               <Link to={"/issues/" + props.issue_id + '/del'}>
                                 <FontAwesome name='trash-o' size='2x' style={{float: 'right', paddingLeft: '10px'}} />
                               </Link>
-                              <Link to={"/issues/" + props.issue_id + '/note'}>
+                              <Link to={"/issues/" + props.issue_id + '/notes'}>
                                 <FontAwesome name='comments-o' size='2x' style={{float: 'right'}} />
                               </Link>
                       </CardBody>

@@ -57,7 +57,7 @@ class Dashboard extends Component {
                 <User />
               </section>
                 <Switch>
-                  <Route path="/issues/new" exact component={NewIssue} />
+                  <Route path="/issues" component={NewIssue} />
                 </Switch>
             </Col>
           </Row>
