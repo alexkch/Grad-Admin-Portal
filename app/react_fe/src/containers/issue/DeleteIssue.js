@@ -25,7 +25,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    deleteIssues: (token, issue_id) => dispatch(Actions.deleteIssue(token, issue_id))
+    deleteIssue: (token, issue_id) => dispatch(Actions.deleteIssue(token, issue_id))
   };
 };
 

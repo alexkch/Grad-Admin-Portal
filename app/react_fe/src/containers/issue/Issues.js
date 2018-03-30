@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import DisplayIssue from './DisplayIssue';
 import * as Actions from '../../store/actions/';
 import Modal from '../../components/modal/Modal';
@@ -30,9 +31,6 @@ class Issues extends Component {
       this.setState({ selected: false });
     }
 
-    deleteIssueHandler = () => {
-
-    }
 
     priorityColorHandler = (priority) => {
       switch (priority) {

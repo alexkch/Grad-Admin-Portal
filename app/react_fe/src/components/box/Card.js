@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Button from '../button/Button';
 import FontAwesome from 'react-fontawesome';
 import { Card, CardHeader, CardBody, Badge } from 'reactstrap';
@@ -17,9 +18,15 @@ const card = (props) => {
                       </CardHeader>
 
                       <CardBody>
-                              <Button type={props.btn_clr} clicked={props.select}>Status:{props.status}</Button>
-                              <FontAwesome name='trash-o' size='2x' style={{float: 'right', paddingLeft: '10px'}} />
-                              <FontAwesome name='comments-o' size='2x' style={{float: 'right'}} />
+                              <Link to={"/issues/" + props.issue_id + '/edit'}>
+                                <Button type={props.btn_clr} clicked={props.select}>Status:{props.status}</Button>
+                              </Link>
+                              <Link to={"/issues/" + props.issue_id + '/del'}>
+                                <FontAwesome name='trash-o' size='2x' style={{float: 'right', paddingLeft: '10px'}} />
+                              </Link>
+                              <Link to={"/issues/" + props.issue_id + '/note'}>
+                                <FontAwesome name='comments-o' size='2x' style={{float: 'right'}} />
+                              </Link>
                       </CardBody>
                   </Card>
                 </section>);

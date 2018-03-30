@@ -102,17 +102,17 @@ export const removeFail = (errorMsg) => {
 export const deleteIssue = (token, id) => {
   return async dispatch => {
     try {
-      dispatch(deleteIssue());
+      dispatch(removeIssue());
       const header = {
         headers: { 'x-auth-token': token }
       }
       let url = strcat('/issues', id);
       console.log(url);
       const res = await axios.delete(url, header);
-      dispatch(deleteSuccess());
+      dispatch(removeSuccess());
       dispatch(getIssues(token));
       } catch (error) {
-      dispatch(deleteFail(error.message));
+      dispatch(removeFail(error.message));
     };
   };
 };
