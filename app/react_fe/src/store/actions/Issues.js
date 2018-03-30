@@ -1,6 +1,5 @@
 import * as actionTypes from '../../utils/actionTypes';
 import axios from 'axios';
-import strcat from 'classnames';
 
 export const setIssues = (issues) => {
   return {
@@ -106,7 +105,7 @@ export const deleteIssue = (token, id) => {
       const header = {
         headers: { 'x-auth-token': token }
       }
-      let url = strcat('/issues', id);
+      let url = '/issues/' + id;
       console.log(url);
       const res = await axios.delete(url, header);
       dispatch(removeSuccess());
