@@ -12,8 +12,11 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
 // Reducers
-import IssuesReducer from './store/reducers/Issues';
 import UserReducer from './store/reducers/User';
+import IssuesReducer from './store/reducers/Issues';
+import TicketsReducer from './store/reducers/Tickets';
+import OffersReducer from './store/reducers/Offers';
+
 
 // Axios
 axios.defaults.baseURL = 'http://localhost:4000/api';
@@ -27,8 +30,10 @@ axios.interceptors.request.use(request => {
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
+  user: UserReducer,
   issue: IssuesReducer,
-  user: UserReducer
+  offer: OffersReducer,
+  ticket: TicketsReducer
 });
 const store = createStore(rootReducer, composeEnhancers(
   applyMiddleware(thunk)
