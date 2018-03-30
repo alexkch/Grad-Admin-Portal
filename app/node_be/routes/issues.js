@@ -11,7 +11,7 @@ const router = express.Router();
 // get all issues
 router.get('/', authorize, async (req, res) => {
   const pageNum = (req.query.page) ? (req.query.page) : 1;
-  const pageSize = 4;
+  const pageSize = 6;
   const order = (req.query.order === 'asc') ? 1 : -1;
   const sortBy = (req.query.sort) ? (req.query.sort) : "created_on";
   const issues = await Issue

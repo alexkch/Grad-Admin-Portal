@@ -14,59 +14,58 @@ import styles from './Notes.css';
 class Notes extends Component {
 
 
+    componentDidMount() {
+      this.props.getIssue(this.props.token, this.props.match.params.id);
+      console.log(this.props.match);
+    }
 
+    priorityColorHandler = (priority) => {
+      switch (priority) {
+        case ('urgent'): return 'danger'
+        case ('high'): return 'warning'
+        case ('medium'): return 'dark'
+        default: return 'dark'
+      }
+    }
 
     render () {
 
+      let issue = (this.props.issue) ? (<Card created_by={this.props.issue.created_by}
+                                          created_on={new Date(this.props.issue.created_on).toDateString()}
+                                          issue_id={this.props.issue._id}
+                                          status={this.props.issue.status}
+                                          priority={this.props.issue.priority}
+                                          description={this.props.issue.description}
+                                          btn_clr ={() => ((this.props.issue.status) === 'open') ? 'primary' : 'secondary'}
+                                          header_clr={this.priorityColorHandler(this.props.issue.priority)}
+                                          url={this.props.match.url}
+                                          type='issue-notes'/>) : null;
 
 
       return (
         <Container>
             <Row>
-              <Col md="3">
-              <Card
-              created_by="guy"
-              created_on="99"
-              issue_id="8888"
-              status="open"
-              priority="high"
-              btn_clr ="primary"
-              header_clr="warning"
-              type='issue'
-              /></Col>
-              <Col md="9">
-                            <ul className={styles.chat}>
-                                <li className={styles.left}>
-                                    <div className={styles.chatBody}>
-                                        <div className="header">
-                                            <strong className="primary-font">Jack Sparrow</strong> <small className="pull-right text-muted">
-                                                <span className="glyphicon glyphicon-time"></span>12 mins ago</small>
-                                        </div>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                                            dolor, quis ullamcorper ligula sodales.
-                                        </p>
-                                    </div>
-                                </li>
-                                <li className={styles.left}>
-                                    <div className={styles.chatBody}>
-                                        <div className="header">
-                                            <small className="pull-right text-muted"><span className="glyphicon glyphicon-time"></span>13 mins ago</small>
-                                            <strong className="pull-left primary-font">Bhaumik Patel</strong>
-                                        </div>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                                            dolor, quis ullamcorper ligula sodales.
-                                        </p>
-                                    </div>
-                                </li>
-
-
-                            </ul>
-                            </Col>
-        </Row>
-        </Container>
-        );
+              <Col md="4">
+                {issue}
+              </Col>
+              <Col md="8">
+                <ul className={styles.chat}>
+                    <li className={styles.left}>
+                        <div className={styles.chatBody}>
+                            <div className="header">
+                                <strong className="primary-font">Jack Sparrow</strong> <small className="pull-right text-muted">
+                                    <span className="glyphicon glyphicon-time"></span>12 mins ago</small>
+                            </div>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                dolor, quis ullamcorper ligula sodales.
+                            </p>
+                        </div>
+                    </li>
+                  </ul>
+                </Col>
+              </Row>
+        </Container>);
     }
 }
 
@@ -74,7 +73,8 @@ const mapStateToProps = state => {
   return {
       token: state.user.token,
       userId: state.user.userId,
-      name: state.user.name
+      name: state.user.name,
+      issue: state.issue.issue
       //notes: state.note.notes,
       //error: state.note.error,
       //errorMsg: state.note.errorMsg
@@ -84,6 +84,7 @@ const mapStateToProps = state => {
 // pass using props , this.props.onSetNotes
 const mapDispatchToProps = dispatch => {
   return {
+    getIssue: (token, id) => dispatch(Actions.getIssue(token, id))
     //getNotes: (token) => dispatch(Actions.getNotes(token))
   };
 };

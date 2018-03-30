@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../button/Button';
 import FontAwesome from 'react-fontawesome';
-import { Container, Col, Row, Card, CardHeader, CardBody, Badge } from 'reactstrap';
+import { Container, Col, Row, Card, CardHeader, CardBody, CardFooter, Badge } from 'reactstrap';
 
 
 const card = (props) => {
@@ -18,51 +18,58 @@ const card = (props) => {
                       </CardHeader>
 
                       <CardBody>
-                              <Link to={"/issues/" + props.issue_id + '/edit'}>
+                              <Link to={props.url + '/' + props.issue_id + '/edit'}>
                                 <Button type={props.btn_clr}>Status:{props.status}</Button>
                               </Link>
-                              <Link to={"/issues/" + props.issue_id + '/del'}>
+                              <Link to={props.url + '/' + props.issue_id + '/del'}>
                                 <FontAwesome name='trash-o' size='2x' style={{float: 'right', paddingLeft: '10px'}} />
                               </Link>
-                              <Link to={"/issues/" + props.issue_id + '/notes'}>
+                              <Link to={props.url + '/' + props.issue_id + '/notes'}>
                                 <FontAwesome name='comments-o' size='2x' style={{float: 'right'}} />
                               </Link>
                       </CardBody>
                   </Card>
                 </section>);
 
-    case ( 'issue' ):
-      return (
-                  <Card style={{"borderColor" : "black"}}>
-
-                      <CardBody>
-                        <Container>
-                        <Row style={{"paddingBottom" : "10px"}}>
-                          <Col sm="8" md="8">
-                          <Badge color='dark'>ID:{props.issue_id}</Badge>
-                          </Col>
-                          <Col sm="2" md="2">
-                          <Link to={"/issues/" + props.issue_id + '/edit'}>
-                            <FontAwesome name='pencil-square-o' size='1x' />
-                          </Link>
-                          </Col>
-                          <Col sm="2" md="2">
-                          <Link to={"/issues/" + props.issue_id + '/del'}>
-                            <FontAwesome name='trash-o' size='1x' />
-                          </Link>
-                          </Col>
-                        </Row>
-                          <Row style={{"paddingBottom" : "10px"}}>
+    case ( 'issue-notes' ):
+      return (<Card style={{"borderColor" : "black"}}>
+                <CardBody>
+                  <Container>
+                    <Row style={{"paddingBottom" : "10px"}}>
+                      <Badge color='dark'>ID:{props.issue_id}</Badge>
+                    </Row>
+                    <Row style={{"paddingBottom" : "10px"}}>
                       <Badge color={props.header_clr}>Priority: {props.priority}</Badge>
-                        </Row>
-                        <Row style={{"paddingBottom" : "10px"}}>
-                      <span style={{color:"black"}}>Created on: {props.created_on}</span>
-                      </Row>
-
-
-                              </Container>
-                      </CardBody>
-                  </Card>);
+                    </Row>
+                    <Row style={{"paddingBottom" : "10px", "color" : "black"}}>
+                      Created on: {props.created_on}
+                    </Row>
+                    <Row style={{"paddingBottom" : "10px", "color" : "black"}}>
+                      {props.description}
+                    </Row>
+                    <Row>
+                      <Badge color={props.button_clr}>STATUS: {props.status}</Badge>
+                    </Row>
+                  </Container>
+                </CardBody>
+                <CardFooter>
+                  <Container>
+                    <Row>
+                      <Col sm="8" md="8" />
+                      <Col sm="2" md="2">
+                        <Link to={props.url + '/edit'}>
+                          <FontAwesome name='pencil-square-o'/>
+                        </Link>
+                      </Col>
+                      <Col sm="2" md="2">
+                        <Link to={props.url + '/del'}>
+                          <FontAwesome name='trash-o' />
+                        </Link>
+                      </Col>
+                    </Row>
+                  </Container>
+                </CardFooter>
+              </Card>);
     default:
       return (<h2>DEFAULT: NEED TO SPECIFY TYPE</h2>);
     }

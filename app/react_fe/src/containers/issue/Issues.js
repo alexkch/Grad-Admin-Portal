@@ -31,32 +31,31 @@ class Issues extends Component {
 
 
     render () {
-        let issues;
-        issues = (this.props.error) ? (<p style={{textAlign: 'center'}}> {this.props.errorMsg} </p>) :
-                 (this.props.issues.map((issue, index) => {
-                   let status_clr = ((issue.status) === 'open') ? 'primary' : 'secondary';
-                   let priority_clr = this.priorityColorHandler(issue.priority);
-                   return <Card key={issue._id}
+        let issues = (this.props.error) ? (<p style={{textAlign: 'center'}}> {this.props.errorMsg} </p>) :
+                 (this.props.issues.map((issue, index) => <Card key={issue._id}
                    created_by={issue.created_by}
                    created_on={new Date(issue.created_on).toDateString()}
                    issue_id={issue._id}
                    status={issue.status}
                    priority={issue.priority}
-                   btn_clr = {status_clr}
-                   header_clr= {priority_clr}
+                   btn_clr = {((issue.status) === 'open') ? 'primary' : 'secondary'}
+                   header_clr= {this.priorityColorHandler(issue.priority)}
                    type='issues'
+                   url={this.props.match.url}
                    select={() => this.viewIssueHandler(index)}
-                   />}))
+                   />));
 
       return (
             <Aux>
               <Switch>
                 <Route path="/issues/:id/del" exact component={DeleteIssue} />
                 <Route path="/issues/:id/edit" exact component={EditIssue} />
+                <Route path="/issues/:id/notes/edit" exact component={EditIssue} />
               </Switch>
               <Pagebar/>
               <Switch>
                 <Route path="/issues/:id/notes" exact component={Notes} />
+                <Route path="/issues/:id/notes/edit" exact component={Notes} />
                 <Route path="/issues" render={ () => issues } />
               </Switch>
             </Aux>

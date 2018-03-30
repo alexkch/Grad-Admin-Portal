@@ -54,9 +54,7 @@ export const getIssue = (token, id) => {
       const header = {
         headers: { 'x-auth-token': token }
       }
-      console.log('/issues/' + id);
       const res = await axios.get('/issues/' + id, header);
-      console.log(res.data);
       dispatch(setIssue(res.data));
     } catch (error) {
       dispatch(setIssueFail(error.message));
