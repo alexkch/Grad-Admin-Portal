@@ -32,7 +32,7 @@ const card = (props) => {
                 </section>);
     default:
       return (<h2>DEFAULT: NEED TO SPECIFY TYPE</h2>);
-    };
+    }
 };
 
 export default card;

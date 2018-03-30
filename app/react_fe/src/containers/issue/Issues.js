@@ -21,16 +21,19 @@ class Issues extends Component {
       this.props.getIssues(this.props.token);
     }
 
-    viewIssueHandler = (issueIndex) => {
+    viewIssueHandler = async (issueIndex) => {
       //const issues = [...this.state.issues]; //this.state.issues.slice();
       const issue = {
         ...this.props.issues[issueIndex]
       };
-      this.setState({selected_issue: issue, selected: true });
+      await this.setState({selected_issue: issue, selected: true });
+      console.log(this.state.selected_issue);
+      console.log(this.state.selected);
     }
 
     closeIssueHandler = () => {
       this.setState({ selected: false });
+      this.props.history.replace('/issues');
     }
 
 
@@ -62,16 +65,14 @@ class Issues extends Component {
                    select={() => this.viewIssueHandler(index)}
                    />}))
 
-        let modalIssue;
-        modalIssue = (this.state.selected) ? (<EditIssue
-                  key={this.state.selected_issue._id}
+        let editIssue;
+        editIssue = (this.state.selected) ? (<EditIssue
                   issue_id={this.state.selected_issue._id}
                   created_by={this.state.selected_issue.created_by}
                   created_by_id={this.state.selected_issue.created_by_id}
                   status={this.state.selected_issue.status}
                   description={this.state.selected_issue.description}
                   priority={this.state.selected_issue.priority}
-                  type={'modal-full'}
                   show={this.state.selected}
                   close={this.closeIssueHandler}
                   />) : null
@@ -81,11 +82,11 @@ class Issues extends Component {
             <Aux>
               <Switch>
                 <Route path="/issues/:id/del" exact component={DeleteIssue} />
+                <Modal show={this.state.selected} close={this.closeIssueHandler} >
+                  <Route path="/issues/:id/edit" exact render={ () => editIssue} />
+                </Modal>
               </Switch>
               <Pagebar />
-              <Modal show={this.state.selected} close={this.closeIssueHandler} >
-                {modalIssue}
-              </Modal>
               {issues}
             </Aux>
         );

@@ -1,43 +1,118 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import * as Actions from '../../store/actions/';
+import Form from '../../components/form/Form';
+import checkValidity from '../../utils/validateForm';
+import Box from '../../components/box/Box';
+import Button from '../../components/button/Button';
 import Aux from '../../utils/auxiliary';
 import Card from '../../components/box/Card';
+import Modal from '../../components/modal/Modal';
 
-class displayIssue extends Component {
-    render () {
-        let output = null;
+class editIssue extends Component {
 
-        switch ( this.props.type ) {
-            case ( 'modal-full' ):
-                output = (
-                  <Aux onClick={this.props.select}>
-                      <h2>Issue for {this.props.created_by}</h2>
-                      <h5>Issue ID: {this.props.issue_id}</h5>
-                      <h5>Creator ID: {this.props.created_by_id}</h5>
-                      <h5>description: {this.props.description}</h5>
-                      <h5>priority {this.props.priority}</h5>
-                      <h5>status {this.props.status}</h5>
-                  </Aux>
-                );
-                break;
-            default:
-                output = (
-                  <Card
-                    issue_id={this.props.issue_id}
-                    created_by={this.props.created_by}
-                    created_on={this.props.created_on}
-                    priority={this.props.priority}
-                    select={this.props.select}
-                    status={this.props.status}
-                    created_by_id={this.props.created_by_id}
-                    btn_clr={this.props.status_clr}
-                    header_clr={this.props.priority_clr}
-                    type='issues'
-                  />
-                );
-        }
+  state = {
+      form: {
+          description: {
+              elementType: 'textarea',
+              elementConfig: {
+                  type: 'text',
+                  placeholder: 'Description'
+              },
+              value: '',
+              validation: {
+                  required: false
+              },
+              valid: false,
+              touched: false
+          },
+          priority: {
+              elementType: 'select',
+              elementConfig: {
+                  options: [
+                      {value: '', displayValue: 'Select a priority'},
+                      {value: 'urgent', displayValue: 'Urgent'},
+                      {value: 'high', displayValue: 'High'},
+                      {value: 'medium', displayValue: 'Medium'},
+                      {value: 'low', displayValue: 'Low'}
+                  ]
+              },
+              value: '',
+              validation: {},
+              valid: true
+          }
+      },
+      formIsValid: false,
+  }
 
-        return output;
+  editIssueHandler = (event) => {
+    event.preventDefault();
+    let session_meta = { userId : this.props.userId, name : this.props.name};
+    this.props.createIssue(this.props.token, session_meta, this.state.form);
+  }
+
+  inputChangedHandler = (event, inputIdentifier) => {
+      const updatedform = {
+          ...this.state.form
+      };
+      const updatedFormElement = {
+          ...updatedform[inputIdentifier]
+      };
+      updatedFormElement.value = event.target.value;
+      updatedFormElement.valid = checkValidity(updatedFormElement.value, updatedFormElement.validation);
+      updatedFormElement.touched = true;
+      updatedform[inputIdentifier] = updatedFormElement;
+
+      let formIsValid = true;
+      for (let inputIdentifier in updatedform) {
+          formIsValid = updatedform[inputIdentifier].valid && formIsValid;
+      }
+      this.setState({form: updatedform, formIsValid: formIsValid});
+  }
+
+  render () {
+      const formElementsArray = [];
+      for (let key in this.state.form) {
+          formElementsArray.push({
+              id: key,
+              config: this.state.form[key]
+          });
+      }
+      let form = (
+          <form onSubmit={this.editIssueHandler}>
+              {formElementsArray.map(formElement => (
+                  <Form
+                      key={formElement.id}
+                      elementType={formElement.config.elementType}
+                      elementConfig={formElement.config.elementConfig}
+                      value={formElement.config.value}
+                      invalid={!formElement.config.valid}
+                      shouldValidate={formElement.config.validation}
+                      touched={formElement.config.touched}
+                      changed={(event) => this.inputChangedHandler(event, formElement.id)} />
+              ))}
+              <Button disabled={!this.state.formIsValid} type={'disabled-stretch'}>Submit</Button>
+          </form>
+      );
+
+
+      return (
+              <Aux>
+                <section>
+                  <p>issue_id={this.props.issue_id}
+                  created_by={this.props.created_by}
+                  created_by_id={this.props.created_by_id}
+                  status={this.props.status}
+                  description={this.props.description}
+                  priority={this.props.priority}
+                  </p>
+                </section>
+                <section>
+                  <Box color="secondary" header={"Create new Issues"}>{form}</Box>
+                </section>
+              </Aux>
+        );
     }
 }
 
-export default displayIssue;
+export default editIssue;
