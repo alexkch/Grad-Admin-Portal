@@ -105,9 +105,7 @@ export const deleteIssue = (token, id) => {
       const header = {
         headers: { 'x-auth-token': token }
       }
-      let url = '/issues/' + id;
-      console.log(url);
-      const res = await axios.delete(url, header);
+      const res = await axios.delete('/issues/' + id, header);
       dispatch(removeSuccess());
       dispatch(getIssues(token));
       } catch (error) {

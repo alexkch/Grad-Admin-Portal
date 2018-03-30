@@ -14,9 +14,6 @@ router.get('/', authorize, async (req, res) => {
   const pageSize = 4;
   const order = (req.query.order === 'asc') ? 1 : -1;
   const sortBy = (req.query.sort) ? (req.query.sort) : "created_on";
-  console.log(pageNum);
-  console.log(order);
-  console.log(sortBy);
   const issues = await Issue
                         .find({created_by_id : req.user._id})
                         .skip((pageNum - 1) * pageSize)
@@ -77,8 +74,11 @@ router.put('/:id', /*[authorize, validateObjId]*/ validateObjId , async (req, re
 // delete an issue
 router.delete('/:id', [authorize, validateObjId], async (req, res) => {
 
+  const valid = await Issue.findOne({ _id : req.params.id, created_by_id : req.user._id });
+  if (!valid) return res.status(404).send("issue with given ID was not found");
+
 	const issue = await Issue.findByIdAndRemove(req.params.id);
-	if (!issue) return res.status(404).send("issue with given ID was not found");
+	if (!issue) return res.status(404).send("database error");
 	res.send(issue);
 });
 
