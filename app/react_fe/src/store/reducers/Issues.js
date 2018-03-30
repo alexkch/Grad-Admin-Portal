@@ -30,6 +30,27 @@ const reducer = ( state = initialState, action ) => {
               error : action.error,
               errorMsg: action.errorMsg});
 
+        case actionTypes.DELETE_ISSUE:
+            return state;
+
+        case actionTypes.DELETE_ISSUE_SUCCESS:
+            return update(state, {error : action.error} );
+
+        case actionTypes.DELETE_ISSUE_FAIL:
+            return update(state, {
+              error : action.error,
+              errorMsg: action.errorMsg});
+
+        case actionTypes.UPDATE_ISSUE:
+            return state;
+
+        case actionTypes.UPDATE_ISSUE_SUCCESS:
+            return update(state, {error : action.error} );
+
+        case actionTypes.UPDATE_ISSUE_FAIL:
+            return update(state, {
+              error : action.error,
+              errorMsg: action.errorMsg});
         default:
             return state;
     }
