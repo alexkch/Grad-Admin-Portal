@@ -32,6 +32,39 @@ export const getOffers = (token) => {
   };
 };
 
+export const setOffer = (offer) => {
+  return {
+    type: actionTypes.SET_OFFER,
+    error: false,
+    offer: offer
+  };
+};
+
+export const setOfferFail = (errorMsg) => {
+  return {
+    type: actionTypes.SET_OFFER_FAIL,
+    error: true,
+    errorMsg: errorMsg
+  };
+};
+
+export const getOffer = (token, id) => {
+  return async dispatch => {
+    try {
+      const header = {
+        headers: { 'x-auth-token': token }
+      }
+      console.log('/offers/' + id);
+      const res = await axios.get('/offers/' + id, header);
+      console.log(res.data);
+      dispatch(setOffer(res.data));
+    } catch (error) {
+      dispatch(setOfferFail(error.message));
+    };
+  };
+};
+
+
 export const postOffer = (offers) => {
   return {
     type: actionTypes.POST_OFFER

@@ -32,6 +32,39 @@ export const getTickets = (token) => {
   };
 };
 
+export const setTicket = (ticket) => {
+  return {
+    type: actionTypes.SET_TICKET,
+    error: false,
+    ticket: ticket
+  };
+};
+
+export const setTicketFail = (errorMsg) => {
+  return {
+    type: actionTypes.SET_TICKET_FAIL,
+    error: true,
+    errorMsg: errorMsg
+  };
+};
+
+export const getTicket = (token, id) => {
+  return async dispatch => {
+    try {
+      const header = {
+        headers: { 'x-auth-token': token }
+      }
+      console.log('/tickets/' + id);
+      const res = await axios.get('/tickets/' + id, header);
+      console.log(res.data);
+      dispatch(setTicket(res.data));
+    } catch (error) {
+      dispatch(setTicketFail(error.message));
+    };
+  };
+};
+
+
 export const postTicket = (tickets) => {
   return {
     type: actionTypes.POST_TICKET

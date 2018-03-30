@@ -6,6 +6,20 @@ export {
   editIssue
 } from './Issues';
 export {
+  getOffers,
+  getOffer,
+  createOffer,
+  deleteOffer,
+  editOffer
+} from './Offers';
+export {
+  getTickets,
+  getTicket,
+  createTicket,
+  deleteTicket,
+  editTicket
+} from './Tickets';
+export {
   auth,
   logout,
   getSession
