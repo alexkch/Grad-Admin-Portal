@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Route, Redirect, Switch } from 'react-router-dom';
 import DisplayIssue from './DisplayIssue';
+import DeleteIssue from './DeleteIssue';
 import * as Actions from '../../store/actions/';
 import Modal from '../../components/modal/Modal';
 import Aux from '../../utils/auxiliary';
@@ -77,6 +78,9 @@ class Issues extends Component {
 
       return (
             <Aux>
+              <Switch>
+                <Route path="/issues/:id/del" exact component={DeleteIssue} />
+              </Switch>
               <Pagebar />
               <Modal show={this.state.selected} close={this.closeIssueHandler} >
                 {modalIssue}

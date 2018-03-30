@@ -1,6 +1,7 @@
 export {
   getIssues,
-  createIssue
+  createIssue,
+  deleteIssue
 } from './Issues';
 export {
   auth,

@@ -3,9 +3,9 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as Actions from '../../store/actions';
 
-class LogoutUser extends Component {
+class DeleteIssue extends Component {
     componentDidMount () {
-        this.props.Logout();
+      this.props.deleteIssue(this.props.token, this.props.match.params.id);
     }
 
     render () {
@@ -29,4 +29,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewIssue);
+export default connect(mapStateToProps, mapDispatchToProps)(DeleteIssue);
