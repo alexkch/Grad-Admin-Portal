@@ -3,7 +3,7 @@ import update from '../../utils/update';
 
 const initialState = {
     issues: [],
-    selected_issue: null,
+    issue: null,
     error: false,
     errorMsg: ''
 };
@@ -23,7 +23,7 @@ const reducer = ( state = initialState, action ) => {
         case actionTypes.SET_ISSUE:
             return update(state, {
               error : action.error,
-              issues : action.issues});
+              issue : action.issue});
 
         case actionTypes.SET_ISSUE_FAIL:
             return update(state, {

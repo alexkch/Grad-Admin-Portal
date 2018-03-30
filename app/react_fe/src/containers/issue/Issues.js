@@ -6,7 +6,6 @@ import DeleteIssue from './DeleteIssue';
 
 import Notes from '../note/Notes';
 import * as Actions from '../../store/actions/';
-import Modal from '../../components/modal/Modal';
 import Aux from '../../utils/auxiliary';
 import Pagebar from '../../components/navigation/Pagebar';
 import Card from '../../components/box/Card';
@@ -16,13 +15,12 @@ class Issues extends Component {
     state = {
       selected_issue: null,
       selected: false,
-      isLoggedIn: this.props.token
     }
 
     componentDidMount() {
       this.props.getIssues(this.props.token);
     }
-
+/*
     viewIssueHandler = (issueIndex) => {
       //const issues = [...this.state.issues]; //this.state.issues.slice();
       const issue = {
@@ -36,7 +34,7 @@ class Issues extends Component {
       this.props.history.replace('/issues');
     }
 
-
+*/
     priorityColorHandler = (priority) => {
       switch (priority) {
         case ('urgent'): return 'danger'
@@ -64,7 +62,7 @@ class Issues extends Component {
                    type='issues'
                    select={() => this.viewIssueHandler(index)}
                    />}))
-
+/*
         let editIssue;
         editIssue = (this.state.selected) ? (<EditIssue
                   issue_id={this.state.selected_issue._id}
@@ -76,17 +74,14 @@ class Issues extends Component {
                   show={this.state.selected}
                   close={this.closeIssueHandler}
                   />) : null
-
+*/
 
       return (
             <Aux>
               <Switch>
                 <Route path="/issues/:id/del" exact component={DeleteIssue} />
-                <Route path="/issues/:id/edit" exact render={ (props) =>
-                  <Modal {...props} show={this.state.selected} close={this.closeIssueHandler}>
-                    {editIssue}
-                  </Modal>
-                }/>
+                <Route path="/issues/:id/edit" exact component={EditIssue} />
+
               </Switch>
               <Pagebar/>
               <Switch>

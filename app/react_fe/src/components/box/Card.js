@@ -19,7 +19,7 @@ const card = (props) => {
 
                       <CardBody>
                               <Link to={"/issues/" + props.issue_id + '/edit'}>
-                                <Button type={props.btn_clr} clicked={props.select}>Status:{props.status}</Button>
+                                <Button type={props.btn_clr}>Status:{props.status}</Button>
                               </Link>
                               <Link to={"/issues/" + props.issue_id + '/del'}>
                                 <FontAwesome name='trash-o' size='2x' style={{float: 'right', paddingLeft: '10px'}} />

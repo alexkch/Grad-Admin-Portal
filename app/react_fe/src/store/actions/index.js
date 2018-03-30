@@ -1,5 +1,6 @@
 export {
   getIssues,
+  getIssue,
   createIssue,
   deleteIssue,
   editIssue

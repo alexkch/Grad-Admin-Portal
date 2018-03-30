@@ -7,10 +7,16 @@ import Form from '../../components/form/Form';
 import checkValidity from '../../utils/validateForm';
 import Aux from '../../utils/auxiliary';
 import Button from '../../components/button/Button';
+import Modal from '../../components/modal/Modal';
 
 class editIssue extends Component {
 
+  componentDidMount() {
+    this.props.getIssue(this.props.token, this.props.match.params.id);
+  }
+
   state = {
+      show: true,
       redirect: false,
       form: {
           description: {
@@ -62,6 +68,12 @@ class editIssue extends Component {
           }
       },
       formIsValid: false,
+  }
+
+
+  closeModalHandler = () => {
+    this.setState({ show: false });
+    this.props.history.replace('/issues');
   }
 
   editIssueHandler = (event) => {
@@ -117,23 +129,19 @@ class editIssue extends Component {
       );
 
 
-      return (<Aux>
+      return (<Modal show={this.state.show} close={this.closeModalHandler}>
                 {redirect}
                 <Container fluid>
                   <Row>
                     <Col md="6">
-                      <h5>Issue: ({this.props.issue_id})</h5>
-                      <h4>owner: {this.props.created_by}</h4>
-                      <h4>priority: {this.props.priority}</h4>
-                      <h4>description: {this.props.description}</h4>
-                      <h4>status: {this.props.status}</h4>
+    
                     </Col>
                     <Col md="6">
                       {form}
                     </Col>
                   </Row>
                 </Container>
-              </Aux>);
+              </Modal>);
     }
 }
 const mapStateToProps = state => {
@@ -141,6 +149,7 @@ const mapStateToProps = state => {
       token: state.user.token,
       userId: state.user.userId,
       name: state.user.name,
+      issue: state.issue.issue,
       error: state.issue.error,
       errorMsg: state.issue.errorMsg
   };
@@ -148,7 +157,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-	   editIssue : (token, id, session, form) => dispatch(Actions.editIssue(token, id, session, form))
+	   getIssue : (token, id) => dispatch(Actions.getIssue(token, id))
   };
 };
 

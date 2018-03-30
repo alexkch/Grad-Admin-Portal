@@ -34,15 +34,15 @@ export const getIssues = (token) => {
 
 export const setIssue = (issue) => {
   return {
-    type: actionTypes.SET_ISSUES,
+    type: actionTypes.SET_ISSUE,
     error: false,
-    selected_issue: issue
+    issue: issue
   };
 };
 
 export const setIssueFail = (errorMsg) => {
   return {
-    type: actionTypes.SET_ISSUES_FAIL,
+    type: actionTypes.SET_ISSUE_FAIL,
     error: true,
     errorMsg: errorMsg
   };
@@ -54,7 +54,9 @@ export const getIssue = (token, id) => {
       const header = {
         headers: { 'x-auth-token': token }
       }
+      console.log('/issues/' + id);
       const res = await axios.get('/issues/' + id, header);
+      console.log(res.data);
       dispatch(setIssue(res.data));
 
     } catch (error) {
