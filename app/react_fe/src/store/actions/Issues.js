@@ -67,7 +67,7 @@ export const createIssue = (token, session, form) => {
       const header = {
         headers: { 'x-auth-token': token }
       }
-      const res = await axios.post('/issues', postData, header);
+      await axios.post('/issues', postData, header);
       dispatch(postSuccess());
       dispatch(getIssues(token));
       } catch (error) {
@@ -105,7 +105,7 @@ export const deleteIssue = (token, id) => {
       const header = {
         headers: { 'x-auth-token': token }
       }
-      const res = await axios.delete('/issues/' + id, header);
+      await axios.delete('/issues/' + id, header);
       dispatch(removeSuccess());
       dispatch(getIssues(token));
       } catch (error) {
@@ -149,7 +149,7 @@ export const editIssue = (token, id, session, form) => {
       const header = {
         headers: { 'x-auth-token': token }
       }
-      const res = await axios.put('/issues/' + id, putData, header);
+      await axios.put('/issues/' + id, putData, header);
       dispatch(updateSuccess());
       dispatch(getIssues(token));
       } catch (error) {

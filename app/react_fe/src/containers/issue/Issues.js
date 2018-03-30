@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Route, Redirect, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import EditIssue from './EditIssue';
 import DeleteIssue from './DeleteIssue';
 import * as Actions from '../../store/actions/';

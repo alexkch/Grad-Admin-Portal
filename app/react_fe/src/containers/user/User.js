@@ -59,12 +59,6 @@ const mapStateToProps = state => {
   };
 };
 
-// pass using props , this.props.onSetIssues
-const mapDispatchToProps = dispatch => {
-  return {
-    //actionGetIssues: () => dispatch(Actions.getIssues())
-  };
-};
 
 
-export default connect(mapStateToProps, null)(User);
+export default connect(mapStateToProps)(User);

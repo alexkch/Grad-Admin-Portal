@@ -6,9 +6,7 @@ import { Container, Row, Col } from 'reactstrap';
 import Form from '../../components/form/Form';
 import checkValidity from '../../utils/validateForm';
 import Aux from '../../utils/auxiliary';
-import Box from '../../components/box/Box';
 import Button from '../../components/button/Button';
-import Modal from '../../components/modal/Modal';
 
 class editIssue extends Component {
 

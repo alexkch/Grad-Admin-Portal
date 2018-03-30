@@ -87,20 +87,6 @@ class LoginUser extends Component {
 	}
 }
 
-
-const mapStateToProps = state => {
-  return {
-			token : state.user.token,
-			userId : state.user.userId,
-			name: state.user.name,
-			usertype: state.user.usertype,
-			isAdmin: state.user.isAdmin,
-      error: state.issue.error,
-      errorMsg: state.issue.errorMsg
-  };
-};
-
-// pass using props , this.props.onSetIssues
 const mapDispatchToProps = dispatch => {
   return {
 		Auth: (email, password) => dispatch(Actions.auth(email, password))
