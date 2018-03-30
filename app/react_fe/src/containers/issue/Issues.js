@@ -21,14 +21,12 @@ class Issues extends Component {
       this.props.getIssues(this.props.token);
     }
 
-    viewIssueHandler = async (issueIndex) => {
+    viewIssueHandler = (issueIndex) => {
       //const issues = [...this.state.issues]; //this.state.issues.slice();
       const issue = {
         ...this.props.issues[issueIndex]
       };
-      await this.setState({selected_issue: issue, selected: true });
-      console.log(this.state.selected_issue);
-      console.log(this.state.selected);
+      this.setState({selected_issue: issue, selected: true });
     }
 
     closeIssueHandler = () => {
@@ -82,9 +80,11 @@ class Issues extends Component {
             <Aux>
               <Switch>
                 <Route path="/issues/:id/del" exact component={DeleteIssue} />
-                <Modal show={this.state.selected} close={this.closeIssueHandler} >
-                  <Route path="/issues/:id/edit" exact render={ () => editIssue} />
-                </Modal>
+                <Route path="/issues/:id/edit" exact render={ () =>
+                  <Modal show={this.state.selected} close={this.closeIssueHandler}>
+                    {editIssue}
+                  </Modal>
+                }/>
               </Switch>
               <Pagebar />
               {issues}

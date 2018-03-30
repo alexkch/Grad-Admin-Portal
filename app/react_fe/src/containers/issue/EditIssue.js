@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import * as Actions from '../../store/actions/';
 import { Container, Row, Col } from 'reactstrap';
 import Form from '../../components/form/Form';
 import checkValidity from '../../utils/validateForm';
+import Aux from '../../utils/auxiliary';
 import Box from '../../components/box/Box';
 import Button from '../../components/button/Button';
 import Modal from '../../components/modal/Modal';
@@ -11,6 +13,7 @@ import Modal from '../../components/modal/Modal';
 class editIssue extends Component {
 
   state = {
+      redirect: false,
       form: {
           description: {
               elementType: 'textarea',
@@ -60,7 +63,8 @@ class editIssue extends Component {
   editIssueHandler = (event) => {
     event.preventDefault();
     let session_meta = { userId : this.props.userId, name : this.props.name};
-    this.props.createIssue(this.props.token, session_meta, this.state.form);
+    this.props.editIssue(this.props.token, this.props.issue_id, session_meta, this.state.form);
+    this.setState({redirect: true });
   }
 
   inputChangedHandler = (event, inputIdentifier) => {
@@ -90,6 +94,7 @@ class editIssue extends Component {
               config: this.state.form[key]
           });
       }
+      let redirect = this.state.redirect ? <Redirect to="/issues"/> : null;
       let form = (
           <form onSubmit={this.editIssueHandler}>
               {formElementsArray.map(formElement => (
@@ -108,20 +113,23 @@ class editIssue extends Component {
       );
 
 
-      return (<Container fluid>
-                <Row>
-                  <Col md="6">
-                    <h5>Issue: ({this.props.issue_id})</h5>
-                    <h4>owner: {this.props.created_by}</h4>
-                    <h4>priority: {this.props.priority}</h4>
-                    <h4>description: {this.props.description}</h4>
-                    <h4>status: {this.props.status}</h4>
-                  </Col>
-                  <Col md="6">
-                    {form}
-                  </Col>
-                </Row>
-              </Container>);
+      return (<Aux>
+                {redirect}
+                <Container fluid>
+                  <Row>
+                    <Col md="6">
+                      <h5>Issue: ({this.props.issue_id})</h5>
+                      <h4>owner: {this.props.created_by}</h4>
+                      <h4>priority: {this.props.priority}</h4>
+                      <h4>description: {this.props.description}</h4>
+                      <h4>status: {this.props.status}</h4>
+                    </Col>
+                    <Col md="6">
+                      {form}
+                    </Col>
+                  </Row>
+                </Container>
+              </Aux>);
     }
 }
 const mapStateToProps = state => {
@@ -136,7 +144,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-	   editIssue : (token, session, form) => dispatch(Actions.editIssue(token, session, form))
+	   editIssue : (token, id, session, form) => dispatch(Actions.editIssue(token, id, session, form))
   };
 };
 

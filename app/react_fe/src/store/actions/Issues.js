@@ -135,25 +135,27 @@ export const updateFail = (errorMsg) => {
   };
 };
 
-export const editIssue = (token, session, form) => {
+export const editIssue = (token, id, session, form) => {
   return async dispatch => {
     try {
-      dispatch(postIssue());
-      const postData = {
+      dispatch(updateIssue());
+      const putData = {
         created_by_id: session.userId,
         created_by: session.name,
         description: form.description.value,
         priority: form.priority.value,
-        status: 'open'
+        status: form.status.value
       }
+      console.log(putData);
       const header = {
         headers: { 'x-auth-token': token }
       }
-      const res = await axios.post('/issues', postData, header);
-      dispatch(postSuccess());
+      const res = await axios.put('/issues/' + id, putData, header);
+      dispatch(updateSuccess());
       dispatch(getIssues(token));
       } catch (error) {
-      dispatch(postFail(error.message));
+        console.log('after res');
+      dispatch(updateFail(error.message));
     };
   };
 };
