@@ -3,7 +3,6 @@ import update from '../../utils/update';
 
 const initialState = {
     tickets: [],
-    rerender: false,
     error: false,
     errorMsg: ''
 };
@@ -12,23 +11,46 @@ const reducer = ( state = initialState, action ) => {
     switch ( action.type ) {
         case actionTypes.SET_TICKETS:
             return update(state, {
-              error : false,
+              error : action.error,
               tickets : action.tickets});
 
         case actionTypes.SET_TICKETS_FAIL:
             return update(state, {
-              error : true,
-              tickets : action.errorMsg});
+              error : action.error,
+              errorMsg : action.errorMsg});
 
         case actionTypes.POST_TICKET:
             return state;
 
         case actionTypes.POST_TICKET_SUCCESS:
-            return update(state, {error : false} );
+            return update(state, {error : action.error} );
 
         case actionTypes.POST_TICKET_FAIL:
-            return update(state, {error : true} );
+            return update(state, {
+              error : action.error,
+              errorMsg: action.errorMsg});
 
+        case actionTypes.DELETE_TICKET:
+            return state;
+
+        case actionTypes.DELETE_TICKET_SUCCESS:
+            return update(state, {error : action.error} );
+
+        case actionTypes.DELETE_TICKET_FAIL:
+            return update(state, {
+              error : action.error,
+              errorMsg: action.errorMsg});
+
+        case actionTypes.UPDATE_TICKET:
+            return state;
+
+        case actionTypes.UPDATE_TICKET_SUCCESS:
+            return update(state, {error : action.error} );
+
+        case actionTypes.UPDATE_TICKET_FAIL:
+            return update(state, {
+              error : action.error,
+              errorMsg: action.errorMsg});
         default:
             return state;
     }
