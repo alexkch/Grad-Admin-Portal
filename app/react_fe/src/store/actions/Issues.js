@@ -113,3 +113,47 @@ export const deleteIssue = (token, id) => {
     };
   };
 };
+
+export const updateIssue = (issues) => {
+  return {
+    type: actionTypes.UPDATE_ISSUE
+  };
+};
+
+export const updateSuccess = (errorMsg) => {
+  return {
+    type: actionTypes.UPDATE_ISSUE_SUCCESS,
+    error: false
+  };
+};
+
+export const updateFail = (errorMsg) => {
+  return {
+    type: actionTypes.UPDATE_ISSUE_FAIL,
+    error: true,
+    errorMsg: errorMsg
+  };
+};
+
+export const editIssue = (token, session, form) => {
+  return async dispatch => {
+    try {
+      dispatch(postIssue());
+      const postData = {
+        created_by_id: session.userId,
+        created_by: session.name,
+        description: form.description.value,
+        priority: form.priority.value,
+        status: 'open'
+      }
+      const header = {
+        headers: { 'x-auth-token': token }
+      }
+      const res = await axios.post('/issues', postData, header);
+      dispatch(postSuccess());
+      dispatch(getIssues(token));
+      } catch (error) {
+      dispatch(postFail(error.message));
+    };
+  };
+};
