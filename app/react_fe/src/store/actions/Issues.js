@@ -65,7 +65,6 @@ export const createIssue = (token, session, form) => {
         priority: form.priority.value,
         status: 'open'
       }
-      console.log(postData);
       const header = {
         headers: { 'x-auth-token': token }
       }
@@ -74,6 +73,46 @@ export const createIssue = (token, session, form) => {
       dispatch(getIssues(token));
       } catch (error) {
       dispatch(postFail(error.message));
+    };
+  };
+};
+
+
+export const removeIssue = (issues) => {
+  return {
+    type: actionTypes.DELETE_ISSUE
+  };
+};
+
+export const removeSuccess = (errorMsg) => {
+  return {
+    type: actionTypes.DELETE_ISSUE_SUCCESS,
+    error: false
+  };
+};
+
+export const removeFail = (errorMsg) => {
+  return {
+    type: actionTypes.DELETE_ISSUE_FAIL,
+    error: true,
+    errorMsg: errorMsg
+  };
+};
+
+export const deleteIssue = (token, id) => {
+  return async dispatch => {
+    try {
+      dispatch(deleteIssue());
+      const header = {
+        headers: { 'x-auth-token': token }
+      }
+      let url = strcat('/issues', id);
+      console.log(url);
+      const res = await axios.delete(url, header);
+      dispatch(deleteSuccess());
+      dispatch(getIssues(token));
+      } catch (error) {
+      dispatch(deleteFail(error.message));
     };
   };
 };

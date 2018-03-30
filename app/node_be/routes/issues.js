@@ -75,7 +75,7 @@ router.put('/:id', /*[authorize, validateObjId]*/ validateObjId , async (req, re
 
 
 // delete an issue
-router.delete('/:id', /*[authorize, admin, validateObjId]*/ validateObjId, async (req, res) => {
+router.delete('/:id', [authorize, validateObjId], async (req, res) => {
 
 	const issue = await Issue.findByIdAndRemove(req.params.id);
 	if (!issue) return res.status(404).send("issue with given ID was not found");
