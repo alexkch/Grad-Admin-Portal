@@ -21,7 +21,7 @@ class editIssue extends Component {
               },
               value: '',
               validation: {
-                  required: false
+                  required: true
               },
               valid: false,
               touched: false
@@ -38,8 +38,11 @@ class editIssue extends Component {
                   ]
               },
               value: '',
-              validation: {},
-              valid: true
+              validation: {
+                required: true,
+                minLength: 1
+              },
+              valid: false
           },
           status: {
               elementType: 'select',
@@ -51,8 +54,11 @@ class editIssue extends Component {
                   ]
               },
               value: '',
-              validation: {},
-              valid: true
+              validation: {
+                required: true,
+                minLength: 1
+              },
+              valid: false
           }
       },
       formIsValid: false,

@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import EditIssue from './EditIssue';
 import DeleteIssue from './DeleteIssue';
+
+import Notes from '../note/Notes';
 import * as Actions from '../../store/actions/';
 import Modal from '../../components/modal/Modal';
 import Aux from '../../utils/auxiliary';
@@ -86,8 +88,11 @@ class Issues extends Component {
                   </Modal>
                 }/>
               </Switch>
-              <Pagebar />
-              {issues}
+              <Pagebar/>
+              <Switch>
+                <Route path="/issues/:id/notes" exact component={Notes} />
+                <Route path="/issues" render={ () => issues } />
+              </Switch>
             </Aux>
         );
     }

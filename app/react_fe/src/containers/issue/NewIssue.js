@@ -18,7 +18,7 @@ class NewIssue extends Component {
                 },
                 value: '',
                 validation: {
-                    required: false
+                    required: true
                 },
                 valid: false,
                 touched: false
@@ -35,8 +35,11 @@ class NewIssue extends Component {
                     ]
                 },
                 value: '',
-                validation: {},
-                valid: true
+                validation: {
+                  required: true,
+                  minLength: 1
+                },
+                valid: false
             }
         },
         formIsValid: false,
