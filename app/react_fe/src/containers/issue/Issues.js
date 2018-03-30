@@ -15,7 +15,7 @@ class Issues extends Component {
     }
 
     componentDidMount() {
-      this.props.actionGetIssues(this.props.token);
+      this.props.getIssues(this.props.token);
     }
 
     viewIssueHandler = (issueIndex) => {
@@ -28,6 +28,10 @@ class Issues extends Component {
 
     closeIssueHandler = () => {
       this.setState({ selected: false });
+    }
+
+    deleteIssueHandler = () => {
+
     }
 
     priorityColorHandler = (priority) => {
@@ -99,7 +103,7 @@ const mapStateToProps = state => {
 // pass using props , this.props.onSetIssues
 const mapDispatchToProps = dispatch => {
   return {
-    actionGetIssues: (token) => dispatch(Actions.getIssues(token))
+    getIssues: (token) => dispatch(Actions.getIssues(token))
   };
 };
 
