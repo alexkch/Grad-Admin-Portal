@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import EditIssue from './EditIssue';
 import DeleteIssue from './DeleteIssue';
-
 import Notes from '../note/Notes';
 import * as Actions from '../../store/actions/';
 import Aux from '../../utils/auxiliary';
@@ -20,21 +19,7 @@ class Issues extends Component {
     componentDidMount() {
       this.props.getIssues(this.props.token);
     }
-/*
-    viewIssueHandler = (issueIndex) => {
-      //const issues = [...this.state.issues]; //this.state.issues.slice();
-      const issue = {
-        ...this.props.issues[issueIndex]
-      };
-      this.setState({selected_issue: issue, selected: true });
-    }
 
-    closeIssueHandler = () => {
-      this.setState({ selected: false });
-      this.props.history.replace('/issues');
-    }
-
-*/
     priorityColorHandler = (priority) => {
       switch (priority) {
         case ('urgent'): return 'danger'
@@ -62,26 +47,12 @@ class Issues extends Component {
                    type='issues'
                    select={() => this.viewIssueHandler(index)}
                    />}))
-/*
-        let editIssue;
-        editIssue = (this.state.selected) ? (<EditIssue
-                  issue_id={this.state.selected_issue._id}
-                  created_by={this.state.selected_issue.created_by}
-                  created_by_id={this.state.selected_issue.created_by_id}
-                  status={this.state.selected_issue.status}
-                  description={this.state.selected_issue.description}
-                  priority={this.state.selected_issue.priority}
-                  show={this.state.selected}
-                  close={this.closeIssueHandler}
-                  />) : null
-*/
 
       return (
             <Aux>
               <Switch>
                 <Route path="/issues/:id/del" exact component={DeleteIssue} />
                 <Route path="/issues/:id/edit" exact component={EditIssue} />
-
               </Switch>
               <Pagebar/>
               <Switch>

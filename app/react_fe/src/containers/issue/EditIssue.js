@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 import * as Actions from '../../store/actions/';
 import { Container, Row, Col } from 'reactstrap';
 import Form from '../../components/form/Form';
@@ -17,7 +16,6 @@ class editIssue extends Component {
 
   state = {
       show: true,
-      redirect: false,
       form: {
           description: {
               elementType: 'textarea',
@@ -70,7 +68,6 @@ class editIssue extends Component {
       formIsValid: false,
   }
 
-
   closeModalHandler = () => {
     this.setState({ show: false });
     this.props.history.replace('/issues');
@@ -79,8 +76,8 @@ class editIssue extends Component {
   editIssueHandler = (event) => {
     event.preventDefault();
     let session_meta = { userId : this.props.userId, name : this.props.name};
-    this.props.editIssue(this.props.token, this.props.issue_id, session_meta, this.state.form);
-    this.setState({redirect: true });
+    this.props.editIssue(this.props.token, this.props.issue._id, session_meta, this.state.form);
+    this.closeModalHandler();
   }
 
   inputChangedHandler = (event, inputIdentifier) => {
@@ -110,7 +107,6 @@ class editIssue extends Component {
               config: this.state.form[key]
           });
       }
-      let redirect = this.state.redirect ? <Redirect to="/issues"/> : null;
       let form = (
           <form onSubmit={this.editIssueHandler}>
               {formElementsArray.map(formElement => (
@@ -128,13 +124,19 @@ class editIssue extends Component {
           </form>
       );
 
+      let issue = (this.props.issue) ? (<Aux><h5>Issue: ({this.props.issue._id})</h5>
+                                        <h4>owner: {this.props.issue.created_by}</h4>
+                                        <h4>priority: {this.props.issue.priority}</h4>
+                                        <h4>description: {this.props.issue.description}</h4>
+                                        <h4>status: {this.props.issue.status}</h4></Aux>) : null
+
+
 
       return (<Modal show={this.state.show} close={this.closeModalHandler}>
-                {redirect}
                 <Container fluid>
                   <Row>
                     <Col md="6">
-    
+                      {issue}
                     </Col>
                     <Col md="6">
                       {form}
@@ -157,7 +159,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-	   getIssue : (token, id) => dispatch(Actions.getIssue(token, id))
+	   getIssue : (token, id) => dispatch(Actions.getIssue(token, id)),
+     editIssue : (token, id, session, form) => dispatch(Actions.editIssue(token, id, session, form))
   };
 };
 

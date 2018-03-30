@@ -44,8 +44,12 @@ router.post('/', authorize, async (req, res) => {
 
 // get an issue by id
 router.get('/:id', [authorize, validateObjId], async (req, res) => {
+
+  const isOwner = await Issue.findOne({ _id : req.params.id, created_by_id : req.user._id });
+  if (!isOwner) return res.status(404).send("issue with given ID was not found");
+
 	const issue = await Issue.findById(req.params.id);
-	if (!issue) return res.status(404).send("issue with given ID was not found");
+	if (!issue) return res.status(404).send("Error with database get");
 	res.send(issue);
 });
 
@@ -55,10 +59,8 @@ router.put('/:id', [authorize, validateObjId], async (req, res) => {
 
   const {error} = validate(req.body);
 	if (error) return res.status(400).send(error.details[0].message);
-  console.log('valid body');
   const isOwner = await Issue.findOne({ _id : req.params.id, created_by_id : req.user._id });
   if (!isOwner) return res.status(404).send("issue with given ID was not found");
-  console.log('after is owner');
   const issue = await Issue.findByIdAndUpdate(req.params.id,
     {
       created_by: req.body.created_by,
@@ -69,7 +71,6 @@ router.put('/:id', [authorize, validateObjId], async (req, res) => {
     { new : true }
   );
 	if (!issue) return res.status(404).send("database error");
-  console.log('after update');
 	res.send(issue);
 });
 

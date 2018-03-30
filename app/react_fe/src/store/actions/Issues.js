@@ -58,7 +58,6 @@ export const getIssue = (token, id) => {
       const res = await axios.get('/issues/' + id, header);
       console.log(res.data);
       dispatch(setIssue(res.data));
-
     } catch (error) {
       dispatch(setIssueFail(error.message));
     };

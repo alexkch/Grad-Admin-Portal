@@ -16,8 +16,6 @@ class DeleteIssue extends Component {
 const mapStateToProps = state => {
   return {
       token: state.user.token,
-      userId: state.user.userId,
-      name: state.user.name,
       error: state.issue.error,
       errorMsg: state.issue.errorMsg
   };
