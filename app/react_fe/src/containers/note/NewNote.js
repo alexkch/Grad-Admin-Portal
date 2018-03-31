@@ -27,10 +27,10 @@ class NewNote extends Component {
         formIsValid: false,
     }
 
-    createIssueHandler = (event) => {
+    createNoteHandler = (event) => {
       event.preventDefault();
       let session_meta = { userId : this.props.userId, name : this.props.name};
-      this.props.createIssue(this.props.token, session_meta, this.state.form);
+      this.props.createNote(this.props.token, session_meta, this.state.form);
     }
 
     inputChangedHandler = (event, inputIdentifier) => {
@@ -61,7 +61,7 @@ class NewNote extends Component {
             });
         }
         let form = (
-            <form onSubmit={this.createIssueHandler}>
+            <form onSubmit={this.createNoteHandler}>
                 {formElementsArray.map(formElement => (
                     <Form
                         key={formElement.id}
@@ -86,15 +86,14 @@ const mapStateToProps = state => {
       token: state.user.token,
       userId: state.user.userId,
       name: state.user.name,
-      issue: state.issue.issue,
-      error: state.issue.error,
-      errorMsg: state.issue.errorMsg
+      error: state.note.error,
+      errorMsg: state.note.errorMsg
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-	   createIssue : (token, issueId, session, form) => dispatch(Actions.createIssue(token, issueId, session, form))
+	   createNote : (token, issueId, session, form) => dispatch(Actions.createNote(token, issueId, session, form))
   };
 };
 
