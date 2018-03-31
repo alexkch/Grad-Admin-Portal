@@ -51,16 +51,14 @@ class Dashboard extends Component {
         <Container fluid>
           <Row>
             <Col sm="7" md="7">
-                  {this.props.children}
+              {this.props.children}
             </Col>
             <Col sm="5" md="5">
-              <section>
-                <User />
-              </section>
-                <Switch>
-                  <Route path="/issues/:id/notes" component={NewNote} />
-                  <Route path="/issues" component={NewIssue} />
-                </Switch>
+              <User />
+              <Switch>
+                <Route path="/issues/:id/notes" component={NewNote} />
+                <Route path="/issues" component={NewIssue} />
+              </Switch>
             </Col>
           </Row>
         </Container>

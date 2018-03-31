@@ -36,8 +36,8 @@ export const newUser = (form) => {
         isAdmin: "false"
       }
       const res = await axios.post('/users', userData);
-      dispatch(initSuccess(res.data));
-      dispatch(auth(res.data.username, res.data.password));
+      dispatch(initSuccess());
+      dispatch(auth(form.email.value, form.password.value));
 
       } catch (error) {
       dispatch(initFail(error.message));
