@@ -17,6 +17,7 @@ class Notes extends Component {
       this.props.getIssue(this.props.token, this.props.match.params.id);
     }
 
+
     priorityColorHandler = (priority) => {
       switch (priority) {
         case ('urgent'): return 'danger'

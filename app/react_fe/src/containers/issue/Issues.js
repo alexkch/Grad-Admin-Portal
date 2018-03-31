@@ -50,6 +50,7 @@ class Issues extends Component {
               <Switch>
                 <Route path="/issues/:id/del" exact component={DeleteIssue} />
                 <Route path="/issues/:id/edit" exact component={EditIssue} />
+                <Route path="/issues/:id/notes/del" exact component={DeleteIssue} />
                 <Route path="/issues/:id/notes/edit" exact component={EditIssue} />
               </Switch>
               <Pagebar/>

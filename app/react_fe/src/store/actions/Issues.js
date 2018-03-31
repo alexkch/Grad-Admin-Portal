@@ -182,6 +182,7 @@ export const editIssue = (token, id, session, form) => {
       await axios.put('/issues/' + id, putData, header);
       dispatch(updateSuccess());
       dispatch(getIssues(token));
+      dispatch(getIssue(token, id));
       } catch (error) {
       dispatch(updateFail(error.message));
     };
