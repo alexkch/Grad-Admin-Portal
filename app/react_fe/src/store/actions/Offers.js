@@ -1,7 +1,7 @@
 import * as actionTypes from '../../utils/actionTypes';
 import axios from 'axios';
 
-export const setOffers = (offers) => {
+const setOffers = (offers) => {
   return {
     type: actionTypes.SET_OFFERS,
     error: false,
@@ -9,7 +9,7 @@ export const setOffers = (offers) => {
   };
 };
 
-export const setOffersFail = (errorMsg) => {
+const setOffersFail = (errorMsg) => {
   return {
     type: actionTypes.SET_OFFERS_FAIL,
     error: true,
@@ -32,7 +32,7 @@ export const getOffers = (token) => {
   };
 };
 
-export const setOffer = (offer) => {
+const setOffer = (offer) => {
   return {
     type: actionTypes.SET_OFFER,
     error: false,
@@ -40,7 +40,7 @@ export const setOffer = (offer) => {
   };
 };
 
-export const setOfferFail = (errorMsg) => {
+const setOfferFail = (errorMsg) => {
   return {
     type: actionTypes.SET_OFFER_FAIL,
     error: true,
@@ -65,20 +65,20 @@ export const getOffer = (token, id) => {
 };
 
 
-export const postOffer = (offers) => {
+const postOffer = (offers) => {
   return {
     type: actionTypes.POST_OFFER
   };
 };
 
-export const postSuccess = (errorMsg) => {
+const postSuccess = (errorMsg) => {
   return {
     type: actionTypes.POST_OFFER_SUCCESS,
     error: false
   };
 };
 
-export const postFail = (errorMsg) => {
+const postFail = (errorMsg) => {
   return {
     type: actionTypes.POST_OFFER_FAIL,
     error: true,
@@ -106,20 +106,20 @@ export const createOffer = (token, session, form) => {
 };
 
 
-export const removeOffer = (offers) => {
+const removeOffer = (offers) => {
   return {
     type: actionTypes.DELETE_OFFER
   };
 };
 
-export const removeSuccess = (errorMsg) => {
+const removeSuccess = (errorMsg) => {
   return {
     type: actionTypes.DELETE_OFFER_SUCCESS,
     error: false
   };
 };
 
-export const removeFail = (errorMsg) => {
+const removeFail = (errorMsg) => {
   return {
     type: actionTypes.DELETE_OFFER_FAIL,
     error: true,
@@ -143,20 +143,20 @@ export const deleteOffer = (token, id) => {
   };
 };
 
-export const updateOffer = (offers) => {
+const updateOffer = (offers) => {
   return {
     type: actionTypes.UPDATE_OFFER
   };
 };
 
-export const updateSuccess = (errorMsg) => {
+const updateSuccess = (errorMsg) => {
   return {
     type: actionTypes.UPDATE_OFFER_SUCCESS,
     error: false
   };
 };
 
-export const updateFail = (errorMsg) => {
+const updateFail = (errorMsg) => {
   return {
     type: actionTypes.UPDATE_OFFER_FAIL,
     error: true,

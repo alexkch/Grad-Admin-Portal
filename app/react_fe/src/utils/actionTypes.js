@@ -57,8 +57,8 @@ export const UPDATE_TICKET_SUCCESS = 'UPDATE_TICKET_SUCCESS';
 export const UPDATE_TICKET_FAIL = 'UPDATE_TICKET_FAIL';
 
 //Notes
-export const SET_NOTES = 'SET_NOTES';
-export const SET_NOTES_FAIL = 'SET_NOTES_FAIL';
+export const SET_NOTE = 'SET_NOTE';
+export const SET_NOTE_FAIL = 'SET_NOTE_FAIL';
 
 export const POST_NOTE = 'POST_NOTE';
 export const POST_NOTE_SUCCESS = 'POST_NOTE_SUCCESS';

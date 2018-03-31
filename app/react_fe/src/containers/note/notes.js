@@ -36,11 +36,13 @@ class Notes extends Component {
                                           status={this.props.issue.status}
                                           priority={this.props.issue.priority}
                                           description={this.props.issue.description}
-                                          btn_clr ={() => ((this.props.issue.status) === 'open') ? 'primary' : 'secondary'}
+                                          btn_clr ={((this.props.issue.status) === 'open') ? 'blue' : 'red'}
                                           header_clr={this.priorityColorHandler(this.props.issue.priority)}
                                           url={this.props.match.url}
                                           type='issue-notes'/>) : null;
 
+      let notes = (this.props.issue) ? ((this.props.issue.notes.length < 1) ? null :
+         (this.props.issue.notes.map((note, index) => <h2>{note.message}</h2>))) : null;
 
       return (
         <Container>
@@ -49,20 +51,7 @@ class Notes extends Component {
                 {issue}
               </Col>
               <Col md="8">
-                <ul className={styles.chat}>
-                    <li className={styles.left}>
-                        <div className={styles.chatBody}>
-                            <div className="header">
-                                <strong className="primary-font">Jack Sparrow</strong> <small className="pull-right text-muted">
-                                    <span className="glyphicon glyphicon-time"></span>12 mins ago</small>
-                            </div>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                                dolor, quis ullamcorper ligula sodales.
-                            </p>
-                        </div>
-                    </li>
-                  </ul>
+                  {notes}
                 </Col>
               </Row>
         </Container>);

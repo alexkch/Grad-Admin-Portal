@@ -20,6 +20,12 @@ export {
   editTicket
 } from './Tickets';
 export {
+  getNote,
+  createNote,
+  deleteNote,
+  editNote
+} from './Notes';
+export {
   auth,
   logout,
   getSession

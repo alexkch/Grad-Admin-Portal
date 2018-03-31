@@ -88,14 +88,11 @@ router.delete('/:id', [authorize, validateObjId], async (req, res) => {
 
 
 // to add note
-router.post('/:id/notes', /*[authorize, validateObjId]*/ validateObjId, async (req, res) => {
+router.post('/:id/notes', [authorize, validateObjId], async (req, res) => {
 
   let issue = await Issue.findById(req.params.id);
 	if (!issue) return res.status(404).send("issue with given ID was not found");
 
-  /* JSON has to be of notation
-  { "message" : "msg1", "author" : "author1", ...}
-  */
   const { error } = validateNote(req.body);
 	if (error) return res.status(400).send(error.details[0].message);
 
@@ -107,7 +104,7 @@ router.post('/:id/notes', /*[authorize, validateObjId]*/ validateObjId, async (r
 
 
 // to delete a note
-router.post('/:id/notes/:note_id', /*[authorize, validateObjId]*/ validateObjId, async (req, res) => {
+router.post('/:id/notes/:note_id', [authorize, validateObjId], async (req, res) => {
 
   let issue = await Issue.findById(req.params.id);
 	if (!issue) return res.status(404).send("issue with given ID was not found");
@@ -122,7 +119,7 @@ router.post('/:id/notes/:note_id', /*[authorize, validateObjId]*/ validateObjId,
 
 
 // to edit a note
-router.post('/:id/notes/:note_id/edit', /*[authorize, validateObjId]*/ validateObjId, async (req, res) => {
+router.post('/:id/notes/:note_id/edit', [authorize, validateObjId], async (req, res) => {
 
   let issue = await Issue.findById(req.params.id);
 	if (!issue) return res.status(404).send("issue with given ID was not found");
