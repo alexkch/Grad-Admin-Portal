@@ -78,9 +78,9 @@ class NewOffer extends Component {
     }
 
     postHandler = ( event ) => {
-        event.preventDefault();
-	let session_meta = { userId : this.props.userId, name : this.props.name};
-	this.props.createOffer(this.props.token, session_meta, this.state.form);
+      event.preventDefault();
+    	let session_meta = { userId : this.props.userId, name : this.props.name};
+    	this.props.createOffer(this.props.token, session_meta, this.state.form);
     }
 
     inputChangedHandler = (event, inputIdentifier) => {

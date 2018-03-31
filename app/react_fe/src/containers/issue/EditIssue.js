@@ -12,9 +12,11 @@ class editIssue extends Component {
 
   componentDidMount() {
     this.props.getIssue(this.props.token, this.props.match.params.id);
+    this.setState({ prev_urlId : this.props.match.params.id });
   }
 
   state = {
+      prev_urlId: null,
       show: true,
       form: {
           description: {
@@ -70,7 +72,8 @@ class editIssue extends Component {
 
   closeModalHandler = () => {
     this.setState({ show: false });
-    this.props.history.replace('/issues');
+    this.props.match.url.includes("/notes/edit") ? this.props.history.replace('/issues/' + this.state.prev_urlId + '/notes')
+    : this.props.history.replace('/issues');
   }
 
   editIssueHandler = (event) => {

@@ -15,7 +15,6 @@ class Notes extends Component {
 
     componentDidMount() {
       this.props.getIssue(this.props.token, this.props.match.params.id);
-      console.log(this.props.match);
     }
 
     priorityColorHandler = (priority) => {
@@ -41,7 +40,8 @@ class Notes extends Component {
                                           type='issue-notes'/>) : null;
 
       let notes = (this.props.issue) ? ((this.props.issue.notes.length < 1) ? null :
-         (this.props.issue.notes.map((note, index) => <Chatbox message={note.message}
+         (this.props.issue.notes.map((note, index) => <Chatbox key={note._id}
+                                                       message={note.message}
                                                        created_on={new Date(note.created_on).toDateString()}
                                                        created_by={note.created_by}/>))) : null;
 
