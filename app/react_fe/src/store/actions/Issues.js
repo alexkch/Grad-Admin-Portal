@@ -1,7 +1,7 @@
 import * as actionTypes from '../../utils/actionTypes';
 import axios from 'axios';
 
-export const setIssues = (issues) => {
+const setIssues = (issues) => {
   return {
     type: actionTypes.SET_ISSUES,
     error: false,
@@ -9,7 +9,7 @@ export const setIssues = (issues) => {
   };
 };
 
-export const setIssuesFail = (errorMsg) => {
+const setIssuesFail = (errorMsg) => {
   return {
     type: actionTypes.SET_ISSUES_FAIL,
     error: true,
@@ -32,7 +32,7 @@ export const getIssues = (token) => {
   };
 };
 
-export const setIssue = (issue) => {
+const setIssue = (issue) => {
   return {
     type: actionTypes.SET_ISSUE,
     error: false,
@@ -40,7 +40,7 @@ export const setIssue = (issue) => {
   };
 };
 
-export const setIssueFail = (errorMsg) => {
+const setIssueFail = (errorMsg) => {
   return {
     type: actionTypes.SET_ISSUE_FAIL,
     error: true,
@@ -63,20 +63,20 @@ export const getIssue = (token, id) => {
 };
 
 
-export const postIssue = (issues) => {
+const postIssue = (issues) => {
   return {
     type: actionTypes.POST_ISSUE
   };
 };
 
-export const postSuccess = (errorMsg) => {
+const postSuccess = (errorMsg) => {
   return {
     type: actionTypes.POST_ISSUE_SUCCESS,
     error: false
   };
 };
 
-export const postFail = (errorMsg) => {
+const postFail = (errorMsg) => {
   return {
     type: actionTypes.POST_ISSUE_FAIL,
     error: true,
@@ -107,21 +107,20 @@ export const createIssue = (token, session, form) => {
   };
 };
 
-
-export const removeIssue = (issues) => {
+const removeIssue = (issues) => {
   return {
     type: actionTypes.DELETE_ISSUE
   };
 };
 
-export const removeSuccess = (errorMsg) => {
+const removeSuccess = (errorMsg) => {
   return {
     type: actionTypes.DELETE_ISSUE_SUCCESS,
     error: false
   };
 };
 
-export const removeFail = (errorMsg) => {
+const removeFail = (errorMsg) => {
   return {
     type: actionTypes.DELETE_ISSUE_FAIL,
     error: true,
@@ -145,20 +144,20 @@ export const deleteIssue = (token, id) => {
   };
 };
 
-export const updateIssue = (issues) => {
+const updateIssue = (issues) => {
   return {
     type: actionTypes.UPDATE_ISSUE
   };
 };
 
-export const updateSuccess = (errorMsg) => {
+const updateSuccess = (errorMsg) => {
   return {
     type: actionTypes.UPDATE_ISSUE_SUCCESS,
     error: false
   };
 };
 
-export const updateFail = (errorMsg) => {
+const updateFail = (errorMsg) => {
   return {
     type: actionTypes.UPDATE_ISSUE_FAIL,
     error: true,

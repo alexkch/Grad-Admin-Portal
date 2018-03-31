@@ -3,7 +3,7 @@ import axios from 'axios';
 import { getIssue } from './Issues';
 
 
-export const setNote = (note) => {
+const setNote = (note) => {
   return {
     type: actionTypes.SET_NOTE,
     error: false,
@@ -11,7 +11,7 @@ export const setNote = (note) => {
   };
 };
 
-export const setNoteFail = (errorMsg) => {
+const setNoteFail = (errorMsg) => {
   return {
     type: actionTypes.SET_NOTE_FAIL,
     error: true,
@@ -34,20 +34,20 @@ export const getNote = (token, id) => {
 };
 
 
-export const postNote = (notes) => {
+const postNote = (notes) => {
   return {
     type: actionTypes.POST_NOTE
   };
 };
 
-export const postSuccess = (errorMsg) => {
+const postSuccess = (errorMsg) => {
   return {
     type: actionTypes.POST_NOTE_SUCCESS,
     error: false
   };
 };
 
-export const postFail = (errorMsg) => {
+const postFail = (errorMsg) => {
   return {
     type: actionTypes.POST_NOTE_FAIL,
     error: true,
@@ -77,20 +77,20 @@ export const createNote = (token, issueId, session, form) => {
 };
 
 
-export const removeNote = (notes) => {
+const removeNote = (notes) => {
   return {
     type: actionTypes.DELETE_NOTE
   };
 };
 
-export const removeSuccess = (errorMsg) => {
+const removeSuccess = (errorMsg) => {
   return {
     type: actionTypes.DELETE_NOTE_SUCCESS,
     error: false
   };
 };
 
-export const removeFail = (errorMsg) => {
+const removeFail = (errorMsg) => {
   return {
     type: actionTypes.DELETE_NOTE_FAIL,
     error: true,
@@ -114,20 +114,20 @@ export const deleteNote = (token, id) => {
   };
 };
 
-export const updateNote = (notes) => {
+const updateNote = (notes) => {
   return {
     type: actionTypes.UPDATE_NOTE
   };
 };
 
-export const updateSuccess = (errorMsg) => {
+const updateSuccess = (errorMsg) => {
   return {
     type: actionTypes.UPDATE_NOTE_SUCCESS,
     error: false
   };
 };
 
-export const updateFail = (errorMsg) => {
+const updateFail = (errorMsg) => {
   return {
     type: actionTypes.UPDATE_NOTE_FAIL,
     error: true,

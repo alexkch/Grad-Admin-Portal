@@ -2,20 +2,20 @@ import * as actionTypes from '../../utils/actionTypes';
 import { auth } from './Auth';
 import axios from 'axios';
 
-export const initUser = () => {
+const initUser = () => {
   return {
     type: actionTypes.INIT_USER
   };
 };
 
-export const initSuccess = () => {
+const initSuccess = () => {
   return {
     type: actionTypes.INIT_USER_SUCCESS,
     error: 'false'
   };
 };
 
-export const initFail = (errorMsg) => {
+const initFail = (errorMsg) => {
   return {
     type: actionTypes.INIT_USER_FAIL,
     error: 'true',

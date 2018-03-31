@@ -1,7 +1,7 @@
 import * as actionTypes from '../../utils/actionTypes';
 import axios from 'axios';
 
-export const setTickets = (tickets) => {
+const setTickets = (tickets) => {
   return {
     type: actionTypes.SET_TICKETS,
     error: false,
@@ -9,7 +9,7 @@ export const setTickets = (tickets) => {
   };
 };
 
-export const setTicketsFail = (errorMsg) => {
+const setTicketsFail = (errorMsg) => {
   return {
     type: actionTypes.SET_TICKETS_FAIL,
     error: true,
@@ -32,7 +32,7 @@ export const getTickets = (token) => {
   };
 };
 
-export const setTicket = (ticket) => {
+const setTicket = (ticket) => {
   return {
     type: actionTypes.SET_TICKET,
     error: false,
@@ -40,7 +40,7 @@ export const setTicket = (ticket) => {
   };
 };
 
-export const setTicketFail = (errorMsg) => {
+const setTicketFail = (errorMsg) => {
   return {
     type: actionTypes.SET_TICKET_FAIL,
     error: true,
@@ -65,20 +65,20 @@ export const getTicket = (token, id) => {
 };
 
 
-export const postTicket = (tickets) => {
+const postTicket = (tickets) => {
   return {
     type: actionTypes.POST_TICKET
   };
 };
 
-export const postSuccess = (errorMsg) => {
+const postSuccess = (errorMsg) => {
   return {
     type: actionTypes.POST_TICKET_SUCCESS,
     error: false
   };
 };
 
-export const postFail = (errorMsg) => {
+const postFail = (errorMsg) => {
   return {
     type: actionTypes.POST_TICKET_FAIL,
     error: true,
@@ -106,20 +106,20 @@ export const createTicket = (token, session, form) => {
 };
 
 
-export const removeTicket = (tickets) => {
+const removeTicket = (tickets) => {
   return {
     type: actionTypes.DELETE_TICKET
   };
 };
 
-export const removeSuccess = (errorMsg) => {
+const removeSuccess = (errorMsg) => {
   return {
     type: actionTypes.DELETE_TICKET_SUCCESS,
     error: false
   };
 };
 
-export const removeFail = (errorMsg) => {
+const removeFail = (errorMsg) => {
   return {
     type: actionTypes.DELETE_TICKET_FAIL,
     error: true,
@@ -143,20 +143,20 @@ export const deleteTicket = (token, id) => {
   };
 };
 
-export const updateTicket = (tickets) => {
+const updateTicket = (tickets) => {
   return {
     type: actionTypes.UPDATE_TICKET
   };
 };
 
-export const updateSuccess = (errorMsg) => {
+const updateSuccess = (errorMsg) => {
   return {
     type: actionTypes.UPDATE_TICKET_SUCCESS,
     error: false
   };
 };
 
-export const updateFail = (errorMsg) => {
+const updateFail = (errorMsg) => {
   return {
     type: actionTypes.UPDATE_TICKET_FAIL,
     error: true,

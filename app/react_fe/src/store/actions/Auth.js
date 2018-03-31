@@ -1,7 +1,7 @@
 import * as actionTypes from '../../utils/actionTypes';
 import axios from 'axios';
 
-export const postReq = () => {
+const postReq = () => {
   return {
     type: actionTypes.AUTH_USER
   };
@@ -25,7 +25,7 @@ export const getSession = () => {
   };
 };
 
-export const authSuccess = (resData) => {
+const authSuccess = (resData) => {
   return {
     type: actionTypes.AUTH_SUCCESS,
     userId: resData.userId,
@@ -36,7 +36,7 @@ export const authSuccess = (resData) => {
   };
 };
 
-export const authFail = (errorMsg) => {
+const authFail = (errorMsg) => {
   return {
     type: actionTypes.AUTH_FAIL,
     error: 'true',
