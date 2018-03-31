@@ -63,13 +63,13 @@ export const getIssue = (token, id) => {
 };
 
 
-const postIssue = (issues) => {
+const postIssue = () => {
   return {
     type: actionTypes.POST_ISSUE
   };
 };
 
-const postSuccess = (errorMsg) => {
+const postSuccess = () => {
   return {
     type: actionTypes.POST_ISSUE_SUCCESS,
     error: false
@@ -107,13 +107,13 @@ export const createIssue = (token, session, form) => {
   };
 };
 
-const removeIssue = (issues) => {
+const removeIssue = () => {
   return {
     type: actionTypes.DELETE_ISSUE
   };
 };
 
-const removeSuccess = (errorMsg) => {
+const removeSuccess = () => {
   return {
     type: actionTypes.DELETE_ISSUE_SUCCESS,
     error: false
@@ -144,13 +144,13 @@ export const deleteIssue = (token, id) => {
   };
 };
 
-const updateIssue = (issues) => {
+const updateIssue = () => {
   return {
     type: actionTypes.UPDATE_ISSUE
   };
 };
 
-const updateSuccess = (errorMsg) => {
+const updateSuccess = () => {
   return {
     type: actionTypes.UPDATE_ISSUE_SUCCESS,
     error: false

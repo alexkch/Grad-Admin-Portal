@@ -65,13 +65,13 @@ export const getTicket = (token, id) => {
 };
 
 
-const postTicket = (tickets) => {
+const postTicket = () => {
   return {
     type: actionTypes.POST_TICKET
   };
 };
 
-const postSuccess = (errorMsg) => {
+const postSuccess = () => {
   return {
     type: actionTypes.POST_TICKET_SUCCESS,
     error: false
@@ -106,13 +106,13 @@ export const createTicket = (token, session, form) => {
 };
 
 
-const removeTicket = (tickets) => {
+const removeTicket = () => {
   return {
     type: actionTypes.DELETE_TICKET
   };
 };
 
-const removeSuccess = (errorMsg) => {
+const removeSuccess = () => {
   return {
     type: actionTypes.DELETE_TICKET_SUCCESS,
     error: false
@@ -143,13 +143,13 @@ export const deleteTicket = (token, id) => {
   };
 };
 
-const updateTicket = (tickets) => {
+const updateTicket = () => {
   return {
     type: actionTypes.UPDATE_TICKET
   };
 };
 
-const updateSuccess = (errorMsg) => {
+const updateSuccess = () => {
   return {
     type: actionTypes.UPDATE_TICKET_SUCCESS,
     error: false

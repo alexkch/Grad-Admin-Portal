@@ -65,13 +65,13 @@ export const getOffer = (token, id) => {
 };
 
 
-const postOffer = (offers) => {
+const postOffer = () => {
   return {
     type: actionTypes.POST_OFFER
   };
 };
 
-const postSuccess = (errorMsg) => {
+const postSuccess = () => {
   return {
     type: actionTypes.POST_OFFER_SUCCESS,
     error: false
@@ -106,13 +106,13 @@ export const createOffer = (token, session, form) => {
 };
 
 
-const removeOffer = (offers) => {
+const removeOffer = () => {
   return {
     type: actionTypes.DELETE_OFFER
   };
 };
 
-const removeSuccess = (errorMsg) => {
+const removeSuccess = () => {
   return {
     type: actionTypes.DELETE_OFFER_SUCCESS,
     error: false
@@ -143,13 +143,13 @@ export const deleteOffer = (token, id) => {
   };
 };
 
-const updateOffer = (offers) => {
+const updateOffer = () => {
   return {
     type: actionTypes.UPDATE_OFFER
   };
 };
 
-const updateSuccess = (errorMsg) => {
+const updateSuccess = () => {
   return {
     type: actionTypes.UPDATE_OFFER_SUCCESS,
     error: false

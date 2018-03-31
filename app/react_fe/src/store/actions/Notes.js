@@ -34,13 +34,13 @@ export const getNote = (token, id) => {
 };
 
 
-const postNote = (notes) => {
+const postNote = () => {
   return {
     type: actionTypes.POST_NOTE
   };
 };
 
-const postSuccess = (errorMsg) => {
+const postSuccess = () => {
   return {
     type: actionTypes.POST_NOTE_SUCCESS,
     error: false
@@ -77,13 +77,13 @@ export const createNote = (token, issueId, session, form) => {
 };
 
 
-const removeNote = (notes) => {
+const removeNote = () => {
   return {
     type: actionTypes.DELETE_NOTE
   };
 };
 
-const removeSuccess = (errorMsg) => {
+const removeSuccess = () => {
   return {
     type: actionTypes.DELETE_NOTE_SUCCESS,
     error: false
@@ -98,14 +98,14 @@ const removeFail = (errorMsg) => {
   };
 };
 
-export const deleteNote = (token, id) => {
+export const deleteNote = (token, issueId, noteId) => {
   return async dispatch => {
     try {
       dispatch(removeNote());
       const header = {
         headers: { 'x-auth-token': token }
       }
-      await axios.delete('/notes/' + id, header);
+      await axios.post('/issues/' + issueId + '/notes/' + noteId, header);
       dispatch(removeSuccess());
       //dispatch(getNotes(token));
       } catch (error) {
@@ -114,13 +114,13 @@ export const deleteNote = (token, id) => {
   };
 };
 
-const updateNote = (notes) => {
+const updateNote = () => {
   return {
     type: actionTypes.UPDATE_NOTE
   };
 };
 
-const updateSuccess = (errorMsg) => {
+const updateSuccess = () => {
   return {
     type: actionTypes.UPDATE_NOTE_SUCCESS,
     error: false
