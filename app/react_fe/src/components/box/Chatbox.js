@@ -18,12 +18,12 @@ const chatbox = (props) => {
                       {props.message}
 
                       <span style={{float: "right"}}>
-                        <Link to={props.url + '/notes' + '/:id' + '/edit'}>
+                        <Link to={props.url + '/:id' + '/edit'}>
                           <FontAwesome name='trash-o' />
                         </Link>
                       </span>
                       <span style={{float: "right", paddingRight: "10px"}}>
-                        <Link to={props.url + '/notes' + '/:id' + '/delete'}>
+                        <Link to={props.url + '/' + props.id + '/delete'}>
                           <FontAwesome name='pencil-square-o'/>
                         </Link>
                       </span>
