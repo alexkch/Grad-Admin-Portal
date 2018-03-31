@@ -5,15 +5,12 @@ import * as Actions from '../../store/actions';
 
 class DeleteNote extends Component {
 
-    state = { prev_urlId: null }
-
     componentDidMount () {
-      this.props.deleteNote(this.props.token, this.props.match.params.id, this.props.match.params.notesId);
-      this.setState({ prev_urlId : this.props.match.params.id });
+      this.props.deleteNote(this.props.token, this.props.match.params.id, this.props.match.params.noteId);
     }
 
     render () {
-        return <Redirect to={"/issues/" + this.state.prev_urlId + "/notes"} />;
+        return <Redirect to={'/issues/' + this.props.match.params.id + '/notes'} />;
     }
 }
 
@@ -27,7 +24,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    deleteNote: (token, issueId, notesId) => dispatch(Actions.deleteNote(token, issueId, notesId))
+    deleteNote: (token, issueId, noteId) => dispatch(Actions.deleteNote(token, issueId, noteId))
   };
 };
 

@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import EditIssue from './EditIssue';
 import DeleteIssue from './DeleteIssue';
 import Notes from '../note/Notes';
+import DeleteNote from '../note/DeleteNote';
 import * as Actions from '../../store/actions/';
 import Aux from '../../utils/auxiliary';
 import Pagebar from '../../components/navigation/Pagebar';
@@ -52,11 +53,11 @@ class Issues extends Component {
                 <Route path="/issues/:id/edit" exact component={EditIssue} />
                 <Route path="/issues/:id/notes/del" exact component={DeleteIssue} />
                 <Route path="/issues/:id/notes/edit" exact component={EditIssue} />
+                <Route path="/issues/:id/notes/:noteId/del" exact component={DeleteNote} />
               </Switch>
               <Pagebar/>
               <Switch>
-                <Route path="/issues/:id/notes" exact component={Notes} />
-                <Route path="/issues/:id/notes/edit" exact component={Notes} />
+                <Route path="/issues/:id/notes" component={Notes} />
                 <Route path="/issues" render={ () => issues } />
               </Switch>
             </Aux>

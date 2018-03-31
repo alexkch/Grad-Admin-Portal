@@ -105,6 +105,8 @@ export const deleteNote = (token, issueId, noteId) => {
       const header = {
         headers: { 'x-auth-token': token }
       }
+      console.log(issueId);
+      console.log(noteId);
       await axios.post('/issues/' + issueId + '/notes/' + noteId, header);
       dispatch(removeSuccess());
       //dispatch(getNotes(token));
