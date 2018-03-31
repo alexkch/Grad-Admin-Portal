@@ -12,11 +12,12 @@ class editIssue extends Component {
 
   componentDidMount() {
     this.props.getIssue(this.props.token, this.props.match.params.id);
-    this.setState({ prev_urlId : this.props.match.params.id });
+    this.props.match.url.includes("/notes/edit") ? this.setState({ prevUrl: '/issues/' + this.state.prev_urlId + '/notes' })
+    : this.setState({ prevUrl: '/issues' });
   }
 
   state = {
-      prev_urlId: null,
+      prevUrl: null,
       show: true,
       form: {
           description: {
@@ -72,14 +73,13 @@ class editIssue extends Component {
 
   closeModalHandler = () => {
     this.setState({ show: false });
-    this.props.match.url.includes("/notes/edit") ? this.props.history.replace('/issues/' + this.state.prev_urlId + '/notes')
-    : this.props.history.replace('/issues');
+    this.props.history.replace(this.state.prevUrl);
   }
 
   editIssueHandler = (event) => {
     event.preventDefault();
     let session_meta = { userId : this.props.userId, name : this.props.name};
-    this.props.editIssue(this.props.token, this.props.issue._id, session_meta, this.state.form);
+    this.props.editIssue(this.props.token, this.props.issue._id, session_meta, this.state.form, (this.state.prevUrl === '/issues'));
     this.closeModalHandler();
   }
 
@@ -163,7 +163,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
 	   getIssue : (token, id) => dispatch(Actions.getIssue(token, id)),
-     editIssue : (token, id, session, form) => dispatch(Actions.editIssue(token, id, session, form))
+     editIssue : (token, id, session, form, renderAll) => dispatch(Actions.editIssue(token, id, session, form, renderAll))
   };
 };
 

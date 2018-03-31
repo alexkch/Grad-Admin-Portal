@@ -165,7 +165,7 @@ const updateFail = (errorMsg) => {
   };
 };
 
-export const editIssue = (token, id, session, form) => {
+export const editIssue = (token, id, session, form, renderAll) => {
   return async dispatch => {
     try {
       dispatch(updateIssue());
@@ -181,8 +181,8 @@ export const editIssue = (token, id, session, form) => {
       }
       await axios.put('/issues/' + id, putData, header);
       dispatch(updateSuccess());
-      dispatch(getIssues(token));
-      dispatch(getIssue(token, id));
+      console.log(renderAll);
+      renderAll ? dispatch(getIssues(token)) : dispatch(getIssue(token, id));
       } catch (error) {
       dispatch(updateFail(error.message));
     };
