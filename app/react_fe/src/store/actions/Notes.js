@@ -1,36 +1,6 @@
 import * as actionTypes from '../../utils/actionTypes';
 import axios from 'axios';
 
-export const setNotes = (notes) => {
-  return {
-    type: actionTypes.SET_NOTES,
-    error: false,
-    notes: notes
-  };
-};
-
-export const setNotesFail = (errorMsg) => {
-  return {
-    type: actionTypes.SET_NOTES_FAIL,
-    error: true,
-    errorMsg: errorMsg
-  };
-};
-
-export const getNotes = (token) => {
-  return async dispatch => {
-    try {
-      const header = {
-        headers: { 'x-auth-token': token }
-      }
-      const res = await axios.get('/notes', header);
-      dispatch(setNotes(res.data));
-
-    } catch (error) {
-      dispatch(setNotesFail(error.message));
-    };
-  };
-};
 
 export const setNote = (note) => {
   return {
@@ -98,7 +68,7 @@ export const createNote = (token, issueId, session, form) => {
       }
       await axios.post('/issues/' + issueId + '/notes', postData, header);
       dispatch(postSuccess());
-      dispatch(getNotes(token));
+      //dispatch(getNotes(token));
       } catch (error) {
       dispatch(postFail(error.message));
     };
@@ -136,7 +106,7 @@ export const deleteNote = (token, id) => {
       }
       await axios.delete('/notes/' + id, header);
       dispatch(removeSuccess());
-      dispatch(getNotes(token));
+      //dispatch(getNotes(token));
       } catch (error) {
       dispatch(removeFail(error.message));
     };
@@ -180,7 +150,7 @@ export const editNote = (token, id, session, form) => {
       }
       await axios.put('/notes/' + id, putData, header);
       dispatch(updateSuccess());
-      dispatch(getNotes(token));
+      //dispatch(getNotes(token));
       } catch (error) {
       dispatch(updateFail(error.message));
     };
