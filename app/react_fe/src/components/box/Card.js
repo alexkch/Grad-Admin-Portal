@@ -47,8 +47,8 @@ const card = (props) => {
                     <Row style={{"paddingBottom" : "10px", "color" : "black"}}>
                       {props.description}
                     </Row>
-                    <Row>
-                      <Badge color={props.button_clr}>STATUS: {props.status}</Badge>
+                    <Row style={{"color" : props.btn_clr }}>
+                      STATUS: {props.status}
                     </Row>
                   </Container>
                 </CardBody>

@@ -36,7 +36,7 @@ class Notes extends Component {
                                           status={this.props.issue.status}
                                           priority={this.props.issue.priority}
                                           description={this.props.issue.description}
-                                          btn_clr ={() => ((this.props.issue.status) === 'open') ? 'primary' : 'secondary'}
+                                          btn_clr ={((this.props.issue.status) === 'open') ? 'blue' : 'red'}
                                           header_clr={this.priorityColorHandler(this.props.issue.priority)}
                                           url={this.props.match.url}
                                           type='issue-notes'/>) : null;

@@ -88,7 +88,7 @@ router.delete('/:id', [authorize, validateObjId], async (req, res) => {
 
 
 // to add note
-router.post('/:id/notes', /*[authorize, validateObjId]*/ validateObjId, async (req, res) => {
+router.post('/:id/notes', [authorize, validateObjId], async (req, res) => {
 
   let issue = await Issue.findById(req.params.id);
 	if (!issue) return res.status(404).send("issue with given ID was not found");
@@ -107,7 +107,7 @@ router.post('/:id/notes', /*[authorize, validateObjId]*/ validateObjId, async (r
 
 
 // to delete a note
-router.post('/:id/notes/:note_id', /*[authorize, validateObjId]*/ validateObjId, async (req, res) => {
+router.post('/:id/notes/:note_id', [authorize, validateObjId], async (req, res) => {
 
   let issue = await Issue.findById(req.params.id);
 	if (!issue) return res.status(404).send("issue with given ID was not found");
@@ -122,7 +122,7 @@ router.post('/:id/notes/:note_id', /*[authorize, validateObjId]*/ validateObjId,
 
 
 // to edit a note
-router.post('/:id/notes/:note_id/edit', /*[authorize, validateObjId]*/ validateObjId, async (req, res) => {
+router.post('/:id/notes/:note_id/edit', [authorize, validateObjId], async (req, res) => {
 
   let issue = await Issue.findById(req.params.id);
 	if (!issue) return res.status(404).send("issue with given ID was not found");
