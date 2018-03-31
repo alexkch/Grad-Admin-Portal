@@ -12,7 +12,7 @@ class editIssue extends Component {
 
   componentDidMount() {
     this.props.getIssue(this.props.token, this.props.match.params.id);
-    this.props.match.url.includes("/notes/edit") ? this.setState({ prevUrl: '/issues/' + this.state.prev_urlId + '/notes' })
+    this.props.match.url.includes("/notes/edit") ? this.setState({ prevUrl: '/issues/' + this.props.match.params.id + '/notes' })
     : this.setState({ prevUrl: '/issues' });
   }
 

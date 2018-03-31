@@ -42,7 +42,7 @@ class Notes extends Component {
 
       let notes = (this.props.issue) ? ((this.props.issue.notes.length < 1) ? null :
          (this.props.issue.notes.map((note, index) => <Chatbox key={note._id}
-                                                       id={note._id}
+                                                       note_id={note._id}
                                                        message={note.message}
                                                        created_on={new Date(note.created_on).toDateString()}
                                                        created_by={note.created_by}

@@ -90,6 +90,7 @@ router.delete('/:id', [authorize, validateObjId], async (req, res) => {
 // to add note
 router.post('/:id/notes', [authorize, validateObjId], async (req, res) => {
 
+  console.log('eher');
   let issue = await Issue.findById(req.params.id);
 	if (!issue) return res.status(404).send("issue with given ID was not found");
 
@@ -104,16 +105,14 @@ router.post('/:id/notes', [authorize, validateObjId], async (req, res) => {
 
 
 // to delete a note
-router.post('/:id/notes/:note_id/del', [authorize, validateObjId], async (req, res) => {
+router.delete('/:id/notes/:note_id/del', [authorize, validateObjId], async (req, res) => {
 
   let issue = await Issue.findById(req.params.id);
 	if (!issue) return res.status(404).send("issue with given ID was not found");
-
   const result = await Issue.update({ "_id" : req.params.id },
     { $pull: {notes : { "_id" : req.params.note_id }}
   });
 	if (!result.nModified) return res.status(404).send("note with given ID was not found");
-
 	res.send(result);
 });
 
