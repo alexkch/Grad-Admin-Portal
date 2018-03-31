@@ -6,10 +6,9 @@ import { Container, Row, Col } from 'reactstrap';
 //import DeleteNote from './DeleteNote';
 import * as Actions from '../../store/actions/';
 import Modal from '../../components/modal/Modal';
-import Aux from '../../utils/auxiliary';
+import Chatbox from '../../components/box/Chatbox';
 import Pagebar from '../../components/navigation/Pagebar';
 import Card from '../../components/box/Card';
-import styles from './Notes.css';
 
 class Notes extends Component {
 
@@ -42,7 +41,9 @@ class Notes extends Component {
                                           type='issue-notes'/>) : null;
 
       let notes = (this.props.issue) ? ((this.props.issue.notes.length < 1) ? null :
-         (this.props.issue.notes.map((note, index) => <h2>{note.message}</h2>))) : null;
+         (this.props.issue.notes.map((note, index) => <Chatbox message={note.message}
+                                                       created_on={new Date(note.created_on).toDateString()}
+                                                       created_by={note.created_by}/>))) : null;
 
       return (
         <Container>
@@ -52,7 +53,7 @@ class Notes extends Component {
               </Col>
               <Col md="8">
                   {notes}
-                </Col>
+              </Col>
               </Row>
         </Container>);
     }
