@@ -1,5 +1,5 @@
 import * as actionTypes from '../../utils/actionTypes';
-import { auth as Auth } from './Auth';
+import { auth } from './Auth';
 import axios from 'axios';
 
 export const initUser = () => {
@@ -37,7 +37,7 @@ export const newUser = (form) => {
       }
       const res = await axios.post('/users', userData);
       dispatch(initSuccess(res.data));
-      dispatch(Auth.auth(res.data.username, res.data.password));
+      dispatch(auth(res.data.username, res.data.password));
 
       } catch (error) {
       dispatch(initFail(error.message));

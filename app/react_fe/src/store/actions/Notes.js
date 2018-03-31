@@ -1,5 +1,6 @@
 import * as actionTypes from '../../utils/actionTypes';
 import axios from 'axios';
+import { getIssue } from './Issues';
 
 
 export const setNote = (note) => {
@@ -68,7 +69,7 @@ export const createNote = (token, issueId, session, form) => {
       }
       await axios.post('/issues/' + issueId + '/notes', postData, header);
       dispatch(postSuccess());
-      //dispatch(getNotes(token));
+      dispatch(getIssue(token, issueId));
       } catch (error) {
       dispatch(postFail(error.message));
     };
