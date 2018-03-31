@@ -79,7 +79,7 @@ class editIssue extends Component {
   editIssueHandler = (event) => {
     event.preventDefault();
     let session_meta = { userId : this.props.userId, name : this.props.name};
-    this.props.editIssue(this.props.token, this.props.issue._id, session_meta, this.state.form, (this.state.prevUrl === '/issues'));
+    this.props.editIssue(this.props.token, this.props.issue._id, session_meta, this.state.form);
     this.closeModalHandler();
   }
 
@@ -163,7 +163,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
 	   getIssue : (token, id) => dispatch(Actions.getIssue(token, id)),
-     editIssue : (token, id, session, form, renderAll) => dispatch(Actions.editIssue(token, id, session, form, renderAll))
+     editIssue : (token, id, session, form) => dispatch(Actions.editIssue(token, id, session, form))
   };
 };
 
