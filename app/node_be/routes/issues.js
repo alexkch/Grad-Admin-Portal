@@ -93,9 +93,6 @@ router.post('/:id/notes', [authorize, validateObjId], async (req, res) => {
   let issue = await Issue.findById(req.params.id);
 	if (!issue) return res.status(404).send("issue with given ID was not found");
 
-  /* JSON has to be of notation
-  { "message" : "msg1", "author" : "author1", ...}
-  */
   const { error } = validateNote(req.body);
 	if (error) return res.status(400).send(error.details[0].message);
 

@@ -10,15 +10,6 @@ const initialState = {
 
 const reducer = ( state = initialState, action ) => {
     switch ( action.type ) {
-        case actionTypes.SET_NOTES:
-            return update(state, {
-              error : action.error,
-              notes : action.notes});
-
-        case actionTypes.SET_NOTES_FAIL:
-            return update(state, {
-              error : action.error,
-              errorMsg : action.errorMsg});
 
         case actionTypes.SET_NOTE:
             return update(state, {

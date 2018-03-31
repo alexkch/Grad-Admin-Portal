@@ -30,7 +30,7 @@ class NewNote extends Component {
     createNoteHandler = (event) => {
       event.preventDefault();
       let session_meta = { userId : this.props.userId, name : this.props.name};
-      this.props.createNote(this.props.token, session_meta, this.state.form);
+      this.props.createNote(this.props.token, this.props.match.params.id, session_meta, this.state.form);
     }
 
     inputChangedHandler = (event, inputIdentifier) => {

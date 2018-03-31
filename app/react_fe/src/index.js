@@ -16,7 +16,7 @@ import UserReducer from './store/reducers/User';
 import IssuesReducer from './store/reducers/Issues';
 import TicketsReducer from './store/reducers/Tickets';
 import OffersReducer from './store/reducers/Offers';
-
+import NotesReducer from './store/reducers/Notes';
 
 // Axios
 axios.defaults.baseURL = 'http://localhost:4000/api';
@@ -33,7 +33,8 @@ const rootReducer = combineReducers({
   user: UserReducer,
   issue: IssuesReducer,
   offer: OffersReducer,
-  ticket: TicketsReducer
+  ticket: TicketsReducer,
+  note: NotesReducer
 });
 const store = createStore(rootReducer, composeEnhancers(
   applyMiddleware(thunk)
