@@ -32,6 +32,7 @@ router.post('/', authorize, async (req, res) => {
 	let issue = new Issue({
     created_by: req.body.created_by,
     created_by_id: req.body.created_by_id,
+    title: req.body.title,
     description: req.body.description,
     status: req.body.status,
     priority: req.body.priority
@@ -65,6 +66,7 @@ router.put('/:id', [authorize, validateObjId], async (req, res) => {
     {
       created_by: req.body.created_by,
       description: req.body.description,
+      title: req.body.title,
       status: req.body.status,
       priority: req.body.priority
     },

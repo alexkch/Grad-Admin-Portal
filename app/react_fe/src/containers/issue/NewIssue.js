@@ -10,6 +10,19 @@ class NewIssue extends Component {
 
     state = {
         form: {
+            title: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'text',
+                    placeholder: 'Title'
+                },
+                value: '',
+                validation: {
+                  required: true
+                },
+                valid: false,
+                touched: false
+            },
             description: {
                 elementType: 'textarea',
                 elementConfig: {
@@ -18,7 +31,7 @@ class NewIssue extends Component {
                 },
                 value: '',
                 validation: {
-                    required: true
+                  required: true
                 },
                 valid: false,
                 touched: false
@@ -36,8 +49,7 @@ class NewIssue extends Component {
                 },
                 value: '',
                 validation: {
-                  required: true,
-                  minLength: 1
+                  required: true
                 },
                 valid: false
             }

@@ -37,6 +37,7 @@ class Issues extends Component {
                    created_by={issue.created_by}
                    created_on={new Date(issue.created_on).toDateString()}
                    issue_id={issue._id}
+                   title={issue.title}
                    status={issue.status}
                    priority={issue.priority}
                    btn_clr = {((issue.status) === 'open') ? 'primary' : 'secondary'}

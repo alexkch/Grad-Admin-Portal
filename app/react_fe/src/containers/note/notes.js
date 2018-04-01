@@ -41,6 +41,7 @@ class Notes extends Component {
       let issue = (this.props.issue) ? (<Card created_by={this.props.issue.created_by}
                                           created_on={new Date(this.props.issue.created_on).toDateString()}
                                           issue_id={this.props.issue._id}
+                                          title={this.props.issue.title}
                                           status={this.props.issue.status}
                                           priority={this.props.issue.priority}
                                           description={this.props.issue.description}

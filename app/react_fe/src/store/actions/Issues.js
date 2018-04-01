@@ -91,6 +91,7 @@ export const createIssue = (token, session, form) => {
       const postData = {
         created_by_id: session.userId,
         created_by: session.name,
+        title: form.title.value,
         description: form.description.value,
         priority: form.priority.value,
         status: 'open'
@@ -172,6 +173,7 @@ export const editIssue = (token, id, session, form) => {
       const putData = {
         created_by_id: session.userId,
         created_by: session.name,
+        title: form.title.value,
         description: form.description.value,
         priority: form.priority.value,
         status: form.status.value

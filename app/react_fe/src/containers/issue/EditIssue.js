@@ -20,6 +20,19 @@ class editIssue extends Component {
       prevUrl: null,
       show: true,
       form: {
+          title: {
+              elementType: 'input',
+              elementConfig: {
+                  type: 'text',
+                  placeholder: 'Title'
+              },
+              value: '',
+              validation: {
+                required: true
+              },
+              valid: false,
+              touched: false
+          },
           description: {
               elementType: 'textarea',
               elementConfig: {
@@ -78,8 +91,8 @@ class editIssue extends Component {
 
   editIssueHandler = (event) => {
     event.preventDefault();
-    let session_meta = { userId : this.props.userId, name : this.props.name};
-    this.props.editIssue(this.props.token, this.props.issue._id, session_meta, this.state.form);
+    let session = { userId : this.props.userId, name : this.props.name};
+    this.props.editIssue(this.props.token, this.props.issue._id, session, this.state.form);
     this.closeModalHandler();
   }
 
@@ -130,6 +143,7 @@ class editIssue extends Component {
       let issue = (this.props.issue) ? (<Aux><h5>Issue: ({this.props.issue._id})</h5>
                                         <h4>owner: {this.props.issue.created_by}</h4>
                                         <h4>priority: {this.props.issue.priority}</h4>
+                                        <h4>title: {this.props.issue.title}</h4>
                                         <h4>description: {this.props.issue.description}</h4>
                                         <h4>status: {this.props.issue.status}</h4></Aux>) : null
 
