@@ -4,7 +4,7 @@ export {
   createIssue,
   deleteIssue,
   editIssue,
-  subscribeIssue
+  subscriptionIssue
 } from './Issues';
 export {
   getOffers,

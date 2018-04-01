@@ -15,8 +15,6 @@ router.get('/all', authorize, async (req, res) => {
 });
 
 
-
-
 router.get('/', authorize, async (req, res) => {
   const pageNum = (req.query.page) ? (req.query.page) : 1;
   const pageSize = 7;

@@ -10,6 +10,7 @@ import Button from '../../components/button/Button';
 class subIssue extends Component {
 
   state = {
+      reload: true,
       form: {
         user: {
             elementType: 'select',
@@ -30,17 +31,20 @@ class subIssue extends Component {
 
   componentDidMount() {
     this.props.getUsers(this.props.token);
+  }
 
+  dataUpdate() {
     let userList = this.state.form.user.elementConfig.options;
-    this.props.users.map((user) => userList.push({value: user._id, displayValue: user.name}));
-    this.setState({ form : { user : { ...this.state.form.user, elementConfig : { options : userList }}}});
-    console.log(this.props.users);
-    console.log(this.state);
+    this.props.users.map((user) => { if (!(this.props.issue.created_by_id === user._id))
+      userList.push({value: user._id, displayValue: user.name})});
+    this.setState({ form : { user : { ...this.state.form.user, elementConfig : { options : userList }}}
+    , reload : null});
+
   }
 
   subIssueHandler = (event) => {
     event.preventDefault();
-    this.props.subscribeIssue(this.props.token, this.props.issue_id, this.props.userId);
+    this.props.subscriptionIssue(this.props.token, this.props.issue._id, this.props.userId);
   }
 
   inputChangedHandler = (event, inputIdentifier) => {
@@ -63,6 +67,7 @@ class subIssue extends Component {
   }
 
   render () {
+      if (this.props.users.length > 0 && this.state.reload) this.dataUpdate();
       const formElementsArray = [];
       for (let key in this.state.form) {
           formElementsArray.push({
@@ -71,7 +76,7 @@ class subIssue extends Component {
           });
       }
       let form = (
-          <form onSubmit={this.subIssuHandler}>
+          <form onSubmit={this.subIssueHandler}>
               {formElementsArray.map(formElement => (
                   <Form
                       key={formElement.id}
@@ -104,7 +109,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-     subscribeIssue : (token, userId) => dispatch(Actions.subscribeIssue(token, userId)),
+     subscriptionIssue : (token, issueId, userId) => dispatch(Actions.subscriptionIssue(token, issueId, userId)),
      getUsers : (token) => dispatch(Actions.getUsers(token))
   };
 };

@@ -1,5 +1,6 @@
 import * as actionTypes from '../../utils/actionTypes';
 import axios from 'axios';
+import { getUsers } from './User';
 
 const setIssues = (issues) => {
   return {
@@ -191,32 +192,32 @@ export const editIssue = (token, id, session, form) => {
   };
 };
 
-const subscribeSuccess = () => {
+const subscriptionSuccess = () => {
   return {
-    type: actionTypes.SUBSCRIBE_ISSUE_SUCCESS,
+    type: actionTypes.SUBSCRIPTION_ISSUE_SUCCESS,
     error: false
   };
 };
 
-const subscribeFail = (errorMsg) => {
+const subscriptionFail = (errorMsg) => {
   return {
-    type: actionTypes.SUBSCRIBE_ISSUE_FAIL,
+    type: actionTypes.SUBSCRIPTION_ISSUE_FAIL,
     error: true,
     errorMsg: errorMsg
   };
 };
 
-export const subscribeIssue = (token, id, userId) => {
+export const subscriptionIssue = (token, id, userId) => {
   return async dispatch => {
     try {
       const header = {
         headers: { 'x-auth-token': token }
       }
       await axios.post('/issues/' + id + '/sub', {userId : userId}, header);
-      dispatch(subscribeSuccess());
-      dispatch(getIssue(id));
+      dispatch(subscriptionSuccess());
+      dispatch(getUsers(token));
       } catch (error) {
-      dispatch(subscribeFail(error.message));
+      dispatch(subscriptionFail(error.message));
     };
   };
 };

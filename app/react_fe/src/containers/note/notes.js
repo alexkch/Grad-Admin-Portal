@@ -48,10 +48,11 @@ class Notes extends Component {
 
     render () {
 
-      let subscribers = (this.props.issue) ? (<Box title='Subscribers' type='no-header'>{this.props.issue.subscribers}</Box>) :
-                                              null;
+      let subscribers = (!this.props.issue) ? null :
+      (<Box title='Subscribers' type='no-header'>{this.props.issue.subscribers}</Box>);
 
-      let subscribe = (this.state.showSubscribe) ? (<Box type="no-header"><SubIssue subscribeShow={this.state.showSubscribe} /></Box>) : null;
+      let subscribe = (!this.state.showSubscribe) ? null :
+      (<Box type="no-header"><SubIssue issue={this.props.issue} subscribeShow={this.state.showSubscribe} /></Box>);
 
       let issue = (this.props.issue) ? (<Card created_by={this.props.issue.created_by}
                                           created_on={new Date(this.props.issue.created_on).toDateString()}

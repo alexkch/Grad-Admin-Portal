@@ -63,10 +63,10 @@ const reducer = ( state = initialState, action ) => {
               error : action.error,
               errorMsg: action.errorMsg});
 
-        case actionTypes.SUBSCRIBE_ISSUE_SUCCESS:
+        case actionTypes.SUBSCRIPTION_ISSUE_SUCCESS:
             return update(state, {error : action.error} );
 
-        case actionTypes.SUBSCRIBE_ISSUE_FAIL:
+        case actionTypes.SUBSCRIPTION_ISSUE_FAIL:
             return update(state, {
               error : action.error,
               errorMsg: action.errorMsg});
