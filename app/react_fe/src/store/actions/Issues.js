@@ -190,3 +190,33 @@ export const editIssue = (token, id, session, form) => {
     };
   };
 };
+
+const subscribeSuccess = () => {
+  return {
+    type: actionTypes.SUBSCRIBE_ISSUE_SUCCESS,
+    error: false
+  };
+};
+
+const subscribeFail = (errorMsg) => {
+  return {
+    type: actionTypes.SUBSCRIBE_ISSUE_FAIL,
+    error: true,
+    errorMsg: errorMsg
+  };
+};
+
+export const subscribeIssue = (token, id) => {
+  return async dispatch => {
+    try {
+      const header = {
+        headers: { 'x-auth-token': token }
+      }
+      await axios.post('/issues/' + id + '/sub', null, header);
+      dispatch(subscribeSuccess());
+      dispatch(getIssue(id));
+      } catch (error) {
+      dispatch(subscribeFail(error.message));
+    };
+  };
+};
