@@ -33,5 +33,5 @@ export {
 } from './Auth';
 export {
   newUser,
-  getAllUsers
+  getUsers
 } from './User';

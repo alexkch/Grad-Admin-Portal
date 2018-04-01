@@ -85,7 +85,7 @@ const subscribeSuccess = () => {
   };
 };
 
-const subscribeinitFail = (errorMsg) => {
+const subscribeFail = (errorMsg) => {
   return {
     type: actionTypes.SUBSCRIBE_USER_FAIL,
     error: 'true',

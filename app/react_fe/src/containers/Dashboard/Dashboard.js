@@ -1,6 +1,6 @@
 // Config
 import React, {Component} from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
   //users
@@ -19,19 +19,16 @@ import Button from '../../components/button/Button';
 
 class Dashboard extends Component {
 
-    state = { tab: 1, open: false };
+    state = { open: false };
 
-    handleClose(e) { this.setState({open:false})};
-    handleClickLogout(e) { this.setState({ tab: 0, open: false})};
-    handleClickLogin(e) { this.setState({ tab: 1, open: true })};
+    handleClose(e) { this.setState({ open:false })};
+    handleClickLogin(e) { this.setState({ open: true })};
     render() {
 
     let popoverContent = <div style={{width: "500px"}} ><Box header={'Log in'} color={'primary'}><LoginUser/></Box></div>;
 
-    let logoutContent = (this.state.tab === 0) ? <LogoutUser /> : null;
-
     const popoverProps = {
-        key : 3,
+        key : 1,
         isOpen: this.state.open,
         preferPlace: 'below',
         place: 'below',
@@ -39,15 +36,14 @@ class Dashboard extends Component {
         body: popoverContent
     };
     let navButton;
-    navButton = (this.props.token) ? (<Button type="default" clicked={this.handleClickLogout.bind(this)}>Log Out</Button>)
+    navButton = (this.props.token) ? (<Link to='/logout'><Button type="default">Log Out</Button></Link>)
                                     :(<Popover {...popoverProps}>
-                                      <Button type="default" clicked={this.handleClickLogin.bind(this)}>Login</Button>
+                                        <Button type="default" clicked={this.handleClickLogin.bind(this)}>Login</Button>
                                       </Popover>)
 
       return (
         <Aux>
         <Nav token={this.props.token}> {navButton} </Nav>
-        {logoutContent}
         <Container fluid>
           <Row>
             <Col sm="7" md="7">

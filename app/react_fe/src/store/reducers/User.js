@@ -7,6 +7,7 @@ const initialState = {
     name: null,
     usertype: null,
     isAdmin: false,
+    users: [],
     error: false,
     errorMsg: ''
 };

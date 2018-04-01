@@ -10,17 +10,12 @@ import Button from '../../components/button/Button';
 class subIssue extends Component {
 
   state = {
-      show: true,
       form: {
         user: {
             elementType: 'select',
             elementConfig: {
                 options: [
-                    {value: '', displayValue: 'Select a priority'},
-                    {value: 'urgent', displayValue: 'Urgent'},
-                    {value: 'high', displayValue: 'High'},
-                    {value: 'medium', displayValue: 'Medium'},
-                    {value: 'low', displayValue: 'Low'}
+                    {value: '', displayValue: 'Select User'}
                 ]
             },
             value: '',
@@ -34,7 +29,13 @@ class subIssue extends Component {
   }
 
   componentDidMount() {
-    this.props.getIssues(this.props.token);
+    this.props.getUsers(this.props.token);
+
+    let userList = this.state.form.user.elementConfig.options;
+    this.props.users.map((user) => userList.push({value: user._id, displayValue: user.name}));
+    this.setState({ form : { user : { ...this.state.form.user, elementConfig : { options : userList }}}});
+    console.log(this.props.users);
+    console.log(this.state);
   }
 
   subIssueHandler = (event) => {
@@ -103,7 +104,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-     subscribeIssue : (token, userId) => dispatch(Actions.subscribeIssue(token, userId))
+     subscribeIssue : (token, userId) => dispatch(Actions.subscribeIssue(token, userId)),
+     getUsers : (token) => dispatch(Actions.getUsers(token))
   };
 };
 

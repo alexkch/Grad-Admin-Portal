@@ -8,6 +8,7 @@ import * as Actions from './store/actions/';
 import Issues from './containers/issue/Issues';
   //users
 import NewUser from './containers/user/CreateUser';
+import LogoutUser from './containers/user/LogoutUser';
   //tickets
 import Tickets from './containers/ticket/Tickets';
 
@@ -24,6 +25,7 @@ class App extends Component {
     routes = (this.props.token) ? (<Switch>
                                     <Route path="/tickets" component={Tickets} />
                                     <Route path="/issues" component={Issues} />
+                                    <Route path="/logout" exact component={LogoutUser} />
                                    </Switch>) :
                                    <Switch>
                                     <Route path="/newuser" exact component={NewUser} />
