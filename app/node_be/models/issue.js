@@ -15,6 +15,13 @@ const issueSchema = new mongoose.Schema({
   	type: mongoose.Schema.Types.ObjectId,
   	ref: 'User'
   },
+  title: {
+    type: String,
+    minlength: 1,
+    required: true,
+    lowercase: true,
+    trim: true
+  },
   description: {
     type: String,
     minlength: 1,
@@ -48,6 +55,7 @@ function validateIssue(issue) {
 	const schema = {
 		created_by: Joi.string().min(1).max(255).required(),
     created_by_id: Joi.objectId().required(),
+    title: Joi.string().min(1).required(),
     description: Joi.string().min(1).required(),
 		status: Joi.string()
     .valid('open', 'closed').required(),

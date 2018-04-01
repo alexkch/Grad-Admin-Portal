@@ -59,7 +59,7 @@ class NewUser extends Component {
                         {value: '', displayValue: 'Choose your Occupation', default: true},
                         {value: 'faculty', displayValue: 'Faculty'},
                         {value: 'budget_office', displayValue: 'Budget Office'},
-                        {value: 'grad_office', displayValue: 'Grad office'}
+                        {value: 'grad_office', displayValue: 'Grad Office'}
                     ]
                 },
                 value: '',

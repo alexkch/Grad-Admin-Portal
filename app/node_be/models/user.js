@@ -37,6 +37,18 @@ const userSchema = new mongoose.Schema({
     required: true,
     default: false
   },
+  issues: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Issue'
+  }],
+  tickets: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Ticket'
+  }],
+  offers: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Offer'
+  }],
   created_on: { type: Date, default: Date.now },
   last_login: { type: Date }
 });
