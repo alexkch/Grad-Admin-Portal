@@ -7,6 +7,10 @@ import { Container, Col, Row, Card, CardHeader, CardBody, CardFooter, Badge } fr
 
 const card = (props) => {
 
+  let subscribeLink = <Link to={props.url + '/subscribe'}>
+    <FontAwesome name='user-plus' />
+  </Link>;
+
   switch (props.type) {
     case ( 'issues' ):
       return (<section style={{"paddingBottom" : "10px"}}>
@@ -55,7 +59,10 @@ const card = (props) => {
                 <CardFooter>
                   <Container>
                     <Row>
-                      <Col sm="8" md="8" />
+                      <Col sm="6" md="6" />
+                      <Col sm="2" md="2">
+                        {subscribeLink}
+                      </Col>
                       <Col sm="2" md="2">
                         <Link to={props.url + '/edit'}>
                           <FontAwesome name='pencil-square-o'/>

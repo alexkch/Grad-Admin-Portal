@@ -9,9 +9,17 @@ const router = express.Router();
 
 
 // get all issues
+router.get('/all', authorize, async (req, res) => {
+  const issues = await Issue.find().select('_id');
+	res.send(issues);
+});
+
+
+
+
 router.get('/', authorize, async (req, res) => {
   const pageNum = (req.query.page) ? (req.query.page) : 1;
-  const pageSize = 6;
+  const pageSize = 7;
   const order = (req.query.order === 'asc') ? 1 : -1;
   const sortBy = (req.query.sort) ? (req.query.sort) : "created_on";
   const issues = await Issue
@@ -86,6 +94,32 @@ router.delete('/:id', [authorize, validateObjId], async (req, res) => {
 	const issue = await Issue.findByIdAndRemove(req.params.id);
 	if (!issue) return res.status(404).send("database error");
 	res.send(issue);
+});
+
+
+// subscribe user to an issue
+router.post('/:id/sub', [authorize, validateObjId], async (req, res) => {
+
+  const isOwner = await Issue.findOne({ _id : req.params.id, created_by_id : req.user._id });
+  if (isOwner) return res.status(400).send("cannot subscribe to own issue");
+
+  const result = await Issue.update({ "_id" : req.params.id },
+    { $push: { subscribers : req.user._id }
+  });
+
+  res.send(result);
+});
+
+router.delete('/:id/unsub', [authorize, validateObjId], async (req, res) => {
+
+  const isOwner = await Issue.findOne({ _id : req.params.id, created_by_id : req.user._id });
+  if (isOwner) return res.status(400).send("cannot subscribe to own issue");
+
+  const result = await Issue.update({ "_id" : req.params.id },
+    { $pull: { subscribers : req.user._id }
+  });
+
+  res.send(result);
 });
 
 

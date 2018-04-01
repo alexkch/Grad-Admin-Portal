@@ -74,6 +74,7 @@ class NewUser extends Component {
     createUserHandler = (event) => {
       event.preventDefault();
       this.props.newUser(this.state.form);
+      this.props.history.replace('/');
     }
 
     inputChangedHandler = (event, inputIdentifier) => {

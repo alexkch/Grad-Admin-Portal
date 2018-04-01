@@ -44,3 +44,42 @@ export const newUser = (form) => {
     };
   };
 };
+
+
+const subscribeSuccess = () => {
+  return {
+    type: actionTypes.SUBSCRIBE_USER_SUCCESS,
+    error: 'false'
+  };
+};
+
+const subscribeinitFail = (errorMsg) => {
+  return {
+    type: actionTypes.SUBSCRIBE_USER_FAIL,
+    error: 'true',
+    errorMsg : errorMsg
+  };
+};
+
+
+export const subscribeUser = (subscriber, subscription) => {
+  return async dispatch => {
+    try {
+      /*
+      const userData = {
+        name: form.name.value,
+        password: form.password.value,
+        email: form.email.value,
+        usertype: form.usertype.value,
+        isAdmin: "false"
+      }
+
+      await axios.post('/users', userData);
+      dispatch(initSuccess());
+      dispatch(auth(form.email.value, form.password.value));
+*/
+      } catch (error) {
+      dispatch(initFail(error.message));
+    };
+  };
+};
