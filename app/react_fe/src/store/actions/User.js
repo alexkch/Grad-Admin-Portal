@@ -35,7 +35,7 @@ export const newUser = (form) => {
         usertype: form.usertype.value,
         isAdmin: "false"
       }
-      const res = await axios.post('/users', userData);
+      await axios.post('/users', userData);
       dispatch(initSuccess());
       dispatch(auth(form.email.value, form.password.value));
 

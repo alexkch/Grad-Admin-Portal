@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap';
-//import EditNote from './EditNote';
-//import DeleteNote from './DeleteNote';
 import * as Actions from '../../store/actions/';
 import EditNote from './EditNote';
-import Modal from '../../components/modal/Modal';
 import Chatbox from '../../components/box/Chatbox';
-import Pagebar from '../../components/navigation/Pagebar';
 import Card from '../../components/box/Card';
 
 class Notes extends Component {
@@ -35,7 +30,7 @@ class Notes extends Component {
       this.setState({noteIndex: index});
     }
 
-    unselectNoteHandler = (index) => {
+    unselectNoteHandler = () => {
       this.setState({noteIndex: null});
       console.log('33322');
     }
@@ -93,10 +88,9 @@ const mapStateToProps = state => {
       token: state.user.token,
       userId: state.user.userId,
       name: state.user.name,
-      issue: state.issue.issue
-      //notes: state.note.notes,
-      //error: state.note.error,
-      //errorMsg: state.note.errorMsg
+      issue: state.issue.issue,
+      error: state.issue.error,
+      errorMsg: state.issue.errorMsg
   };
 };
 
@@ -104,7 +98,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getIssue: (token, id) => dispatch(Actions.getIssue(token, id))
-    //getNotes: (token) => dispatch(Actions.getNotes(token))
   };
 };
 

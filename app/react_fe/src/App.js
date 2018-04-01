@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Dashboard from './containers/dashboard/Dashboard';
-import { Route, Redirect, Switch, withRouter } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as Actions from './store/actions/';
 

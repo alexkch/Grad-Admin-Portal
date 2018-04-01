@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as Actions from '../../store/actions/';
-import { Container, Row, Col } from 'reactstrap';
 import Form from '../../components/form/Form';
 import checkValidity from '../../utils/validateForm';
-import Aux from '../../utils/auxiliary';
 import Chatbox from '../../components/box/Chatbox';
 import Button from '../../components/button/Button';
-import Modal from '../../components/modal/Modal';
 
 class editNote extends Component {
 
@@ -31,17 +28,12 @@ class editNote extends Component {
       formIsValid: false,
   }
 
-  closeModalHandler = () => {
-    this.setState({ show: false });
-    this.props.match.url.includes("/notes/edit") ? this.props.history.replace('/notes/' + this.state.prev_urlId + '/notes')
-    : this.props.history.replace('/notes');
-  }
-
   editNoteHandler = (event) => {
     event.preventDefault();
     let session_meta = { userId : this.props.userId, name : this.props.name};
     this.props.editNote(this.props.token, this.props.issue_id, this.props.note_id, session_meta, this.state.form);
-    this.props.unselect;
+    console.log(this.props.unselect);
+    this.props.unselect();
   }
 
   inputChangedHandler = (event, inputIdentifier) => {
