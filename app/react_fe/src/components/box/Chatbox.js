@@ -16,18 +16,15 @@ const chatbox = (props) => {
                       </div>
 
                       {props.message}
-
                       <span style={{float: "right"}}>
                         <Link to={props.url + '/' + props.note_id + '/del'}>
                           <FontAwesome name='trash-o' />
                         </Link>
                       </span>
-                      <span style={{float: "right", paddingRight: "10px"}}>
-                        <Link to={props.url + '/' + props.note_id + '/edit'}>
-                          <FontAwesome name='pencil-square-o'/>
-                        </Link>
+                      <span onClick={props.select} style={{float: "right", paddingRight: "10px"}}>
+                        <FontAwesome name='pencil-square-o'/>
                       </span>
-
+                      {props.children}
                   </div>
               </li>
             </ul>)};
