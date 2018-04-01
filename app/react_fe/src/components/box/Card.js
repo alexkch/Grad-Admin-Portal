@@ -7,12 +7,7 @@ import { Container, Col, Row, Card, CardHeader, CardBody, CardFooter, Badge } fr
 
 const card = (props) => {
 
-  let subscribeLink = (props.showSubscribe) ? <span onClick={props.unsubscribeSelect}>
-                                                <FontAwesome name='user-times' />
-                                              </span> :
-                                              <span onClick={props.subscribeSelect}>
-                                                <FontAwesome name='user-plus' />
-                                              </span>;
+  let subscribeAction = (props.showSubscribe) ? (props.unsubscribeSelect) : (props.subscribeSelect);
 
   switch (props.type) {
     case ( 'issues' ):
@@ -21,7 +16,7 @@ const card = (props) => {
                       <CardHeader>
                         <Badge color='dark' style={{float: 'left'}}>{props.created_on}</Badge>
                         <Badge color={props.header_clr} style={{float: 'right'}}>Priority: {props.priority}</Badge>
-                        <span style={{color:"black", paddingLeft:"10px"}}>{props.title}</span>
+                        <span style={{paddingLeft:"10px"}}>{props.title}</span>
                       </CardHeader>
 
                       <CardBody>
@@ -43,7 +38,7 @@ const card = (props) => {
                 <Card style={{"borderColor" : "black"}}>
                   <CardBody>
                     <Container>
-                      <Row style={{"color" : "black"}}>
+                      <Row>
                         <h5>{props.title} - {props.created_on}</h5>
                       </Row>
                       <Row style={{"paddingBottom" : "5px"}}>
@@ -52,17 +47,19 @@ const card = (props) => {
                       <Row style={{"paddingBottom" : "5px", "color" : props.btn_clr }}>
                         STATUS: {props.status}
                       </Row>
-                      <Row style={{"paddingBottom" : "5px", "color" : "black"}}>
+                      <Row style={{"paddingBottom" : "5px"}}>
                         {props.description}
                       </Row>
                     </Container>
                   </CardBody>
                   <CardFooter>
-                    <Container style={{"color" : "black"}}>
+                    <Container>
                       <Row>
-                        <Col sm="6" md="6" />
+                        <Col sm="5" md="5" />
                         <Col sm="2" md="2">
-                          {subscribeLink}
+                          <span onClick={subscribeAction}>
+                            <FontAwesome name='user-plus' />
+                          </span>
                         </Col>
                         <Col sm="2" md="2">
                           <Link to={props.url + '/edit'}>

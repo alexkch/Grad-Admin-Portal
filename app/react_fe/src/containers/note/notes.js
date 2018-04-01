@@ -50,11 +50,14 @@ class Notes extends Component {
     render () {
 
       let subscribers = (!this.props.issue) ? null :
-      (<Box title='Subscribers' type='no-header'>{this.props.issue.subscribers}</Box>);
+      (<Box title='Subscribers' type='no-header'>
+        {this.props.issue.subscribers.map((subscribers) => <small key={subscribers}>{subscribers}</small>)}
+      </Box>);
 
       let subscribe = (!this.state.showSubscribe) ? null :
       (<Box type="no-header"><SubIssue subscribeShow={this.state.showSubscribe} /></Box>);
 
+      let test = (this.props.issue) ? console.log(this.props.issue.subscribers) : null;
       let issue = (this.props.issue) ? (<Card created_by={this.props.issue.created_by}
                                           created_on={new Date(this.props.issue.created_on).toDateString()}
                                           issue_id={this.props.issue._id}
@@ -112,6 +115,7 @@ const mapStateToProps = state => {
       userId: state.user.userId,
       name: state.user.name,
       issue: state.issue.issue,
+      subscribers: state.issue.subscribers,
       error: state.issue.error,
       errorMsg: state.issue.errorMsg
   };
