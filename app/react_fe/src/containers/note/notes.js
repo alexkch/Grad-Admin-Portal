@@ -2,14 +2,17 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Container, Row, Col } from 'reactstrap';
 import * as Actions from '../../store/actions/';
+import SubIssue from '../issue/SubIssue';
 import EditNote from './EditNote';
 import Chatbox from '../../components/box/Chatbox';
 import Card from '../../components/box/Card';
+import Box from '../../components/box/Box';
 
 class Notes extends Component {
 
     state = {
-      noteIndex : null
+      noteIndex : null,
+      showSubscribe: null
     }
 
     componentDidMount() {
@@ -26,20 +29,29 @@ class Notes extends Component {
       }
     }
 
+    selectSubscribeHandler = () => {
+      this.setState({showSubscribe: true});
+    }
+
+    unselectSubscribeHandler = () => {
+      this.setState({showSubscribe: null});
+    }
+
     selectNoteHandler = (index) => {
       this.setState({noteIndex: index});
     }
 
     unselectNoteHandler = () => {
       this.setState({noteIndex: null});
-      console.log('33322');
     }
 
 
     render () {
 
-      let subscribers = (this.props.issue) ? (<Card subscribers={this.props.issue.subscribers} type='issue-sub'/>) :
+      let subscribers = (this.props.issue) ? (<Box title='Subscribers' type='no-header'>{this.props.issue.subscribers}</Box>) :
                                               null;
+
+      let subscribe = (this.state.showSubscribe) ? (<Box type="no-header"><SubIssue subscribeShow={this.state.showSubscribe} /></Box>) : null;
 
       let issue = (this.props.issue) ? (<Card created_by={this.props.issue.created_by}
                                           created_on={new Date(this.props.issue.created_on).toDateString()}
@@ -50,8 +62,11 @@ class Notes extends Component {
                                           description={this.props.issue.description}
                                           btn_clr ={((this.props.issue.status) === 'open') ? 'blue' : 'red'}
                                           header_clr={this.priorityColorHandler(this.props.issue.priority)}
+                                          subscribeSelect={() => this.selectSubscribeHandler()}
+                                          unsubscribeSelect={() => this.unselectSubscribeHandler()}
+                                          showSubscribe={this.state.showSubscribe}
                                           url={this.props.match.url}
-                                          type='issue-notes'/>) : null;
+                                          type='issue-notes' />) : null;
 
       let notes = (this.props.issue) ? ((this.props.issue.notes.length < 1) ? null :
          (this.props.issue.notes.map((note, index) => { return (this.state.noteIndex === index) ?
@@ -78,6 +93,7 @@ class Notes extends Component {
             <Row>
               <Col md="4">
                 {issue}
+                {subscribe}
                 {subscribers}
               </Col>
               <Col md="8">
@@ -102,7 +118,8 @@ const mapStateToProps = state => {
 // pass using props , this.props.onSetNotes
 const mapDispatchToProps = dispatch => {
   return {
-    getIssue: (token, id) => dispatch(Actions.getIssue(token, id))
+    getIssue: (token, id) => dispatch(Actions.getIssue(token, id)),
+    subscribeIssue: (token, id) => dispatch(Actions.getIssue(token, id))
   };
 };
 

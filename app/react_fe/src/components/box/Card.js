@@ -7,9 +7,12 @@ import { Container, Col, Row, Card, CardHeader, CardBody, CardFooter, Badge } fr
 
 const card = (props) => {
 
-  let subscribeLink = <Link to={props.url + '/subscribe'}>
-    <FontAwesome name='user-plus' />
-  </Link>;
+  let subscribeLink = (props.showSubscribe) ? <span onClick={props.unsubscribeSelect}>
+                                                <FontAwesome name='user-times' />
+                                              </span> :
+                                              <span onClick={props.subscribeSelect}>
+                                                <FontAwesome name='user-plus' />
+                                              </span>;
 
   switch (props.type) {
     case ( 'issues' ):
@@ -40,25 +43,22 @@ const card = (props) => {
                 <Card style={{"borderColor" : "black"}}>
                   <CardBody>
                     <Container>
+                      <Row style={{"color" : "black"}}>
+                        <h5>{props.title} - {props.created_on}</h5>
+                      </Row>
                       <Row style={{"paddingBottom" : "5px"}}>
                         <Badge color={props.header_clr}>Priority: {props.priority}</Badge>
                       </Row>
-                      <Row style={{"paddingBottom" : "20px", "color" : "black"}}>
-                        {props.created_on}
-                      </Row>
-                      <Row style={{"paddingBottom" : "5px", "color" : "black"}}>
-                        {props.title}
+                      <Row style={{"paddingBottom" : "5px", "color" : props.btn_clr }}>
+                        STATUS: {props.status}
                       </Row>
                       <Row style={{"paddingBottom" : "5px", "color" : "black"}}>
                         {props.description}
                       </Row>
-                      <Row style={{"color" : props.btn_clr }}>
-                        STATUS: {props.status}
-                      </Row>
                     </Container>
                   </CardBody>
                   <CardFooter>
-                    <Container>
+                    <Container style={{"color" : "black"}}>
                       <Row>
                         <Col sm="6" md="6" />
                         <Col sm="2" md="2">

@@ -56,6 +56,16 @@ const reducer = ( state = initialState, action ) => {
               error : true,
               errorMsg : action.errorMsg});
 
+        case actionTypes.SET_USERS:
+            return update(state, {
+              error : false,
+              users : action.users});
+
+        case actionTypes.SET_USERS_FAIL:
+            return update(state, {
+              error : true,
+              errorMsg : action.errorMsg});
+
         default:
             return state;
     }

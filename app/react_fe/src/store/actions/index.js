@@ -32,5 +32,6 @@ export {
   getSession
 } from './Auth';
 export {
-  newUser
+  newUser,
+  getAllUsers
 } from './User';
