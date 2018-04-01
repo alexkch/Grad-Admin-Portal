@@ -45,6 +45,10 @@ const issueSchema = new mongoose.Schema({
     trim: true,
   },
   notes: [noteSchema],
+  subscribers: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }],
   updated_on: { type: Date },
   closed_on: { type: Date },
   created_on: { type: Date, default: Date.now },
