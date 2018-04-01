@@ -5,6 +5,7 @@ import { Container, Row, Col } from 'reactstrap';
 //import EditNote from './EditNote';
 //import DeleteNote from './DeleteNote';
 import * as Actions from '../../store/actions/';
+import EditNote from './EditNote';
 import Modal from '../../components/modal/Modal';
 import Chatbox from '../../components/box/Chatbox';
 import Pagebar from '../../components/navigation/Pagebar';
@@ -12,6 +13,10 @@ import Card from '../../components/box/Card';
 
 class Notes extends Component {
 
+    state = {
+      noteIndex : null,
+      selected: false
+    }
 
     componentDidMount() {
       this.props.getIssue(this.props.token, this.props.match.params.id);
@@ -27,6 +32,12 @@ class Notes extends Component {
       }
     }
 
+    selectNoteHandler = (index) => {
+      this.setState({noteIndex: index, selected: true });
+      console.log(index);
+    }
+
+
     render () {
 
       let issue = (this.props.issue) ? (<Card created_by={this.props.issue.created_by}
@@ -41,12 +52,22 @@ class Notes extends Component {
                                           type='issue-notes'/>) : null;
 
       let notes = (this.props.issue) ? ((this.props.issue.notes.length < 1) ? null :
-         (this.props.issue.notes.map((note, index) => <Chatbox key={note._id}
+         (this.props.issue.notes.map((note, index) => { return (this.state.noteIndex === index) ?
+                                                      <EditNote key={note._id}
                                                        note_id={note._id}
                                                        message={note.message}
                                                        created_on={new Date(note.created_on).toDateString()}
                                                        created_by={note.created_by}
-                                                       url={this.props.match.url}/>))) : null;
+                                                       select={() => this.selectNoteHandler(index)}
+                                                       url={this.props.match.url}/> :
+                                                      <Chatbox key={note._id}
+                                                       note_id={note._id}
+                                                       message={note.message}
+                                                       created_on={new Date(note.created_on).toDateString()}
+                                                       created_by={note.created_by}
+                                                       select={() => this.selectNoteHandler(index)}
+                                                       url={this.props.match.url}/> }
+                                                     ))) : null;
 
       return (
         <Container>
