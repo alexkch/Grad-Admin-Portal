@@ -206,13 +206,13 @@ const subscribeFail = (errorMsg) => {
   };
 };
 
-export const subscribeIssue = (token, id) => {
+export const subscribeIssue = (token, id, userId) => {
   return async dispatch => {
     try {
       const header = {
         headers: { 'x-auth-token': token }
       }
-      await axios.post('/issues/' + id + '/sub', null, header);
+      await axios.post('/issues/' + id + '/sub', {userId : userId}, header);
       dispatch(subscribeSuccess());
       dispatch(getIssue(id));
       } catch (error) {

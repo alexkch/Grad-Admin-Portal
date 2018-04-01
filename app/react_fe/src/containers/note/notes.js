@@ -38,6 +38,9 @@ class Notes extends Component {
 
     render () {
 
+      let subscribers = (this.props.issue) ? (<Card subscribers={this.props.issue.subscribers} type='issue-sub'/>) :
+                                              null;
+
       let issue = (this.props.issue) ? (<Card created_by={this.props.issue.created_by}
                                           created_on={new Date(this.props.issue.created_on).toDateString()}
                                           issue_id={this.props.issue._id}
@@ -75,9 +78,10 @@ class Notes extends Component {
             <Row>
               <Col md="4">
                 {issue}
+                {subscribers}
               </Col>
               <Col md="8">
-                  {notes}
+                {notes}
               </Col>
               </Row>
         </Container>);

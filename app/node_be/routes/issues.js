@@ -97,19 +97,20 @@ router.delete('/:id', [authorize, validateObjId], async (req, res) => {
 });
 
 
-// subscribe user to an issue
+// subscribe a user to an issue
 router.post('/:id/sub', [authorize, validateObjId], async (req, res) => {
 
   const isOwner = await Issue.findOne({ _id : req.params.id, created_by_id : req.user._id });
   if (isOwner) return res.status(400).send("cannot subscribe to own issue");
 
   const result = await Issue.update({ "_id" : req.params.id },
-    { $push: { subscribers : req.user._id }
+    { $push: { subscribers : req.body.userId }
   });
 
   res.send(result);
 });
 
+// unsubscribe from an issue (only own user can do this for himself)
 router.delete('/:id/unsub', [authorize, validateObjId], async (req, res) => {
 
   const isOwner = await Issue.findOne({ _id : req.params.id, created_by_id : req.user._id });

@@ -36,47 +36,57 @@ const card = (props) => {
                 </section>);
 
     case ( 'issue-notes' ):
-      return (<Card style={{"borderColor" : "black"}}>
-                <CardBody>
-                  <Container>
-                    <Row style={{"paddingBottom" : "5px"}}>
-                      <Badge color={props.header_clr}>Priority: {props.priority}</Badge>
-                    </Row>
-                    <Row style={{"paddingBottom" : "20px", "color" : "black"}}>
-                      {props.created_on}
-                    </Row>
-                    <Row style={{"paddingBottom" : "5px", "color" : "black"}}>
-                      {props.title}
-                    </Row>
-                    <Row style={{"paddingBottom" : "5px", "color" : "black"}}>
-                      {props.description}
-                    </Row>
-                    <Row style={{"color" : props.btn_clr }}>
-                      STATUS: {props.status}
-                    </Row>
-                  </Container>
-                </CardBody>
-                <CardFooter>
-                  <Container>
-                    <Row>
-                      <Col sm="6" md="6" />
-                      <Col sm="2" md="2">
-                        {subscribeLink}
-                      </Col>
-                      <Col sm="2" md="2">
-                        <Link to={props.url + '/edit'}>
-                          <FontAwesome name='pencil-square-o'/>
-                        </Link>
-                      </Col>
-                      <Col sm="2" md="2">
-                        <Link to={props.url + '/del'}>
-                          <FontAwesome name='trash-o' />
-                        </Link>
-                      </Col>
-                    </Row>
-                  </Container>
-                </CardFooter>
-              </Card>);
+      return (<section style={{"paddingBottom" : "10px"}}>
+                <Card style={{"borderColor" : "black"}}>
+                  <CardBody>
+                    <Container>
+                      <Row style={{"paddingBottom" : "5px"}}>
+                        <Badge color={props.header_clr}>Priority: {props.priority}</Badge>
+                      </Row>
+                      <Row style={{"paddingBottom" : "20px", "color" : "black"}}>
+                        {props.created_on}
+                      </Row>
+                      <Row style={{"paddingBottom" : "5px", "color" : "black"}}>
+                        {props.title}
+                      </Row>
+                      <Row style={{"paddingBottom" : "5px", "color" : "black"}}>
+                        {props.description}
+                      </Row>
+                      <Row style={{"color" : props.btn_clr }}>
+                        STATUS: {props.status}
+                      </Row>
+                    </Container>
+                  </CardBody>
+                  <CardFooter>
+                    <Container>
+                      <Row>
+                        <Col sm="6" md="6" />
+                        <Col sm="2" md="2">
+                          {subscribeLink}
+                        </Col>
+                        <Col sm="2" md="2">
+                          <Link to={props.url + '/edit'}>
+                            <FontAwesome name='pencil-square-o'/>
+                          </Link>
+                        </Col>
+                        <Col sm="2" md="2">
+                          <Link to={props.url + '/del'}>
+                            <FontAwesome name='trash-o' />
+                          </Link>
+                        </Col>
+                      </Row>
+                    </Container>
+                  </CardFooter>
+                </Card>
+              </section>);
+    case ( 'issue-sub' ):
+      return (<section style={{"paddingBottom" : "10px"}}>
+                  <Card style={{"borderColor" : "black"}}>
+                      <CardBody>
+                        <h5>Subscribers</h5>
+                      </CardBody>
+                  </Card>
+                </section>);
     default:
       return (<h2>DEFAULT: NEED TO SPECIFY TYPE</h2>);
     }
