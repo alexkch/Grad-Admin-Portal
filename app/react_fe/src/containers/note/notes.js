@@ -14,8 +14,7 @@ import Card from '../../components/box/Card';
 class Notes extends Component {
 
     state = {
-      noteIndex : null,
-      selected: false
+      noteIndex : null
     }
 
     componentDidMount() {
@@ -33,8 +32,12 @@ class Notes extends Component {
     }
 
     selectNoteHandler = (index) => {
-      this.setState({noteIndex: index, selected: true });
-      console.log(index);
+      this.setState({noteIndex: index});
+    }
+
+    unselectNoteHandler = (index) => {
+      this.setState({noteIndex: null});
+      console.log('33322');
     }
 
 
@@ -55,10 +58,12 @@ class Notes extends Component {
          (this.props.issue.notes.map((note, index) => { return (this.state.noteIndex === index) ?
                                                       <EditNote key={note._id}
                                                        note_id={note._id}
+                                                       issue_id={this.props.issue._id}
                                                        message={note.message}
                                                        created_on={new Date(note.created_on).toDateString()}
                                                        created_by={note.created_by}
                                                        select={() => this.selectNoteHandler(index)}
+                                                       unselect={() => this.unselectNoteHandler()}
                                                        url={this.props.match.url}/> :
                                                       <Chatbox key={note._id}
                                                        note_id={note._id}

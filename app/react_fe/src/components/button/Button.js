@@ -64,6 +64,17 @@ const button = (props) => {
             </Button>
           );
           break;
+      case ( 'disabled-dark-small-cancel' ):
+          output = (
+            <Button outline color="secondary"
+              type="button"
+              size="sm"
+              onClick={props.clicked}
+              disabled={props.disabled}>
+              {props.children}
+            </Button>
+          );
+          break;
       case ( 'disabled-stretch' ):
           output = (
             <Button color="info" size="lg" block

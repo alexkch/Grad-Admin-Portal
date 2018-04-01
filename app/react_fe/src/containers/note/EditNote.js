@@ -11,9 +11,7 @@ import Modal from '../../components/modal/Modal';
 
 class editNote extends Component {
 
-
   state = {
-      prevUrl: null,
       show: true,
       form: {
           message: {
@@ -42,8 +40,8 @@ class editNote extends Component {
   editNoteHandler = (event) => {
     event.preventDefault();
     let session_meta = { userId : this.props.userId, name : this.props.name};
-    this.props.editNote(this.props.token, this.props.note._id, session_meta, this.state.form);
-    this.closeModalHandler();
+    this.props.editNote(this.props.token, this.props.issue_id, this.props.note_id, session_meta, this.state.form);
+    this.props.unselect;
   }
 
   inputChangedHandler = (event, inputIdentifier) => {
@@ -87,6 +85,7 @@ class editNote extends Component {
                       changed={(event) => this.inputChangedHandler(event, formElement.id)} />
               ))}
               <Button disabled={!this.state.formIsValid} type={'disabled-dark-small'}>Update</Button>
+              <Button clicked={this.props.unselect} type={'disabled-dark-small-cancel'}>Cancel</Button>
           </form>
       );
 
@@ -106,7 +105,6 @@ const mapStateToProps = state => {
       token: state.user.token,
       userId: state.user.userId,
       name: state.user.name,
-      note: state.note.note,
       error: state.note.error,
       errorMsg: state.note.errorMsg
   };
@@ -114,8 +112,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-	   getNote : (token, id) => dispatch(Actions.getNote(token, id)),
-     editNote : (token, id, session, form) => dispatch(Actions.editNote(token, id, session, form))
+     editNote : (token, issueId, noteId, session, form) => dispatch(Actions.editNote(token, issueId, noteId, session, form))
   };
 };
 

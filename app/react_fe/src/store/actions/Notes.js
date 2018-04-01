@@ -135,23 +135,17 @@ const updateFail = (errorMsg) => {
   };
 };
 
-export const editNote = (token, id, session, form) => {
+export const editNote = (token, issueId, noteId, session, form) => {
   return async dispatch => {
     try {
       dispatch(updateNote());
-      const putData = {
-        created_by_id: session.userId,
-        created_by: session.name,
-        description: form.description.value,
-        priority: form.priority.value,
-        status: form.status.value
-      }
+      const putData = { message: form.message.value }
       const header = {
         headers: { 'x-auth-token': token }
       }
-      await axios.put('/notes/' + id, putData, header);
+      await axios.post('/issues/' + issueId + '/notes/' + noteId + '/edit', putData, header);
       dispatch(updateSuccess());
-      //dispatch(getNotes(token));
+      dispatch(getIssue(token, issueId));
       } catch (error) {
       dispatch(updateFail(error.message));
     };
