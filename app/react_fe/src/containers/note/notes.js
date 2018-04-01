@@ -17,6 +17,7 @@ class Notes extends Component {
 
     componentDidMount() {
       this.props.getIssue(this.props.token, this.props.match.params.id);
+      this.props.getUsers(this.props.token);
     }
 
 
@@ -52,7 +53,7 @@ class Notes extends Component {
       (<Box title='Subscribers' type='no-header'>{this.props.issue.subscribers}</Box>);
 
       let subscribe = (!this.state.showSubscribe) ? null :
-      (<Box type="no-header"><SubIssue issue={this.props.issue} subscribeShow={this.state.showSubscribe} /></Box>);
+      (<Box type="no-header"><SubIssue subscribeShow={this.state.showSubscribe} /></Box>);
 
       let issue = (this.props.issue) ? (<Card created_by={this.props.issue.created_by}
                                           created_on={new Date(this.props.issue.created_on).toDateString()}
@@ -120,7 +121,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getIssue: (token, id) => dispatch(Actions.getIssue(token, id)),
-    subscribeIssue: (token, id) => dispatch(Actions.getIssue(token, id))
+    subscribeIssue: (token, id) => dispatch(Actions.getIssue(token, id)),
+    getUsers : (token) => dispatch(Actions.getUsers(token))
   };
 };
 

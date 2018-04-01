@@ -10,7 +10,6 @@ import Button from '../../components/button/Button';
 class subIssue extends Component {
 
   state = {
-      reload: true,
       form: {
         user: {
             elementType: 'select',
@@ -30,21 +29,15 @@ class subIssue extends Component {
   }
 
   componentDidMount() {
-    this.props.getUsers(this.props.token);
-  }
-
-  dataUpdate() {
     let userList = this.state.form.user.elementConfig.options;
     this.props.users.map((user) => { if (!(this.props.issue.created_by_id === user._id))
       userList.push({value: user._id, displayValue: user.name})});
-    this.setState({ form : { user : { ...this.state.form.user, elementConfig : { options : userList }}}
-    , reload : null});
-
+    this.setState({ form : { user : { ...this.state.form.user, elementConfig : { options : userList }}}});
   }
 
   subIssueHandler = (event) => {
     event.preventDefault();
-    this.props.subscriptionIssue(this.props.token, this.props.issue._id, this.props.userId);
+    this.props.subscriptionIssue(this.props.token, this.props.issue._id, this.state.form.user.value);
   }
 
   inputChangedHandler = (event, inputIdentifier) => {
@@ -67,7 +60,7 @@ class subIssue extends Component {
   }
 
   render () {
-      if (this.props.users.length > 0 && this.state.reload) this.dataUpdate();
+
       const formElementsArray = [];
       for (let key in this.state.form) {
           formElementsArray.push({
@@ -101,7 +94,7 @@ const mapStateToProps = state => {
       token: state.user.token,
       userId: state.user.userId,
       users: state.user.users,
-      name: state.user.name,
+      issue: state.issue.issue,
       error: state.issue.error,
       errorMsg: state.issue.errorMsg
   };
@@ -109,8 +102,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-     subscriptionIssue : (token, issueId, userId) => dispatch(Actions.subscriptionIssue(token, issueId, userId)),
-     getUsers : (token) => dispatch(Actions.getUsers(token))
+     subscriptionIssue : (token, issueId, userId) => dispatch(Actions.subscriptionIssue(token, issueId, userId))
   };
 };
 
