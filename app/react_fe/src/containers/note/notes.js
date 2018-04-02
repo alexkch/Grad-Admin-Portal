@@ -30,6 +30,7 @@ class Notes extends Component {
       }
     }
 
+
     selectSubscribeHandler = () => {
       this.setState({showSubscribe: true});
     }
@@ -50,14 +51,13 @@ class Notes extends Component {
     render () {
 
       let subscribers = (!this.props.issue) ? null :
-      (<Box title='Subscribers' type='no-header'>
-        {this.props.issue.subscribers.map((subscribers) => <small key={subscribers}>{subscribers}</small>)}
-      </Box>);
+      this.props.issue.subscribers.map((subscribers, index) => <div key={index}><small>{subscribers}</small></div>);
 
       let subscribe = (!this.state.showSubscribe) ? null :
       (<Box type="no-header"><SubIssue subscribeShow={this.state.showSubscribe} /></Box>);
 
-      let test = (this.props.issue) ? console.log(this.props.issue.subscribers) : null;
+      let error = (this.props.error) ? <h5>{this.props.errorMsg}</h5> : null;
+
       let issue = (this.props.issue) ? (<Card created_by={this.props.issue.created_by}
                                           created_on={new Date(this.props.issue.created_on).toDateString()}
                                           issue_id={this.props.issue._id}
@@ -99,7 +99,10 @@ class Notes extends Component {
               <Col md="4">
                 {issue}
                 {subscribe}
-                {subscribers}
+                <Box title='Subscribers' type='no-header'>
+                  {error}
+                  {subscribers}
+                </Box>
               </Col>
               <Col md="8">
                 {notes}

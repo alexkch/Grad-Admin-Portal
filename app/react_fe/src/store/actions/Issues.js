@@ -213,11 +213,9 @@ export const subscriptionIssue = (token, id, userId) => {
       const header = {
         headers: { 'x-auth-token': token }
       }
-      console.log(id);
-      console.log(userId);
       await axios.post('/issues/' + id + '/sub', {userId : userId}, header);
       dispatch(subscriptionSuccess());
-      dispatch(getUsers(token));
+      dispatch(getIssue(token, id));
       } catch (error) {
       dispatch(subscriptionFail(error.message));
     };

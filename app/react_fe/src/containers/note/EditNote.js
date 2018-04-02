@@ -32,7 +32,6 @@ class editNote extends Component {
     event.preventDefault();
     let session_meta = { userId : this.props.userId, name : this.props.name};
     this.props.editNote(this.props.token, this.props.issue_id, this.props.note_id, session_meta, this.state.form);
-    console.log(this.props.unselect);
     this.props.unselect();
   }
 

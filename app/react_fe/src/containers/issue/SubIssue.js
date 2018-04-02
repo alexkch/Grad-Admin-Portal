@@ -30,7 +30,8 @@ class subIssue extends Component {
 
   componentDidMount() {
     let userList = this.state.form.user.elementConfig.options;
-    this.props.users.map((user) => { if (!(this.props.issue.created_by_id === user._id))
+    this.props.users.map((user) => {
+      if (!(this.props.issue.created_by_id === user._id) && !(this.props.issue.subscribers.includes(user._id)))
       userList.push({value: user._id, displayValue: user.name})});
     this.setState({ form : { user : { ...this.state.form.user, elementConfig : { options : userList }}}});
   }

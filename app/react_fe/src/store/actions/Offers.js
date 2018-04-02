@@ -54,9 +54,7 @@ export const getOffer = (token, id) => {
       const header = {
         headers: { 'x-auth-token': token }
       }
-      console.log('/offers/' + id);
       const res = await axios.get('/offers/' + id, header);
-      console.log(res.data);
       dispatch(setOffer(res.data));
     } catch (error) {
       dispatch(setOfferFail(error.message));

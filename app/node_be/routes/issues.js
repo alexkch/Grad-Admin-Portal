@@ -98,16 +98,23 @@ router.delete('/:id', [authorize, validateObjId], async (req, res) => {
 // subscribe a user to an issue
 router.post('/:id/sub', [authorize, validateObjId], async (req, res) => {
 
-  console.log(req.params.id);
-  console.log(req.body);
-  const isOwner = await Issue.findOne({ _id : req.params.id, created_by_id : req.body.userId });
-  console.log(isOwner);
-  if (isOwner) return res.status(400).send("cannot subscribe to own issue");
-  console.log("hereEEE");
+
+  //const isOwner = await Issue.findOne({ _id : req.params.id, created_by_id : req.body.userId });
+  //if (isOwner) return res.status(400).send("cannot subscribe to own issue");
+
+  const issue = await Issue.findOne({ _id : req.params.id});
+  if (issue.created_by_id === req.body.userId) return res.status(400).send("cannot subscribe to own issue");
+
+  console.log(issue.subscribers);
+  console.log(issue.subscribers.includes(req.body.userId));
+  console.log(issue.subscribers.map( user => user.toString()).includes(req.body.userId));
+
+  if (issue.subscribers.map( user => user.toString()).includes(req.body.userId)) return res.status(400).send("Already subscribed");
+
   const result = await Issue.update({ "_id" : req.params.id },
     { $push: { subscribers : req.body.userId }
   });
-  console.log("DDDD");
+
   res.send(result);
 });
 
