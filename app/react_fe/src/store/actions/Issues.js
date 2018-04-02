@@ -221,3 +221,34 @@ export const subscriptionIssue = (token, id, userId) => {
     };
   };
 };
+
+
+const unsubscriptionSuccess = () => {
+  return {
+    type: actionTypes.UNSUBSCRIPTION_ISSUE_SUCCESS,
+    error: false
+  };
+};
+
+const unsubscriptionFail = (errorMsg) => {
+  return {
+    type: actionTypes.UNSUBSCRIPTION_ISSUE_FAIL,
+    error: true,
+    errorMsg: errorMsg
+  };
+};
+
+export const unsubscriptionIssue = (token, id) => {
+  return async dispatch => {
+    try {
+      const header = {
+        headers: { 'x-auth-token': token }
+      }
+      await axios.delete('/issues/' + id + '/unsub', header);
+      dispatch(unsubscriptionSuccess());
+      dispatch(getIssue(token, id));
+      } catch (error) {
+      dispatch(unsubscriptionFail(error.message));
+    };
+  };
+};

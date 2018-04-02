@@ -70,6 +70,15 @@ const reducer = ( state = initialState, action ) => {
             return update(state, {
               error : action.error,
               errorMsg: action.errorMsg});
+
+        case actionTypes.UNSUBSCRIPTION_ISSUE_SUCCESS:
+            return update(state, {error : action.error} );
+
+        case actionTypes.UNSUBSCRIPTION_ISSUE_FAIL:
+            return update(state, {
+              error : action.error,
+              errorMsg: action.errorMsg});
+
         default:
             return state;
     }
