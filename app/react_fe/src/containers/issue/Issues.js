@@ -47,6 +47,7 @@ class Issues extends Component {
                    header_clr= {this.priorityColorHandler(issue.priority)}
                    type='issues'
                    isOwner={issue.created_by_id == this.props.userId}
+                   url={this.props.match.url}
                    />));
 
 
