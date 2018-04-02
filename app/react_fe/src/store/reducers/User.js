@@ -26,8 +26,7 @@ const reducer = ( state = initialState, action ) => {
               name: action.name,
               usertype: action.usertype,
               isAdmin: action.isAdmin,
-              error : false,
-              errorMsg : ''});
+              error : false});
 
         case actionTypes.AUTH_FAIL:
             return update(state, {
@@ -41,16 +40,14 @@ const reducer = ( state = initialState, action ) => {
               name: null,
               usertype: null,
               isAdmin: false,
-              error : null,
-              errorMsg : ''});
+              error : null});
 
         case actionTypes.INIT_USER:
             return state;
 
         case actionTypes.INIT_USER_SUCCESS:
             return update(state, {
-              error : false,
-              errorMsg : ''});
+              error : false});
 
         case actionTypes.INIT_USER_FAIL:
             return update(state, {
@@ -63,6 +60,24 @@ const reducer = ( state = initialState, action ) => {
               users : action.users});
 
         case actionTypes.SET_USERS_FAIL:
+            return update(state, {
+              error : true,
+              errorMsg : action.errorMsg});
+
+        case actionTypes.SUBSCRIBE_USER_SUCCESS:
+            return update(state, {
+              error : false});
+
+        case actionTypes.SUBSCRIBE_USER_FAIL:
+            return update(state, {
+              error : true,
+              errorMsg : action.errorMsg});
+
+        case actionTypes.UNSUBSCRIBE_USER_SUCCESS:
+            return update(state, {
+              error : false});
+
+        case actionTypes.UNSUBSCRIBE_USER_FAIL:
             return update(state, {
               error : true,
               errorMsg : action.errorMsg});

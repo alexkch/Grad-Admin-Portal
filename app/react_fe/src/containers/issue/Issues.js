@@ -18,6 +18,7 @@ class Issues extends Component {
     }
 
     componentDidMount() {
+      console.log(this.props.match);
       this.props.getIssues(this.props.token);
     }
 
@@ -32,6 +33,23 @@ class Issues extends Component {
 
 
     render () {
+
+        let subscribedIssues = (this.props.error) ? (<p style={{textAlign: 'center'}}> {this.props.errorMsg} </p>) :
+                 (this.props.issues.map((issue, index) => <Card key={issue._id}
+                   created_by={issue.created_by}
+                   created_on={new Date(issue.created_on).toDateString()}
+                   issue_id={issue._id}
+                   title={issue.title}
+                   status={issue.status}
+                   priority={issue.priority}
+                   btn_clr = {((issue.status) === 'open') ? 'primary' : 'secondary'}
+                   header_clr= {this.priorityColorHandler(issue.priority)}
+                   type='issues'
+                   url={this.props.match.url}
+                   select={() => this.viewIssueHandler(index)}
+                   />));
+
+
         let issues = (this.props.error) ? (<p style={{textAlign: 'center'}}> {this.props.errorMsg} </p>) :
                  (this.props.issues.map((issue, index) => <Card key={issue._id}
                    created_by={issue.created_by}
@@ -59,6 +77,7 @@ class Issues extends Component {
               <Pagebar/>
               <Switch>
                 <Route path="/issues/:id/notes" component={Notes} />
+                <Route path="/issues/subscribed" exact render={ () => subscribedIssues } />
                 <Route path="/issues" render={ () => issues } />
               </Switch>
             </Aux>

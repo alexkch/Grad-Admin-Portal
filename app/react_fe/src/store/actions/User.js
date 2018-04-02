@@ -94,24 +94,16 @@ const subscribeFail = (errorMsg) => {
 };
 
 
-export const subscribeUser = (subscriber, subscription) => {
+export const subscribeUser = (token, issueId, userId) => {
   return async dispatch => {
     try {
-      /*
-      const userData = {
-        name: form.name.value,
-        password: form.password.value,
-        email: form.email.value,
-        usertype: form.usertype.value,
-        isAdmin: "false"
+      const header = {
+        headers: { 'x-auth-token': token }
       }
-
-      await axios.post('/users', userData);
-      dispatch(initSuccess());
-      dispatch(auth(form.email.value, form.password.value));
-*/
+      await axios.post('/users/sub', {userId : userId, issueId : issueId}, header);
+      dispatch(subscribeSuccess());
       } catch (error) {
-      dispatch(initFail(error.message));
+      dispatch(subscribeFail(error.message));
     };
   };
 };

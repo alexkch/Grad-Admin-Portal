@@ -1,6 +1,6 @@
 import * as actionTypes from '../../utils/actionTypes';
 import axios from 'axios';
-import { getUsers } from './User';
+import { subscribeUser } from './User';
 
 const setIssues = (issues) => {
   return {
@@ -215,6 +215,7 @@ export const subscriptionIssue = (token, id, userId) => {
       }
       await axios.post('/issues/' + id + '/sub', {userId : userId}, header);
       dispatch(subscriptionSuccess());
+      dispatch(subscribeUser(token, id, userId));
       dispatch(getIssue(token, id));
       } catch (error) {
       dispatch(subscriptionFail(error.message));

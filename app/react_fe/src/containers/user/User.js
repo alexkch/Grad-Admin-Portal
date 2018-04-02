@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Route, Switch } from 'react-router-dom';
 import Box from '../../components/box/Box';
 import { Collapse,
          Navbar as Userbar,
@@ -31,12 +31,15 @@ class User extends Component {
           <UserbarToggler onClick={this.toggleNavbar.bind(this)} className="mr-2" />
           <Collapse isOpen={!this.state.collapsed} navbar>
             <Menu navbar>
-              <MenuItem><h5>{this.props.userId}</h5></MenuItem>
               <MenuItem>
-                <NavLink to='/issues/new'>New Issue</NavLink>
+                <NavLink to='/issues'>Opened Issues</NavLink>
               </MenuItem>
               <MenuItem>
-                <NavLink to='/link199'>Link 2</NavLink>
+                <NavLink to='/issues/subscribed'>Subscribed Issues</NavLink>
+              </MenuItem>
+              <div style={{padding: "20px"}} />
+              <MenuItem>
+                <NavLink to='/tickets'>Tickets</NavLink>
               </MenuItem>
             </Menu>
           </Collapse>
