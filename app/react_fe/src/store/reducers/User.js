@@ -64,6 +64,36 @@ const reducer = ( state = initialState, action ) => {
               error : true,
               errorMsg : action.errorMsg});
 
+        case actionTypes.SET_USER_OFFERS:
+            return update(state, {
+              error : false,
+              users : action.users});
+
+        case actionTypes.SET_USER_OFFERS_FAIL:
+            return update(state, {
+              error : true,
+              errorMsg : action.errorMsg});
+
+        case actionTypes.SET_USER_TICKETS:
+            return update(state, {
+              error : false,
+              users : action.users});
+
+        case actionTypes.SET_USER_TICKETS_FAIL:
+            return update(state, {
+              error : true,
+              errorMsg : action.errorMsg});
+
+        case actionTypes.SET_USER_ISSUES:
+            return update(state, {
+              error : false,
+              users : action.users});
+
+        case actionTypes.SET_USER_ISSUES_FAIL:
+            return update(state, {
+              error : true,
+              errorMsg : action.errorMsg});
+
         case actionTypes.SUBSCRIBE_USER_SUCCESS:
             return update(state, {
               error : false});
