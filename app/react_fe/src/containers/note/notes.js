@@ -70,8 +70,10 @@ class Notes extends Component {
                                           subscribeSelect={() => this.selectSubscribeHandler()}
                                           unsubscribeSelect={() => this.unselectSubscribeHandler()}
                                           showSubscribe={this.state.showSubscribe}
+                                          isOwner={this.props.issue.created_by_id == this.props.userId}
                                           url={this.props.match.url}
-                                          type='issue-notes' />) : null;
+                                          type='issue-notes' />)
+                                          : null;
 
       let notes = (this.props.issue) ? ((this.props.issue.notes.length < 1) ? null :
          (this.props.issue.notes.map((note, index) => { return (this.state.noteIndex === index) ?
@@ -83,6 +85,7 @@ class Notes extends Component {
                                                        created_by={note.created_by}
                                                        select={() => this.selectNoteHandler(index)}
                                                        unselect={() => this.unselectNoteHandler()}
+                                                       isOwner={note.created_by === this.props.userId}
                                                        url={this.props.match.url}/> :
                                                       <Chatbox key={note._id}
                                                        note_id={note._id}
@@ -90,6 +93,7 @@ class Notes extends Component {
                                                        created_on={new Date(note.created_on).toDateString()}
                                                        created_by={note.created_by}
                                                        select={() => this.selectNoteHandler(index)}
+                                                       isOwner={note.created_by_id === this.props.userId}
                                                        url={this.props.match.url}/> }
                                                      ))) : null;
 

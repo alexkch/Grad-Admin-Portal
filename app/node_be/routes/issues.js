@@ -14,7 +14,7 @@ router.get('/all', authorize, async (req, res) => {
 	res.send(issues);
 });
 
-
+/* Get with query
 router.get('/', authorize, async (req, res) => {
   const pageNum = (req.query.page) ? (req.query.page) : 1;
   const pageSize = 7;
@@ -27,7 +27,16 @@ router.get('/', authorize, async (req, res) => {
                         .sort({ [sortBy] : order });
 	res.send(issues);
 });
+*/
 
+router.get('/', authorize, async (req, res) => {
+  const order = (req.query.order === 'asc') ? 1 : -1;
+  const sortBy = (req.query.sort) ? (req.query.sort) : "created_on";
+  const issues = await Issue
+                        .find({created_by_id : req.user._id})
+                        .sort({ [sortBy] : order });
+	res.send(issues);
+});
 
 // create a new issue
 router.post('/', authorize, async (req, res) => {
@@ -52,14 +61,11 @@ router.post('/', authorize, async (req, res) => {
 // get an issue by id
 router.get('/:id', [authorize, validateObjId], async (req, res) => {
 
-  const isOwner = await Issue.findOne({ _id : req.params.id, created_by_id : req.user._id });
-  if (!isOwner) return res.status(404).send("issue with given ID was not found");
-
   const issue = await Issue.findById(req.params.id).populate({
       path: 'subscribers',
       select: 'name _id'
     });
-	if (!issue) return res.status(404).send("Error with database get");
+	if (!issue) return res.status(404).send("Issue with given ID was not found");
 	res.send(issue);
 });
 
