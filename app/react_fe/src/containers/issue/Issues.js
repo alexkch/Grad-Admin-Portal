@@ -20,6 +20,7 @@ class Issues extends Component {
     componentDidMount() {
       console.log(this.props.match);
       this.props.getIssues(this.props.token);
+      this.props.getUserData(this.props.token);
     }
 
     priorityColorHandler = (priority) => {
@@ -34,8 +35,8 @@ class Issues extends Component {
 
     render () {
 
-        let subscribedIssues = (this.props.error) ? (<p style={{textAlign: 'center'}}> {this.props.errorMsg} </p>) :
-                 (this.props.issues.map((issue, index) => <Card key={issue._id}
+        let subscribedIssues = (this.props.error2) ? (<p style={{textAlign: 'center'}}> {this.props.errorMsg2} </p>) :
+                 (this.props.subIssues.map((issue, index) => <Card key={issue._id}
                    created_by={issue.created_by}
                    created_on={new Date(issue.created_on).toDateString()}
                    issue_id={issue._id}
@@ -91,15 +92,19 @@ const mapStateToProps = state => {
       userId: state.user.userId,
       name: state.user.name,
       issues: state.issue.issues,
+      subIssues: state.user.subIssues,
       error: state.issue.error,
-      errorMsg: state.issue.errorMsg
+      errorMsg: state.issue.errorMsg,
+      error2: state.user.error,
+      errorMsg2: state.user.errorMsg
   };
 };
 
 // pass using props , this.props.onSetIssues
 const mapDispatchToProps = dispatch => {
   return {
-    getIssues: (token) => dispatch(Actions.getIssues(token))
+    getIssues: (token) => dispatch(Actions.getIssues(token)),
+    getUserData: (token) => dispatch(Actions.getUserData(token))
   };
 };
 

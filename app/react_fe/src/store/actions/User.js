@@ -151,7 +151,7 @@ export const getUserData = (token) => {
       }
       const res = await axios.get('/users/self', header);
       console.log(res.data)
-      dispatch(setUserIssues(res.data));
+      dispatch(setUserIssues(res.data.issues));
 
     } catch (error) {
       dispatch(setUserDataFail(error.message));
