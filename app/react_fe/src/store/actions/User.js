@@ -109,40 +109,39 @@ export const subscribeUser = (token, issueId, userId) => {
 };
 
 
-const setUserIssues = (users) => {
+const setUserIssues = (issues) => {
   return {
     type: actionTypes.SET_USER_ISSUES,
     error: false,
-    users: users
+    issues: issues
   };
 };
 
 
-const setUserTickets = (users) => {
+const setUserTickets = (tickets) => {
   return {
-    type: actionTypes.SET_USER_ISSUES,
+    type: actionTypes.SET_USER_TICKETS,
     error: false,
-    users: users
+    tickets: tickets
   };
 };
 
 
-const setUserOffers = (users) => {
+const setUserOffers = (offers) => {
   return {
-    type: actionTypes.SET_USER_ISSUES,
+    type: actionTypes.SET_USER_OFFERS,
     error: false,
-    users: users
+    offers: offers
   };
 };
 
 const setUserDataFail = (errorMsg) => {
   return {
-    type: actionTypes.SET_USER_ISSUES_FAIL,
+    type: actionTypes.SET_USER_DATA_FAIL,
     error: true,
     errorMsg: errorMsg
   };
 };
-
 
 export const getUserData = (token) => {
   return async dispatch => {
@@ -150,11 +149,12 @@ export const getUserData = (token) => {
       const header = {
         headers: { 'x-auth-token': token }
       }
-      const res = await axios.get('/users/all', header);
-      dispatch(setUsers(res.data));
+      const res = await axios.get('/users/self', header);
+      console.log(res.data)
+      dispatch(setUserIssues(res.data));
 
     } catch (error) {
-      dispatch(setUsersFail(error.message));
+      dispatch(setUserDataFail(error.message));
     };
   };
 };

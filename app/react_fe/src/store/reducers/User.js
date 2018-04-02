@@ -8,6 +8,7 @@ const initialState = {
     usertype: null,
     isAdmin: false,
     users: [],
+    subIssues: [],
     error: false,
     errorMsg: ''
 };
@@ -77,7 +78,7 @@ const reducer = ( state = initialState, action ) => {
         case actionTypes.SET_USER_ISSUES:
             return update(state, {
               error : false,
-              users : action.users});
+              subIssues : action.issues});
 
         case actionTypes.SET_USER_DATA_FAIL:
             return update(state, {

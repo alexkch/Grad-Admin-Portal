@@ -20,7 +20,7 @@ router.get('/all', authorize, async (req, res) => {
 
 router.get('/self', authorize, async (req, res) => {
 
-  const user = await User.findById(req.user._id).select('-password').populate('issues');
+  const user = await User.findById(req.user._id).select('issues tickets offers').populate('issues');
   res.send(user);
 
 });
