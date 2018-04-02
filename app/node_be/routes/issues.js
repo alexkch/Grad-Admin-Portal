@@ -55,7 +55,10 @@ router.get('/:id', [authorize, validateObjId], async (req, res) => {
   const isOwner = await Issue.findOne({ _id : req.params.id, created_by_id : req.user._id });
   if (!isOwner) return res.status(404).send("issue with given ID was not found");
 
-	const issue = await Issue.findById(req.params.id);
+  const issue = await Issue.findById(req.params.id).populate({
+      path: 'subscribers',
+      select: 'name _id'
+    });
 	if (!issue) return res.status(404).send("Error with database get");
 	res.send(issue);
 });
@@ -113,15 +116,13 @@ router.post('/:id/sub', [authorize, validateObjId], async (req, res) => {
 // unsubscribe from an issue (only own user can do this for himself)
 router.delete('/:id/unsub', [authorize, validateObjId], async (req, res) => {
 
-  console.log(req.params.id);
-  console.log(req.body);
   const isOwner = await Issue.findOne({ _id : req.params.id, created_by_id : req.user._id });
   if (!isOwner) return res.status(400).send("cannot unsubscribe because arent subscribed");
-  console.log("hereWWWW");
+
   const result = await Issue.update({ "_id" : req.params.id },
     { $pull: { subscribers : req.user._id }
   });
-  console.log("PPPP");
+  if (!result.nModified) return res.status(404).send("subscriber with given ID was not found");
   res.send(result);
 });
 

@@ -51,7 +51,7 @@ class Notes extends Component {
     render () {
 
       let subscribers = (!this.props.issue) ? null :
-      this.props.issue.subscribers.map((subscribers, index) => <div key={index}><small>{subscribers}</small></div>);
+      this.props.issue.subscribers.map((subscribers, index) => <div key={index}><small>{subscribers.name}</small></div>);
 
       let subscribe = (!this.state.showSubscribe) ? null :
       (<Box type="no-header"><SubIssue subscribeShow={this.state.showSubscribe} /></Box>);

@@ -31,15 +31,31 @@ class subIssue extends Component {
   componentDidMount() {
     let userList = this.state.form.user.elementConfig.options;
     this.props.users.map((user) => {
-      if (!(this.props.issue.created_by_id === user._id) && !(this.props.issue.subscribers.includes(user._id)))
+      if (!(this.props.issue.created_by_id === user._id) && !(this.arrayFilter(this.props.issue.subscribers, user._id)))
       userList.push({value: user._id, displayValue: user.name})});
     this.setState({ form : { user : { ...this.state.form.user, elementConfig : { options : userList }}}});
+  }
+
+
+  arrayFilter = (array, target) => {
+    for (let i = 0; i < array.length; i++) {
+      if (array[i]._id == target) {
+          return true;
+      }
+    }
+    return false;
   }
 
   subIssueHandler = (event) => {
     event.preventDefault();
     this.props.subscriptionIssue(this.props.token, this.props.issue._id, this.state.form.user.value);
   }
+
+  unsubIssueHandler = (event) => {
+    event.preventDefault();
+    this.props.unsubscriptionIssue(this.props.token, this.props.issue._id);
+  }
+
 
   inputChangedHandler = (event, inputIdentifier) => {
       const updatedform = {
@@ -103,7 +119,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-     subscriptionIssue : (token, issueId, userId) => dispatch(Actions.subscriptionIssue(token, issueId, userId))
+     subscriptionIssue : (token, issueId, userId) => dispatch(Actions.subscriptionIssue(token, issueId, userId)),
+     unsubscriptionIssue : (token, issueId) => dispatch(Actions.unsubscriptionIssue(token, issueId))
   };
 };
 
