@@ -122,9 +122,6 @@ router.post('/:id/sub', [authorize, validateObjId], async (req, res) => {
 // unsubscribe from an issue (only own user can do this for himself)
 router.delete('/:id/unsub', [authorize, validateObjId], async (req, res) => {
 
-  const isOwner = await Issue.findOne({ _id : req.params.id, created_by_id : req.user._id });
-  if (!isOwner) return res.status(400).send("cannot unsubscribe because arent subscribed");
-
   const result = await Issue.update({ "_id" : req.params.id },
     { $pull: { subscribers : req.user._id }
   });

@@ -38,6 +38,15 @@ router.post('/sub', authorize, async (req, res) => {
 });
 
 
+router.post('/unsub', authorize, async (req, res) => {
+
+  const result = await User.update({ "_id" : req.user._id },
+    { $pull: { issues : req.body.issueId }
+  });
+  if (!result.nModified) return res.status(404).send("issue subscription with given ID was not found");
+  res.send(result);
+});
+
 
 // create a new user
 router.post('/', async (req, res) => {

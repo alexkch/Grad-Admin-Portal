@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Container, Row, Col } from 'reactstrap';
 import * as Actions from '../../store/actions/';
 import SubIssue from '../issue/SubIssue';
+import UnsubIssue from '../issue/UnsubIssue';
 import EditNote from './EditNote';
 import Chatbox from '../../components/box/Chatbox';
 import Card from '../../components/box/Card';
@@ -12,7 +13,8 @@ class Notes extends Component {
 
     state = {
       noteIndex : null,
-      showSubscribe: false
+      showSubscribe: false,
+      showUnsubscribe: false
     }
 
     componentDidMount() {
@@ -35,6 +37,11 @@ class Notes extends Component {
       this.setState({showSubscribe: !this.state.showSubscribe});
     }
 
+    UnsubscribeHandler = () => {
+      this.setState({showUnsubscribe: true});
+      console.log("after unsubhandler");
+    }
+
     selectNoteHandler = (index) => {
       this.setState({noteIndex: index});
     }
@@ -52,6 +59,9 @@ class Notes extends Component {
       let subscribe = (!this.state.showSubscribe) ? null :
       (<Box type="no-header"><SubIssue subscribeShow={this.state.showSubscribe} /></Box>);
 
+      let unsubscribe = (!this.state.showUnsubscribe) ? null :
+      (<UnsubIssue />);
+
       let error = (this.props.error) ? <h5>{this.props.errorMsg}</h5> : null;
 
       let issue = (this.props.issue) ? (<Card created_by={this.props.issue.created_by}
@@ -64,7 +74,7 @@ class Notes extends Component {
                                           btn_clr ={((this.props.issue.status) === 'open') ? 'blue' : 'red'}
                                           header_clr={this.priorityColorHandler(this.props.issue.priority)}
                                           subscribeToggle={() => this.toggleSubscribeHandler()}
-                                          showSubscribe={this.state.showSubscribe}
+                                          unsubscribeSelect={() => this.UnsubscribeHandler()}
                                           isOwner={this.props.issue.created_by_id == this.props.userId}
                                           url={this.props.match.url}
                                           type='issue-notes' />)
@@ -98,6 +108,7 @@ class Notes extends Component {
               <Col md="4">
                 {issue}
                 {subscribe}
+                {unsubscribe}
                 <Box title='Subscribers' type='no-header'>
                   {error}
                   {subscribers}

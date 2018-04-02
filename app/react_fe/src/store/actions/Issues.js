@@ -1,6 +1,6 @@
 import * as actionTypes from '../../utils/actionTypes';
 import axios from 'axios';
-import { subscribeUser } from './User';
+import { subscribeUser, unsubscribeUser } from './User';
 
 const setIssues = (issues) => {
   return {
@@ -247,6 +247,7 @@ export const unsubscriptionIssue = (token, id) => {
       }
       await axios.delete('/issues/' + id + '/unsub', header);
       dispatch(unsubscriptionSuccess());
+      dispatch(unsubscribeUser(token, id));
       dispatch(getIssue(token, id));
       } catch (error) {
       dispatch(unsubscriptionFail(error.message));

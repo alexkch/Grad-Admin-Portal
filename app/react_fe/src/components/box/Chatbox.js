@@ -7,7 +7,6 @@ import Aux from '../../utils/auxiliary';
 
 const chatbox = (props) => {
 
-    console.log(props.isOwner);
     let note_credentials = (props.isOwner) ? (<Aux><span style={{float: "right"}}>
                                               <Link to={props.url + '/' + props.note_id + '/del'}>
                                                 <FontAwesome name='trash-o' />

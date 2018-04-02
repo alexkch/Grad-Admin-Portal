@@ -109,6 +109,38 @@ export const subscribeUser = (token, issueId, userId) => {
 };
 
 
+const unsubscribeSuccess = () => {
+  return {
+    type: actionTypes.UNSUBSCRIBE_USER_SUCCESS,
+    error: 'false'
+  };
+};
+
+const unsubscribeFail = (errorMsg) => {
+  return {
+    type: actionTypes.UNSUBSCRIBE_USER_FAIL,
+    error: 'true',
+    errorMsg : errorMsg
+  };
+};
+
+
+export const unsubscribeUser = (token, issueId) => {
+  return async dispatch => {
+    try {
+      const header = {
+        headers: { 'x-auth-token': token }
+      }
+      await axios.post('/users/unsub', {issueId : issueId}, header);
+      dispatch(unsubscribeSuccess());
+      dispatch(getUserData(token));
+      } catch (error) {
+      dispatch(unsubscribeFail(error.message));
+    };
+  };
+};
+
+
 const setUserIssues = (issues) => {
   return {
     type: actionTypes.SET_USER_ISSUES,
