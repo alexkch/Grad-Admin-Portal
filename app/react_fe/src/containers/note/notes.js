@@ -12,7 +12,7 @@ class Notes extends Component {
 
     state = {
       noteIndex : null,
-      showSubscribe: null
+      showSubscribe: false
     }
 
     componentDidMount() {
@@ -31,12 +31,8 @@ class Notes extends Component {
     }
 
 
-    selectSubscribeHandler = () => {
-      this.setState({showSubscribe: true});
-    }
-
-    unselectSubscribeHandler = () => {
-      this.setState({showSubscribe: null});
+    toggleSubscribeHandler = () => {
+      this.setState({showSubscribe: !this.state.showSubscribe});
     }
 
     selectNoteHandler = (index) => {
@@ -67,8 +63,7 @@ class Notes extends Component {
                                           description={this.props.issue.description}
                                           btn_clr ={((this.props.issue.status) === 'open') ? 'blue' : 'red'}
                                           header_clr={this.priorityColorHandler(this.props.issue.priority)}
-                                          subscribeSelect={() => this.selectSubscribeHandler()}
-                                          unsubscribeSelect={() => this.unselectSubscribeHandler()}
+                                          subscribeToggle={() => this.toggleSubscribeHandler()}
                                           showSubscribe={this.state.showSubscribe}
                                           isOwner={this.props.issue.created_by_id == this.props.userId}
                                           url={this.props.match.url}

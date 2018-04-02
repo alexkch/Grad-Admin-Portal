@@ -29,7 +29,7 @@ const card = (props) => {
   let issueNotesOwnerOpts = (props.isOwner) ? (<Row>
                                                 <Col sm="5" md="5" />
                                                 <Col sm="2" md="2">
-                                                  <span onClick={props.subscribeSelect}>
+                                                  <span onClick={props.subscribeToggle}>
                                                     <FontAwesome name='user-plus' />
                                                   </span>
                                                 </Col>
@@ -95,7 +95,7 @@ const card = (props) => {
                   </CardFooter>
                 </Card>
               </section>);
-              
+
     case ( 'issue-sub' ):
       return (<section style={{"paddingBottom" : "10px"}}>
                   <Card style={{"borderColor" : "black"}}>
