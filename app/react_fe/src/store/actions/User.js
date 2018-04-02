@@ -107,3 +107,54 @@ export const subscribeUser = (token, issueId, userId) => {
     };
   };
 };
+
+
+const setUserIssues = (users) => {
+  return {
+    type: actionTypes.SET_USER_ISSUES,
+    error: false,
+    users: users
+  };
+};
+
+
+const setUserTickets = (users) => {
+  return {
+    type: actionTypes.SET_USER_ISSUES,
+    error: false,
+    users: users
+  };
+};
+
+
+const setUserOffers = (users) => {
+  return {
+    type: actionTypes.SET_USER_ISSUES,
+    error: false,
+    users: users
+  };
+};
+
+const setUserDataFail = (errorMsg) => {
+  return {
+    type: actionTypes.SET_USER_ISSUES_FAIL,
+    error: true,
+    errorMsg: errorMsg
+  };
+};
+
+
+export const getUserData = (token) => {
+  return async dispatch => {
+    try {
+      const header = {
+        headers: { 'x-auth-token': token }
+      }
+      const res = await axios.get('/users/all', header);
+      dispatch(setUsers(res.data));
+
+    } catch (error) {
+      dispatch(setUsersFail(error.message));
+    };
+  };
+};

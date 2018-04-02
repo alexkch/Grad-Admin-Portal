@@ -69,27 +69,17 @@ const reducer = ( state = initialState, action ) => {
               error : false,
               users : action.users});
 
-        case actionTypes.SET_USER_OFFERS_FAIL:
-            return update(state, {
-              error : true,
-              errorMsg : action.errorMsg});
-
         case actionTypes.SET_USER_TICKETS:
             return update(state, {
               error : false,
               users : action.users});
-
-        case actionTypes.SET_USER_TICKETS_FAIL:
-            return update(state, {
-              error : true,
-              errorMsg : action.errorMsg});
 
         case actionTypes.SET_USER_ISSUES:
             return update(state, {
               error : false,
               users : action.users});
 
-        case actionTypes.SET_USER_ISSUES_FAIL:
+        case actionTypes.SET_USER_DATA_FAIL:
             return update(state, {
               error : true,
               errorMsg : action.errorMsg});

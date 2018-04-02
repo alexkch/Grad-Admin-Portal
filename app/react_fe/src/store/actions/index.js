@@ -36,5 +36,6 @@ export {
   newUser,
   getUsers,
   subscribeUser,
-  unsubscribeUser
+  unsubscribeUser,
+  getUserData
 } from './User';
