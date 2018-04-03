@@ -60,8 +60,6 @@ class Tickets extends Component {
               <Switch>
                 <Route path="/tickets/:id" exact component={DeleteTicket} />
                 <Route path="/tickets/:id" exact component={EditTicket} />
-                <Route path="/tickets/:id" exact component={DeleteTicket} />
-                <Route path="/tickets/:id" exact component={EditTicket} />
               </Switch>
               <Pagebar/>
 	            <Route path="/tickets" render={ () => tickets } />
