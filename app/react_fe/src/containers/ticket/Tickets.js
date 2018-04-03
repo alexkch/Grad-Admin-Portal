@@ -7,10 +7,10 @@ import styles from './Ticket.css';
 import * as Actions from "../../store/actions";
 import {connect} from "react-redux";
 import { Route, Switch } from 'react-router-dom';
-import TicketCreate from './TicketCreate';
 import EditTicket from './EditTicket';
 import DeleteTicket from './DeleteTicket';
 import Pagebar from '../../components/navigation/Pagebar';
+import cardTicket from '../../components/box/CardTicket';
 
 class Tickets extends Component {
 
@@ -41,11 +41,13 @@ class Tickets extends Component {
     render () {
         let tickets;
         tickets = (this.props.error) ? (<p style={{textAlign: 'center'}}> {this.props.errorMsg} </p>) :
-                 (this.props.tickets.map((ticket, index) => {
-                   return <DisplayTicket ticket={ticket}
-                   type={'short'}
-                   select={() => this.viewTicketHandler(index)}
-                   />}))
+                 (this.props.tickets.map((ticket, index) => <cardTicket key={ticket.ticket_id}
+                   professor={ticket.professor}
+                   status={ticket.status}
+                   created_on={ticket.created_on}
+                   isOwner={ticket.professor_id == this.props.userId}
+                   url={this.props.match.url}
+                   />))
 
         let modalTicket;
         modalTicket = (this.state.selected) ? (<DisplayTicket
