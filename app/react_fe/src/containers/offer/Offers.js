@@ -8,6 +8,7 @@ import * as Actions from '../../store/actions/';
 import Modal from '../../components/modal/Modal';
 import Aux from '../../utils/auxiliary';
 import Pagebar from '../../components/navigation/Pagebar';
+import cardOffer from '../../components/box/CardOffer';
 
 class Offers extends Component {
 
@@ -18,7 +19,8 @@ class Offers extends Component {
     }
 
     componentDidMount() {
-        this.props.getOffers();
+		console.log(this.props.match);	
+        this.props.getOffers(this.props.token);
 		this.props.getUserData(this.props.token);
     }
     
@@ -26,23 +28,24 @@ class Offers extends Component {
     render () {
         let offers;
         offers = (this.props.error) ? (<p style={{textAlign: 'center'}}> {this.props.errorMsg} </p>) :
-            (this.props.offers.map((offer, index) => {
-                return <DisplayOffer key={offer.ticket_id}
-							         professor_id={this.state.offer.professor_id}	
+            (this.props.offers.map((offer, index) => <cardOffer key={offer.ticket_id}
+							         professor={offer.professor}	
 				     				 applicant_id={offer.applicant_id}
-	     				             ap_type={this.state.offer.type}
-			                         round={this.state.offer.round}
+ 				     				 applicant={offer.applicant}
+	     				             ap_type={offer.type}
+			                         round={offer.round}
                                      ticket_id={offer.ticket_id}
                                      status={offer.status}
-                                     type={'short'}
+                                     isOwner={'true'}
+									 url={this.props.match.url}
                                      }
-                />}));
+                />));
                 
         return (
             <Aux>
               <Switch>
-                <Route path="/offers/:id" exact component={DeleteOffer} />
-                <Route path="/offers/:id" exact component={EditOffer} />
+                <Route path="/offers/:id/del" exact component={DeleteOffer} />
+                <Route path="/offers/:id/edit" exact component={EditOffer} />
               </Switch>
               <Pagebar/>
               
@@ -67,7 +70,8 @@ const mapStateToProps = state => {
 // pass using props , this.props.onSetIssues
 const mapDispatchToProps = dispatch => {
     return {
-        getOffers: (token) => dispatch(Actions.getOffers(token))
+        getOffers: (token) => dispatch(Actions.getOffers(token)),
+        getUserData: (token) => dispatch(Actions.getUserData(token))
     };
 };
 
