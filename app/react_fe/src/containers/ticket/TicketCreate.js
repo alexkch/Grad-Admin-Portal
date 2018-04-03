@@ -1,66 +1,127 @@
-import React, {Component} from 'react';
-import sty from '../../css/bootstrap.min.css'
-import axios from 'axios';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import Form from '../../components/form/Form';
+import * as Actions from '../../store/actions/';
+import checkValidity from '../../utils/validateForm';
+import Box from '../../components/box/Box';
+import Button from '../../components/button/Button';
 
-class TicketCreate extends Component {
-	constructor(props){
-		super(props);
-        this.state = {ticketOwner: 0, status: 0, amount: 1};
-		this.handleSubmit = this.handleSubmit.bind(this);
-		this.handleChangeValue = this.handleChangeValue.bind(this);
-	}
+class TicketCreate2 extends Component {
 
-	handleSubmit(event){
-		// Create tickets
-        	event.preventDefault();
-		for (var i = 0; i < this.state.amount; i++) {
-			axios({method: 'post',
-				url: '/tickets',
-				data: {professor_id: this.state.ticketOwner,
-				//professor: req.body.professor,
-	    			status: this.state.status,
-	    			//created_by: req.body.created_by
-			}});
-		}
-        
-	}
+    state = {
+        form: {
+            professor: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'text',
+                    placeholder: 'Faculty'
+                },
+                value: '',
+                validation: {
+                    required: false
+                },
+                valid: false,
+                touched: false
+            },
+            number: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'number',
+					min: '0'
+                    placeholder: 'Number of tickets to create'
+                },
+                value: '0',
+                validation: {
+                    required: true
+                },
+                valid: true,
+                touched: false
+            },
+            status: {
+                elementType: 'select',
+                elementConfig: {
+                    options: [
+                        {value: 'granted', displayValue: 'Granted'},
+                        {value: 'redeemed', displayValue: 'Redeemed'},
+                    ]
+                },
+                value: '',
+                validation: {},
+                valid: true
+            }
+        },
+        formIsValid: false,
+    }
 
-	handleChangeValue(event){
-		const name = event.target.name;
-		const value = event.target.value;
-		this.setState({ [name]: value });
-	}
-	render(){
+    postHandler = ( event ) => {
+        event.preventDefault();
+        let session_meta = { userId : this.props.userId, name : this.props.name};
+		//for (var i = 0; i < this.state.amount; i++) {
+		this.props.createTicket(this.props.token, session_meta, this.state.form);
+		//}
+    }
+
+    inputChangedHandler = (event, inputIdentifier) => {
+        const updatedform = {
+            ...this.state.form
+        };
+        const updatedFormElement = {
+            ...updatedform[inputIdentifier]
+        };
+        updatedFormElement.value = event.target.value;
+        updatedFormElement.valid = checkValidity(updatedFormElement.value, updatedFormElement.validation);
+        updatedFormElement.touched = true;
+        updatedform[inputIdentifier] = updatedFormElement;
+
+        let formIsValid = true;
+        for (let inputIdentifier in updatedform) {
+            formIsValid = updatedform[inputIdentifier].valid && formIsValid;
+        }
+        this.setState({form: updatedform, formIsValid: formIsValid});
+    }
+
+    render () {
+        const formElementsArray = [];
+        for (let key in this.state.form) {
+            formElementsArray.push({
+                id: key,
+                config: this.state.form[key]
+            });
+        }
+        let form = (
+            <form onSubmit={this.postHandler}>
+                {formElementsArray.map(formElement => (
+                    <Form
+                        key={formElement.id}
+                        elementType={formElement.config.elementType}
+                        elementConfig={formElement.config.elementConfig}
+                        value={formElement.config.value}
+                        invalid={!formElement.config.valid}
+                        shouldValidate={formElement.config.validation}
+                        touched={formElement.config.touched}
+                        changed={(event) => this.inputChangedHandler(event, formElement.id)} />
+                ))}
+                <Button disabled={!this.state.formIsValid} type={'disabled-stretch'}>Submit</Button>
+            </form>
+        );
         return (
-            <div className='CreateUser'>
-                <form onSubmit={this.handleSubmit}>
-                    <div className={sty["form-group"]}>
-                        <label>Owner</label>
-                        <input className={sty["form-control"]} name='ticketOwner' type="number" min='0'
-                               placeholder={"Input owner ID"}
-                               onChange={this.handleChangeValue}/>
-
-                        <label>Status</label>
-                        <select className={sty["form-control"]}>
-                            <option value="0">Unallocated</option>
-                            <option value="1">allocated</option>
-                        </select>
-
-                        <label>Amount</label>
-                        <input className={sty["form-control"]} name='amount' type="number" min='1'
-                               placeholder={"Input amount"}
-                               onChange={this.handleChangeValue}/>
-
-                    </div>
-
-                    <button type="submit" className={sty["btn"] + " " + sty["btn-primary"]}>Create Ticket</button>
-                </form>
-
-            </div>
-
-			);
-	
-	}
+            <Box color="secondary" header={"Create new Tickets"}>{form}</Box>
+        );
+    }
 }
+const mapStateToProps = state => {
+  return {
+      token: state.user.token,
+      userId: state.user.userId,
+      name: state.user.name,
+      error: state.issue.error,
+      errorMsg: state.issue.errorMsg
+  };
+};
 
-export default TicketCreate;
+const mapDispatchToProps = dispatch => {
+  return {
+	   createTicket : (token, session, form) => dispatch(Actions.createTicket(token, session, form))
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(TicketCreate2);
