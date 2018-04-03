@@ -42,7 +42,7 @@ class editOffer extends Component {
 
   closeModalHandler = () => {
     this.setState({ show: false });
-    this.props.history.replace('/offers');
+    //this.props.history.replace('/offers');
   }
 
   editOfferHandler = (event) => {
