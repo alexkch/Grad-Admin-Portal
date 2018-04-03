@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import DisplayTicket from './DisplayTicket';
-import Modal from '../../components/modal/Modal';
 import Aux from '../../utils/auxiliary';
-import styles from './Ticket.css';
 import * as Actions from "../../store/actions";
 import {connect} from "react-redux";
 import { Route, Switch } from 'react-router-dom';
@@ -25,17 +21,6 @@ class Tickets extends Component {
 		this.props.getTickets(this.props.token);
     };
 
-    viewTicketHandler = (ticketIndex) => {
-      //const issues = [...this.state.issues]; //this.state.issues.slice();
-      const ticket = {
-        ...this.state.tickets[ticketIndex]
-      };
-      this.setState({ticket: ticket, selected: true });
-    }
-
-    closeTicketHandler = () => {
-      this.setState({ selected: false });
-    }
 
 
     render () {
@@ -48,14 +33,6 @@ class Tickets extends Component {
                    isOwner={ticket.professor_id == this.props.userId}
                    url={this.props.match.url}
                    />))
-
-        let modalTicket;
-        modalTicket = (this.state.selected) ? (<DisplayTicket
-                  /* ticket={ticket} */
-                  type={'modal-short'}
-                  show={this.state.selected}
-                  close={this.closeTicketHandler}
-                  />) : null
 
 
       return (
@@ -85,7 +62,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        actionGetTickets: (token) => dispatch(Actions.getTickets(token)),
+	    getUserData: (token) => dispatch(Actions.getUserData(token)),
 		getTickets: (token) => dispatch(Actions.getTickets(token))
     };
 };
