@@ -10,6 +10,7 @@ import { Route, Switch } from 'react-router-dom';
 import TicketCreate from './TicketCreate';
 import EditTicket from './EditTicket';
 import DeleteTicket from './DeleteTicket';
+import Pagebar from '../../components/navigation/Pagebar';
 
 class Tickets extends Component {
 
