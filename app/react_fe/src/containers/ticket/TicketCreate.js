@@ -6,7 +6,7 @@ import checkValidity from '../../utils/validateForm';
 import Box from '../../components/box/Box';
 import Button from '../../components/button/Button';
 
-class TicketCreate2 extends Component {
+class TicketCreate extends Component {
 
     state = {
         form: {
@@ -124,4 +124,4 @@ const mapDispatchToProps = dispatch => {
 	   createTicket : (token, session, form) => dispatch(Actions.createTicket(token, session, form))
   };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(TicketCreate2);
+export default connect(mapStateToProps, mapDispatchToProps)(TicketCreate);
