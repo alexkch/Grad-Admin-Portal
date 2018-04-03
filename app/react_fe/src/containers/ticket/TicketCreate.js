@@ -27,7 +27,7 @@ class TicketCreate extends Component {
                 elementType: 'input',
                 elementConfig: {
                     type: 'number',
-					min: '0'
+					min: '0',
                     placeholder: 'Number of tickets to create'
                 },
                 value: '0',
