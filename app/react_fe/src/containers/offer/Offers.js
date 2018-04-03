@@ -35,24 +35,9 @@ class Offers extends Component {
                                      ticket_id={offer.ticket_id}
                                      status={offer.status}
                                      type={'short'}
-                                     select={() => this.viewOfferHandler(index)}
-                />}))
-
-        let modalOffer;
-        modalOffer = (this.state.selected) ? (<DisplayOffer
-            key={this.state.offer.ticket_id}
-            professor_id={this.state.offer.professor_id}
-            round={this.state.offer.round}
-            ap_type={this.state.offer.type}
-            applicant_id={this.state.offer.applicant_id}
-			ticket_id={this.state.offer.ticket_id}
-            type={'modal-full'}
-            show={this.state.selected}
-            close={this.closeIssueHandler}
-            select={() => this.viewOfferHandler(index)}
-        />) : null
-
-
+                                     }
+                />}));
+                
         return (
             <Aux>
               <Switch>
