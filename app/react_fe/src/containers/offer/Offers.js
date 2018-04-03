@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import DisplayIssue from './DisplayIssue';
+import { Route, Switch } from 'react-router-dom';
+import DisplayOffer from './DisplayOffer';
+import EditOffer from './EditOffer';
+import DeleteOffer from './DeleteOffer';
 import * as Actions from '../../store/actions/';
 import Modal from '../../components/modal/Modal';
 import Aux from '../../utils/auxiliary';
@@ -16,37 +19,19 @@ class Offers extends Component {
 
     componentDidMount() {
         this.props.getOffers();
+		this.props.getUserData(this.props.token);
     }
-
-    viewOfferHandler = (offerIndex) => {
-        //const issues = [...this.state.issues]; //this.state.issues.slice();
-        const offer = {
-            ...this.props.offers[offerIndex]
-        };
-        this.setState({offer: offer, selected: true });
-    }
-
-    closeOfferHandler = () => {
-        this.setState({ selected: false });
-    }
-
-    //priorityColorHandler = (priority) => {
-    //    switch (priority) {
-    //        case ('urgent'): return 'danger'
-    //        case ('high'): return 'warning'
-    //        case ('medium'): return 'dark'
-    //        default: return 'dark'
-    //    }
-    //}
-
+    
 
     render () {
         let offers;
         offers = (this.props.error) ? (<p style={{textAlign: 'center'}}> {this.props.errorMsg} </p>) :
             (this.props.offers.map((offer, index) => {
                 return <DisplayOffer key={offer.ticket_id}
-                                     created_by={offer.created_by}
+							         professor_id={this.state.offer.professor_id}	
 				     				 applicant_id={offer.applicant_id}
+	     				             ap_type={this.state.offer.type}
+			                         round={this.state.offer.round}
                                      ticket_id={offer.ticket_id}
                                      status={offer.status}
                                      type={'short'}
@@ -70,11 +55,14 @@ class Offers extends Component {
 
         return (
             <Aux>
-                <Pagebar />
-                <Modal show={this.state.selected} close={this.closeIssueHandler} >
-                    {modalOffer}
-                </Modal>
-                {offers}
+              <Switch>
+                <Route path="/offers/:id" exact component={DeleteOffer} />
+                <Route path="/offers/:id" exact component={EditOffer} />
+              </Switch>
+              <Pagebar/>
+              
+              <Route path="/offers" render={ () => offers } />
+
             </Aux>
         );
     }
