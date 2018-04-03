@@ -91,8 +91,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        //actionGetTickets: () => dispatch(Actions.getTickets())
-		//getTickets: (token) => dispatch(Actions.getTickets(token))
+        actionGetTickets: (token) => dispatch(Actions.getTickets(token)),
+		getTickets: (token) => dispatch(Actions.getTickets(token))
     };
 };
 
