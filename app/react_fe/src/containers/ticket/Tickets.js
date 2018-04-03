@@ -61,8 +61,8 @@ class Tickets extends Component {
       return (
             <Aux>
               <Switch>
-                <Route path="/tickets/:id" exact component={DeleteTicket} />
-                <Route path="/tickets/:id" exact component={EditTicket} />
+                <Route path="/tickets/:id/del" exact component={DeleteTicket} />
+                <Route path="/tickets/:id/edit" exact component={EditTicket} />
               </Switch>
               <Pagebar/>
 	            <Route path="/tickets" render={ () => tickets } />
