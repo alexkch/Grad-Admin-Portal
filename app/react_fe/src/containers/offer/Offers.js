@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
-import DisplayOffer from './DisplayOffer';
 import EditOffer from './EditOffer';
 import DeleteOffer from './DeleteOffer';
 import * as Actions from '../../store/actions/';
-import Modal from '../../components/modal/Modal';
 import Aux from '../../utils/auxiliary';
 import Pagebar from '../../components/navigation/Pagebar';
 import cardOffer from '../../components/box/CardOffer';
