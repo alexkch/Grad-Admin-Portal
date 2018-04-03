@@ -14,10 +14,10 @@ const cardOffer = (props) => {
                                             <Link to={props.url + '/' + props.ticket_id + '/del'}>
                                               <FontAwesome name='trash-o' size='2x' style={{float: 'right', paddingLeft: '10px'}} />
                                             </Link>
-                                          </CardBody>)
+                                          </CardBody>):
+                                          null
 
-  switch (props.type) {
-    case (<section style={{"paddingBottom" : "10px"}}>
+  return(<section style={{"paddingBottom" : "10px"}}>
                 <Card style={{"borderColor" : "black"}}>
                   <CardBody>
                     <Container>
@@ -42,13 +42,7 @@ const cardOffer = (props) => {
                     </Container>
                   </CardFooter>
                 </Card>
-              </section>);
-
-
-    
-    default:
-      return (<h2>DEFAULT: NEED TO SPECIFY TYPE</h2>);
-    }
+              </section>)
 };
 
 export default cardOffer;
