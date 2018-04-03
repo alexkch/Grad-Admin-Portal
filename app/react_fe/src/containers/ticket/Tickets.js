@@ -6,34 +6,23 @@ import Aux from '../../utils/auxiliary';
 import styles from './Ticket.css';
 import * as Actions from "../../store/actions";
 import {connect} from "react-redux";
+import { Route, Switch } from 'react-router-dom';
+import TicketCreate from './TicketCreate';
+import EditTicket from './EditTicket';
+import DeleteTicket from './DeleteTicket';
 
 class Tickets extends Component {
 
     state = {
-      tickets: [],
       ticket: null,
       selected: false,
-      error: false,
-      errorMsg: 'Something went wrong',
-      isLoggedIn: this.props.token
     }
 
 
-    async componentDidMount() {
-      //const res = await axios.get('/issues');
-      //try {
-      //  const res = await axios.get('/tickets');
-      //  this.setState({tickets: res.data, error: false});
-      //} catch (error) {
-      //  console.log(error);
-      //  this.setState({error: true, errorMsg: error.message});
-      //}
+    componentDidMount() {
+      	this.props.getUserData(this.props.token);
 		this.props.getTickets(this.props.token);
     };
-
-    //componentDidMount() {
-	//	this.props.actionGetIssues();
-    //}
 
     viewTicketHandler = (ticketIndex) => {
       //const issues = [...this.state.issues]; //this.state.issues.slice();
@@ -68,10 +57,14 @@ class Tickets extends Component {
 
       return (
             <Aux>
-              <Modal show={this.state.selected} close={this.closeTicketHandler} >
-                {modalTicket}
-              </Modal>
-              {tickets}
+              <Switch>
+                <Route path="/tickets/:id" exact component={DeleteTicket} />
+                <Route path="/tickets/:id" exact component={EditTicket} />
+                <Route path="/tickets/:id" exact component={DeleteTicket} />
+                <Route path="/tickets/:id" exact component={EditTicket} />
+              </Switch>
+              <Pagebar/>
+	            <Route path="/tickets" render={ () => tickets } />
             </Aux>
         );
     }
