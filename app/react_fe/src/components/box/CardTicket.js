@@ -8,7 +8,7 @@ import { Container, Col, Row, Card, CardHeader, CardBody, CardFooter, Badge } fr
 const cardTicket = (props) => {
 
   let ownerOpts = (props.isOwner) ? (<CardBody style={{"float" : "right"}}>
-                                            <Link to={props.url + '/' + props.ticket_id + '/edit'}>
+                                            <Link to={props.url + '/granted/' + props.ticket_id + '/edit'}>
                                               <Button type='primary'>Status:{props.status}</Button>
                                             </Link>
                                           </CardBody>):

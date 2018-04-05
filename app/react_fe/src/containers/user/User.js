@@ -16,6 +16,8 @@ class User extends Component {
     collapsed: true
   }
 
+
+
   toggleNavbar() {
     this.setState({
       collapsed: !this.state.collapsed
@@ -23,6 +25,13 @@ class User extends Component {
   }
 
     render () {
+
+      let ticketOpts = (this.props.usertype === "grad_office") ? (<Aux><MenuItem>
+                                                                    <NavLink to='/tickets/granted/new'>Grant Tickets</NavLink>
+                                                                  </MenuItem>
+                                                                  <MenuItem>
+                                                                    <NavLink to='/tickets/granted'>Granted Tickets</NavLink>
+                                                                  </MenuItem></Aux>) : null;
 
       let userPanel;
       userPanel = (this.props.token) ? (<Box color="secondary" header={this.props.name}>
@@ -38,9 +47,7 @@ class User extends Component {
                 <NavLink to='/issues/subscribed'>Subscribed Issues</NavLink>
               </MenuItem>
               <div style={{padding: "5px"}} />
-              <MenuItem>
-                <NavLink to='/tickets/grant'>Grant Tickets</NavLink>
-              </MenuItem>
+              {ticketOpts}
               <div style={{padding: "5px"}} />
               <MenuItem>
                 <NavLink to='/offers/new'>New Offer</NavLink>

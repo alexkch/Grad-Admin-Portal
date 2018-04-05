@@ -22,7 +22,7 @@ class Tickets extends Component {
 
     render () {
 
-      let subTickets = (this.props.error2) ? (<p style={{textAlign: 'center'}}> {this.props.errorMsg2} </p>) :
+      let myTickets = (this.props.error2) ? (<p style={{textAlign: 'center'}}> {this.props.errorMsg2} </p>) :
                (this.props.subTickets.map((ticket, index) => <CardTicket key={ticket._id}
                  professor={ticket.professor_id}
                  status={ticket.status}
@@ -37,7 +37,7 @@ class Tickets extends Component {
 
 
 
-      let tickets = (this.props.error) ? (<p style={{textAlign: 'center'}}> {this.props.errorMsg} </p>) :
+      let grantedTickets = (this.props.error) ? (<p style={{textAlign: 'center'}}> {this.props.errorMsg} </p>) :
                (this.props.tickets.map((ticket, index) => <CardTicket key={ticket._id}
                  professor={ticket.professor_id}
                  status={ticket.status}
@@ -52,11 +52,11 @@ class Tickets extends Component {
       return (
             <Aux>
               <Switch>
-                <Route path="/tickets/:id/edit" exact component={EditTicket} />
+                <Route path="/tickets/granted/:id/edit" exact component={EditTicket} />
               </Switch>
               <Pagebar/>
-              <Route path="/tickets/my" exact render={ () => subTickets } />
-	            <Route path="/tickets" render={ () => tickets } />
+              <Route path="/tickets" exact render={ () => myTickets } />
+	            <Route path="/tickets/granted" render={ () => grantedTickets } />
             </Aux>
         );
     }

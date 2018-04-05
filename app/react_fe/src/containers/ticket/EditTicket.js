@@ -50,7 +50,7 @@ class editTicket extends Component {
 
   closeModalHandler = () => {
     this.setState({ show: false });
-    this.props.history.replace('/tickets');
+    this.props.history.replace('/tickets/granted');
   }
 
   editTicketHandler = (event) => {
