@@ -10,10 +10,6 @@ import Modal from '../../components/modal/Modal';
 
 class editTicket extends Component {
 
-  componentDidMount() {
-    this.props.getTicket(this.props.token, this.props.match.params.id);
-  }
-
   state = {
       show: true,
       form: {
@@ -60,6 +56,7 @@ class editTicket extends Component {
 
 
   componentDidMount() {
+    this.props.getTicket(this.props.token, this.props.match.params.id);
     let profList = this.state.form.prof.elementConfig.options;
     this.props.users.map((user) => {if (user.usertype == 'faculty') profList.push({value: user._id, displayValue: user.name})});
 

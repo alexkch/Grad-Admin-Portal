@@ -180,9 +180,6 @@ export const editTicket = (token, id, session, form) => {
       const header = {
         headers: { 'x-auth-token': token }
       }
-      console.log(putData);
-      console.log(id);
-      console.log(header);
       const res = await axios.put('/tickets/' + id, putData, header);
       dispatch(updateSuccess());
       dispatch(getTickets(token));

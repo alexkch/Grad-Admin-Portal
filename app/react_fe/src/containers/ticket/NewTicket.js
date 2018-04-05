@@ -20,19 +20,7 @@ class NewTicket extends Component {
                     ]
                 },
                 value: '',
-                validation: {},
-                valid: true
-            },
-            status: {
-                elementType: 'select',
-                elementConfig: {
-                    options: [
-                        {value: '', displayValue: 'Status....'},
-                        {value: 'granted', displayValue: 'Granted'},
-                        {value: 'redeemed', displayValue: 'Redeemed'},
-                    ]
-                },
-                value: '',
+                value_name: '',
                 validation: {},
                 valid: true
             },
