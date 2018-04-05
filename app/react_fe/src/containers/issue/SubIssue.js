@@ -4,7 +4,6 @@ import * as Actions from '../../store/actions/';
 import Form from '../../components/form/Form';
 import Aux from '../../utils/auxiliary';
 import checkValidity from '../../utils/validateForm';
-import Chatbox from '../../components/box/Chatbox';
 import Button from '../../components/button/Button';
 
 class subIssue extends Component {

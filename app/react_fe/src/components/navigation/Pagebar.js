@@ -1,5 +1,5 @@
 import React from 'react';
-import { Pagination, PaginationItem, PaginationLink, Container, Row, Col } from 'reactstrap';
+import { Container } from 'reactstrap';
 
 const Pagebar = (props) => (
 

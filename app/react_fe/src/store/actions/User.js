@@ -190,14 +190,6 @@ const setUserTickets = (tickets) => {
 };
 
 
-const setUserOffers = (offers) => {
-  return {
-    type: actionTypes.SET_USER_OFFERS,
-    error: false,
-    offers: offers
-  };
-};
-
 const setUserDataFail = (errorMsg) => {
   return {
     type: actionTypes.SET_USER_DATA_FAIL,

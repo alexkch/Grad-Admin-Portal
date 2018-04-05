@@ -1,6 +1,6 @@
 import * as actionTypes from '../../utils/actionTypes';
 import axios from 'axios';
-import { grantTicket, ungrantTicket } from './User';
+import { grantTicket } from './User';
 
 const setTickets = (tickets) => {
   return {
@@ -138,7 +138,7 @@ export const deleteTicket = (token, id, userId) => {
       const header = {
         headers: { 'x-auth-token': token }
       }
-      const res = await axios.delete('/tickets/' + id, header);
+      await axios.delete('/tickets/' + id, header);
       dispatch(removeSuccess());
       dispatch(getTickets(token));
       } catch (error) {
@@ -182,7 +182,7 @@ export const editTicket = (token, id, session, form) => {
       const header = {
         headers: { 'x-auth-token': token }
       }
-      const res = await axios.put('/tickets/' + id, putData, header);
+      await axios.put('/tickets/' + id, putData, header);
       dispatch(updateSuccess());
       dispatch(getTickets(token));
       } catch (error) {

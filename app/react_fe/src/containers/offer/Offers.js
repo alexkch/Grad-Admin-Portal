@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
-import EditOffer from './EditOffer';
 import DeleteOffer from './DeleteOffer';
 import * as Actions from '../../store/actions/';
 import Aux from '../../utils/auxiliary';
@@ -27,7 +26,7 @@ class Offers extends Component {
                                                       round={offer.round}
                                                       ticket_id={offer.ticket_id}
                                                       status={offer.status}
-                                                      isOwner={this.props.userId == 'faculty'}
+                                                      isOwner={this.props.usertype !== 'grad_office'}
 									                                    url={this.props.match.url}
                                                       />));
 
@@ -49,6 +48,7 @@ const mapStateToProps = state => {
     return {
         token: state.user.token,
         userId: state.user.userId,
+        usertype: state.user.usertype,
         name: state.user.name,
         offers: state.offer.offers,
         error: state.offer.error,

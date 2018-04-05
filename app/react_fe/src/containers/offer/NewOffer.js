@@ -66,7 +66,7 @@ class NewOffer extends Component {
 
     componentDidMount() {
       let ticketList = this.state.form.ticket_id.elementConfig.options;
-      this.props.tickets.map((ticket) => {if (ticket.status == 'granted') ticketList.push({value: ticket._id, displayValue: ticket._id})});
+      this.props.tickets.map((ticket) => {if (ticket.status == 'granted') return ticketList.push({value: ticket._id, displayValue: ticket._id})});
 
       this.setState({
         form : { ...this.state.form,

@@ -5,7 +5,6 @@ import * as Actions from '../../store/actions/';
 import checkValidity from '../../utils/validateForm';
 import Box from '../../components/box/Box';
 import Button from '../../components/button/Button';
-import _ from 'lodash';
 
 class NewTicket extends Component {
 

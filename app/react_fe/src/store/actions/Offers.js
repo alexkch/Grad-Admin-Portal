@@ -100,7 +100,7 @@ export const createOffer = (token, session, form) => {
       const header = {
         headers: { 'x-auth-token': token }
       }
-      const res = await axios.post('/offers', postData, header);
+      await axios.post('/offers', postData, header);
       dispatch(postSuccess());
       dispatch(getOffers(token));
       } catch (error) {
@@ -138,7 +138,7 @@ export const deleteOffer = (token, id) => {
       const header = {
         headers: { 'x-auth-token': token }
       }
-      const res = await axios.delete('/offers/' + id, header);
+      await axios.delete('/offers/' + id, header);
       dispatch(removeSuccess());
       dispatch(getOffers(token));
       } catch (error) {
@@ -183,7 +183,7 @@ export const editOffer = (token, id, session, form) => {
       const header = {
         headers: { 'x-auth-token': token }
       }
-      const res = await axios.put('/offers/' + id, putData, header);
+      await axios.put('/offers/' + id, putData, header);
       dispatch(updateSuccess());
       dispatch(getOffers(token));
       } catch (error) {

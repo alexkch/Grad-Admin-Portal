@@ -2,10 +2,8 @@
 import React, {Component} from 'react';
 import { Route, Switch, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import * as Actions from "../../store/actions";
   //users
 import LoginUser from "../user/LoginUser";
-import LogoutUser from "../user/LogoutUser";
 import User from '../user/User';
 import NewIssue from '../issue/NewIssue';
 import NewTicket from '../ticket/NewTicket';

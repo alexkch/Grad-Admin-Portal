@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../button/Button';
-import FontAwesome from 'react-fontawesome';
-import { Container, Col, Row, Card, CardHeader, CardBody, CardFooter, Badge } from 'reactstrap';
+import { Container, Row, Card, CardBody } from 'reactstrap';
 
 
 const cardTicket = (props) => {

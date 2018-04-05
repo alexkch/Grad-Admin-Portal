@@ -6,19 +6,10 @@ const express = require('express');
 const router = express.Router();
 
 
-router.get('/all', authorize, async (req, res) => {
-  const offers = await Offer.find().select('_id');
-	res.send(offers);
-});
-
 
 router.get('/', authorize, async (req, res) => {
 
-  const order = (req.query.order === 'asc') ? 1 : -1;
-  const sortBy = (req.query.sort) ? (req.query.sort) : "created_on";
-  const offers = await Offer
-                        .find({created_by_id : req.user._id})
-                        .sort({ [sortBy] : order });
+  const offers = await Offer.find();
 	res.send(offers);
 });
 
@@ -29,6 +20,9 @@ router.post('/', authorize, async (req, res) => {
 
 	const { error } = validate(req.body);
 	if (error) return res.status(400).send(error.details[0].message);
+
+  const hasTicket = await Offer.findOne({ ticket_id: req.body.ticket_id })
+  if (hasTicket) return res.status(404).send("offer with ticket already used");
 
 	let offer = new Offer({
 
