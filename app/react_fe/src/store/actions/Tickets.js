@@ -92,7 +92,9 @@ export const createTicket = (token, session, form) => {
         professor_id : "5ac1331352b9bf7dc4cc3712",
         professor : form.professor.value,
         status : form.status.value,
-        created_by : session.name
+        type : form.type.value,
+        created_by : session.name,
+        created_by_id: session._id
       }
       const header = {
         headers: { 'x-auth-token': token }
@@ -170,7 +172,12 @@ export const editTicket = (token, id, session, form) => {
     try {
       dispatch(updateTicket());
       const putData = {
-        //put data
+        professor_id : "5ac1331352b9bf7dc4cc3712",
+        professor : form.professor.value,
+        status : form.status.value,
+        type : form.type.value,
+        created_by : session.name,
+        created_by_id: session._id
       }
       const header = {
         headers: { 'x-auth-token': token }
