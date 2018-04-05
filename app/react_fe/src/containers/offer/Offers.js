@@ -6,39 +6,31 @@ import DeleteOffer from './DeleteOffer';
 import * as Actions from '../../store/actions/';
 import Aux from '../../utils/auxiliary';
 import Pagebar from '../../components/navigation/Pagebar';
-import cardOffer from '../../components/box/CardOffer';
+import CardOffer from '../../components/box/CardOffer';
 
 class Offers extends Component {
 
-    state = {
-        offer: null,
-        selected: false,
-        isLoggedIn: this.props.token
-    }
-
     componentDidMount() {
-		console.log(this.props.match);	
-        this.props.getOffers(this.props.token);
+    this.props.getOffers(this.props.token);
 		this.props.getUserData(this.props.token);
     }
-    
+
 
     render () {
         let offers;
         offers = (this.props.error) ? (<p style={{textAlign: 'center'}}> {this.props.errorMsg} </p>) :
-            (this.props.offers.map((offer, index) => <cardOffer key={offer.ticket_id}
-							         professor={offer.professor}	
-				     				 applicant_id={offer.applicant_id}
- 				     				 applicant={offer.applicant}
-	     				             ap_type={offer.type}
-			                         round={offer.round}
-                                     ticket_id={offer.ticket_id}
-                                     status={offer.status}
-                                     isOwner={'true'}
-									 url={this.props.match.url}
-                                     }
-                />));
-                
+            (this.props.offers.map((offer, index) => <CardOffer key={offer.ticket_id}
+                                                      professor={offer.professor}
+                                                      applicant_id={offer.applicant_id}
+                                                      applicant={offer.applicant}
+                                                      ap_type={offer.type}
+                                                      round={offer.round}
+                                                      ticket_id={offer.ticket_id}
+                                                      status={offer.status}
+                                                      isOwner={'true'}
+									                                    url={this.props.match.url}
+                                                      />));
+
         return (
             <Aux>
               <Switch>
@@ -46,7 +38,7 @@ class Offers extends Component {
                 <Route path="/offers/:id/edit" exact component={EditOffer} />
               </Switch>
               <Pagebar/>
-              
+
               <Route path="/offers" render={ () => offers } />
 
             </Aux>

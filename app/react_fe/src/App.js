@@ -11,7 +11,7 @@ import NewUser from './containers/user/CreateUser';
 import LogoutUser from './containers/user/LogoutUser';
   //tickets
 import Tickets from './containers/ticket/Tickets';
-
+import Offers from './containers/offer/Offers';
 class App extends Component {
 
   componentDidMount () {
@@ -23,6 +23,7 @@ class App extends Component {
 
     let routes;
     routes = (this.props.token) ? (<Switch>
+                                    <Route path="/offers" component={Offers} />
                                     <Route path="/tickets" component={Tickets} />
                                     <Route path="/issues" component={Issues} />
                                     <Route path="/logout" exact component={LogoutUser} />

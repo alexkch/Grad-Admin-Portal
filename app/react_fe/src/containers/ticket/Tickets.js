@@ -12,12 +12,6 @@ import Aux from '../../utils/auxiliary';
 
 class Tickets extends Component {
 
-    state = {
-      ticket: null,
-      selected: false,
-    }
-
-
     componentDidMount() {
       	this.props.getUserData(this.props.token);
 		    this.props.getTickets(this.props.token);

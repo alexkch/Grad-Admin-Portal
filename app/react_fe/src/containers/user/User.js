@@ -39,7 +39,11 @@ class User extends Component {
               </MenuItem>
               <div style={{padding: "5px"}} />
               <MenuItem>
-                <NavLink to='/tickets/new'>Grant Tickets</NavLink>
+                <NavLink to='/tickets/grant'>Grant Tickets</NavLink>
+              </MenuItem>
+              <div style={{padding: "5px"}} />
+              <MenuItem>
+                <NavLink to='/offers/new'>New Offer</NavLink>
               </MenuItem>
             </Menu>
           </Collapse>
