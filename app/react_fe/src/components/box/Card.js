@@ -53,16 +53,6 @@ const card = (props) => {
                                                 </Col>
                                               </Row>)
 
-  let ownerOpts2;
-  if (props.isOwner2) ownerOpts2 = (<CardBody>
-                                        <Link to={props.url + '/' + props.ticket_id + '/edit'}>
-                                          <Button type='primary'>Status:{props.status}</Button>
-                                        </Link>
-                                        <Link to={props.url + '/' + props.ticket_id + '/del'}>
-                                          <FontAwesome name='trash-o' size='2x' style={{float: 'right', paddingLeft: '10px'}} />
-                                        </Link>
-                                      </CardBody>)
-
   switch (props.type) {
     case ( 'issues' ):
       return (<section style={{"paddingBottom" : "10px"}}>
