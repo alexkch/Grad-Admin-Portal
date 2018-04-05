@@ -11,35 +11,21 @@ class NewOffer extends Component {
     state = {
         form: {
             ticket_id: {
-                elementType: 'input',
+                elementType: 'select',
                 elementConfig: {
-                    type: 'text',
-                    placeholder: 'Description'
+                    options: [
+                        {value: '', displayValue: 'Use Ticket'}
+                    ]
                 },
                 value: '',
-                validation: {
-                    required: false
-                },
-                valid: false,
-                touched: false
+                validation: {},
+                valid: true
             },
             applicant_id: {
                 elementType: 'input',
                 elementConfig: {
                     type: 'name',
                     placeholder: 'Applicant id'
-                },
-                value: '',
-                validation: {
-                    required: true
-                },
-                valid: false,
-                touched: false
-            },professor_id: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'text',
-                    placeholder: 'Professor id'
                 },
                 value: '',
                 validation: {
@@ -66,15 +52,30 @@ class NewOffer extends Component {
                 elementType: 'select',
                 elementConfig: {
                     options: [
+                        {value: '', displayValue: 'Choose type'},
                         {value: 'domestic', displayValue: 'Domestic'},
-                        {value: 'international', displayValue: 'International'}]
+                        {value: 'international', displayValue: 'International'}
+                    ]
                 },
                 value: '',
                 validation: {},
                 valid: true
-            }
+            },
+            status: {
+                elementType: 'select',
+                elementConfig: {
+                    options: [
+                        {value: '', displayValue: 'sttus'},
+                        {value: 'pending', displayValue: 'pending'},
+                        {value: 'approved', displayValue: 'approved'}
+                    ]
+                },
+                value: '',
+                validation: {},
+                valid: true
+            },
         },
-        formIsValid: false,
+        formIsValid: false
     }
 
     postHandler = ( event ) => {
