@@ -15,29 +15,72 @@ class editOffer extends Component {
   }
 
   state = {
-      show: true,
       form: {
+          ticket_id: {
+              elementType: 'select',
+              elementConfig: {
+                  options: [
+                      {value: '', displayValue: 'Use Ticket'}
+                  ]
+              },
+              value: '',
+              validation: {},
+              valid: true
+          },
+          applicant: {
+              elementType: 'input',
+              elementConfig: {
+                  type: 'name',
+                  placeholder: 'Applicant Name'
+              },
+              value: '',
+              validation: {
+                  required: true
+              },
+              valid: false,
+              touched: false
+          },
+          round: {
+              elementType: 'input',
+              elementConfig: {
+                  type: 'number',
+                  placeholder: 'Round number'
+              },
+              value: '',
+              validation: {
+                  required: true
+              },
+              valid: false,
+              touched: false
+          },
+          type: {
+              elementType: 'select',
+              elementConfig: {
+                  options: [
+                      {value: '', displayValue: 'Choose type'},
+                      {value: 'domestic', displayValue: 'Domestic'},
+                      {value: 'international', displayValue: 'International'}
+                  ]
+              },
+              value: '',
+              validation: {},
+              valid: true
+          },
           status: {
               elementType: 'select',
               elementConfig: {
                   options: [
-            		{value: 'pending', displayValue: 'pending'},
-                  	{value: 'approved', displayValue: 'approved'},
-                    {value: 'rejected', displayValue: 'rejected'},
-                    {value: 'accepted', displayValue: 'accepted'},
-                    {value: 'declined', displayValue: 'declined'}
-
+                      {value: '', displayValue: 'sttus'},
+                      {value: 'pending', displayValue: 'pending'},
+                      {value: 'approved', displayValue: 'approved'}
                   ]
               },
-              value: this.props.offer.status,
-              validation: {
-                required: true,
-                minLength: 1
-              },
-              valid: false
-          }
+              value: '',
+              validation: {},
+              valid: true
+          },
       },
-      formIsValid: false,
+      formIsValid: false
   }
 
   closeModalHandler = () => {

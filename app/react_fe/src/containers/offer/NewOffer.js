@@ -21,11 +21,11 @@ class NewOffer extends Component {
                 validation: {},
                 valid: true
             },
-            applicant_id: {
+            applicant: {
                 elementType: 'input',
                 elementConfig: {
                     type: 'name',
-                    placeholder: 'Applicant id'
+                    placeholder: 'Applicant'
                 },
                 value: '',
                 validation: {
@@ -42,8 +42,7 @@ class NewOffer extends Component {
                 },
                 value: '',
                 validation: {
-                    required: true,
-                    isEmail: true
+                    required: true
                 },
                 valid: false,
                 touched: false
@@ -60,20 +59,7 @@ class NewOffer extends Component {
                 value: '',
                 validation: {},
                 valid: true
-            },
-            status: {
-                elementType: 'select',
-                elementConfig: {
-                    options: [
-                        {value: '', displayValue: 'sttus'},
-                        {value: 'pending', displayValue: 'pending'},
-                        {value: 'approved', displayValue: 'approved'}
-                    ]
-                },
-                value: '',
-                validation: {},
-                valid: true
-            },
+            }
         },
         formIsValid: false
     }
@@ -81,7 +67,12 @@ class NewOffer extends Component {
     postHandler = ( event ) => {
       event.preventDefault();
     	let session_meta = { userId : this.props.userId, name : this.props.name};
-    	this.props.createOffer(this.props.token, session_meta, this.state.form);
+      let newForm = { status : 'pending',
+        type : this.state.form.type.value,
+        round : this.state.form.round.value,
+        applicant : this.state.form.applicant.value
+      }
+    	this.props.createOffer(this.props.token, session_meta, newForm);
     }
 
     inputChangedHandler = (event, inputIdentifier) => {
