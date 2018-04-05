@@ -20,7 +20,9 @@ router.post('/', authorize, async (req, res) => {
     professor_id: req.body.professor_id,
 		professor: req.body.professor,
     status: req.body.status,
-    created_by: req.body.created_by
+    type: req.body.type,
+    created_by: req.body.created_by,
+    created_by_id: req.body.created_by_id
 	});
 
   ticket = await ticket.save();
@@ -45,7 +47,9 @@ router.put('/:id', /*authorize,*/ async (req, res) => {
       professor_id: req.body.professor_id,
       professor: req.body.professor,
       status: req.body.status,
-      created_by: req.body.created_by
+      type: req.body.type,
+      created_by: req.body.created_by,
+      created_by_id: req.body.created_by_id
     },
     { new : true }
   );
