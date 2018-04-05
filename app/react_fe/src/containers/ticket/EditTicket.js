@@ -21,8 +21,7 @@ class editTicket extends Component {
             elementType: 'select',
             elementConfig: {
                 options: [
-                    {value: '', displayValue: 'Select Prof'},
-                    {value: '5ac1332652b9bf7dc4cc3713', displayValue: 'test4'}
+                    {value: '', displayValue: 'Select Prof'}
                 ]
             },
             value: '',
@@ -59,6 +58,20 @@ class editTicket extends Component {
     formIsValid: false
   }
 
+
+  componentDidMount() {
+    let profList = this.state.form.prof.elementConfig.options;
+    this.props.users.map((user) => {if (user.usertype == 'faculty') profList.push({value: user._id, displayValue: user.name})});
+
+
+    this.setState({
+      form : { ...this.state.form,
+        prof : { ...this.state.form.prof,
+          elementConfig : { ...this.state.form.prof.elementConfig,
+            options : profList }
+          }}});
+  }
+
   closeModalHandler = () => {
     this.setState({ show: false });
     this.props.history.replace('/tickets');
@@ -67,10 +80,7 @@ class editTicket extends Component {
   editTicketHandler = (event) => {
     event.preventDefault();
     let session_meta = { userId : this.props.userId, name : this.props.name};
-    console.log(this.props.token);
-    console.log(this.state.form);
-    console.log(this.props.ticket._id);
-    this.props.editTicket(this.props.token, this.props.ticket._id, session_meta, this.state.form);
+    this.props.editTicket(this.props.token, this.props.match.params.id, session_meta, this.state.form);
     this.closeModalHandler();
   }
 
@@ -142,6 +152,7 @@ const mapStateToProps = state => {
   return {
       token: state.user.token,
       userId: state.user.userId,
+      users: state.user.users,
       name: state.user.name,
       ticket: state.ticket.ticket,
       error: state.ticket.error,

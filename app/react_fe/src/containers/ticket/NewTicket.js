@@ -16,8 +16,7 @@ class NewTicket extends Component {
                 elementType: 'select',
                 elementConfig: {
                     options: [
-                        {value: '', displayValue: 'Select Prof'},
-                        {value: '5ac1332652b9bf7dc4cc3713', displayValue: 'test4'}
+                        {value: '', displayValue: 'Select Prof'}
                     ]
                 },
                 value: '',
@@ -28,7 +27,7 @@ class NewTicket extends Component {
                 elementType: 'select',
                 elementConfig: {
                     options: [
-                        {value: '', displayValue: 'Choose:'},
+                        {value: '', displayValue: 'Status....'},
                         {value: 'granted', displayValue: 'Granted'},
                         {value: 'redeemed', displayValue: 'Redeemed'},
                     ]
@@ -41,7 +40,7 @@ class NewTicket extends Component {
                 elementType: 'select',
                 elementConfig: {
                     options: [
-                        {value: '', displayValue: 'Choose:'},
+                        {value: '', displayValue: 'Type...'},
                         {value: 'international', displayValue: 'International'},
                         {value: 'domestic', displayValue: 'Domestic'},
                     ]
@@ -53,6 +52,21 @@ class NewTicket extends Component {
         },
         formIsValid: false
     }
+
+
+    componentDidMount() {
+      let profList = this.state.form.prof.elementConfig.options;
+      this.props.users.map((user) => {if (user.usertype == 'faculty') profList.push({value: user._id, displayValue: user.name})});
+
+
+      this.setState({
+        form : { ...this.state.form,
+          prof : { ...this.state.form.prof,
+            elementConfig : { ...this.state.form.prof.elementConfig,
+              options : profList }
+            }}});
+    }
+
 
     postHandler = ( event ) => {
         event.preventDefault();
