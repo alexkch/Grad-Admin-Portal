@@ -6,7 +6,7 @@ import checkValidity from '../../utils/validateForm';
 import Box from '../../components/box/Box';
 import Button from '../../components/button/Button';
 
-class TicketCreate extends Component {
+class NewTicket extends Component {
 
     state = {
         form: {
@@ -14,27 +14,13 @@ class TicketCreate extends Component {
                 elementType: 'input',
                 elementConfig: {
                     type: 'text',
-                    placeholder: 'Faculty'
+                    placeholder: 'Faculty Member Name'
                 },
                 value: '',
                 validation: {
                     required: false
                 },
                 valid: false,
-                touched: false
-            },
-            number: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'number',
-					min: '0',
-                    placeholder: 'Number of tickets to create'
-                },
-                value: '0',
-                validation: {
-                    required: true
-                },
-                valid: true,
                 touched: false
             },
             status: {
@@ -56,9 +42,7 @@ class TicketCreate extends Component {
     postHandler = ( event ) => {
         event.preventDefault();
         let session_meta = { userId : this.props.userId, name : this.props.name};
-		//for (var i = 0; i < this.state.amount; i++) {
-		this.props.createTicket(this.props.token, session_meta, this.state.form);
-		//}
+        this.props.createTicket(this.props.token, session_meta, this.state.form);
     }
 
     inputChangedHandler = (event, inputIdentifier) => {
@@ -124,4 +108,4 @@ const mapDispatchToProps = dispatch => {
 	   createTicket : (token, session, form) => dispatch(Actions.createTicket(token, session, form))
   };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(TicketCreate);
+export default connect(mapStateToProps, mapDispatchToProps)(NewTicket);

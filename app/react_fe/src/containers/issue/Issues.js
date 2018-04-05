@@ -18,7 +18,6 @@ class Issues extends Component {
     }
 
     componentDidMount() {
-      console.log(this.props.match);
       this.props.getIssues(this.props.token);
       this.props.getUserData(this.props.token);
     }

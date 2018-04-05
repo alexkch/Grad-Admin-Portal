@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import Aux from '../../utils/auxiliary';
-import * as Actions from "../../store/actions";
 import {connect} from "react-redux";
 import { Route, Switch } from 'react-router-dom';
+import * as Actions from "../../store/actions";
 import EditTicket from './EditTicket';
 import DeleteTicket from './DeleteTicket';
 import Pagebar from '../../components/navigation/Pagebar';
 import cardTicket from '../../components/box/CardTicket';
+import Aux from '../../utils/auxiliary';
+
 
 class Tickets extends Component {
 
@@ -18,7 +19,7 @@ class Tickets extends Component {
 
     componentDidMount() {
       	this.props.getUserData(this.props.token);
-		this.props.getTickets(this.props.token);
+		    this.props.getTickets(this.props.token);
     };
 
 
@@ -62,8 +63,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-	    getUserData: (token) => dispatch(Actions.getUserData(token)),
-		getTickets: (token) => dispatch(Actions.getTickets(token))
+        getUserData: (token) => dispatch(Actions.getUserData(token)),
+		    getTickets: (token) => dispatch(Actions.getTickets(token))
     };
 };
 

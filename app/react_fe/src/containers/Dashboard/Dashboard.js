@@ -8,6 +8,7 @@ import LoginUser from "../user/LoginUser";
 import LogoutUser from "../user/LogoutUser";
 import User from '../user/User';
 import NewIssue from '../issue/NewIssue';
+import NewTicket from '../ticket/NewTicket';
 import NewNote from '../note/NewNote';
 // Styles + Utils + components
 import { Container, Row, Col } from 'reactstrap';
@@ -54,6 +55,7 @@ class Dashboard extends Component {
               <Switch>
                 <Route path="/issues/:id/notes" component={NewNote} />
                 <Route path="/issues" component={NewIssue} />
+                <Route path="/tickets" component={NewTicket} />
               </Switch>
             </Col>
           </Row>
