@@ -103,6 +103,25 @@ const reducer = ( state = initialState, action ) => {
               error : true,
               errorMsg : action.errorMsg});
 
+        case actionTypes.GRANT_TICKET_SUCCESS:
+            return update(state, {
+              error : false});
+
+        case actionTypes.GRANT_TICKET_FAIL:
+            return update(state, {
+              error : true,
+              errorMsg : action.errorMsg});
+
+        case actionTypes.UNGRANT_TICKET_SUCCESS:
+            return update(state, {
+              error : false});
+
+        case actionTypes.UNGRANT_TICKET_FAIL:
+            return update(state, {
+              error : true,
+              errorMsg : action.errorMsg});
+
+
         default:
             return state;
     }
