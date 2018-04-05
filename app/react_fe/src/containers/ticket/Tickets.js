@@ -21,17 +21,32 @@ class Tickets extends Component {
 
 
     render () {
-        let tickets;
-        tickets = (this.props.error) ? (<p style={{textAlign: 'center'}}> {this.props.errorMsg} </p>) :
-                 (this.props.tickets.map((ticket, index) => <CardTicket key={ticket._id}
-                   professor={ticket.professor_id}
-                   status={ticket.status}
-                   type={ticket.type}
-                   created_on={new Date(ticket.created_on).toDateString()}
-                   isOwner={ticket.created_by_id == this.props.userId}
-                   ticket_id={ticket._id}
-                   url={this.props.match.url}
-                   />))
+
+      let subTickets = (this.props.error2) ? (<p style={{textAlign: 'center'}}> {this.props.errorMsg2} </p>) :
+               (this.props.subTickets.map((ticket, index) => <CardTicket key={ticket._id}
+                 professor={ticket.professor_id}
+                 status={ticket.status}
+                 type={ticket.type}
+                 created_on={new Date(ticket.created_on).toDateString()}
+                 isOwner={ticket.created_by_id == this.props.userId}
+                 ticket_id={ticket._id}
+                 url={this.props.match.url}
+                 />))
+
+
+
+
+
+      let tickets = (this.props.error) ? (<p style={{textAlign: 'center'}}> {this.props.errorMsg} </p>) :
+               (this.props.tickets.map((ticket, index) => <CardTicket key={ticket._id}
+                 professor={ticket.professor_id}
+                 status={ticket.status}
+                 type={ticket.type}
+                 created_on={new Date(ticket.created_on).toDateString()}
+                 isOwner={ticket.created_by_id == this.props.userId}
+                 ticket_id={ticket._id}
+                 url={this.props.match.url}
+                 />))
 
 
       return (
@@ -40,6 +55,7 @@ class Tickets extends Component {
                 <Route path="/tickets/:id/edit" exact component={EditTicket} />
               </Switch>
               <Pagebar/>
+              <Route path="/tickets/my" exact render={ () => subTickets } />
 	            <Route path="/tickets" render={ () => tickets } />
             </Aux>
         );
@@ -52,8 +68,11 @@ const mapStateToProps = state => {
         userId: state.user.userId,
         name: state.user.name,
         tickets: state.ticket.tickets,
+        subTickets: state.user.subTickets,
         error: state.ticket.error,
-        errorMsg: state.ticket.errorMsg
+        errorMsg: state.ticket.errorMsg,
+        error2: state.user.error,
+        errorMsg2: state.user.errorMsg
     };
 };
 
