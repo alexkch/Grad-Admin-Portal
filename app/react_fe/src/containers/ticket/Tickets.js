@@ -27,7 +27,7 @@ class Tickets extends Component {
     render () {
         let tickets;
         tickets = (this.props.error) ? (<p style={{textAlign: 'center'}}> {this.props.errorMsg} </p>) :
-                 (this.props.tickets.map((ticket, index) => <CardTicket key={ticket.ticket_id}
+                 (this.props.tickets.map((ticket, index) => <CardTicket key={ticket._id}
                    professor={ticket.professor}
                    status={ticket.status}
                    created_on={ticket.created_on}

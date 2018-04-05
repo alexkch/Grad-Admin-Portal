@@ -104,31 +104,6 @@ const card = (props) => {
                       </CardBody>
                   </Card>
                 </section>);
-
-    case ( 'tickets') :
-      return (<section style={{"paddingBottom" : "10px"}}>
-                  <Card style={{"borderColor" : "black"}}>
-                    <CardBody>
-                      <Container>
-                        <Row>
-                          <h5>{props.professor}</h5>
-                        </Row>
-
-                        <Row style={{"paddingBottom" : "5px", "color" : props.btn_clr }}>
-                          STATUS: {props.status}
-                        </Row>
-                        <Row style={{"paddingBottom" : "5px"}}>
-                          {props.created_on}
-                        </Row>
-                      </Container>
-                    </CardBody>
-                    <CardFooter>
-                      <Container>
-                        {ownerOpts2}
-                      </Container>
-                    </CardFooter>
-                  </Card>
-                </section>);
     default:
       return (<h2>DEFAULT: NEED TO SPECIFY TYPE</h2>);
     }
