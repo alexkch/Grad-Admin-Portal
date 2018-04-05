@@ -94,7 +94,7 @@ export const createTicket = (token, session, form) => {
         status : form.status.value,
         type : form.type.value,
         created_by : session.name,
-        created_by_id: session._id
+        created_by_id: session.userId
       }
       const header = {
         headers: { 'x-auth-token': token }
@@ -177,7 +177,7 @@ export const editTicket = (token, id, session, form) => {
         status : form.status.value,
         type : form.type.value,
         created_by : session.name,
-        created_by_id: session._id
+        created_by_id: session.userId
       }
       const header = {
         headers: { 'x-auth-token': token }

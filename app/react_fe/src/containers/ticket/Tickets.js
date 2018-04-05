@@ -30,8 +30,9 @@ class Tickets extends Component {
                  (this.props.tickets.map((ticket, index) => <CardTicket key={ticket._id}
                    professor={ticket.professor}
                    status={ticket.status}
+                   type={ticket.type}
                    created_on={ticket.created_on}
-                   isOwner={ticket.professor_id == this.props.userId}
+                   isOwner={ticket.created_by_id == this.props.userId}
                    url={this.props.match.url}
                    />))
 

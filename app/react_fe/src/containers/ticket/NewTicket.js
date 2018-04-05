@@ -8,6 +8,7 @@ import Button from '../../components/button/Button';
 
 class NewTicket extends Component {
 
+
     state = {
         form: {
             professor: {
@@ -27,8 +28,22 @@ class NewTicket extends Component {
                 elementType: 'select',
                 elementConfig: {
                     options: [
+                        {value: '', displayValue: 'Choose:'},
                         {value: 'granted', displayValue: 'Granted'},
                         {value: 'redeemed', displayValue: 'Redeemed'},
+                    ]
+                },
+                value: '',
+                validation: {},
+                valid: true
+            },
+            type: {
+                elementType: 'select',
+                elementConfig: {
+                    options: [
+                        {value: '', displayValue: 'Choose:'},
+                        {value: 'international', displayValue: 'International'},
+                        {value: 'domestic', displayValue: 'Domestic'},
                     ]
                 },
                 value: '',
