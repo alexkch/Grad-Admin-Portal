@@ -1,5 +1,6 @@
 const { Ticket, validate } = require('../models/ticket');
 const authorize = require('../utils/authorize');
+const validateObjId = require('../utils/validateObjId');
 const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
