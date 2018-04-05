@@ -21,14 +21,14 @@ const offerSchema = new mongoose.Schema({
     lowercase: true,
 		trim: true
   },
-  professor: {
+  created_by: {
 		type: String,
 		required: true,
 		minlength: 1,
 		maxlength: 255,
 		trim: true
 	},
-  professor_id: {
+  created_by_id: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   },
@@ -57,8 +57,8 @@ function validateOffer(offer) {
 		applicant: Joi.string().min(1).max(255).required(),
 		type: Joi.string()
     .valid('domestic', 'international').required(),
-		professor: Joi.string().min(1).max(255).required(),
-    professor_id: Joi.objectId().required(),
+		created_by: Joi.string().min(1).max(255).required(),
+    created_by_id: Joi.objectId().required(),
     status: Joi.string()
     .valid('pending', 'approved', 'rejected', 'accepted', 'declined').required(),
     round: Joi.string().min(1).max(5).required(),

@@ -1,15 +1,28 @@
 const { Offer, validate } = require('../models/offer');
 const authorize = require('../utils/authorize');
+const validateObjId = require('../utils/validateObjId');
 const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
 
 
-router.get('/', async (req, res) => {
-
-  const offers = await Offer.find().sort('applicant');
+router.get('/all', authorize, async (req, res) => {
+  const offers = await Offer.find().select('_id');
 	res.send(offers);
 });
+
+
+router.get('/', authorize, async (req, res) => {
+
+  const order = (req.query.order === 'asc') ? 1 : -1;
+  const sortBy = (req.query.sort) ? (req.query.sort) : "created_on";
+  const offers = await Offer
+                        .find({created_by_id : req.user._id})
+                        .sort({ [sortBy] : order });
+	res.send(offers);
+});
+
+
 
 
 router.post('/', authorize, async (req, res) => {
@@ -34,7 +47,7 @@ router.post('/', authorize, async (req, res) => {
 });
 
 
-router.get('/:id', authorize, async (req, res) => {
+router.get('/:id', [authorize, validateObjId], async (req, res) => {
 
 	const offer = await Offer.findById(req.params.id);
 	if (!offer) return res.status(404).send("offer with given ID was not found");
@@ -42,7 +55,7 @@ router.get('/:id', authorize, async (req, res) => {
 });
 
 
-router.put('/:id', authorize, async (req, res) => {
+router.put('/:id', [authorize, validateObjId], async (req, res) => {
 
   const {error} = validate(req.body);
 	if (error) return res.status(400).send(error.details[0].message);
@@ -87,7 +100,7 @@ router.put('/:id', authorize, async (req, res) => {
 });
 
 
-router.delete('/:id', authorize, async (req, res) => {
+router.delete('/:id', [authorize, validateObjId], async (req, res) => {
 
 	const offer = await Offer.findByIdAndRemove(req.params.id);
 	if (!offer) return res.status(404).send("offer with given ID was not found");
