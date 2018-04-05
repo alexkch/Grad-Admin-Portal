@@ -1,6 +1,7 @@
 const request = require('supertest');
 const {User} = require('../../models/user');
 let server;
+const port = process.env.PORT || 5555;
 
 describe('/api/users', () => {
   beforeEach(() => { server = require('../../index'); });
@@ -10,20 +11,20 @@ describe('/api/users', () => {
   });
 
 
-  describe('GET /', () => {
+  describe('GET /all', () => {
     it('should return all users', async () => {
       await User.collection.insertMany([
-        // example of student user
+
         { email : "tiffany@hotmail.com",
           name: "tiffany",
-          password: "2222",
+          password: "22222",
           usertype: "faculty",
           isAdmin: true,
           created_on: Date.now,
           last_login: Date.now
         },
-        // example of admin user
-        { email : "daniel@hotmail.com",
+
+        { email : "daniel1@hotmail.com",
           name: "Daniel",
           password: "2222dfasfa",
           usertype: "budget_office",
@@ -31,7 +32,7 @@ describe('/api/users', () => {
           created_on: Date.now,
           last_login: Date.now
         },
-        // example of broken email.
+
         { email : "randomUser@hotmail.coms",
           name: "randomUsers",
           password: "123123qwer",
@@ -50,8 +51,7 @@ describe('/api/users', () => {
           last_login: Date.now
         },
 
-        // example of 
-        { email : "daniel@hotmail.com",
+        { email : "daniel2@hotmail.com",
           name: "Daniel",
           password: "123456",
           usertype: "grad_office",
@@ -61,7 +61,7 @@ describe('/api/users', () => {
         }
       ]);
 
-      const res = await request(server).get('/api/user');
+      const res = await request(server).get('/api/users');
       expect(res.status).toBe(200);
       expect(res.body.length).toBe(5);
       expect(res.body.some(x => x.name === "Daniel"));
@@ -71,24 +71,23 @@ describe('/api/users', () => {
   describe('GET /self', () => {
     it('should return an user if valid id is passed', async () => {
       const user = new User(
-        // user 1
         {
           email : "daniel@hotmail.com",
-          name: "Daniel",
           password: "2222dfasfa",
-          usertype: "Student",
+          name: "Daniel",
+          usertype: "budget_office",
           isAdmin: false,
           created_on: Date.now,
           last_login: Date.now
         });
       await user.save();
-      const res = await request(server).get('/api/users/' + user.email);
+      const res = await request(server).get('/api/users/' + user._id);
       expect(res.status).toBe(200);
     });
 
     it('should return 404 if invalid id is passed', async () => {
 
-      const res = await request(server).get('/api/users/' + 'daniel1@hotmail.com');
+      const res = await request(server).get('/api/users/' + '123');
       expect(res.status).toBe(404);
     });
   });
@@ -96,10 +95,11 @@ describe('/api/users', () => {
   describe('POST /', () => {
     it('should return 401 since user is not signed in', async () => {
       const user = new User(
-        { email : "daniel@hotmail.com",
+        { 
+          email : "daniel@hotmail.com",
           name: "Daniel",
           password: "2222dfasfa",
-          usertype: "Student",
+          usertype: "budget_office",
           isAdmin: false,
           created_on: Date.now,
           // last_login: Date.now
@@ -113,9 +113,9 @@ describe('/api/users', () => {
       const user = new User(
         {
           email : "daniel@hotmail.com",
-          name: "Daniel",
           password: "2222dfasfa",
-          usertype: "Student",
+          name: "Daniel",
+          usertype: "budget_office",
           isAdmin: false,
           created_on: Date.now,
           last_login: Date.now
@@ -128,12 +128,11 @@ describe('/api/users', () => {
     it('should save user in db if user is signed in/signed up and passes validation', async () => {
       const token = new User().generateAuthToken();
       const new_user = new User(
-        // user 1
         {
           email : "daniel@hotmail.com",
           name: "Daniel",
           password: "2222dfasfa",
-          usertype: "Student",
+          usertype: "budget_office",
           isAdmin: false,
           created_on: Date.now,
           last_login: Date.now
