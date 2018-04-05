@@ -163,7 +163,7 @@ export const grantUserTickets = (token, ticketId, userId) => {
       const header = {
         headers: { 'x-auth-token': token }
       }
-      await axios.post('/users/sub', {userId : userId, ticketId : ticketId}, header);
+      await axios.post('/users/grant', {userId : userId, ticketId : ticketId}, header);
       dispatch(subscribeSuccess());
       } catch (error) {
       dispatch(subscribeFail(error.message));
