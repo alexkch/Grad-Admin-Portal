@@ -124,7 +124,6 @@ describe('/api/users', () => {
       expect(res.status).toBe(400);
     });
 
-    //need to fix this....
     it('should save user in db if user is signed in/signed up and passes validation', async () => {
       const token = new User().generateAuthToken();
       const new_user = new User(
