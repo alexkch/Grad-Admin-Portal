@@ -38,6 +38,5 @@ export {
   subscribeUser,
   unsubscribeUser,
   grantTicket,
-  ungrantTicket,
   getUserData
 } from './User';

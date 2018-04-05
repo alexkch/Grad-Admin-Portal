@@ -9,6 +9,8 @@ const initialState = {
     isAdmin: false,
     users: [],
     subIssues: [],
+    subTickets: [],
+    subOffers: [],
     error: false,
     errorMsg: ''
 };
@@ -68,12 +70,12 @@ const reducer = ( state = initialState, action ) => {
         case actionTypes.SET_USER_OFFERS:
             return update(state, {
               error : false,
-              users : action.users});
+              subOffers : action.offers});
 
         case actionTypes.SET_USER_TICKETS:
             return update(state, {
               error : false,
-              users : action.users});
+              subTickets : action.tickets});
 
         case actionTypes.SET_USER_ISSUES:
             return update(state, {
@@ -111,16 +113,6 @@ const reducer = ( state = initialState, action ) => {
             return update(state, {
               error : true,
               errorMsg : action.errorMsg});
-
-        case actionTypes.UNGRANT_TICKET_SUCCESS:
-            return update(state, {
-              error : false});
-
-        case actionTypes.UNGRANT_TICKET_FAIL:
-            return update(state, {
-              error : true,
-              errorMsg : action.errorMsg});
-
 
         default:
             return state;

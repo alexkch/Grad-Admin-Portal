@@ -59,16 +59,6 @@ router.post('/grant', authorize, async (req, res) => {
   res.send(result);
 });
 
-router.post('/ungrant', authorize, async (req, res) => {
-
-  const result = await User.update({ "_id" : req.user._id },
-    { $pull: { tickets : req.body.ticketId }
-  });
-  if (!result.nModified) return res.status(404).send("ticket with given ID was not found");
-  res.send(result);
-});
-
-
 
 
 // create a new user

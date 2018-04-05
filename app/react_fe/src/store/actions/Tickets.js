@@ -140,7 +140,6 @@ export const deleteTicket = (token, id, userId) => {
       }
       const res = await axios.delete('/tickets/' + id, header);
       dispatch(removeSuccess());
-      dispatch(ungrantTicket(token, id, userId));
       dispatch(getTickets(token));
       } catch (error) {
       dispatch(removeFail(error.message));

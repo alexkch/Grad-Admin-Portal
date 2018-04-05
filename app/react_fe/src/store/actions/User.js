@@ -172,38 +172,6 @@ export const grantTicket = (token, ticketId, userId) => {
 };
 
 
-const ungrantSuccess = () => {
-  return {
-    type: actionTypes.UNGRANT_TICKET_SUCCESS,
-    error: 'false'
-  };
-};
-
-const ungrantFail = (errorMsg) => {
-  return {
-    type: actionTypes.UNGRANT_TICKET_FAIL,
-    error: 'true',
-    errorMsg : errorMsg
-  };
-};
-
-
-export const ungrantTicket = (token, ticketId, userId) => {
-  return async dispatch => {
-    try {
-      const header = {
-        headers: { 'x-auth-token': token }
-      }
-      await axios.post('/users/ungrant', {ticketId : ticketId, userId : userId}, header);
-      dispatch(ungrantSuccess());
-      } catch (error) {
-      dispatch(ungrantFail(error.message));
-    };
-  };
-};
-
-
-
 const setUserIssues = (issues) => {
   return {
     type: actionTypes.SET_USER_ISSUES,
@@ -245,8 +213,8 @@ export const getUserData = (token) => {
         headers: { 'x-auth-token': token }
       }
       const res = await axios.get('/users/self', header);
-      console.log(res.data)
       dispatch(setUserIssues(res.data.issues));
+      dispatch(setUserTickets(res.data.tickets));
 
     } catch (error) {
       dispatch(setUserDataFail(error.message));
