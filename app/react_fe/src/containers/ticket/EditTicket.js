@@ -17,6 +17,18 @@ class editTicket extends Component {
   state = {
       show: true,
       form: {
+        prof: {
+            elementType: 'select',
+            elementConfig: {
+                options: [
+                    {value: '', displayValue: 'Select Prof'},
+                    {value: '5ac1332652b9bf7dc4cc3713', displayValue: 'test4'}
+                ]
+            },
+            value: '',
+            validation: {},
+            valid: true
+        },
         status: {
             elementType: 'select',
             elementConfig: {
@@ -55,6 +67,9 @@ class editTicket extends Component {
   editTicketHandler = (event) => {
     event.preventDefault();
     let session_meta = { userId : this.props.userId, name : this.props.name};
+    console.log(this.props.token);
+    console.log(this.state.form);
+    console.log(this.props.ticket._id);
     this.props.editTicket(this.props.token, this.props.ticket._id, session_meta, this.state.form);
     this.closeModalHandler();
   }

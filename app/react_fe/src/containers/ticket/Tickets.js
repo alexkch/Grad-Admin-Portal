@@ -30,10 +30,10 @@ class Tickets extends Component {
         let tickets;
         tickets = (this.props.error) ? (<p style={{textAlign: 'center'}}> {this.props.errorMsg} </p>) :
                  (this.props.tickets.map((ticket, index) => <CardTicket key={ticket._id}
-                   professor={ticket.professor}
+                   professor={ticket.professor_id}
                    status={ticket.status}
                    type={ticket.type}
-                   created_on={ticket.created_on}
+                   created_on={new Date(ticket.created_on).toDateString()}
                    isOwner={ticket.created_by_id == this.props.userId}
                    ticket_id={ticket._id}
                    url={this.props.match.url}

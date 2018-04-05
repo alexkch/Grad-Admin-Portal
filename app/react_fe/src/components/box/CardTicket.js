@@ -22,9 +22,9 @@ const cardTicket = (props) => {
                   <CardBody>
                     <Container>
                       <Row>
-                        <h5>{props.professor}</h5>
+                        Granted To:<h5>{props.professor}</h5>
                       </Row>
-                   
+
                       <Row style={{"paddingBottom" : "5px", "color" : props.btn_clr }}>
                         STATUS: {props.status}
                       </Row>
@@ -40,7 +40,7 @@ const cardTicket = (props) => {
                   </CardFooter>
                 </Card>
               </section>)
-    
+
 };
 
 export default cardTicket;
