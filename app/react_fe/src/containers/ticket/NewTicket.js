@@ -20,7 +20,6 @@ class NewTicket extends Component {
                     ]
                 },
                 value: '',
-                value_name: '',
                 validation: {},
                 valid: true
             },
@@ -59,7 +58,11 @@ class NewTicket extends Component {
     postHandler = ( event ) => {
         event.preventDefault();
         let session_meta = { userId : this.props.userId, name : this.props.name};
-        this.props.createTicket(this.props.token, session_meta, this.state.form);
+        let newForm = { status : 'granted',
+          type : this.state.form.type.value,
+          professor_id : this.state.form.prof.value
+        }
+        this.props.createTicket(this.props.token, session_meta, newForm);
     }
 
     inputChangedHandler = (event, inputIdentifier) => {

@@ -56,7 +56,10 @@ class editTicket extends Component {
   editTicketHandler = (event) => {
     event.preventDefault();
     let session_meta = { userId : this.props.userId, name : this.props.name};
-    let editForm = { status : this.state.form.status.value, type : this.state.form.type.value, professor_id : this.props.ticket.professor_id}
+    let editForm = { status : this.state.form.status.value,
+      type : this.state.form.type.value,
+      professor_id : this.props.ticket.professor_id
+    }
     this.props.editTicket(this.props.token, this.props.match.params.id, session_meta, editForm);
     this.closeModalHandler();
   }

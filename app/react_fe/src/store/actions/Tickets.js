@@ -98,6 +98,7 @@ export const createTicket = (token, session, form) => {
       const header = {
         headers: { 'x-auth-token': token }
       }
+            console.log(form.professor);
       const res = await axios.post('/tickets', postData, header);
       dispatch(postSuccess());
       dispatch(getTickets(token));
