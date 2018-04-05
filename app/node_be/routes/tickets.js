@@ -5,9 +5,19 @@ const express = require('express');
 const router = express.Router();
 
 
+router.get('/all', authorize, async (req, res) => {
+  const tickets = await Ticket.find().select('_id');
+	res.send(tickets);
+});
+
+
 router.get('/', async (req, res) => {
 
-  const tickets = await Ticket.find().sort({created_on : -1});
+  const order = (req.query.order === 'asc') ? 1 : -1;
+  const sortBy = (req.query.sort) ? (req.query.sort) : "created_on";
+  const tickets = await Ticket
+                        .find({created_by_id : req.user._id})
+                        .sort({ [sortBy] : order });
 	res.send(tickets);
 });
 
