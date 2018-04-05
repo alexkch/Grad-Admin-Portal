@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {connect} from "react-redux";
 import { Route, Switch } from 'react-router-dom';
 import * as Actions from "../../store/actions";
+import NewTicket from './NewTicket';
 import EditTicket from './EditTicket';
 import DeleteTicket from './DeleteTicket';
 import Pagebar from '../../components/navigation/Pagebar';
@@ -20,6 +21,7 @@ class Tickets extends Component {
     componentDidMount() {
       	this.props.getUserData(this.props.token);
 		    this.props.getTickets(this.props.token);
+        this.props.getUsers(this.props.token);
     };
 
 
@@ -64,6 +66,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
+        getUsers: (token) => dispatch(Actions.getUsers(token)),
         getUserData: (token) => dispatch(Actions.getUserData(token)),
 		    getTickets: (token) => dispatch(Actions.getTickets(token))
     };

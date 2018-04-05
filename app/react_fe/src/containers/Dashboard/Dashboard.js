@@ -2,7 +2,7 @@
 import React, {Component} from 'react';
 import { Route, Switch, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-
+import * as Actions from "../../store/actions";
   //users
 import LoginUser from "../user/LoginUser";
 import LogoutUser from "../user/LogoutUser";
@@ -19,6 +19,8 @@ import Box from '../../components/box/Box';
 import Button from '../../components/button/Button';
 
 class Dashboard extends Component {
+
+
 
     state = { open: false };
 
@@ -55,7 +57,7 @@ class Dashboard extends Component {
               <Switch>
                 <Route path="/issues/:id/notes" component={NewNote} />
                 <Route path="/issues" component={NewIssue} />
-                <Route path="/tickets" component={NewTicket} />
+                <Route path="/tickets/new" exact component={NewTicket} />
               </Switch>
             </Col>
           </Row>

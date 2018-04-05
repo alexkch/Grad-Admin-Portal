@@ -11,7 +11,7 @@ const router = express.Router();
 
 router.get('/all', authorize, async (req, res) => {
 
-  const users = await User.find().select('_id name issues');
+  const users = await User.find().select('_id name usertype issues');
   console.log(users);
   res.send(users);
 

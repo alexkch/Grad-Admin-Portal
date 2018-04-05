@@ -11,6 +11,13 @@ class NewTicket extends Component {
 
     state = {
         form: {
+            prof: {
+              elementType: 'select',
+              elementConfig: {
+                  options: [
+                      {value: '', displayValue: 'Select Prof'}
+                  ]
+            },
             professor: {
                 elementType: 'input',
                 elementConfig: {
@@ -51,7 +58,20 @@ class NewTicket extends Component {
                 valid: true
             }
         },
-        formIsValid: false,
+        formIsValid: false
+      }
+    }
+
+
+
+    componentDidMount() {
+      let profList = this.state.form.prof.elementConfig.options;
+      console.log(this.props.users);
+      this.props.users.map((user) => {
+        console.log(user);
+        console.log('3');
+        if (user.usertype == 'faculty') profList.push({value: user._id, displayValue: user.name}) } )
+      this.setState({ form : { prof : { ...this.state.form.prof, elementConfig : { options : profList }}, ...this.state.form }});
     }
 
     postHandler = ( event ) => {
@@ -112,6 +132,7 @@ const mapStateToProps = state => {
   return {
       token: state.user.token,
       userId: state.user.userId,
+      users: state.user.users,
       name: state.user.name,
       error: state.issue.error,
       errorMsg: state.issue.errorMsg
