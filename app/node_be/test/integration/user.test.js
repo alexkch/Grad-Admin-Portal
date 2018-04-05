@@ -12,7 +12,7 @@ describe('/api/users', () => {
 
   describe('GET /', () => {
     it('should return all users', async () => {
-      await Issue.collection.insertMany([
+      await User.collection.insertMany([
         // example of student user
         { email : "tiffany@hotmail.com",
           name: "tiffany",
@@ -95,13 +95,14 @@ describe('/api/users', () => {
 
   describe('POST /', () => {
     it('should return 401 since user is not signed in', async () => {
-      const issue = new Issue(
-        // Issue 1
-        { created_by : "Donny",
-          created_by_id: "5a9d6cc70218274308a12744",
-          description: "Issue 99",
-          status: "closed",
-          priority: "high"
+      const user = new User(
+        { email : "daniel@hotmail.com",
+          name: "Daniel",
+          password: "2222dfasfa",
+          usertype: "Student",
+          isAdmin: false,
+          created_on: Date.now,
+          // last_login: Date.now
         });
       const res = await request(server).post('/api/users/').send(user);
       expect(res.status).toBe(401);

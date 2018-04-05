@@ -17,7 +17,7 @@ describe('/api/offers', () => {
         { 
           ticket_id: "5a9d6cc70218",
           applicant_id: "5a9d6cc70218274308a12744",
-          professor_id: "",
+          professor_id: "5a9d6cc70218274308",
           applicant: "Daniel",
           type: "domestic",
           professor: "John",
@@ -25,9 +25,9 @@ describe('/api/offers', () => {
         },
         // Offer 2
         { 
-          ticket_id: "5a9d6cc70219",,
+          ticket_id: "5a9d6cc70219",
           applicant_id: "5a9d6cc70218274308a12744",  // change the applicant id for each status
-          professor_id: "",
+          professor_id: "5a9d6cc70218274308",
           applicant: "Daniel",
           type: "international",
           professor: "John",
@@ -35,27 +35,27 @@ describe('/api/offers', () => {
         },
         // Offer 3
         { 
-          ticket_id: "5a9d6cc70220",,
+          ticket_id: "5a9d6cc70220",
           applicant_id: "5a9d6cc70218274308a12744",
-          professor_id: "",
+          professor_id: "5a9d6cc70218274308",
           applicant: "Daniel",
           type: "international",
           professor: "John",
           status: "rejected"
         },
         { 
-          ticket_id: "5a9d6cc70221",,
+          ticket_id: "5a9d6cc70221",
           applicant_id: "5a9d6cc70218274308a12744",
-          professor_id: "",
+          professor_id: "5a9d6cc70218274308",
           applicant: "Daniel",
           type: "domestic",
           professor: "John",
           status: "accepted"
         },
         { 
-          ticket_id: "5a9d6cc70222",,
+          ticket_id: "5a9d6cc70222",
           applicant_id: "5a9d6cc70218274308a12744",
-          professor_id: "",
+          professor_id: "5a9d6cc70218274308", 
           applicant: "Daniel",
           type: "international",
           professor: "John",
@@ -76,7 +76,7 @@ describe('/api/offers', () => {
         { 
           ticket_id: "5a9d6cc70218",
           applicant_id: "5a9d6cc70218274308a12744",
-          professor_id: "",
+          professor_id: "5a9d6cc70218274308", // temporal
           applicant: "Daniel",
           type: "international",
           professor: "John",
