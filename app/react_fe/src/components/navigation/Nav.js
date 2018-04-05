@@ -1,16 +1,26 @@
 import React from 'react';
-import sty from '../../css/bootstrap.min.css';
-import strcat from 'classnames';
-import NavItems from './NavItems';
-
+import styles from './Nav.css';
+import { NavLink } from 'react-router-dom';
 
 const Nav = (props) => (
-    <nav style={{padding : "0px"}}
-        className={strcat(sty.navbar, sty["navbar-expand-lg"], sty["navbar-dark"], sty["bg-dark"])}>
-        {props.children}
-        <NavItems token={props.token}/>
-    </nav>
-);
 
+      <nav className={styles.Navbar}>
+
+        <ul className={styles.NavItems}>
+        <h5 style = {{"font" : "italic bold 24px arial, sans-serif", "color" : "white"}}> FAST TICKET SYSTEM </h5>
+            {(props.token) ? <li className={styles.NavItem} style = {{"paddingLeft" : "105px"}}>
+                              <NavLink to='/issues' activeClassName="active">Issue</NavLink>
+                              </li> : null }
+            {(props.token) ? <li className={styles.NavItem}>
+                              <NavLink to='/tickets' activeClassName="active">Tickets</NavLink>
+                              </li> : null }
+            {(props.token) ? <li className={styles.NavItem}>
+                              <NavLink to='/offers' activeClassName="active">Offers</NavLink>
+                              </li> : null }
+        </ul>
+        {props.children}
+      </nav>
+
+);
 
 export default Nav;

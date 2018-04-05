@@ -9,11 +9,42 @@ const config = require('config');
 const router = express.Router();
 
 
+router.get('/all', authorize, async (req, res) => {
+
+  const users = await User.find().select('_id name issues');
+  console.log(users);
+  res.send(users);
+
+});
+
+
 router.get('/self', authorize, async (req, res) => {
 
-  const user = await User.findById(req.user._id).select('-password');
+  const user = await User.findById(req.user._id).select('issues tickets offers').populate('issues');
   res.send(user);
 
+});
+
+router.post('/sub', authorize, async (req, res) => {
+
+  const user = await User.findOne({ _id: req.body.userId })
+  if (user.issues.map( issue => issue.toString()).includes(req.body.issueId)) return res.status(400).send("Issue already in subscriptions");
+
+  const result = await User.update({ "_id" : req.body.userId },
+    { $push: { issues : req.body.issueId }
+  });
+
+  res.send(result);
+});
+
+
+router.post('/unsub', authorize, async (req, res) => {
+
+  const result = await User.update({ "_id" : req.user._id },
+    { $pull: { issues : req.body.issueId }
+  });
+  if (!result.nModified) return res.status(404).send("issue subscription with given ID was not found");
+  res.send(result);
 });
 
 

@@ -1,19 +1,52 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
-import sty from '../../css/bootstrap.min.css';
+import { NavLink, Route, Switch } from 'react-router-dom';
 import Box from '../../components/box/Box';
+import { Collapse,
+         Navbar as Userbar,
+         NavbarToggler as UserbarToggler,
+         NavbarBrand as UserbarBrand,
+         Nav as Menu,
+         NavItem as MenuItem } from 'reactstrap';
 
+import Aux from '../../utils/auxiliary';
 class User extends Component {
+
+  state = {
+    collapsed: true
+  }
+
+  toggleNavbar() {
+    this.setState({
+      collapsed: !this.state.collapsed
+    });
+  }
 
     render () {
 
       let userPanel;
-      userPanel = (this.props.token) ? (<Box color="secondary" header={this.props.userId}><h5>Name: {this.props.name}</h5>
-      UserType: {this.props.usertype}</Box>) :
+      userPanel = (this.props.token) ? (<Box color="secondary" header={this.props.name}>
+      <Userbar color="faded" light>
+          <UserbarBrand href="/" className="mr-auto"> <h4> UserType: {this.props.usertype} </h4> </UserbarBrand>
+          <UserbarToggler onClick={this.toggleNavbar.bind(this)} className="mr-2" />
+          <Collapse isOpen={!this.state.collapsed} navbar>
+            <Menu navbar>
+              <MenuItem>
+                <NavLink to='/issues'>Opened Issues</NavLink>
+              </MenuItem>
+              <MenuItem>
+                <NavLink to='/issues/subscribed'>Subscribed Issues</NavLink>
+              </MenuItem>
+              <div style={{padding: "20px"}} />
+              <MenuItem>
+                <NavLink to='/tickets'>Tickets</NavLink>
+              </MenuItem>
+            </Menu>
+          </Collapse>
+        </Userbar></Box>) :
       (<Box color="secondary" header="Login required!">Please Login or <NavLink to='/newuser' activeClassName="active">Register</NavLink> to operate</Box>)
 
-      return ( userPanel );
+      return ( <Aux>{userPanel}</Aux> );
     }
 }
 
@@ -29,12 +62,6 @@ const mapStateToProps = state => {
   };
 };
 
-// pass using props , this.props.onSetIssues
-const mapDispatchToProps = dispatch => {
-  return {
-    //actionGetIssues: () => dispatch(Actions.getIssues())
-  };
-};
 
 
-export default connect(mapStateToProps, null)(User);
+export default connect(mapStateToProps)(User);

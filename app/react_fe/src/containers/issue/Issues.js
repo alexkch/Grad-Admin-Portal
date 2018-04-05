@@ -1,69 +1,86 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import DisplayIssue from './DisplayIssue';
+import { Route, Switch } from 'react-router-dom';
+import EditIssue from './EditIssue';
+import DeleteIssue from './DeleteIssue';
+import Notes from '../note/Notes';
+import DeleteNote from '../note/DeleteNote';
 import * as Actions from '../../store/actions/';
-import Modal from '../../components/modal/Modal';
-import Aux from '../../wrapper/Auxiliary';
+import Aux from '../../utils/auxiliary';
+import Pagebar from '../../components/navigation/Pagebar';
+import Card from '../../components/box/Card';
 
 class Issues extends Component {
 
     state = {
-      issue: null,
+      selected_issue: null,
       selected: false,
-      isLoggedIn: this.props.token
     }
 
     componentDidMount() {
-      this.props.actionGetIssues();
+      console.log(this.props.match);
+      this.props.getIssues(this.props.token);
+      this.props.getUserData(this.props.token);
     }
 
-    viewIssueHandler = (issueIndex) => {
-      //const issues = [...this.state.issues]; //this.state.issues.slice();
-      const issue = {
-        ...this.props.issues[issueIndex]
-      };
-      this.setState({issue: issue, selected: true });
-    }
-
-    closeIssueHandler = () => {
-      this.setState({ selected: false });
+    priorityColorHandler = (priority) => {
+      switch (priority) {
+        case ('urgent'): return 'danger'
+        case ('high'): return 'warning'
+        case ('medium'): return 'dark'
+        default: return 'dark'
+      }
     }
 
 
     render () {
-        let issues;
-        issues = (this.props.error) ? (<p style={{textAlign: 'center'}}> {this.props.errorMsg} </p>) :
-                 (this.props.issues.map((issue, index) => {
-                   return <DisplayIssue key={issue._id}
+
+        let subscribedIssues = (this.props.error2) ? (<p style={{textAlign: 'center'}}> {this.props.errorMsg2} </p>) :
+                 (this.props.subIssues.map((issue, index) => <Card key={issue._id}
                    created_by={issue.created_by}
+                   created_on={new Date(issue.created_on).toDateString()}
                    issue_id={issue._id}
+                   title={issue.title}
                    status={issue.status}
                    priority={issue.priority}
-                   type={'short'}
-                   select={() => this.viewIssueHandler(index)}
-                   />}))
+                   btn_clr = {((issue.status) === 'open') ? 'primary' : 'secondary'}
+                   header_clr= {this.priorityColorHandler(issue.priority)}
+                   type='issues'
+                   isOwner={issue.created_by_id == this.props.userId}
+                   url={this.props.match.url}
+                   />));
 
-        let modalIssue;
-        modalIssue = (this.state.selected) ? (<DisplayIssue
-                  key={this.state.issue._id}
-                  issue_id={this.state.issue._id}
-                  created_by={this.state.issue.created_by}
-                  created_by_id={this.state.issue.created_by_id}
-                  status={this.state.issue.status}
-                  description={this.state.issue.description}
-                  priority={this.state.issue.priority}
-                  type={'modal-short'}
-                  show={this.state.selected}
-                  close={this.closeIssueHandler}
-                  />) : null
 
+        let issues = (this.props.error) ? (<p style={{textAlign: 'center'}}> {this.props.errorMsg} </p>) :
+                 (this.props.issues.map((issue, index) => <Card key={issue._id}
+                   created_by={issue.created_by}
+                   created_on={new Date(issue.created_on).toDateString()}
+                   issue_id={issue._id}
+                   title={issue.title}
+                   status={issue.status}
+                   priority={issue.priority}
+                   btn_clr = {((issue.status) === 'open') ? 'primary' : 'secondary'}
+                   header_clr= {this.priorityColorHandler(issue.priority)}
+                   type='issues'
+                   isOwner={issue.created_by_id == this.props.userId}
+                   url={this.props.match.url}
+                   />));
 
       return (
             <Aux>
-              <Modal show={this.state.selected} close={this.closeIssueHandler} >
-                {modalIssue}
-              </Modal>
-              {issues}
+              <Switch>
+                <Route path="/issues/:id/del" exact component={DeleteIssue} />
+                <Route path="/issues/:id/edit" exact component={EditIssue} />
+                <Route path="/issues/:id/notes/del" exact component={DeleteIssue} />
+                <Route path="/issues/:id/notes/edit" exact component={EditIssue} />
+                <Route path="/issues/:id/notes/:noteId/del" exact component={DeleteNote} />
+              </Switch>
+              <Pagebar/>
+              <Switch>
+                <Route path="/issues/:id/notes" component={Notes} />
+                <Route path="/issues/subscribed" exact render={ () => subscribedIssues } />
+                <Route path="/issues" render={ () => issues } />
+              </Switch>
             </Aux>
         );
     }
@@ -75,15 +92,19 @@ const mapStateToProps = state => {
       userId: state.user.userId,
       name: state.user.name,
       issues: state.issue.issues,
+      subIssues: state.user.subIssues,
       error: state.issue.error,
-      errorMsg: state.issue.errorMsg
+      errorMsg: state.issue.errorMsg,
+      error2: state.user.error,
+      errorMsg2: state.user.errorMsg
   };
 };
 
 // pass using props , this.props.onSetIssues
 const mapDispatchToProps = dispatch => {
   return {
-    actionGetIssues: () => dispatch(Actions.getIssues())
+    getIssues: (token) => dispatch(Actions.getIssues(token)),
+    getUserData: (token) => dispatch(Actions.getUserData(token))
   };
 };
 

@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import Ticket from './Ticket';
 import EditTicketStatus from './EditTicket';
+import Aux from '../../utils/auxiliary';
 
 
 class DisplayTicket extends Component {
 	constructor(props){
 		super(props);
-		
+
 		this.state = {ticket: props.ticket, stat: "short"}
 		// this.handleClick = this.handleClick.bind(this);
 		// this.handleEdited = this.handleEdited.bind(this);
@@ -21,6 +22,7 @@ class DisplayTicket extends Component {
 
 	render(){
 		let page = null;
+		let output;
 		switch(this.props.type){
 			case ("short"):
 				page = (
@@ -30,15 +32,24 @@ class DisplayTicket extends Component {
 					</div>
 				);
 				break;
-			
+
 			case("edit"):
 				page = <EditTicketStatus ticket={this.state.ticket} />;
+				break;
+			case ( 'modal-short' ):
+				output = (
+				  <Aux onClick={this.props.select}>
+				      <h2>Ticket for {this.state.ticket.professor}</h2>
+				      <h5>Issue ID: {this.state.ticket._id}</h5>
+				  </Aux>
+				);
 				break;
 		}
 		return page;
 	}
 
 }
+/*
 class ListTickets extends Component {
 	constructor(props){
 		super(props);
@@ -65,5 +76,5 @@ class ListTickets extends Component {
 			);
 	}
 }
-
+*/
 export default DisplayTicket;

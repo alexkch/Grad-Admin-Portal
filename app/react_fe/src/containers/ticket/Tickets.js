@@ -1,71 +1,48 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import DisplayTicket from './DisplayTicket';
-import Modal from '../../components/modal/Modal';
-import Aux from '../../wrapper/Auxiliary';
-import styles from './Ticket.css';
+import Aux from '../../utils/auxiliary';
 import * as Actions from "../../store/actions";
 import {connect} from "react-redux";
+import { Route, Switch } from 'react-router-dom';
+import EditTicket from './EditTicket';
+import DeleteTicket from './DeleteTicket';
+import Pagebar from '../../components/navigation/Pagebar';
+import cardTicket from '../../components/box/CardTicket';
 
 class Tickets extends Component {
 
     state = {
-      tickets: [],
       ticket: null,
       selected: false,
-      error: false,
-      errorMsg: 'Something went wrong'
     }
 
 
-    async componentDidMount() {
-      //const res = await axios.get('/issues');
-      try {
-        const res = await axios.get('/tickets');
-        this.setState({tickets: res.data, error: false});
-      } catch (error) {
-        console.log(error);
-        this.setState({error: true, errorMsg: error.message});
-      }
+    componentDidMount() {
+      	this.props.getUserData(this.props.token);
+		this.props.getTickets(this.props.token);
     };
 
-    viewTicketHandler = (ticketIndex) => {
-      //const issues = [...this.state.issues]; //this.state.issues.slice();
-      const ticket = {
-        ...this.state.tickets[ticketIndex]
-      };
-      this.setState({ticket: ticket, selected: true });
-    }
-
-    closeTicketHandler = () => {
-      this.setState({ selected: false });
-    }
 
 
     render () {
         let tickets;
-        tickets = (this.state.error) ? (<p style={{textAlign: 'center'}}> {this.state.errorMsg} </p>) :
-                 (this.state.tickets.map((ticket, index) => {
-                   return <DisplayTicket ticket={this.state.ticket}
-                   type={'short'}
-                   select={() => this.viewTicketHandler(index)}
-                   />}))
-
-        let modalTicket;
-        modalTicket = (this.state.selected) ? (<DisplayTicket
-                  ticket={this.state.ticket}
-                  type={'modal-short'}
-                  show={this.state.selected}
-                  close={this.closeTicketHandler}
-                  />) : null
+        tickets = (this.props.error) ? (<p style={{textAlign: 'center'}}> {this.props.errorMsg} </p>) :
+                 (this.props.tickets.map((ticket, index) => <cardTicket key={ticket.ticket_id}
+                   professor={ticket.professor}
+                   status={ticket.status}
+                   created_on={ticket.created_on}
+                   isOwner={ticket.professor_id == this.props.userId}
+                   url={this.props.match.url}
+                   />))
 
 
       return (
             <Aux>
-              <Modal show={this.state.selected} close={this.closeTicketHandler} >
-                {modalTicket}
-              </Modal>
-              {tickets}
+              <Switch>
+                <Route path="/tickets/:id/del" exact component={DeleteTicket} />
+                <Route path="/tickets/:id/edit" exact component={EditTicket} />
+              </Switch>
+              <Pagebar/>
+	            <Route path="/tickets" render={ () => tickets } />
             </Aux>
         );
     }
@@ -85,7 +62,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        //actionGetTickets: () => dispatch(Actions.getTickets())
+	    getUserData: (token) => dispatch(Actions.getUserData(token)),
+		getTickets: (token) => dispatch(Actions.getTickets(token))
     };
 };
 

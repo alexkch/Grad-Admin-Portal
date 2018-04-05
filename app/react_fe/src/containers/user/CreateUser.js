@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as Actions from '../../store/actions';
 import Form from '../../components/form/Form';
+import checkValidity from '../../utils/validateForm';
 import Box from '../../components/box/Box';
 import Button from '../../components/button/Button';
 
@@ -58,7 +59,7 @@ class NewUser extends Component {
                         {value: '', displayValue: 'Choose your Occupation', default: true},
                         {value: 'faculty', displayValue: 'Faculty'},
                         {value: 'budget_office', displayValue: 'Budget Office'},
-                        {value: 'grad_office', displayValue: 'Grad office'}
+                        {value: 'grad_office', displayValue: 'Grad Office'}
                     ]
                 },
                 value: '',
@@ -73,45 +74,7 @@ class NewUser extends Component {
     createUserHandler = (event) => {
       event.preventDefault();
       this.props.newUser(this.state.form);
-    }
-
-    postHandler = ( event ) => {
-        event.preventDefault();
-        const formData = {};
-        for (let input in this.state.form) {
-            formData[input] = this.state.form[input].value;
-        }
-    }
-
-    checkValidity(value, rules) {
-        let isValid = true;
-        if (!rules) {
-            return true;
-        }
-
-        if (rules.required) {
-            isValid = value.trim() !== '' && isValid;
-        }
-
-        if (rules.minLength) {
-            isValid = value.length >= rules.minLength && isValid
-        }
-
-        if (rules.maxLength) {
-            isValid = value.length <= rules.maxLength && isValid
-        }
-
-        if (rules.isEmail) {
-            const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-            isValid = pattern.test(value) && isValid
-        }
-
-        if (rules.isNumeric) {
-            const pattern = /^\d+$/;
-            isValid = pattern.test(value) && isValid
-        }
-
-        return isValid;
+      this.props.history.replace('/');
     }
 
     inputChangedHandler = (event, inputIdentifier) => {
@@ -122,7 +85,7 @@ class NewUser extends Component {
             ...updatedform[inputIdentifier]
         };
         updatedFormElement.value = event.target.value;
-        updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation);
+        updatedFormElement.valid = checkValidity(updatedFormElement.value, updatedFormElement.validation);
         updatedFormElement.touched = true;
         updatedform[inputIdentifier] = updatedFormElement;
 

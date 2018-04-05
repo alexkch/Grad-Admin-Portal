@@ -82,38 +82,34 @@ describe('/api/tickets', () => {
     });
 
     it ('should return 400 if user json does not meet validation', async () => {
-      const token = new User().generateAuthToken();
-      const user = new User(
+      const token = new Ticket().generateAuthToken();
+      const ticket = new Ticket(
         {
-          email : "daniel@hotmail.com",
-          name: "Daniel",
-          password: "2222dfasfa",
-          usertype: "Student",
-          isAdmin: false,
-          created_on: Date.now,
-          last_login: Date.now
+          professor : "Professor John",
+          status: "granted",
+          created_by: "Daniel",
+          created_on: Date,
+          updated_on: Date.now,
         });
-      const res = await request(server).post('/api/users/').set('x-auth-token', token).send(user);
+      const res = await request(server).post('/api/users/').set('x-auth-token', token).send(ticket);
       expect(res.status).toBe(400);
     });
 
     //need to fix this....
-    it('should save user in db if user is signed in/signed up and passes validation', async () => {
-      const token = new User().generateAuthToken();
-      const new_user = new User(
-        // user 1
+    it('should save ticket in db if user is signed in/signed up and passes validation', async () => {
+      const token = new Ticket().generateAuthToken();
+      const new_ticket = new Ticket(
+        // ticket 1
         {
-          email : "daniel@hotmail.com",
-          name: "Daniel",
-          password: "2222dfasfa",
-          usertype: "Student",
-          isAdmin: false,
-          created_on: Date.now,
-          last_login: Date.now
+          professor : "Professor John",
+          status: "granted",
+          created_by: "Daniel",
+          created_on: Date,
+          updated_on: Date.now,
         });
-      const res = await request(server).post('/api/users/').set('x-auth-token', token).send(new_user);
-      const query = await User.findById({"_email" : "daniel@hotmail.com"});
-      console.log(new_user);
+      const res = await request(server).post('/api/tickets/').set('x-auth-token', token).send(new_ticket);
+      const query = await Ticket.findById({"_email" : "daniel@hotmail.com"});
+      console.log(new_ticket);
       console.log('value ' + query);
       expect(query).not.toBeNull();
     });
@@ -129,7 +125,7 @@ describe('/api/tickets', () => {
           created_on: Date,
           updated_on: Date.now,
         });
-      old_ticket = Ticket.find({ticket.professor: "Professor John"});
+      old_ticket = Ticket.find(ticket.professor: "Professor John");
       old_ticket.f
       const res = await request(server).post('/api/tickets/').send(ticket);
 

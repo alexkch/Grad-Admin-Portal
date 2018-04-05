@@ -15,3 +15,7 @@ Files by shared link:
 7. [swagger API](https://app.swaggerhub.com/apis/csc302BD/GradApp/1.0.0)
 
 ## Phase 2
+
+## Phase 3
+1. UML diagram: [view](https://drive.google.com/file/d/1V1TZ4Hti3jrpJzN0TM0tvCFgxVbjHg0s/view?usp=sharing)
+2. GOOGLE PPT: [view](https://docs.google.com/presentation/d/10CHfckLeb3MLja0vJXwHVRbq_s3PyhLxItQ7Q77hy_0/edit?usp=sharing)

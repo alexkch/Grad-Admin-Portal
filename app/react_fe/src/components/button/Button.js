@@ -1,76 +1,115 @@
 import React from 'react';
-import sty from '../../css/bootstrap.min.css';
-import strcat from 'classnames';
-import Aux from '../../wrapper/Auxiliary';
+import Aux from '../../utils/auxiliary';
+import { Button } from 'reactstrap';
 
 const button = (props) => {
 
   let output = null;
 
-  switch ( props.type) {
-      case ( 'dark' ):
-          output = (
-            <button
-              type="submit"
-              className={strcat(sty["btn"],sty["btn-primary"])}
-              onClick={props.clicked}>
-              {props.children}
-            </button>
-          );
-          break;
-      case ( 'submit-dark' ):
-          output = null;
-          break;
+    switch ( props.type) {
+      case ( 'danger' ):
+        output = (
+          <Button outline color="danger"
+            type="submit"
+            onClick={props.clicked}>
+            {props.children}
+          </Button>
+        );
+        break;
+      case ( 'success' ):
+        output = (
+          <Button outline color="success"
+            type="submit"
+            onClick={props.clicked}>
+            {props.children}
+          </Button>
+        );
+        break;
+      case ( 'secondary' ):
+        output = (
+          <Button outline color="secondary"
+            type="submit"
+            onClick={props.clicked}>
+            {props.children}
+          </Button>
+        );
+        break;
+      case ( 'primary' ):
+        output = (
+          <Button outline color="primary"
+            type="submit"
+            onClick={props.clicked}>
+            {props.children}
+          </Button>
+        );
+        break;
       case ( 'disabled' ):
           output = (
-            <button
+            <Button outline color="info"
               type="submit"
-              className={strcat(sty["btn"],sty["btn-outline-info"])}
               onClick={props.clicked}
               disabled={props.disabled}>
               {props.children}
-            </button>
+            </Button>
+          );
+          break;
+      case ( 'disabled-dark-small' ):
+          output = (
+            <Button outline color="secondary"
+              type="submit"
+              size="sm"
+              onClick={props.clicked}
+              disabled={props.disabled}>
+              {props.children}
+            </Button>
+          );
+          break;
+      case ( 'disabled-dark-small-cancel' ):
+          output = (
+            <Button outline color="secondary"
+              type="button"
+              size="sm"
+              onClick={props.clicked}
+              disabled={props.disabled}>
+              {props.children}
+            </Button>
           );
           break;
       case ( 'disabled-stretch' ):
           output = (
-            <button
+            <Button color="info" size="lg" block
               type="submit"
-              className={strcat(sty["btn"],sty["btn-outline-info"],sty["btn-block"])}
               onClick={props.clicked}
               disabled={props.disabled}>
               {props.children}
-            </button>
+            </Button>
           );
           break;
       case ( 'stretch' ):
           output = (
-            <button
+            <Button color="secondary" size="info" block
               type="submit"
-              className={strcat(sty["btn"],sty["btn-outline-info"],sty["btn-block"])}
               onClick={props.clicked}>
               {props.children}
-            </button>
+            </Button>
           );
           break;
       case ( 'stretch-dark' ):
           output = (
-            <button
+            <Button outline color="secondary" size="lg" block
               type="submit"
-              className={strcat(sty["btn"],sty["btn-secondary"],sty["btn-block"])}
               onClick={props.clicked}>
               {props.children}
-            </button>
+            </Button>
           );
           break;
       default:
           output = (
-            <button
+            <Button outline color="info"
               type="submit"
-              className={strcat(sty["btn"],sty["btn-outline-info"])}
               onClick={props.clicked}>
               {props.children}
-            </button>
+            </Button>
           );
   };
 

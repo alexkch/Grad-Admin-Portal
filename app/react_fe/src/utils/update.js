@@ -1,6 +1,7 @@
-export const update = (Obj, updatedProperties) => {
+const update = (Obj, updatedProperties) => {
     return {
         ...Obj,
         ...updatedProperties
     };
 };
+export default update;
