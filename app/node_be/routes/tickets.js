@@ -1,17 +1,28 @@
 const { Ticket, validate } = require('../models/ticket');
 const authorize = require('../utils/authorize');
+const validateObjId = require('../utils/validateObjId');
 const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
 
 
-router.get('/', async (req, res) => {
-
-  const tickets = await Ticket.find().sort({created_on : -1});
+router.get('/all', authorize, async (req, res) => {
+  const tickets = await Ticket.find().select('_id');
 	res.send(tickets);
 });
 
-router.post('/', /*authorize,*/ async (req, res) => {
+
+router.get('/', authorize, async (req, res) => {
+
+  const order = (req.query.order === 'asc') ? 1 : -1;
+  const sortBy = (req.query.sort) ? (req.query.sort) : "created_on";
+  const tickets = await Ticket
+                        .find({created_by_id : req.user._id})
+                        .sort({ [sortBy] : order });
+	res.send(tickets);
+});
+
+router.post('/', authorize, async (req, res) => {
 
 	const { error } = validate(req.body);
 	if (error) return res.status(400).send(error.details[0].message);
@@ -20,7 +31,9 @@ router.post('/', /*authorize,*/ async (req, res) => {
     professor_id: req.body.professor_id,
 		professor: req.body.professor,
     status: req.body.status,
-    created_by: req.body.created_by
+    type: req.body.type,
+    created_by: req.body.created_by,
+    created_by_id: req.body.created_by_id
 	});
 
   ticket = await ticket.save();
@@ -28,14 +41,14 @@ router.post('/', /*authorize,*/ async (req, res) => {
 });
 
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', [authorize, validateObjId], async (req, res) => {
 	const ticket = await Ticket.findById(req.params.id);
 	if (!ticket) return res.status(404).send("ticket with given ID was not found");
 	res.send(ticket);
 });
 
 
-router.put('/:id', /*authorize,*/ async (req, res) => {
+router.put('/:id', [authorize, validateObjId], async (req, res) => {
 
   const {error} = validate(req.body);
 	if (error) return res.status(400).send(error.details[0].message);
@@ -45,7 +58,9 @@ router.put('/:id', /*authorize,*/ async (req, res) => {
       professor_id: req.body.professor_id,
       professor: req.body.professor,
       status: req.body.status,
-      created_by: req.body.created_by
+      type: req.body.type,
+      created_by: req.body.created_by,
+      created_by_id: req.body.created_by_id
     },
     { new : true }
   );
@@ -55,7 +70,7 @@ router.put('/:id', /*authorize,*/ async (req, res) => {
 });
 
 
-router.delete('/:id', /*authorize,*/ async (req, res) => {
+router.delete('/:id', [authorize, validateObjId], async (req, res) => {
 
 	const ticket = await Ticket.findByIdAndRemove(req.params.id);
 	if (!ticket) return res.status(404).send("ticket with given ID was not found");

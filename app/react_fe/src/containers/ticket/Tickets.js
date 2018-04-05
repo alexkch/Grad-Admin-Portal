@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import Aux from '../../utils/auxiliary';
-import * as Actions from "../../store/actions";
 import {connect} from "react-redux";
 import { Route, Switch } from 'react-router-dom';
+import * as Actions from "../../store/actions";
 import EditTicket from './EditTicket';
 import DeleteTicket from './DeleteTicket';
 import Pagebar from '../../components/navigation/Pagebar';
-import cardTicket from '../../components/box/CardTicket';
+import CardTicket from '../../components/box/CardTicket';
+import Aux from '../../utils/auxiliary';
+
 
 class Tickets extends Component {
 
@@ -18,7 +19,7 @@ class Tickets extends Component {
 
     componentDidMount() {
       	this.props.getUserData(this.props.token);
-		this.props.getTickets(this.props.token);
+		    this.props.getTickets(this.props.token);
     };
 
 
@@ -26,11 +27,12 @@ class Tickets extends Component {
     render () {
         let tickets;
         tickets = (this.props.error) ? (<p style={{textAlign: 'center'}}> {this.props.errorMsg} </p>) :
-                 (this.props.tickets.map((ticket, index) => <cardTicket key={ticket.ticket_id}
+                 (this.props.tickets.map((ticket, index) => <CardTicket key={ticket._id}
                    professor={ticket.professor}
                    status={ticket.status}
+                   type={ticket.type}
                    created_on={ticket.created_on}
-                   isOwner={ticket.professor_id == this.props.userId}
+                   isOwner={ticket.created_by_id == this.props.userId}
                    url={this.props.match.url}
                    />))
 
@@ -62,8 +64,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-	    getUserData: (token) => dispatch(Actions.getUserData(token)),
-		getTickets: (token) => dispatch(Actions.getTickets(token))
+        getUserData: (token) => dispatch(Actions.getUserData(token)),
+		    getTickets: (token) => dispatch(Actions.getTickets(token))
     };
 };
 

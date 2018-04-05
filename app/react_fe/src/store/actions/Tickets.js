@@ -54,9 +54,7 @@ export const getTicket = (token, id) => {
       const header = {
         headers: { 'x-auth-token': token }
       }
-      console.log('/tickets/' + id);
       const res = await axios.get('/tickets/' + id, header);
-      console.log(res.data);
       dispatch(setTicket(res.data));
     } catch (error) {
       dispatch(setTicketFail(error.message));
@@ -91,7 +89,12 @@ export const createTicket = (token, session, form) => {
     try {
       dispatch(postTicket());
       const postData = {
-        //post data
+        professor_id : "5ac1331352b9bf7dc4cc3712",
+        professor : form.professor.value,
+        status : form.status.value,
+        type : form.type.value,
+        created_by : session.name,
+        created_by_id: session.userId
       }
       const header = {
         headers: { 'x-auth-token': token }
@@ -169,7 +172,12 @@ export const editTicket = (token, id, session, form) => {
     try {
       dispatch(updateTicket());
       const putData = {
-        //put data
+        professor_id : "5ac1331352b9bf7dc4cc3712",
+        professor : form.professor.value,
+        status : form.status.value,
+        type : form.type.value,
+        created_by : session.name,
+        created_by_id: session.userId
       }
       const header = {
         headers: { 'x-auth-token': token }
