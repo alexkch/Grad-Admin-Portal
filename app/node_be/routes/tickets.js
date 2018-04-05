@@ -29,7 +29,6 @@ router.post('/', authorize, async (req, res) => {
 
 	let ticket = new Ticket({
     professor_id: req.body.professor_id,
-		professor: req.body.professor,
     status: req.body.status,
     type: req.body.type,
     created_by: req.body.created_by,
@@ -56,7 +55,6 @@ router.put('/:id', [authorize, validateObjId], async (req, res) => {
 	const ticket = await Ticket.findByIdAndUpdate(req.params.id,
     {
       professor_id: req.body.professor_id,
-      professor: req.body.professor,
       status: req.body.status,
       type: req.body.type,
       created_by: req.body.created_by,

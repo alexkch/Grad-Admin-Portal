@@ -5,6 +5,7 @@ import * as Actions from '../../store/actions/';
 import checkValidity from '../../utils/validateForm';
 import Box from '../../components/box/Box';
 import Button from '../../components/button/Button';
+import _ from 'lodash';
 
 class NewTicket extends Component {
 
@@ -12,24 +13,16 @@ class NewTicket extends Component {
     state = {
         form: {
             prof: {
-              elementType: 'select',
-              elementConfig: {
-                  options: [
-                      {value: '', displayValue: 'Select Prof'}
-                  ]
-            },
-            professor: {
-                elementType: 'input',
+                elementType: 'select',
                 elementConfig: {
-                    type: 'text',
-                    placeholder: 'Faculty Member Name'
+                    options: [
+                        {value: '', displayValue: 'Select Prof'},
+                        {value: '5ac1332652b9bf7dc4cc3713', displayValue: 'test4'}
+                    ]
                 },
                 value: '',
-                validation: {
-                    required: false
-                },
-                valid: false,
-                touched: false
+                validation: {},
+                valid: true
             },
             status: {
                 elementType: 'select',
@@ -59,19 +52,6 @@ class NewTicket extends Component {
             }
         },
         formIsValid: false
-      }
-    }
-
-
-
-    componentDidMount() {
-      let profList = this.state.form.prof.elementConfig.options;
-      console.log(this.props.users);
-      this.props.users.map((user) => {
-        console.log(user);
-        console.log('3');
-        if (user.usertype == 'faculty') profList.push({value: user._id, displayValue: user.name}) } )
-      this.setState({ form : { prof : { ...this.state.form.prof, elementConfig : { options : profList }}, ...this.state.form }});
     }
 
     postHandler = ( event ) => {

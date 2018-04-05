@@ -3,13 +3,6 @@ const Joi = require('joi');
 
 
 const ticketSchema = new mongoose.Schema({
-	professor: {
-		type: String,
-		required: true,
-		minlength: 1,
-		maxlength: 255,
-		trim: true
-	},
 	professor_id: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'User'
@@ -47,7 +40,6 @@ const ticketSchema = new mongoose.Schema({
 function validateTicket(ticket) {
 	const schema = {
 		professor_id: Joi.objectId().required(),
-		professor: Joi.string().min(1).max(255).required(),
 		status: Joi.string().valid('granted', 'redeemed').required(),
 		type: Joi.string().valid('domestic', 'international').required(),
 		created_by: Joi.string().min(1).max(255).required(),

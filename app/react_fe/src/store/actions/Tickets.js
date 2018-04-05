@@ -89,8 +89,7 @@ export const createTicket = (token, session, form) => {
     try {
       dispatch(postTicket());
       const postData = {
-        professor_id : "5ac1331352b9bf7dc4cc3712",
-        professor : form.professor.value,
+        professor_id : form.prof.value,
         status : form.status.value,
         type : form.type.value,
         created_by : session.name,
@@ -172,8 +171,7 @@ export const editTicket = (token, id, session, form) => {
     try {
       dispatch(updateTicket());
       const putData = {
-        professor_id : "5ac1331352b9bf7dc4cc3712",
-        professor : form.professor.value,
+        professor_id : form.prof.value,
         status : form.status.value,
         type : form.type.value,
         created_by : session.name,
