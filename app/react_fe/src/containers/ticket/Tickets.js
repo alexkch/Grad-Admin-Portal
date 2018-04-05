@@ -5,7 +5,7 @@ import * as Actions from "../../store/actions";
 import EditTicket from './EditTicket';
 import DeleteTicket from './DeleteTicket';
 import Pagebar from '../../components/navigation/Pagebar';
-import cardTicket from '../../components/box/CardTicket';
+import Card from '../../components/box/Card';
 import Aux from '../../utils/auxiliary';
 
 
@@ -27,12 +27,13 @@ class Tickets extends Component {
     render () {
         let tickets;
         tickets = (this.props.error) ? (<p style={{textAlign: 'center'}}> {this.props.errorMsg} </p>) :
-                 (this.props.tickets.map((ticket, index) => <cardTicket key={ticket.ticket_id}
+                 (this.props.tickets.map((ticket, index) => <Card key={ticket.ticket_id}
                    professor={ticket.professor}
                    status={ticket.status}
                    created_on={ticket.created_on}
                    isOwner={ticket.professor_id == this.props.userId}
                    url={this.props.match.url}
+                   type='tickets'
                    />))
 
 

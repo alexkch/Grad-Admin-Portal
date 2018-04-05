@@ -45,7 +45,7 @@ class Issues extends Component {
                    btn_clr = {((issue.status) === 'open') ? 'primary' : 'secondary'}
                    header_clr= {this.priorityColorHandler(issue.priority)}
                    type='issues'
-                   isOwner={issue.created_by_id == this.props.userId}
+                   isOwner2={issue.created_by_id == this.props.userId}
                    url={this.props.match.url}
                    />));
 
