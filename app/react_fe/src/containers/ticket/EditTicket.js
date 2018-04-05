@@ -17,22 +17,34 @@ class editTicket extends Component {
   state = {
       show: true,
       form: {
-          status: {
-              elementType: 'select',
-              elementConfig: {
-                  options: [
-                      {value: 'granted', displayValue: 'Granted'},
-                      {value: 'redeemed', displayValue: 'Redeemed'}
-                  ]
-              },
-              value: 'granted',
-              validation: {
-                required: true,
-              },
-              valid: false
-          }
-      },
-      formIsValid: false,
+        status: {
+            elementType: 'select',
+            elementConfig: {
+                options: [
+                    {value: '', displayValue: 'Choose:'},
+                    {value: 'granted', displayValue: 'Granted'},
+                    {value: 'redeemed', displayValue: 'Redeemed'},
+                ]
+            },
+            value: '',
+            validation: {},
+            valid: true
+        },
+        type: {
+            elementType: 'select',
+            elementConfig: {
+                options: [
+                    {value: '', displayValue: 'Choose:'},
+                    {value: 'international', displayValue: 'International'},
+                    {value: 'domestic', displayValue: 'Domestic'},
+                ]
+            },
+            value: '',
+            validation: {},
+            valid: true
+        }
+    },
+    formIsValid: false
   }
 
   closeModalHandler = () => {

@@ -5,6 +5,7 @@ import * as Actions from '../../store/actions';
 
 class DeleteTicket extends Component {
     componentDidMount () {
+      console.log(this.props.match.params.id);
       this.props.deleteTicket(this.props.token, this.props.match.params.id);
     }
 

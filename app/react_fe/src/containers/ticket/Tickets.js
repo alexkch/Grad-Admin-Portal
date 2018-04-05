@@ -35,6 +35,7 @@ class Tickets extends Component {
                    type={ticket.type}
                    created_on={ticket.created_on}
                    isOwner={ticket.created_by_id == this.props.userId}
+                   ticket_id={ticket._id}
                    url={this.props.match.url}
                    />))
 
