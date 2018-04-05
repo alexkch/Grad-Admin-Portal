@@ -50,7 +50,7 @@ router.post('/unsub', authorize, async (req, res) => {
 router.post('/grant', authorize, async (req, res) => {
 
   const user = await User.findOne({ _id: req.body.userId })
-  if (user.tickets.map( ticket =>ticket.toString()).includes(req.body.ticketId)) return res.status(400).send("Ticket already granted");
+  if (user.tickets.map( ticket => ticket.toString()).includes(req.body.ticketId)) return res.status(400).send("Ticket already granted");
 
   const result = await User.update({ "_id" : req.body.userId },
     { $push: { tickets : req.body.ticketId }

@@ -7,12 +7,9 @@ import { Container, Col, Row, Card, CardHeader, CardBody, CardFooter, Badge } fr
 
 const cardTicket = (props) => {
 
-  let ownerOpts = (props.isOwner) ? (<CardBody>
+  let ownerOpts = (props.isOwner) ? (<CardBody style={{"float" : "right"}}>
                                             <Link to={props.url + '/' + props.ticket_id + '/edit'}>
                                               <Button type='primary'>Status:{props.status}</Button>
-                                            </Link>
-                                            <Link to={props.url + '/' + props.ticket_id + '/del'}>
-                                              <FontAwesome name='trash-o' size='2x' style={{float: 'right', paddingLeft: '10px'}} />
                                             </Link>
                                           </CardBody>):
                                           null
@@ -30,14 +27,11 @@ const cardTicket = (props) => {
                       </Row>
                       <Row style={{"paddingBottom" : "5px"}}>
                         {props.created_on}
+
                       </Row>
                     </Container>
+                    {ownerOpts}
                   </CardBody>
-                  <CardFooter>
-                    <Container>
-                      {ownerOpts}
-                    </Container>
-                  </CardFooter>
                 </Card>
               </section>)
 

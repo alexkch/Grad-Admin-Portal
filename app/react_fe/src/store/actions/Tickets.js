@@ -1,5 +1,6 @@
 import * as actionTypes from '../../utils/actionTypes';
 import axios from 'axios';
+import { grantTicket, ungrantTicket } from './User';
 
 const setTickets = (tickets) => {
   return {
@@ -98,9 +99,9 @@ export const createTicket = (token, session, form) => {
       const header = {
         headers: { 'x-auth-token': token }
       }
-            console.log(form.professor);
       const res = await axios.post('/tickets', postData, header);
       dispatch(postSuccess());
+      dispatch(grantTicket(token, res.data._id, res.data.professor_id));
       dispatch(getTickets(token));
       } catch (error) {
       dispatch(postFail(error.message));
@@ -130,7 +131,7 @@ const removeFail = (errorMsg) => {
   };
 };
 
-export const deleteTicket = (token, id) => {
+export const deleteTicket = (token, id, userId) => {
   return async dispatch => {
     try {
       dispatch(removeTicket());
@@ -139,6 +140,7 @@ export const deleteTicket = (token, id) => {
       }
       const res = await axios.delete('/tickets/' + id, header);
       dispatch(removeSuccess());
+      dispatch(ungrantTicket(token, id, userId));
       dispatch(getTickets(token));
       } catch (error) {
       dispatch(removeFail(error.message));

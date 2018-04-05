@@ -5,8 +5,7 @@ import * as Actions from '../../store/actions';
 
 class DeleteTicket extends Component {
     componentDidMount () {
-      console.log(this.props.match.params.id);
-      this.props.deleteTicket(this.props.token, this.props.match.params.id);
+      this.props.deleteTicket(this.props.token, this.props.match.params.id, this.props.userId);
     }
 
     render () {
@@ -17,6 +16,7 @@ class DeleteTicket extends Component {
 const mapStateToProps = state => {
   return {
       token: state.user.token,
+      userId: state.user.userId,
       error: state.ticket.error,
       errorMsg: state.ticket.errorMsg
   };
