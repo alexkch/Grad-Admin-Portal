@@ -53,7 +53,7 @@ const offerSchema = new mongoose.Schema({
 
 function validateOffer(offer) {
 	const schema = {
-    ticket_id: Joi.objectId().required(),
+    ticket_id: Joi.objectId(),
 		applicant: Joi.string().min(1).max(255).required(),
 		type: Joi.string()
     .valid('domestic', 'international').required(),

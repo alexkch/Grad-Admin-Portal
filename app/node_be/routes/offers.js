@@ -33,12 +33,12 @@ router.post('/', authorize, async (req, res) => {
 	let offer = new Offer({
 
     ticket_id: req.body.ticket_id,
-    applicant_id: req.body.applicant_id,
-    professor_id: req.body.professor_id,
+    created_by : req.body.created_by,
+    created_by_id : req.body.created_by_id,
     applicant: req.body.applicant,
-    type: req.body.type,
-    professor: req.body.professor,
-    status: req.body.status
+    type : req.body.type,
+    status : req.body.status,
+    round : req.body.round
 
 	});
 
@@ -61,36 +61,13 @@ router.put('/:id', [authorize, validateObjId], async (req, res) => {
 	if (error) return res.status(400).send(error.details[0].message);
 
   let json = {
-    ticket_id: req.body.ticket_id,
-    applicant_id: req.body.applicant_id,
-    professor_id: req.body.professor_id,
-    applicant: req.body.applicant,
-    type: req.body.type,
-    professor: req.body.professor,
-    status: req.body.status
-  };
-
-  switch (req.body.status) {
-      case 'pending':
-          break;
-      case 'approved':
-          json.approved_on = Date.now();
-          break;
-      case 'rejected':
-          json.rejected_on = Date.now();
-          json.accepted_on = null;
-          json.declined_on = null;
-          break;
-      case 'accepted':
-          json.accepted_on = Date.now();
-          json.declined_on = null;
-          json.rejected_on = null;
-          break;
-      case 'declined':
-          json.declined_on = Date.now();
-          json.accepted_on = null;
-          json.rejected_on = null;
-          break;
+      ticket_id: req.body.ticket_id,
+      created_by : req.body.created_by,
+      created_by_id : req.body.created_by_id,
+      applicant: req.body.applicant,
+      type : req.body.type,
+      status : req.body.status,
+      round : req.body.round
   };
 
 	const offer = await Offer.findByIdAndUpdate(req.params.id, json, { new : true });
