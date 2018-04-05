@@ -19,11 +19,11 @@ class Offers extends Component {
     render () {
         let offers;
         offers = (this.props.error) ? (<p style={{textAlign: 'center'}}> {this.props.errorMsg} </p>) :
-            (this.props.offers.map((offer, index) => <CardOffer key={offer.ticket_id}
-                                                      professor={offer.professor}
-                                                      applicant_id={offer.applicant_id}
+            (this.props.offers.map((offer, index) => <CardOffer key={offer._id}
+                                                      offer_id={offer._id}
+                                                      created_by={offer.created_by}
                                                       applicant={offer.applicant}
-                                                      ap_type={offer.type}
+                                                      type={offer.type}
                                                       round={offer.round}
                                                       ticket_id={offer.ticket_id}
                                                       status={offer.status}

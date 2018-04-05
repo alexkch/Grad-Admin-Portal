@@ -15,6 +15,7 @@ class editOffer extends Component {
   }
 
   state = {
+      show: true,
       form: {
           ticket_id: {
               elementType: 'select',
@@ -85,8 +86,9 @@ class editOffer extends Component {
 
   closeModalHandler = () => {
     this.setState({ show: false });
-    //this.props.history.replace('/offers');
+    this.props.history.replace('/offers');
   }
+
 
   editOfferHandler = (event) => {
     event.preventDefault();

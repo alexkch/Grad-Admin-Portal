@@ -47,6 +47,29 @@ router.post('/unsub', authorize, async (req, res) => {
   res.send(result);
 });
 
+router.post('/grant', authorize, async (req, res) => {
+
+  const user = await User.findOne({ _id: req.body.userId })
+  if (user.tickets.map( ticket =>ticket.toString()).includes(req.body.ticketId)) return res.status(400).send("Ticket already granted");
+
+  const result = await User.update({ "_id" : req.body.userId },
+    { $push: { tickets : req.body.ticketId }
+  });
+
+  res.send(result);
+});
+
+router.post('/ungrant', authorize, async (req, res) => {
+
+  const result = await User.update({ "_id" : req.user._id },
+    { $pull: { tickets : req.body.ticketId }
+  });
+  if (!result.nModified) return res.status(404).send("ticket with given ID was not found");
+  res.send(result);
+});
+
+
+
 
 // create a new user
 router.post('/', async (req, res) => {

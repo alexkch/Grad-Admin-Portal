@@ -141,6 +141,69 @@ export const unsubscribeUser = (token, issueId) => {
 };
 
 
+const grantSuccess = () => {
+  return {
+    type: actionTypes.GRANT_TICKET_SUCCESS,
+    error: 'false'
+  };
+};
+
+const grantFail = (errorMsg) => {
+  return {
+    type: actionTypes.GRANT_TICKET_FAIL,
+    error: 'true',
+    errorMsg : errorMsg
+  };
+};
+
+
+export const grantUserTickets = (token, ticketId, userId) => {
+  return async dispatch => {
+    try {
+      const header = {
+        headers: { 'x-auth-token': token }
+      }
+      await axios.post('/users/grant', {userId : userId, ticketId : ticketId}, header);
+      dispatch(subscribeSuccess());
+      } catch (error) {
+      dispatch(subscribeFail(error.message));
+    };
+  };
+};
+
+
+const ungrantSuccess = () => {
+  return {
+    type: actionTypes.GRANT_TICKET_SUCCESS,
+    error: 'false'
+  };
+};
+
+const ungrantFail = (errorMsg) => {
+  return {
+    type: actionTypes.GRANT_TICKET_FAIL,
+    error: 'true',
+    errorMsg : errorMsg
+  };
+};
+
+
+export const ungrantUserTickets = (token, ticketId) => {
+  return async dispatch => {
+    try {
+      const header = {
+        headers: { 'x-auth-token': token }
+      }
+      await axios.post('/users/ungrant', {ticketId : ticketId}, header);
+      dispatch(subscribeSuccess());
+      } catch (error) {
+      dispatch(subscribeFail(error.message));
+    };
+  };
+};
+
+
+
 const setUserIssues = (issues) => {
   return {
     type: actionTypes.SET_USER_ISSUES,
