@@ -27,7 +27,7 @@ class Offers extends Component {
                                                       round={offer.round}
                                                       ticket_id={offer.ticket_id}
                                                       status={offer.status}
-                                                      isOwner={'true'}
+                                                      isOwner={this.props.userId == 'faculty'}
 									                                    url={this.props.match.url}
                                                       />));
 
@@ -35,7 +35,6 @@ class Offers extends Component {
             <Aux>
               <Switch>
                 <Route path="/offers/:id/del" exact component={DeleteOffer} />
-                <Route path="/offers/:id/edit" exact component={EditOffer} />
               </Switch>
               <Pagebar/>
 

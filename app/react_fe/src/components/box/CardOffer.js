@@ -8,14 +8,16 @@ import { Container, Col, Row, Card, CardHeader, CardBody, CardFooter, Badge } fr
 const cardOffer = (props) => {
 
   let ownerOpts = (props.isOwner) ? (<CardBody>
-                                            <Link to={props.url + '/' + props.offer_id + '/edit'}>
-                                              <Button type='primary'>Status:{props.status}</Button>
-                                            </Link>
+                                            <Button type='primary'>Status:{props.status}</Button>
+                                            <Button disabled="true" type='disabled-dark-float'>Send OFFER</Button>
+
+                                          </CardBody>) :
+                                          (<CardBody>
+                                            <Button type='danger-button'>Approve</Button>
                                             <Link to={props.url + '/' + props.offer_id + '/del'}>
                                               <FontAwesome name='trash-o' size='2x' style={{float: 'right', paddingLeft: '10px'}} />
                                             </Link>
-                                          </CardBody>):
-                                          null
+                                          </CardBody>);
 
   return(<section style={{"paddingBottom" : "10px"}}>
                 <Card style={{"borderColor" : "black"}}>

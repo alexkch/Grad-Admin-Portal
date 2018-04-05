@@ -9,13 +9,13 @@ const Nav = (props) => (
         <ul className={styles.NavItems}>
         <h5 style = {{"font" : "italic bold 24px arial, sans-serif", "color" : "white"}}> FAST TICKET SYSTEM </h5>
             {(props.token) ? <li className={styles.NavItem} style = {{"paddingLeft" : "105px"}}>
-                              <NavLink to='/issues' activeClassName="active">Issue</NavLink>
+                              <NavLink to='/issues' activeClassName="active">Issues</NavLink>
                               </li> : null }
-            {(props.token) ? <li className={styles.NavItem}>
+            {(props.token) ? <li className={styles.NavItem} style = {{"paddingLeft" : "85px"}}>
                               <NavLink to='/tickets' activeClassName="active">Tickets</NavLink>
                               </li> : null }
-            {(props.token) ? <li className={styles.NavItem}>
-                              <NavLink to='/offers' activeClassName="active">Offers</NavLink>
+            {(props.token) ? <li className={styles.NavItem} style = {{"paddingLeft" : "85px"}}>
+                              <NavLink to='/offers' activeClassName="active">All Offers</NavLink>
                               </li> : null }
         </ul>
         {props.children}

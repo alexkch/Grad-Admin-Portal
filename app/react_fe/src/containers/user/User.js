@@ -33,6 +33,10 @@ class User extends Component {
                                                                     <NavLink to='/tickets/granted'>Granted Tickets</NavLink>
                                                                   </MenuItem></Aux>) : null;
 
+      let offerOpts = (this.props.usertype === "faculty") ? ( <MenuItem>
+                                                                <NavLink to='/offers/new'>New Offer</NavLink>
+                                                              </MenuItem>) : null;
+
       let userPanel;
       userPanel = (this.props.token) ? (<Box color="secondary" header={this.props.name}>
       <Userbar color="faded" light>
@@ -48,10 +52,7 @@ class User extends Component {
               </MenuItem>
               <div style={{padding: "5px"}} />
               {ticketOpts}
-              <div style={{padding: "5px"}} />
-              <MenuItem>
-                <NavLink to='/offers/new'>New Offer</NavLink>
-              </MenuItem>
+              {offerOpts}
             </Menu>
           </Collapse>
         </Userbar></Box>) :

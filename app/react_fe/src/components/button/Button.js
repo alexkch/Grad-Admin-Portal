@@ -16,6 +16,14 @@ const button = (props) => {
           </Button>
         );
         break;
+      case ( 'danger-button' ):
+        output = (
+          <Button outline color="danger"
+            type="button">
+            {props.children}
+          </Button>
+        );
+        break;
       case ( 'success' ):
         output = (
           <Button outline color="success"
@@ -49,6 +57,16 @@ const button = (props) => {
               type="submit"
               onClick={props.clicked}
               disabled={props.disabled}>
+              {props.children}
+            </Button>
+          );
+          break;
+      case ( 'disabled-dark-float' ):
+          output = (
+            <Button outline color="secondary"
+              type="button"
+              style={{"float" : "right"}}
+              disabled="true">
               {props.children}
             </Button>
           );
