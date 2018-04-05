@@ -8,10 +8,10 @@ import { Container, Col, Row, Card, CardHeader, CardBody, CardFooter, Badge } fr
 const cardOffer = (props) => {
 
   let ownerOpts = (props.isOwner) ? (<CardBody>
-                                            <Link to={props.url + '/' + props.ticket_id + '/edit'}>
+                                            <Link to={props.url + '/' + props.offer_id + '/edit'}>
                                               <Button type='primary'>Status:{props.status}</Button>
                                             </Link>
-                                            <Link to={props.url + '/' + props.ticket_id + '/del'}>
+                                            <Link to={props.url + '/' + props.offer_id + '/del'}>
                                               <FontAwesome name='trash-o' size='2x' style={{float: 'right', paddingLeft: '10px'}} />
                                             </Link>
                                           </CardBody>):
@@ -21,18 +21,19 @@ const cardOffer = (props) => {
                 <Card style={{"borderColor" : "black"}}>
                   <CardBody>
                     <Container>
-                      <Row>
-                        <h5>{props.professor} - {props.applicant} {props.applicant_id}</h5>
-                      </Row>
-                   
+                      <Row><h3>Offer for - {props.applicant}</h3></Row>
+                      <Row><h5>Faculty Supervisor: {props.created_by}</h5></Row>
                       <Row style={{"paddingBottom" : "5px", "color" : 'primary' }}>
                         STATUS: {props.status}
                       </Row>
-                      <Row style={{"paddingBottom" : "5px"}}>
-                        Type: {props.ap_type}
+                      <Row style={{"paddingBottom" : "15px"}}>
+                        Round: {props.round}
                       </Row>
                       <Row style={{"paddingBottom" : "5px"}}>
-                        Round: {props.round}
+                        Ticket Id: {props.ticket_id}
+                      </Row>
+                      <Row style={{"paddingBottom" : "5px"}}>
+                        Type: {props.type}
                       </Row>
                     </Container>
                   </CardBody>
