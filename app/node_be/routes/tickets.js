@@ -11,7 +11,7 @@ router.get('/all', authorize, async (req, res) => {
 });
 
 
-router.get('/', async (req, res) => {
+router.get('/', authorize, async (req, res) => {
 
   const order = (req.query.order === 'asc') ? 1 : -1;
   const sortBy = (req.query.sort) ? (req.query.sort) : "created_on";
@@ -40,14 +40,14 @@ router.post('/', authorize, async (req, res) => {
 });
 
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', [authorize, validateObjId], async (req, res) => {
 	const ticket = await Ticket.findById(req.params.id);
 	if (!ticket) return res.status(404).send("ticket with given ID was not found");
 	res.send(ticket);
 });
 
 
-router.put('/:id', /*authorize,*/ async (req, res) => {
+router.put('/:id', [authorize, validateObjId], async (req, res) => {
 
   const {error} = validate(req.body);
 	if (error) return res.status(400).send(error.details[0].message);
@@ -69,7 +69,7 @@ router.put('/:id', /*authorize,*/ async (req, res) => {
 });
 
 
-router.delete('/:id', /*authorize,*/ async (req, res) => {
+router.delete('/:id', [authorize, validateObjId], async (req, res) => {
 
 	const ticket = await Ticket.findByIdAndRemove(req.params.id);
 	if (!ticket) return res.status(404).send("ticket with given ID was not found");
