@@ -64,6 +64,19 @@ class NewOffer extends Component {
         formIsValid: false
     }
 
+    componentDidMount() {
+      let ticketList = this.state.form.ticket_id.elementConfig.options;
+      this.props.tickets.map((ticket) => {if (ticket.status == 'granted') ticketList.push({value: ticket._id, displayValue: ticket._id})});
+
+      this.setState({
+        form : { ...this.state.form,
+          ticket_id : { ...this.state.form.ticket_id,
+            elementConfig : { ...this.state.form.ticket_id.elementConfig,
+              options : ticketList }
+            }}});
+    }
+
+
     postHandler = ( event ) => {
       event.preventDefault();
     	let session_meta = { userId : this.props.userId, name : this.props.name};
@@ -128,6 +141,7 @@ const mapStateToProps = state => {
       token: state.user.token,
       userId: state.user.userId,
       name: state.user.name,
+      tickets: state.user.subTickets,
       error: state.issue.error,
       errorMsg: state.issue.errorMsg
   };
