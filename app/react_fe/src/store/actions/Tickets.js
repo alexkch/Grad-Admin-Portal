@@ -89,9 +89,9 @@ export const createTicket = (token, session, form) => {
     try {
       dispatch(postTicket());
       const postData = {
-        professor_id : form.prof.value,
-        status : form.status.value,
-        type : form.type.value,
+        professor_id : form.professor_id,
+        status : form.status,
+        type : form.type,
         created_by : session.name,
         created_by_id: session.userId
       }
@@ -171,9 +171,9 @@ export const editTicket = (token, id, session, form) => {
     try {
       dispatch(updateTicket());
       const putData = {
-        professor_id : form.prof.value,
-        status : form.status.value,
-        type : form.type.value,
+        professor_id : form.professor_id,
+        status : form.status,
+        type : form.type,
         created_by : session.name,
         created_by_id: session.userId
       }

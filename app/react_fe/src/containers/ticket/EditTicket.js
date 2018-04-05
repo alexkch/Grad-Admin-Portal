@@ -13,17 +13,6 @@ class editTicket extends Component {
   state = {
       show: true,
       form: {
-        prof: {
-            elementType: 'select',
-            elementConfig: {
-                options: [
-                    {value: '', displayValue: 'Select Prof'}
-                ]
-            },
-            value: '',
-            validation: {},
-            valid: true
-        },
         status: {
             elementType: 'select',
             elementConfig: {
@@ -57,16 +46,6 @@ class editTicket extends Component {
 
   componentDidMount() {
     this.props.getTicket(this.props.token, this.props.match.params.id);
-    let profList = this.state.form.prof.elementConfig.options;
-    this.props.users.map((user) => {if (user.usertype == 'faculty') profList.push({value: user._id, displayValue: user.name})});
-
-
-    this.setState({
-      form : { ...this.state.form,
-        prof : { ...this.state.form.prof,
-          elementConfig : { ...this.state.form.prof.elementConfig,
-            options : profList }
-          }}});
   }
 
   closeModalHandler = () => {
@@ -77,7 +56,8 @@ class editTicket extends Component {
   editTicketHandler = (event) => {
     event.preventDefault();
     let session_meta = { userId : this.props.userId, name : this.props.name};
-    this.props.editTicket(this.props.token, this.props.match.params.id, session_meta, this.state.form);
+    let editForm = { status : this.state.form.status.value, type : this.state.form.type.value, professor_id : this.props.ticket.professor_id}
+    this.props.editTicket(this.props.token, this.props.match.params.id, session_meta, editForm);
     this.closeModalHandler();
   }
 
@@ -126,8 +106,8 @@ class editTicket extends Component {
       );
 
       let ticket = (this.props.ticket) ? (<Aux><h5>Ticket: ({this.props.ticket._id})</h5>
-                                        <h4>owner: {this.props.ticket.professor}</h4>
-                                        <h4>status: {this.props.ticket.status}</h4></Aux>) : null
+                                          <h4>status: {this.props.ticket.status}</h4>
+                                          <h4>type: {this.props.ticket.type}</h4></Aux>) : null
 
 
 
