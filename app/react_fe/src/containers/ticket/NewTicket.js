@@ -109,7 +109,7 @@ class NewTicket extends Component {
             </form>
         );
         return (
-            <Box color="secondary" header={"Create new Tickets"}>{form}</Box>
+            <Box color="secondary" header={"Grant Tickets"}>{form}</Box>
         );
     }
 }
