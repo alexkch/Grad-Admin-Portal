@@ -88,8 +88,14 @@ export const createOffer = (token, session, form) => {
   return async dispatch => {
     try {
       dispatch(postOffer());
+      //ticket_id: req.body.ticket_id,
       const postData = {
-        // DATA FOR POST
+        created_by : session.name,
+        created_by_id : session.userId,
+        applicant: form.applicant,
+        type : form.type,
+        status : form.status,
+        round : form.round
       }
       const header = {
         headers: { 'x-auth-token': token }
@@ -167,7 +173,12 @@ export const editOffer = (token, id, session, form) => {
     try {
       dispatch(updateOffer());
       const putData = {
-        // data for put
+        created_by : session.name,
+        created_by_id : session.userId,
+        applicant: form.applicant,
+        type : form.type,
+        status : form.status,
+        round : form.round
       }
       const header = {
         headers: { 'x-auth-token': token }
