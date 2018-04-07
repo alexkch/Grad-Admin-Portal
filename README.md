@@ -1,5 +1,16 @@
 
-# \[React-nodejs\] Full Stack Web Application - Grad Administration Portal
+# \[React-nodejs\] Grad Administration Portal
+
+Full Stack Web Application
+
+npm packages:
+- redux
+- redux-thunk
+- react-router-dom
+- axios
+- reactstrap
+- express
+- joi
 
 1. [Scope](app/prj-outline/Scope.md)
 2. [Arch](app/prj-outline/Arch.md)
