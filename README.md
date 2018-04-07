@@ -1,5 +1,5 @@
 
-# \[React-nodejs\] Grad Administration web application
+# \[React-nodejs\] Full Stack Web Application - Grad Administration Portal
 
 1. [Scope](app/prj-outline/Scope.md)
 2. [Arch](app/prj-outline/Arch.md)
